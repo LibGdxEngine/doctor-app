@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import LogoWithBlueName from "../../public/logo.svg";
-import {createUser} from "@/pages/components/services/auth";
+import {createUser} from "@/components/services/auth";
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
-import {useAuth} from "@/pages/components/utils/AuthContext";
+import {useAuth} from "@/context/AuthContext";
 import SplashScreen from "@/pages/components/SplashScreen";
 
 export default function SignUp() {

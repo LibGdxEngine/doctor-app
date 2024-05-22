@@ -10,7 +10,7 @@ const NumberScroll = ({ numbers, selected=0 }) => {
 
     return (
         <div className="w-fit bg-blue-100  rounded-lg overflow-y-auto h-full p-2 scrollbar">
-            {numbers.map((number) => (
+            {numbers && numbers.map((number) => (
                 <NumberItem
                     key={number}
                     number={number}

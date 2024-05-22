@@ -1,6 +1,6 @@
 // contexts/AuthContext.js
 import {createContext, useState, useContext, useEffect} from 'react';
-import {getUser} from "@/pages/components/services/auth";
+import {getUser} from "@/components/services/auth";
 
 const AuthContext = createContext(null);
 

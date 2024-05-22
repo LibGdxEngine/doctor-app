@@ -1,5 +1,5 @@
 // services/auth.js
-import axiosInstance from '../utils/axiosInstance';
+import axiosInstance from '../axiosInstance';
 
 export const createUser = async (userData) => {
     try {

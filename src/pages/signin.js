@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import LogoWithBlueName from "../../public/logo.svg";
-import {getToken} from "@/pages/components/services/auth";
-import {useAuth} from "@/pages/components/utils/AuthContext";
+import {getToken} from "@/components/services/auth";
+import {useAuth} from "@/context/AuthContext";
 import {useRouter} from "next/router";
 import SplashScreen from "@/pages/components/SplashScreen";
 

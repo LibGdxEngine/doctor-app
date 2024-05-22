@@ -2,9 +2,9 @@ import QuestionWindow from "@/pages/components/Quiz/QuestionWindow";
 import NavBar from "@/pages/components/NavBar";
 import Footer from "@/pages/components/Footer";
 import {useRouter} from "next/router";
-import {useAuth} from "@/pages/components/utils/AuthContext";
+import {useAuth} from "@/context/AuthContext";
 import {useEffect, useState} from "react";
-import {getExamJourney} from "@/pages/components/services/questions";
+import {getExamJourney} from "@/components/services/questions";
 
 const Quiz = () => {
     const router = useRouter();

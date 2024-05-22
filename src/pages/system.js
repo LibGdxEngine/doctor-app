@@ -5,9 +5,9 @@ import CheckButton from "@/pages/components/utils/CheckButton";
 import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
 import StepBar from "@/pages/components/utils/StepBar";
-import {useAuth} from "@/pages/components/utils/AuthContext";
+import {useAuth} from "@/context/AuthContext";
 import {useEffect, useState} from "react";
-import {getSystems} from "@/pages/components/services/questions";
+import {getSystems} from "@/components/services/questions";
 
 const System = () => {
 

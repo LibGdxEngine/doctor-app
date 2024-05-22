@@ -6,8 +6,8 @@ import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
 import StepBar from "@/pages/components/utils/StepBar";
 import {useEffect, useState} from "react";
-import {useAuth} from "@/pages/components/utils/AuthContext";
-import {getYears} from "@/pages/components/services/questions";
+import {useAuth} from "@/context/AuthContext";
+import {getYears} from "@/components/services/questions";
 
 const Year = () => {
 

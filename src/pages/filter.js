@@ -4,8 +4,8 @@ import QuestionsFilter from "@/pages/components/Questions/QuestionsFilter";
 import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
 import KrokSpecifics from "@/pages/components/Questions/KrokSpecifics";
-import {createExamJourney, getSubjects} from "@/pages/components/services/questions";
-import {useAuth} from "@/pages/components/utils/AuthContext";
+import {createExamJourney, getSubjects} from "@/components/services/questions";
+import {useAuth} from "@/context/AuthContext";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 

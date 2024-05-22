@@ -3,10 +3,10 @@ import {useRouter} from "next/router";
 import CheckButton from "@/pages/components/utils/CheckButton";
 import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
-import {useAuth} from "@/pages/components/utils/AuthContext";
+import {useAuth} from "@/context/AuthContext";
 import SplashScreen from "@/pages/components/SplashScreen";
 import {useEffect, useState} from "react";
-import {getLanguages, getSpecificities, getLevels} from "@/pages/components/services/questions";
+import {getLanguages, getSpecificities, getLevels} from "@/components/services/questions";
 
 
 const Start = () => {

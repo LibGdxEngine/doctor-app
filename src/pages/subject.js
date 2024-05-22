@@ -6,8 +6,8 @@ import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
 import StepBar from "@/pages/components/utils/StepBar";
 import {useEffect, useState} from "react";
-import {getSubjects} from "@/pages/components/services/questions";
-import {useAuth} from "@/pages/components/utils/AuthContext";
+import {getSubjects} from "@/components/services/questions";
+import {useAuth} from "@/context/AuthContext";
 
 const Subject = () => {
     const router = useRouter();

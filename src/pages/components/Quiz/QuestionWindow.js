@@ -75,9 +75,9 @@ const QuestionWindow = ({questions, numbers, questionIndex, timeLeft}) => {
 
                             <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4">
                                 <p className="text-lg font-bold">
-                                    {questions.text}</p>
+                                    {questions && questions.text}</p>
                                 <div className="w-full mt-4">
-                                    {questions.answers.map((option, index) => (
+                                    {questions && questions.answers.map((option, index) => (
                                         <QuestionItem question={option} index={index}
                                                       isSelected={index === selectedAnswer}
                                                       key={index} onAnswer={handleAnswer}/>
