@@ -7,11 +7,11 @@ function Footer() {
     return <>
         <div id={`footer`} className={`bg-navyBlue w-full h-fit py-12 mt-20 z-20 flex items-center justify-between`}>
             <div className={`w-fit flex items-center justify-center`}>
-                <Image className={`mx-10`} src={app1} alt={``} width={100} height={100}/>
-                <Image src={app2} alt={``} width={100} height={100}/>
+                <Image className={`mx-10`} src={app1} alt={``} width={150} height={150}/>
+                <Image src={app2} alt={``} width={150} height={150}/>
             </div>
             <div className={`w-fit flex items-center justify-center`}>
-                <Image className={`mx-10`} src={follow} alt={``} width={100} height={100}/>
+                <Image className={`mx-10`} src={follow} alt={``} width={150} height={150}/>
             </div>
 
         </div>

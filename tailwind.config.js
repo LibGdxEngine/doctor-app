@@ -21,6 +21,7 @@ module.exports = {
         black: "#444545",
         darkBlue: "#07003D",
         ldarkBlue: "#3F72B2",
+        numbersBlue:"#7AA9E4",
         customBlue: "#0073D1",
         searchColor: "#4E8CDB",
         lightDark: "#00000066",

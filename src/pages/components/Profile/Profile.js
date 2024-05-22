@@ -1,14 +1,18 @@
 // pages/Profile.js
 import React from 'react';
+import Image from "next/image";
+import profileImage from "../../../../public/profile.svg";
 
 const Profile = () => {
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col items-center">
             <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
                 <div className="flex items-center space-x-4">
-                    <img
+                    <Image
                         className="w-24 h-24 rounded-full"
-                        src="https://via.placeholder.com/150"
+                        src={profileImage}
+                        width={150}
+                        height={150}
                         alt="Profile Picture"
                     />
                     <div>

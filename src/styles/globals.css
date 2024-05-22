@@ -38,3 +38,22 @@ body {
 .navbar{
     background: linear-gradient(96.18deg, #4DD4B2 16.05%, #4EAACA 32.91%, #4E8CDB 48.67%, rgba(78, 158, 209, 0.756757) 71.77%, rgba(77, 212, 178, 0) 89.37%);
 }
+
+.scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background: rgba(102, 178, 241, 0.15);
+    border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background: #1292FB26;
+    border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #7DB3DF26;
+
+}

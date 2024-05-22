@@ -11,10 +11,11 @@ import {useState} from "react";
 import searchIcon from "../../../../public/searchIcon.svg";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import user from "../../../../public/userplaceholder.jpeg";
+import user from "../../../../public/profile.svg";
 import LanguageDropdown from "@/pages/components/utils/LanguageDropdown";
 import HomeFAQs from "@/pages/components/Home/HomeFAQs";
 import {useRouter} from "next/router";
+import NavBar from "@/pages/components/NavBar";
 
 function SectionsHeader() {
     return <div id={`sections-header`} className={`w-full mt-2 flex items-center justify-center px-4`}>
@@ -46,7 +47,7 @@ function HomePage() {
     return <div id={`home-container`} className={`w-full h-full`}>
 
         <div className="hidden lg:block">
-            <TopBar/>
+            <NavBar />
             <SearchBar/>
             <SectionsHeader/>
             <HomeSlider/>
@@ -54,41 +55,7 @@ function HomePage() {
         </div>
         <div  className="block lg:hidden relative">
 
-            <div id={`navbar`} className={` w-full h-20 flex items-center justify-between navbar px-20`}>
-                <Image src={logo} alt={``} width={50} height={50}/>
-                <div className={`w-fit flex flex-row items-center justify-between`}>
-                    <div className={`text-white mx-10`}>Material</div>
-                    <div className={`text-white mx-10`}>Discussion</div>
-                    <div className={`text-white mx-10`}>Generate Quiz</div>
-                </div>
-
-                <div id={`search-bar`} className={`w-[385px] h-[49px] relative px-5 mt-2`}>
-                    <input type={"text"}
-                           className={`w-full h-full bg-searchColor py-2  border border-customBlue focus:border-lightDark outline-none rounded-full px-2 ps-10`}
-                    >
-                    </input>
-                    <FontAwesomeIcon className={`absolute p-1 left-12 top-[28%] -translate-x-[50%]`} icon={faSearch}
-                                     style={{color: '#0073D1'}}/>
-                </div>
-
-                <div id={`profile-icon-container`} className={`w-fit flex items-center justify-start `}>
-                    <Image width={35} height={35} src={user} alt={`profile`} objectFit={`cover`}
-                           className={`w-10 h-10 rounded-full me-2`}/>
-                    <div className={`flex flex-col`}>
-                        <div className={`text-xs text-white`}>
-                            Hello, User
-                        </div>
-                        <div className={`text-sm text-white`}>
-                            Welcome Back
-                        </div>
-                    </div>
-                </div>
-                <div className={`z-100`}>
-                    <LanguageDropdown/>
-                </div>
-
-            </div>
-
+            <NavBar />
             <Image className={`absolute bg-cover`} src={homeBackground} alt={``} width={1500} height={1500}/>
 
             <div className="h-screen flex items-end justify-center relative">

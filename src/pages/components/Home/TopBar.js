@@ -1,5 +1,5 @@
 import Image from "next/image";
-import user from "../../../../public/userplaceholder.jpeg";
+import user from "../../../../public/profile.svg";
 import notificationsIcon from "../../../../public/notification_icon.svg";
 
 function TopBar() {
