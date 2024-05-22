@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port that Next.js will run on (usually 3000)
-EXPOSE 3002
+EXPOSE 3000
 
 # Start the Next.js application using PM2
-CMD ["pm2-runtime", "npm", "--", "start", "--", "-p", "3002"]
+CMD ["pm2-runtime", "npm", "--", "start", "--", "-p", "3000"]

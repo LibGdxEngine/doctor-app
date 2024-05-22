@@ -18,11 +18,7 @@ export default function SignUp() {
 
     const {token, loading} = useAuth();
 
-    useEffect(() => {
-        if (!loading && !token) {
-            router.push('/signin');
-        }
-    }, [token, loading, router]);
+
 
     if (loading){
         return <SplashScreen />
