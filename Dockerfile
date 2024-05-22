@@ -23,4 +23,4 @@ RUN npm run build
 EXPOSE 3002
 
 # Start the Next.js application using PM2
-CMD ["pm2-runtime", "npm", "--", "start", "--", "-p", "3003"]
+CMD ["pm2-runtime", "npm", "--", "start", "--", "-p", "3002"]
