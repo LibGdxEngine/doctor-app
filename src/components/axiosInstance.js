@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: 'https://www.krokplus.com/api/v1',
+    baseURL: 'https://app.krokplus.com/api/v1',
     headers: {
         'Content-Type': 'application/json',
     },
