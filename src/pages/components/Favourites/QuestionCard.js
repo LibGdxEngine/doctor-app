@@ -2,6 +2,9 @@
 import React from 'react';
 
 const QuestionCard = ({ number, question, answers, correctAnswer }) => {
+    if(!answers){
+        return <div>Loading...</div>
+    }
     return (
         <div className="w-full px-10 mx-20 bg-white shadow-md rounded-lg p-6">
             <h1 className="text-2xl font-semibold mb-4">Question {number}</h1>

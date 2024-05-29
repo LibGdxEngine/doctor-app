@@ -15,7 +15,9 @@ const Sidebar = ({user, onTapClicked, currentTap}) => {
         {name: 'Notes', href: 'notes'},
         // {name: 'Logout', href: 'logout'},
     ];
-
+    if(!user) return <>
+        Loading...
+    </>;
     return (
         <div className="w-1/3 bg-white shadow-md">
             <div className="p-4">
