@@ -1,17 +1,19 @@
 // components/Sidebar.js
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import Image from "next/image";
 import profileImage from "../../../../public/profile.svg";
+import {useAuth} from "@/context/AuthContext";
 
-const Sidebar = () => {
+const Sidebar = ({user, onTapClicked, currentTap}) => {
     const router = useRouter();
-
+    const {logout} = useAuth();
     const navItems = [
-        { name: 'Profile', href: '/profile' },
-        { name: 'History', href: '/history' },
-        { name: 'Favorite', href: '/favorite' },
-        { name: 'Notes', href: '/notes' },
+        {name: 'Profile', href: 'profile'},
+        {name: 'History', href: 'history'},
+        {name: 'Favourite', href: 'favorite'},
+        {name: 'Notes', href: 'notes'},
+        // {name: 'Logout', href: 'logout'},
     ];
 
     return (
@@ -24,18 +26,27 @@ const Sidebar = () => {
                     height={150}
                     alt="Profile Picture"
                 />
-                <h2 className="mt-4 text-center text-xl font-semibold">Yomna Ashraf</h2>
-                <p className="mt-2 text-center text-gray-600">Dr. of Physiology</p>
+                <h2 className="mt-4 text-center text-xl font-semibold">{user.first_name} {user.last_name}</h2>
+                <p className="mt-2 text-center text-gray-600">{user.email}</p>
             </div>
-            <nav style={{cursor:"pointer"}} className="mt-10">
+            <nav style={{cursor: "pointer"}} className="mt-10">
                 {navItems.map((item) => (
-                    <div onClick={()=>{
-                        router.push(item.href);
-                    }} key={item.name} className={`h-28 ${router.asPath === item.href ? "bg-searchColor" : ""} 
-                    flex items-center justify-center ${router.asPath === item.href ? "text-white" : "text-gray-500"} border border-gray-50`}>
+                    <div onClick={() => {
+                        onTapClicked(item.href);
+                    }} key={item.name}
+                         className={`h-28 ${currentTap === item.href.toLowerCase().trim() ? "bg-searchColor" : ""} 
+                    flex items-center justify-center ${currentTap === item.href.toLowerCase().trim() ? "text-white" : "text-gray-500"} border border-gray-50`}>
                         {item.name}
                     </div>
                 ))}
+                <div onClick={() => {
+                    logout();
+                    router.replace("/signin");
+                }}
+                     className={`h-28 flex items-center justify-center border border-gray-50`}>
+                   Logout
+                </div>
+
             </nav>
         </div>
     );

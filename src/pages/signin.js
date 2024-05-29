@@ -14,8 +14,6 @@ export default function SignUp() {
     const { login } = useAuth();
     const {token, loading} = useAuth();
 
-
-
     useEffect(() => {
         if (!loading && !token) {
             router.push('/signin');
@@ -33,7 +31,6 @@ export default function SignUp() {
         e.preventDefault();
         try {
             const response = await getToken({ email, password });
-            console.log('User created successfully:', response);
             login(response.token);
             router.replace("/home");
             // Handle successful signup (e.g., redirect to login)
@@ -73,7 +70,9 @@ export default function SignUp() {
                         Login
                     </button>
                 </form>
-                <div className="mt-6 text-center text-gray-600">
+                <div onClick={()=>{
+                    router.push('/signup');
+                }} className="mt-6 text-center text-gray-600">
                     Do not have an account? <div style={{cursor: "pointer"}}
                                                   className="inline text-blue-500 hover:underline">Sign up</div>
                 </div>

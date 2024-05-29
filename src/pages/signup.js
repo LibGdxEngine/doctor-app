@@ -60,10 +60,18 @@ export default function SignUp() {
                 <form onSubmit={handleSignup}>
                     <div className="flex flex-col space-y-4">
                         <button
+                            type={`button`}
+                            onClick={() => {
+                              toast.warning("This feature is not available yet");
+                            }}
                             className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                             Log in with Facebook
                         </button>
                         <button
+                            type={`button`}
+                            onClick={() => {
+                                toast.warning("This feature is not available yet");
+                            }}
                             className="w-full py-2 px-4 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
                             Log in with Google
                         </button>
@@ -127,7 +135,9 @@ export default function SignUp() {
                         Create your account
                     </button>
                 </form>
-                <div className="mt-6 text-center text-gray-600">
+                <div onClick={()=>{
+                    router.push('/signin');
+                }} className="mt-6 text-center text-gray-600">
                     Already have an account? <div style={{cursor: "pointer"}}
                                                   className="inline text-blue-500 hover:underline">Sign in</div>
                 </div>

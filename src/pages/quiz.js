@@ -4,7 +4,7 @@ import Footer from "@/pages/components/Footer";
 import {useRouter} from "next/router";
 import {useAuth} from "@/context/AuthContext";
 import {useEffect, useState} from "react";
-import {getExamJourney} from "@/components/services/questions";
+import {getExamJourney, getSingleFavouritesListDetails, updateExamJourney} from "@/components/services/questions";
 
 const Quiz = () => {
     const router = useRouter();
@@ -12,6 +12,7 @@ const Quiz = () => {
     if (!q) {
         q = 0;
     }
+
     const {token, loading} = useAuth();
     const [examObject, setExamObject] = useState(null);
     let length = examObject ? examObject.questions.length : 1;
@@ -30,10 +31,37 @@ const Quiz = () => {
         <NavBar/>
         <div className={`w-full h-full items-center justify-center`}>
             {examObject &&
-                <QuestionWindow questions={examObject.questions[q]}
-                                numbers={Array.from({length}, (v, i) => i + 1)}
-                                questionIndex={q}
-                                timeLeft={examObject.time_left}
+                <QuestionWindow
+                    examJourneyId={id}
+                    questions={examObject.questions[q]}
+                    numbers={Array.from({length}, (v, i) => i + 1)}
+                    questionIndex={q}
+                    timeLeft={examObject.time_left}
+                    onCheck={(selectedAnswer, time_left) => {
+                        updateExamJourney(token, id, {
+                            time_left,
+                            progress: {
+                                ...examObject.progress, [q.toString()]: {
+                                    answer: selectedAnswer,
+                                    is_correct: examObject.questions[q].correct_answer === selectedAnswer
+                                }
+                            },
+                            current_question: parseInt(q) + 1
+                        }).then((response) => {
+                            examObject.progress = {
+                                ...examObject.progress,
+                                [q.toString()]: {
+                                    answer: selectedAnswer,
+                                    is_correct: examObject.questions[q].correct_answer === selectedAnswer
+                                }
+                            };
+                            if (q < length - 1) {
+                                router.push(`/quiz?id=${id}&q=${parseInt(q) + 1}`);
+                            }
+                        }).catch((error) => {
+                            console.error('Error updating exam:', error);
+                        });
+                    }}
                 />}
         </div>
         <Footer/>

@@ -99,10 +99,10 @@ export const getTopics = async (token) => {
     }
 };
 
-export const createExamJourney = async (token, number_of_questions) => {
+export const createExamJourney = async (token, examData) => {
     try {
         const response = await axiosInstance.post('questions/create-exam-journey/',
-            {number_of_questions},{
+            examData, {
                 headers: {
                     Authorization: `Token ${token}`
                 }
@@ -114,10 +114,9 @@ export const createExamJourney = async (token, number_of_questions) => {
     }
 };
 
-export const updateExamJourney = async (token, examId, newData) => {
+export const updateExamJourney = async (token, examId, examData) => {
     try {
-        const response = await axiosInstance.patch(`questions/update-exam-journey/${examId}`, {
-            data: {newData},
+        const response = await axiosInstance.patch(`questions/update-exam-journey/${examId}/`,examData, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -143,9 +142,23 @@ export const getExamJourney = async (token, examId) => {
     }
 };
 
+export const getUserHistoryExams = async (token) => {
+    try {
+        const response = await axiosInstance.get(`questions/exam-journeys/`, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error getting exam:', error);
+        throw error;
+    }
+};
+
 export const deleteExamJourney = async (token, examId) => {
     try {
-        const response = await axiosInstance.delete(`questions/exam-journeys/${examId}`, {
+        const response = await axiosInstance.delete(`questions/exam-journeys/${examId}/`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -153,6 +166,48 @@ export const deleteExamJourney = async (token, examId) => {
         return response.data;
     } catch (error) {
         console.error('Error deleting topics:', error);
+        throw error;
+    }
+};
+
+export const getFavouritesLists = async (token) => {
+    try {
+        const response = await axiosInstance.get('questions/favorites/', {
+                headers: {
+                    Authorization: `Token ${token}`
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error create exam:', error);
+        throw error;
+    }
+};
+
+export const deleteFavouritesList = async (token, listId) => {
+    try {
+        const response = await axiosInstance.delete(`questions/favorites/${listId}/`, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error create exam:', error);
+        throw error;
+    }
+};
+
+export const getSingleFavouritesListDetails = async (token, listId) => {
+    try {
+        const response = await axiosInstance.get(`questions/favorites/${listId}/`, {
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error create exam:', error);
         throw error;
     }
 };

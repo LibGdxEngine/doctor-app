@@ -4,7 +4,7 @@ import QuestionsFilter from "@/pages/components/Questions/QuestionsFilter";
 import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
 import KrokSpecifics from "@/pages/components/Questions/KrokSpecifics";
-import {createExamJourney, getSubjects} from "@/components/services/questions";
+import {createExamJourney} from "@/components/services/questions";
 import {useAuth} from "@/context/AuthContext";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
@@ -13,7 +13,7 @@ const Filter = () => {
     const router = useRouter();
     const {token, loading} = useAuth();
     const [state, setState] = useState(null);
-    const [numberOfQuestions, setNumberOfQuestions] = useState(1);
+    const [numberOfQuestions, setNumberOfQuestions] = useState(10);
 
     useEffect(() => {
         setState(JSON.parse(localStorage.getItem("state")));
@@ -21,7 +21,7 @@ const Filter = () => {
 
 
     const handleOnCreateJourneyClicked = (isExam) => {
-        createExamJourney(token, numberOfQuestions).then((response) => {
+        createExamJourney(token, {...state,"number_of_questions": numberOfQuestions}).then((response) => {
             router.push({
                 pathname: '/quiz',
                 query: {id: response.id}

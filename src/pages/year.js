@@ -8,6 +8,7 @@ import StepBar from "@/pages/components/utils/StepBar";
 import {useEffect, useState} from "react";
 import {useAuth} from "@/context/AuthContext";
 import {getYears} from "@/components/services/questions";
+import {toast} from "react-toastify";
 
 const Year = () => {
 
@@ -33,7 +34,11 @@ const Year = () => {
 
 
     function handleNext() {
-        localStorage.setItem("state", JSON.stringify({...state, selectedYears}));
+        if (selectedYears.length === 0) {
+            toast.error("Please select at least one year");
+            return;
+        }
+        localStorage.setItem("state", JSON.stringify({...state, "years": selectedYears}));
         router.push("/subject");
     }
 
@@ -48,7 +53,7 @@ const Year = () => {
                     {years.map((year, index) => {
                         return <CheckButton text={year.year} key={index}
                                             onClick={() => setSelectedYears([...selectedYears, year.id])}
-                                            />
+                        />
                     })}
                 </div>
                 <div onClick={handleNext} id={`next-btn`} className={`w-1/2 mt-10`}>

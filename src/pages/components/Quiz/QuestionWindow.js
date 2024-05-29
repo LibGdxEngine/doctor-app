@@ -9,13 +9,14 @@ import {toast} from "react-toastify";
 import CountdownTimer from "@/pages/components/Quiz/CountdownTimer";
 import {useRouter} from "next/router";
 
-const QuestionWindow = ({questions, numbers, questionIndex, timeLeft}) => {
+const QuestionWindow = ({examJourneyId, questions, numbers, questionIndex, time, onCheck}) => {
     const router = useRouter();
-    if (!timeLeft) {
-        timeLeft = 500;
+    if (!time) {
+        time = 500;
     }
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [showResults, setShowResults] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(time);
     const [progress, setProgress] = useState({});
 
     const calculateTruePercentage = (progress) => {
@@ -32,9 +33,11 @@ const QuestionWindow = ({questions, numbers, questionIndex, timeLeft}) => {
         }
         setProgress(prevProgress => ({
             ...prevProgress,
-            [questionIndex]: questions.answers[selectedAnswer] === questions.correct_answer
+            [questionIndex]: questions.answers[selectedAnswer].answer === questions.correct_answer.answer
         }));
-        if (questionIndex === numbers.length - 1) {
+        onCheck(selectedAnswer, timeLeft);
+        setSelectedAnswer(null);
+        if (parseInt(questionIndex) === numbers.length - 1) {
             setShowResults(true);
         }
     };
@@ -59,18 +62,24 @@ const QuestionWindow = ({questions, numbers, questionIndex, timeLeft}) => {
                         <Image className={`mx-2`} src={icon2} alt={``} width={35} height={35}/>
                         <Image className={`mx-2`} src={icon3} alt={``} width={35} height={35}/>
                     </div>
-                    <CountdownTimer initialSeconds={timeLeft}/>
+                    <CountdownTimer initialSeconds={timeLeft} onTimeChange={(time_left)=>{
+                        if(time_left === 0) {
+                            setShowResults(true);
+                        }
+                        setTimeLeft(time_left);
+                    }}/>
                 </div>
 
                 <div className="w-full flex mt-4 max-h-screen">
                     {showResults ? <>
                             <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4 text-3xl text-center">
-                                Your score is {calculateTruePercentage(progress)}%
+                                {JSON.stringify(calculateTruePercentage(progress)) === "null" ? "Time finished" : `Your score is ${calculateTruePercentage(progress)}%`}
+
                             </div>
                         </>
                         : <>
                             <div className={`w-fit max-h-[416px] pt-2`}>
-                                <NumberScroll numbers={numbers}/>
+                                <NumberScroll numbers={numbers} selected={parseInt(questionIndex)}/>
                             </div>
 
                             <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4">
@@ -78,7 +87,7 @@ const QuestionWindow = ({questions, numbers, questionIndex, timeLeft}) => {
                                     {questions && questions.text}</p>
                                 <div className="w-full mt-4">
                                     {questions && questions.answers.map((option, index) => (
-                                        <QuestionItem question={option} index={index}
+                                        <QuestionItem question={option.answer} index={index}
                                                       isSelected={index === selectedAnswer}
                                                       key={index} onAnswer={handleAnswer}/>
                                     ))}
@@ -90,10 +99,16 @@ const QuestionWindow = ({questions, numbers, questionIndex, timeLeft}) => {
 
                 <div className="flex justify-between items-center mt-6 pe-4">
                     <button
+                        onClick={()=>{
+                            router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) - 1}`);
+                        }}
                         className={`w-40 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{"<"}</button>
                     .
                     <div>
                         <button
+                            onClick={()=>{
+                                router.push(`/home`)
+                            }}
                             className={`w-40 bg-gray-200 text-gray-700 rounded-lg py-2 px-4 mr-2 ${showResults ? "hidden" : ""}`}>Resume
                             Later
                         </button>

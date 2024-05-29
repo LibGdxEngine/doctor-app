@@ -8,6 +8,7 @@ import StepBar from "@/pages/components/utils/StepBar";
 import {useEffect, useState} from "react";
 import {getSubjects} from "@/components/services/questions";
 import {useAuth} from "@/context/AuthContext";
+import {toast} from "react-toastify";
 
 const Subject = () => {
     const router = useRouter();
@@ -31,7 +32,11 @@ const Subject = () => {
     }, [token]);
 
     function handleNext() {
-        localStorage.setItem("state", JSON.stringify({...state, selectedSubjects}));
+        if(selectedSubjects.length === 0) {
+            toast.error("Please select at least one subject");
+            return;
+        }
+        localStorage.setItem("state", JSON.stringify({...state,"subjects": selectedSubjects}));
         router.push("/system");
     }
 

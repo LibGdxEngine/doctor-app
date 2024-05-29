@@ -7,6 +7,7 @@ import {useAuth} from "@/context/AuthContext";
 import SplashScreen from "@/pages/components/SplashScreen";
 import {useEffect, useState} from "react";
 import {getLanguages, getSpecificities, getLevels} from "@/components/services/questions";
+import {toast} from "react-toastify";
 
 
 const Start = () => {
@@ -58,7 +59,15 @@ const Start = () => {
 
 
     function handleNext() {
-        localStorage.setItem("state", JSON.stringify({selectedLanguages, selectedSpecificities, selectedLevels}))
+        if (selectedLevels.length === 0 || selectedLanguages.length === 0 || selectedSpecificities.length === 0) {
+            toast.error("Please select at least one option")
+            return;
+        }
+        localStorage.setItem("state", JSON.stringify({
+            "language": selectedLanguages[0],
+            "specificity": selectedSpecificities[0],
+            "level": selectedLevels[0]
+        }))
         router.push({
             pathname: '/year'
         });

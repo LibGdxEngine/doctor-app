@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-const CountdownTimer = ({initialSeconds}) => {
+const CountdownTimer = ({initialSeconds, onTimeChange}) => {
     const [seconds, setSeconds] = useState(initialSeconds);
 
     useEffect(() => {
@@ -17,10 +17,10 @@ const CountdownTimer = ({initialSeconds}) => {
 
         // Set interval to update the timer every second
         const timerId = setInterval(tick, 1000);
-
+        onTimeChange(seconds);
         // Clean up the interval on component unmount
         return () => clearInterval(timerId);
-    }, []);
+    }, [onTimeChange, seconds]);
 
     // Convert seconds to minutes and seconds
     const minutes = Math.floor(seconds / 60);

@@ -8,6 +8,7 @@ import StepBar from "@/pages/components/utils/StepBar";
 import {useAuth} from "@/context/AuthContext";
 import {useEffect, useState} from "react";
 import {getSystems} from "@/components/services/questions";
+import {toast} from "react-toastify";
 
 const System = () => {
 
@@ -33,7 +34,11 @@ const System = () => {
     }, [token]);
 
     function handleNext() {
-        localStorage.setItem("state", JSON.stringify({...state, selectedSystems}));
+        if(selectedSystems.length === 0) {
+            toast.error("Please select at least one system");
+            return;
+        }
+        localStorage.setItem("state", JSON.stringify({...state,"systems": selectedSystems}));
         router.push("/topic");
     }
 

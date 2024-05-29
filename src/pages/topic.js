@@ -8,6 +8,7 @@ import StepBar from "@/pages/components/utils/StepBar";
 import {useAuth} from "@/context/AuthContext";
 import {useEffect, useState} from "react";
 import {getTopics} from "@/components/services/questions";
+import {toast} from "react-toastify";
 
 const Topic = () => {
 
@@ -32,7 +33,11 @@ const Topic = () => {
     }, [token]);
 
     function handleNext() {
-        localStorage.setItem("state", JSON.stringify({...state, selectedTopics}));
+        if(selectedTopics.length === 0) {
+            toast.error("Please select at least one topic");
+            return;
+        }
+        localStorage.setItem("state", JSON.stringify({...state,"topics": selectedTopics}));
         router.push("/filter");
     }
 
