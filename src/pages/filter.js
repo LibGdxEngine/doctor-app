@@ -8,6 +8,7 @@ import {createExamJourney} from "@/components/services/questions";
 import {useAuth} from "@/context/AuthContext";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
 
 const Filter = () => {
     const router = useRouter();
@@ -27,6 +28,7 @@ const Filter = () => {
                 query: {id: response.id}
             });
         }).catch((error) => {
+            toast.error("No enough questions to create a journey");
             console.error('Error creating journey:', error);
         });
     }
