@@ -25,7 +25,8 @@ const SocialLoginButton = ({ provider, clientId, redirectUri }) => {
 
     return (
         <button onClick={handleSocialLogin}>
-            Login with {provider.charAt(0).toUpperCase() + provider.slice(1)}
+            Login
+            {/*Login with {provider.charAt(0).toUpperCase() + provider.slice(1)}*/}
         </button>
     );
 };

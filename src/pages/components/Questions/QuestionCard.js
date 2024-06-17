@@ -3,6 +3,9 @@
 import React from 'react';
 
 const QuestionCard = ({question}) => {
+    if (!question) {
+        return null;
+    }
     return (
         <div className="max-w-sm  overflow-hidden p-2 bg-white">
             <div className="font-bold text-xl mb-2">Question Filters</div>

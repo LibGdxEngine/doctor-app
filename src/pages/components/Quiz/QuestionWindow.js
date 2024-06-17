@@ -16,6 +16,7 @@ import YouTubePlayer from "@/pages/components/utils/YouTubePlayer";
 import NotesModal from "@/pages/components/utils/NotesModal";
 import CountUpTimer from "@/pages/components/Quiz/CountUpTimer";
 import ReportsModal from "@/pages/components/utils/ReportsModal";
+import SplashScreen from "@/pages/components/SplashScreen";
 
 const QuestionWindow = ({
                             examJourneyId,
@@ -46,6 +47,9 @@ const QuestionWindow = ({
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [showResults, setShowResults] = useState(false);
     const [timeLeft, setTimeLeft] = useState(time);
+    if(!historyProgress) {
+        historyProgress = {};
+    }
     const mappedProgress = Object.entries(historyProgress).reduce((acc, [key, value]) => {
         acc[key] = value.is_correct;
         return acc;
@@ -79,6 +83,9 @@ const QuestionWindow = ({
         setSelectedAnswer(index);
     };
 
+    if(!questions){
+        return <SplashScreen />
+    }
     return (
         <div className="w-full h-full min-h-screen bg-white p-4 flex flex-col items-center">
             <FavoritesModal isOpen={isModalOpen} onClose={closeModal}>
