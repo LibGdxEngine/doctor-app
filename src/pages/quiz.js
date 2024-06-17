@@ -29,6 +29,7 @@ const Quiz = () => {
 
     return <div className={`w-full flex flex-col items-start justify-center bg-white`}>
         <NavBar/>
+
         <div className={`w-full h-full items-center justify-center`}>
             {examObject &&
                 <QuestionWindow
@@ -36,6 +37,8 @@ const Quiz = () => {
                     questions={examObject.questions[q]}
                     numbers={Array.from({length}, (v, i) => i + 1)}
                     questionIndex={q}
+                    type={examObject.type}
+                    progress={examObject.progress}
                     timeLeft={examObject.time_left}
                     onCheck={(selectedAnswer, time_left) => {
                         updateExamJourney(token, id, {
@@ -61,6 +64,7 @@ const Quiz = () => {
                         }).catch((error) => {
                             console.error('Error updating exam:', error);
                         });
+
                     }}
                 />}
         </div>

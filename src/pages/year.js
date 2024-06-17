@@ -39,7 +39,7 @@ const Year = () => {
             return;
         }
         localStorage.setItem("state", JSON.stringify({...state, "years": selectedYears}));
-        router.push("/subject");
+        router.push("/filter");
     }
 
     return <div className={`w-full h-fit flex flex-col items-start justify-start bg-white`}>
@@ -48,7 +48,9 @@ const Year = () => {
 
         <div className={`flex flex-col items-start mx-20`}>
             <div className={`w-full h-full flex flex-col items-start justify-start  pt-20`}>
-                <StepBar stepNumber={1}/>
+                <StepBar stepNumber={1} onStepClicked={(step)=>{
+                    router.push(`/${step}`)
+                }}/>
                 <div className={`w-full grid grid-cols-6 mt-10 space-x-2`}>
                     {years.map((year, index) => {
                         return <CheckButton text={year.year} key={index}

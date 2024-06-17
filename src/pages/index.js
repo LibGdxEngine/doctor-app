@@ -1,27 +1,24 @@
-import {Cairo} from "next/font/google";
 import HomePage from "@/pages/components/Home/HomePage";
-import Image from "next/image";
-import actionButton from "../../public/Button Primary Color.svg";
-import app1 from "../../public/Group 21.svg";
-import app2 from "../../public/Group 20.svg";
-import follow from "../../public/follow.svg";
 import HomeFAQs from "@/pages/components/Home/HomeFAQs";
 import Footer from "@/pages/components/Footer";
-import SignInPage from "@/pages/components/Auth/SignInPage";
-import SignupPage from "@/pages/components/Auth/SignupPage";
+import {useAuth} from "@/context/AuthContext";
+import {useRouter} from "next/router";
+import {useEffect} from "react";
+import SplashScreen from "@/pages/components/SplashScreen";
+import FlowingIcons from "@/pages/components/utils/FlowingIcons";
 
-const inter = Cairo({subsets: ["latin"]});
+const Home = () => {
 
+    return <>
+        <div id={`main-container`} className={`w-full h-full flex flex-col items-center justify-start`}>
 
-
-export default function Home() {
-    return (
-        <main
-            className={`w-full h-full p-0 m-0 flex min-h-screen flex-col items-center justify-between  ${inter.className}`}
-        >
-            <div id={`main-container`} className={`w-full h-full flex flex-col items-center justify-start`}>
-                <SignupPage />
+            <HomePage/>
+            <div className={`block lg:hidden bg-white w-full h-full z-20 py-10`}>
+                <HomeFAQs/>
             </div>
-        </main>
-    );
+            <Footer/>
+        </div>
+    </>
 }
+
+export default Home;

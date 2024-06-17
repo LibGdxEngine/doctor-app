@@ -6,6 +6,11 @@ import {toast} from "react-toastify";
 import {useRouter} from "next/router";
 import {useAuth} from "@/context/AuthContext";
 import SplashScreen from "@/pages/components/SplashScreen";
+import loginLogo from "../../public/loginLogo.svg";
+import woman from "../../public/woman.svg";
+import Link from "next/link";
+import Footer from "@/pages/components/Footer";
+import NavBar from "@/pages/components/NavBar";
 
 export default function SignUp() {
     const router = useRouter();
@@ -19,9 +24,8 @@ export default function SignUp() {
     const {token, loading} = useAuth();
 
 
-
-    if (loading){
-        return <SplashScreen />
+    if (loading) {
+        return <SplashScreen/>
     }
     if (token) {
         router.push('/home');
@@ -30,18 +34,18 @@ export default function SignUp() {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        if(password !== confirmPassword) {
+        if (password !== confirmPassword) {
             toast.error('Passwords do not match');
             return;
         }
-        if(!isChecked) {
+        if (!isChecked) {
             toast.error('Please accept the terms and conditions');
             return;
         }
 
         try {
             const response = await createUser({first_name: firstName, last_name: lastName, email, password});
-            console.log('User created successfully:', response);
+            toast.success('User created successfully');
             // Handle successful signup (e.g., redirect to login)
             router.replace("/signin");
         } catch (error) {
@@ -51,96 +55,120 @@ export default function SignUp() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-300 to-blue-500">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                <div className="flex justify-center mb-6">
-                    <Image src={LogoWithBlueName} alt="Krok Plus" className="h-12" width={100} height={100}/>
-                </div>
-                <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Create Your Account</h2>
-                <form onSubmit={handleSignup}>
-                    <div className="flex flex-col space-y-4">
-                        <button
-                            type={`button`}
-                            onClick={() => {
-                              toast.warning("This feature is not available yet");
-                            }}
-                            className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                            Log in with Facebook
-                        </button>
-                        <button
-                            type={`button`}
-                            onClick={() => {
-                                toast.warning("This feature is not available yet");
-                            }}
-                            className="w-full py-2 px-4 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                            Log in with Google
-                        </button>
-                    </div>
-                    <div className="mt-6 flex flex-col space-y-4">
-                        <div className={`w-full flex`}>
-                            <input
-                                type="text"
-                                placeholder="First Name"
-                                value={firstName}
-                                onChange={(e) => setFirstname(e.target.value)}
-                                className="w-full me-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Last Name"
-                                value={lastName}
-                                onChange={(e) => setLastname(e.target.value)}
-                                className="w-full ms-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
+        <div className={`w-full flex flex-col`}>
+            <NavBar />
+            <div className="relative min-h-screen bg-contain bg-no-repeat  "
+                 style={{backgroundImage: 'url(/login_bg.svg)'}}>
+
+                <div className={`w-full flex items-center justify-center`}>
+                    <div className={`w-full h-screen flex flex-col items-center justify-center`}>
+                        <div className={`w-32 mt-0`}>
+                            <Image src={loginLogo} alt={``} width={200} height={200}/>
                         </div>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="E-mail Adress"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Confirm Password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
+                        <div className={`w-full text-center font-light mt-5 px-20`}>
+                            <h1 style={{fontSize: "60px"}} className={`w-full text-white text-start`}>Create Your Account</h1>
+                            <h6 style={{letterSpacing: "15px"}} className={`text-white text-4xl w-full text-start`}>
+                                Fill in the form to create an account and start taking the test.
+                            </h6>
+                        </div>
                     </div>
-                    <div className="mt-6 flex items-center">
-                        <input
-                            type="checkbox"
-                            checked={isChecked}
-                            onChange={(event) => {
-                                setIsChecked(event.target.checked);
-                            }}
-                            className="h-4 w-4 text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            id="terms"
-                        />
-                        <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
-                            I have read and accept the Terms & Conditions
-                        </label>
+                    <div className={`w-full h-screen `}>
+                        <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
+                            <h1 className="text-5xl font-thin mb-8">Sign In</h1>
+                            <form onSubmit={handleSignup} className="w-[60%] flex flex-col space-y-6">
+                                <div className="flex">
+                                    <div className={`flex flex-col`}>
+                                        <label htmlFor="email" className="mb-2 text-sm font-medium">
+                                            First Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="first_name"
+                                            value={firstName}
+                                            onChange={(e) => setFirstname(e.target.value)}
+                                            className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                            placeholder="Enter your first name"
+                                        />
+                                    </div>
+                                    <div className={`flex flex-col mx-2`}>
+                                        <label htmlFor="second_name" className="mb-2 text-sm font-medium">
+                                            second Name
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="second_name"
+                                            value={lastName}
+                                            onChange={(e) => setLastname(e.target.value)}
+                                            className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                            placeholder="Enter your last name"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex flex-col">
+                                    <label htmlFor="email" className="mb-2 text-sm font-medium">
+                                        E-mail
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                        placeholder="Enter your email"
+                                    />
+                                </div>
+                                <div className="flex flex-col">
+                                    <label htmlFor="password" className="mb-2 text-sm font-medium">
+                                        Password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                        placeholder="Enter your password"
+                                    />
+                                </div>
+                                <div className="flex flex-col">
+                                    <label htmlFor="password2" className="mb-2 text-sm font-medium">
+                                        Re-Password
+                                    </label>
+                                    <input
+                                        type="password"
+                                        id="password2"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                        className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                        placeholder="Enter your password again"
+                                    />
+                                </div>
+                                <div className="flex items-center">
+                                    <input value={isChecked} onChange={(e) =>{
+                                        setIsChecked(e.target.checked)
+                                    }} type="checkbox" id="terms" className="mr-2"/>
+                                    <label htmlFor="terms" className="text-sm">
+                                        I accept the terms of use and privacy policy
+                                    </label>
+                                </div>
+                                <button
+                                    type={`submit`}
+                                    className="w-full bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Sign Up
+                                </button>
+                            </form>
+                            <p className="text-sm mt-6 text-center">
+                                Do not have any account?{' '}
+                                <Link href="/signup" className="text-indigo-600 hover:underline">
+                                    Sign Up
+                                </Link>
+                            </p>
+                        </div>
                     </div>
-                    <button
-                        type={"submit"}
-                        className="mt-6 w-full py-2 px-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        Create your account
-                    </button>
-                </form>
-                <div onClick={()=>{
-                    router.push('/signin');
-                }} className="mt-6 text-center text-gray-600">
-                    Already have an account? <div style={{cursor: "pointer"}}
-                                                  className="inline text-blue-500 hover:underline">Sign in</div>
                 </div>
+                <Footer/>
+
+
             </div>
         </div>
     );

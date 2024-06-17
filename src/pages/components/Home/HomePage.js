@@ -16,6 +16,7 @@ import LanguageDropdown from "@/pages/components/utils/LanguageDropdown";
 import HomeFAQs from "@/pages/components/Home/HomeFAQs";
 import {useRouter} from "next/router";
 import NavBar from "@/pages/components/NavBar";
+import FlowingIcons from "@/pages/components/utils/FlowingIcons";
 
 function SectionsHeader() {
     return <div id={`sections-header`} className={`w-full mt-2 flex items-center justify-center px-4`}>
@@ -53,17 +54,23 @@ function HomePage() {
             <HomeSlider/>
             <HomeFAQs/>
         </div>
-        <div  className="block lg:hidden relative">
+        <div className="block lg:hidden relative">
 
-            <NavBar />
+            <NavBar/>
+
             <Image className={`absolute bg-cover`} src={homeBackground} alt={``} width={1500} height={1500}/>
 
             <div className="h-screen flex items-end justify-center relative">
+                <div style={{zIndex: "-100"}} className={`w-full min-h-screen absolute z-[-1] mt-20`}>
+                    <FlowingIcons/>
+                </div>
                 <div className="h-full  flex flex-col items-center justify-center w-full">
+
                     <div className={`w-full px-28 h-full flex flex-col justify-between py-28`}>
                         <div className={`text-white text-opacity-40 text-6xl font-extrabold`}>
                             KROK PLUS
                         </div>
+
                         <div className="border-t border-white border-opacity-25"></div>
 
                         <div className={`text-white font-bold text-5xl`}>
@@ -73,16 +80,17 @@ function HomePage() {
                             “The earlier you start working on something, the earlier you will see results.”
                         </div>
                         <div className={`text-white font-base text-2xl`}>
-                            “Every morning you have two choices: continue to sleep with your dreams, or wake up and chase
+                            “Every morning you have two choices: continue to sleep with your dreams, or wake up and
+                            chase
                             them.”
                         </div>
-                        <div style={{cursor:"pointer"}} onClick={handleStart} className={`w-96`}>
+                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-96`}>
                             <Image src={actionButton} alt={``} width={500} height={500}/>
                         </div>
                     </div>
                 </div>
-                <div >
-                    <Image  className={`h-full w-full py-20 px-20`} src={homeImg} alt={``} height={500} width={500}/>
+                <div>
+                    <Image className={`h-full w-full py-20 px-20`} src={homeImg} alt={``} height={500} width={500}/>
                 </div>
             </div>
 

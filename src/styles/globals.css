@@ -2,6 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    @keyframes flow-0 {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+    }
+    @keyframes flow-1 {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+    }
+    @keyframes flow-2 {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+    }
+    @keyframes flow-3 {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+    }
+
+    .animate-flow-0 {
+        animation: flow-0 4s ease-in-out infinite;
+    }
+    .animate-flow-1 {
+        animation: flow-1 5s ease-in-out infinite;
+    }
+    .animate-flow-2 {
+        animation: flow-2 6s ease-in-out infinite;
+    }
+    .animate-flow-3 {
+        animation: flow-3 7s ease-in-out infinite;
+    }
+}
 :root {
     --foreground-rgb: 0, 0, 0;
     --background-start-rgb: 214, 219, 220;

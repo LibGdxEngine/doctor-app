@@ -23,7 +23,7 @@ export const getToken = async (credentials) => {
 
 export const getUser = async (token) => {
     try {
-        const response = await axiosInstance.get('/user/me/', {
+        const response = await axiosInstance.get('/profiles/me/', {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -31,6 +31,19 @@ export const getUser = async (token) => {
         return response.data;
     } catch (error) {
         console.error('Error fetching user:', error);
+        throw error;
+    }
+};
+
+export const socialAuth = async (provider, accessToken) => {
+    try {
+        const response = await axiosInstance.post('/user/social-login/', {
+            provider,
+            access_token: accessToken,
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching token:', error);
         throw error;
     }
 };

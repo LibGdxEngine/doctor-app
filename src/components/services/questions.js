@@ -1,4 +1,5 @@
 import axiosInstance from '../axiosInstance';
+import queryString from 'query-string';
 
 export const getLanguages = async (token) => {
     try {
@@ -116,7 +117,7 @@ export const createExamJourney = async (token, examData) => {
 
 export const updateExamJourney = async (token, examId, examData) => {
     try {
-        const response = await axiosInstance.patch(`questions/update-exam-journey/${examId}/`,examData, {
+        const response = await axiosInstance.patch(`questions/update-exam-journey/${examId}/`, examData, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -173,10 +174,10 @@ export const deleteExamJourney = async (token, examId) => {
 export const getFavouritesLists = async (token) => {
     try {
         const response = await axiosInstance.get('questions/favorites/', {
-                headers: {
-                    Authorization: `Token ${token}`
-                }
-            });
+            headers: {
+                Authorization: `Token ${token}`
+            }
+        });
         return response.data;
     } catch (error) {
         console.error('Error create exam:', error);
@@ -208,6 +209,144 @@ export const getSingleFavouritesListDetails = async (token, listId) => {
         return response.data;
     } catch (error) {
         console.error('Error create exam:', error);
+        throw error;
+    }
+};
+
+
+export const createFavoriteList = async (token, listData) => {
+    try {
+        const response = await axiosInstance.post('questions/favorites/',
+            listData, {
+                headers: {
+                    Authorization: `Token ${token}`
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error create exam:', error);
+        throw error;
+    }
+};
+
+
+export const addQuestionToFavoritesList = async (token, listId, questionId) => {
+    try {
+        const response = await axiosInstance.post(`questions/favorites/${listId}/add_question/`,
+            {question_id: questionId}, {
+                headers: {
+                    "Authorization": `Token ${token}`
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
+        throw error;
+    }
+};
+
+export const getNotes = async (token) => {
+    try {
+        const response = await axiosInstance.get(`questions/notes/`, {
+            headers: {
+                "Authorization": `Token ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
+        throw error;
+    }
+};
+
+export const deleteNote = async (token, noteId) => {
+    try {
+        const response = await axiosInstance.delete(`questions/notes/${noteId}/`, {
+            headers: {
+                "Authorization": `Token ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
+        throw error;
+    }
+};
+
+export const createNewNote = async (token, note, question) => {
+    try {
+        const response = await axiosInstance.post(`questions/notes/`,
+            {question, note_text: note}, {
+                headers: {
+                    "Authorization": `Token ${token}`
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
+        throw error;
+    }
+};
+
+export const createNewReport = async (token, report, question) => {
+    try {
+        const response = await axiosInstance.post(`questions/reports/`,
+            {question, reason: report}, {
+                headers: {
+                    "Authorization": `Token ${token}`
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
+        throw error;
+    }
+};
+
+
+export const updateProfile = async (token, profileData) => {
+    try {
+        const response = await axiosInstance.patch(`/profiles/me/update/`,
+            profileData, {
+                headers: {
+                    "Authorization": `Token ${token}`
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
+        throw error;
+    }
+};
+
+export const getQuestionsCount = async (token, questionData) => {
+    try {
+        const queryString = new URLSearchParams(questionData).toString();
+        const response = await axiosInstance.get(`/questions/count/?${queryString}`,
+            {
+                headers: {
+                    "Authorization": `Token ${token}`
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
+        throw error;
+    }
+};
+
+
+export const searchForQuestions = async (token, query) => {
+    try {
+        const response = await axiosInstance.get(`/questions/search/?q=${query}`,
+            {
+                headers: {
+                    "Authorization": `Token ${token}`
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
         throw error;
     }
 };

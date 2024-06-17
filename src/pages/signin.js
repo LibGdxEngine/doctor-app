@@ -1,27 +1,43 @@
-import React, {useEffect, useState} from 'react';
+import SignInPage from "@/pages/components/Auth/SignInPage";
 import Image from "next/image";
+import woman from "../../public/woman.svg";
+import loginLogo from "../../public/loginLogo.svg";
+import Footer from "@/pages/components/Footer";
 import LogoWithBlueName from "../../public/logo.svg";
-import {getToken} from "@/components/services/auth";
+import React, {useEffect} from "react";
 import {useAuth} from "@/context/AuthContext";
-import {useRouter} from "next/router";
+import {getToken, socialAuth} from "@/components/services/auth";
+import {toast} from "react-toastify";
 import SplashScreen from "@/pages/components/SplashScreen";
+import {useRouter} from "next/router";
+import Link from "next/link";
+import NavBar from "@/pages/components/NavBar";
 
-export default function SignUp() {
+const Signin = () => {
     const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
 
-    const { login } = useAuth();
+    const {login} = useAuth();
     const {token, loading} = useAuth();
 
-    useEffect(() => {
-        if (!loading && !token) {
-            router.push('/signin');
-        }
-    }, [token, loading, router]);
+    const {access_token, provider} = router.query;
 
-    if (loading){
-        return <SplashScreen />
+    useEffect(() => {
+        if (access_token) {
+            socialAuth(provider, access_token).then((response) => {
+                toast.success("Logged in successfully");
+                login(response.token);
+                router.push("/");
+            }).catch((error) => {
+                console.error('Error during social login:', error);
+            });
+        }
+    }, [access_token, provider]);
+
+
+    if (loading) {
+        return <SplashScreen/>
     }
     if (token) {
         router.push('/home');
@@ -30,53 +46,85 @@ export default function SignUp() {
     const handleSignIn = async (e) => {
         e.preventDefault();
         try {
-            const response = await getToken({ email, password });
+            const response = await getToken({email, password});
             login(response.token);
             router.replace("/home");
             // Handle successful signup (e.g., redirect to login)
         } catch (error) {
+            toast.error("Invalid credentials", error.toString());
             console.error('Error during signup:', error);
         }
-    };
+    }
+    return <div className={`w-full flex flex-col`}>
+        <NavBar />
+        <div className="relative min-h-screen bg-contain bg-no-repeat  "
+             style={{backgroundImage: 'url(/login_bg.svg)'}}>
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-300 to-blue-500">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-                <div className="flex justify-center mb-6">
-                    <Image src={LogoWithBlueName} alt="Krok Plus" className="h-12" width={100} height={100}/>
-                </div>
-                <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Login to Your Account</h2>
-                <form onSubmit={handleSignIn}>
-
-                    <div className="mt-6 flex flex-col space-y-4">
-                        <input
-                            type="email"
-                            placeholder="E-mail Adress"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-
+            <div className={`w-full flex items-center justify-center`}>
+                <div className={`w-full h-screen flex flex-col items-center justify-center`}>
+                    <div className={`w-32 mt-10`}>
+                        <Image src={loginLogo} alt={``} width={200} height={200}/>
                     </div>
-                    <button
-                        className="mt-6 w-full py-2 px-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        Login
-                    </button>
-                </form>
-                <div onClick={()=>{
-                    router.push('/signup');
-                }} className="mt-6 text-center text-gray-600">
-                    Do not have an account? <div style={{cursor: "pointer"}}
-                                                  className="inline text-blue-500 hover:underline">Sign up</div>
+                    <div className={`w-60 mt-20`}>
+                        <Image src={woman} alt={``} width={200} height={200}/>
+                    </div>
+                </div>
+                <div className={`w-full h-screen `}>
+                    <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
+                        <h1 className="text-5xl font-thin mb-8">Sign In</h1>
+                        <form onSubmit={handleSignIn} className="w-[60%] flex flex-col space-y-6">
+                            <div  className="flex flex-col">
+                                <label htmlFor="email" className="mb-2 text-sm font-medium">
+                                    E-mail
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                    placeholder="Enter your email"
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <label htmlFor="password" className="mb-2 text-sm font-medium">
+                                    Password
+                                </label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                    placeholder="Enter your password"
+                                />
+                            </div>
+                            <div className="flex items-center">
+                                <input type="checkbox" id="terms" className="mr-2"/>
+                                <label htmlFor="terms" className="text-sm">
+                                    I accept the terms of use and privacy policy
+                                </label>
+                            </div>
+                            <button
+                                type={`submit`}
+                                className="w-full bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Login
+                            </button>
+                        </form>
+                        <p className="text-sm mt-6 text-center">
+                            Do not have any account?{' '}
+                            <Link href="/signup" className="text-indigo-600 hover:underline">
+                                Sign Up
+                            </Link>
+                        </p>
+                    </div>
                 </div>
             </div>
+            <Footer/>
+
+
         </div>
-    );
+    </div>
 };
+
+export default Signin;

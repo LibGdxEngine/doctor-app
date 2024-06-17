@@ -14,7 +14,7 @@ export const AuthProvider = ({children}) => {
         if (storedToken) {
             setToken(storedToken);
             getUser(storedToken).then((user) => {
-                setUser(user);
+                setUser(user.profile);
                 setLoading(false);
             }).catch((error) => {
                 console.error('Error fetching user:', error);
@@ -30,7 +30,7 @@ export const AuthProvider = ({children}) => {
     const login = (token) => {
         setToken(token);
         getUser(token).then((user) => {
-            setUser(user);
+            setUser(user.profile);
             setLoading(false);
         }).catch((error) => {
             console.error('Error fetching user:', error);

@@ -9,17 +9,28 @@ import {useRouter} from "next/router";
 import {useAuth} from "@/context/AuthContext";
 import SplashScreen from "@/pages/components/SplashScreen";
 import {
-    createExamJourney,
     deleteExamJourney, deleteFavouritesList,
-    getExamJourney,
+    getNotes,
+    deleteNote,
     getFavouritesLists,
-    getUserHistoryExams
+    getUserHistoryExams,
+    updateProfile,
 } from "@/components/services/questions";
 import FavCard from "@/pages/components/Favourites/FavCard";
 import {toast} from "react-toastify";
 import QuestionCard from "@/pages/components/Favourites/QuestionCard";
 
 function PersonalInfo({user}) {
+    const [profileData, setProfileData] = useState({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        university: user.university,
+        phone_number: user.phone_number,
+    });
+
+    const {token} = useAuth();
+
     return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
         <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
             <div className="w-full  flex items-center justify-start">
@@ -31,7 +42,6 @@ function PersonalInfo({user}) {
                     alt="Profile Picture"
                 />
                 <div className={`w-full `}>
-
                     <h1 className="text-2xl font-bold">{user.first_name} {user.last_name}</h1>
                     <p className="text-gray-600">{user.email}</p>
                 </div>
@@ -42,6 +52,9 @@ function PersonalInfo({user}) {
                     <input
                         type="text"
                         value={user.first_name}
+                        onChange={(e) => {
+                            setProfileData({...profileData, first_name: e.target.value});
+                        }}
                         placeholder={`First Name`}
                         className="mt-1 me-2 py-2  px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
                     />
@@ -51,7 +64,36 @@ function PersonalInfo({user}) {
                     <input
                         value={user.last_name}
                         type="text"
+                        onChange={(e) => {
+                            setProfileData({...profileData, last_name: e.target.value});
+                        }}
                         placeholder={`Last Name`}
+                        className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                    />
+                </div>
+            </div>
+            <div className={`w-full flex items-center justify-center`}>
+                <div className="w-full mt-6 me-2">
+                    <label className="block text-sm font-medium text-gray-700">University</label>
+                    <input
+                        type="text"
+                        value={user.university}
+                        onChange={(e) => {
+                            setProfileData({...profileData, university: e.target.value});
+                        }}
+                        placeholder={`University`}
+                        className="mt-1 me-2 py-2  px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                    />
+                </div>
+                <div className="w-full mt-6 ms-2">
+                    <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+                    <input
+                        value={user.phone_number}
+                        type="phone"
+                        onChange={(e) => {
+                            setProfileData({...profileData, phone_number: e.target.value});
+                        }}
+                        placeholder={`Phone Number`}
                         className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
                     />
                 </div>
@@ -61,6 +103,10 @@ function PersonalInfo({user}) {
                 <input
                     value={user.email}
                     type="email"
+                    onChange={(e) => {
+                        setProfileData({...profileData, email: e.target.value});
+                    }
+                    }
                     className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     placeholder={`Email`}
                 />
@@ -70,6 +116,9 @@ function PersonalInfo({user}) {
                 <input
                     type="password"
                     placeholder={`New Password`}
+                    onChange={(e) => {
+                        setProfileData({...profileData, password: e.target.value});
+                    }}
                     className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
             </div>
@@ -77,6 +126,9 @@ function PersonalInfo({user}) {
                 <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
                 <input
                     type="password"
+                    onChange={(e) => {
+                        setProfileData({...profileData, password2: e.target.value});
+                    }}
                     placeholder={`Confirm Password`}
                     className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
@@ -84,6 +136,13 @@ function PersonalInfo({user}) {
 
             <div className="mt-6">
                 <button
+                    onClick={() => {
+                        updateProfile(token, profileData).then((response) => {
+                            toast.success('Profile updated successfully');
+                        }).catch((error) => {
+                            toast.error('Error updating profile');
+                        });
+                    }}
                     type="submit"
                     className="w-full inline-flex justify-center py-2 px-4 border
                              border-transparent shadow-sm text-sm font-medium rounded-md
@@ -152,6 +211,48 @@ function History() {
     </div>;
 }
 
+function Notes() {
+    const router = useRouter();
+    const [notes, setNotes] = useState(null);
+    const {token, loading} = useAuth();
+    useEffect(() => {
+        if (token) {
+            // fetch notes
+            getNotes(token).then((response) => {
+                setNotes(response);
+            }).catch((error) => {
+                console.error('Error fetching notes:', error);
+            });
+        }
+    }, [token]);
+    return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
+        <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
+            <h1 className="text-2xl font-bold mb-6">Notes</h1>
+            <div className="space-y-4">
+
+                {notes && notes.map((note, index) => {
+                    return <div key={note.id} className="bg-gray-50 p-4 rounded-lg shadow flex flex-col items-end">
+                        <div className={`w-full `}>
+                            <div className={`w-full bg-blue-100 rounded-full px-4`}>Q-{note.question.text}</div>
+                            <div className={`px-4 mt-2`}>
+                                {note.note_text}
+                            </div>
+                        </div>
+                        <button onClick={() => {
+                            deleteNote(token, note.id).then((response) => {
+                                setNotes(notes.filter((note) => note.id !== note.id));
+                                toast.success('Note deleted successfully');
+                            });
+                        }} className="bg-red-500 text-white py-1 rounded-md mt-2 px-4">Delete
+                        </button>
+                    </div>
+                })}
+            </div>
+        </div>
+    </div>;
+
+}
+
 function Favourites() {
     const router = useRouter();
     const {token, loading} = useAuth();
@@ -173,7 +274,8 @@ function Favourites() {
         return <SplashScreen/>
     }
     return <>
-        {showQuestions ? <div className="w-full h-fit mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
+        {showQuestions ?
+            <div className="w-full h-fit mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
                 <div className={`w-full `}>
                     <button onClick={() => {
                         setShowQuestions(false);
@@ -181,13 +283,14 @@ function Favourites() {
                         X
                     </button>
                 </div>
-            {selectedFavourite.questions.map((question, index)=>{
-                return <QuestionCard key={index} number={index+1} question={question.text} answers={question.answers} correctAnswer={question.correct_answer.answer} />
-            })}
+                {selectedFavourite.questions.map((question, index) => {
+                    return <QuestionCard key={index} number={index + 1} question={question.text}
+                                         answers={question.answers} correctAnswer={question.correct_answer.answer}/>
+                })}
             </div>
             :
             <div className="w-full h-fit mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
-                {favourites.length === 0 ? <h1 className={`text-3xl mt-20`}>No favourites found</h1>: ""}
+                {favourites.length === 0 ? <h1 className={`text-3xl mt-20`}>No favourites found</h1> : ""}
                 {favourites.map((item, index) => {
                     return <FavCard key={index} title={item.name} numOfQuestions={item.questions.length}
                                     onDeleteClicked={() => {
@@ -239,6 +342,7 @@ const Profile = () => {
                 {selectedTap === 'profile' ? <PersonalInfo user={user}/> : ""}
                 {selectedTap === 'history' ? <History/> : ""}
                 {selectedTap === 'favorite' ? <Favourites/> : ""}
+                {selectedTap === 'notes' ? <Notes/> : ""}
             </div>
             <Footer/>
         </div>
