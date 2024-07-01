@@ -1,10 +1,13 @@
 // components/SocialLoginButton.js
 
-import { useState } from 'react';
+import React, {useState} from 'react';
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
+import Image from "next/image";
+import loginBtn from "../../../../public/login_button.svg";
+import loginFace from "../../../../public/login_face.svg";
 
-const SocialLoginButton = ({ provider, clientId, redirectUri }) => {
+const SocialLoginButton = ({provider, clientId, redirectUri}) => {
     const router = useRouter();
     const [error, setError] = useState(null);
 
@@ -24,10 +27,12 @@ const SocialLoginButton = ({ provider, clientId, redirectUri }) => {
     };
 
     return (
-        <button onClick={handleSocialLogin}>
-            Login
-            {/*Login with {provider.charAt(0).toUpperCase() + provider.slice(1)}*/}
-        </button>
+        <div className={`mt-4`} onClick={handleSocialLogin}>
+            {provider === "google" ?
+                <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={440} height={40}/> : null}
+            {provider === "facebook" ?
+                <Image style={{cursor: "pointer"}} src={loginFace} alt={``} width={440} height={40}/> : null}
+        </div>
     );
 };
 

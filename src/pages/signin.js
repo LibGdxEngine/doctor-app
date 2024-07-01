@@ -33,7 +33,7 @@ const Signin = () => {
         const params = new URLSearchParams(hash.substring(1));
         const accessToken = params.get('access_token');
         if (accessToken) {
-            socialAuth('google', accessToken).then((response) => {
+            socialAuth(provider, accessToken).then((response) => {
                 toast.success("Logged in successfully");
                 login(response.token);
                 router.push("/");
@@ -83,13 +83,18 @@ const Signin = () => {
                 </div>
                 <div className={`w-full h-screen `}>
                     <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
+                        <h1 className="text-5xl font-thin mb-8">Sign In</h1>
                         <div className={`w-full flex flex-col items-center justify-center`}>
-                            <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={440} height={40}/>asd
-                            <SocialLoginButton provider="google" clientId="794210030409-1jblj5njdfsn27qnjv0nk326fm0o5oi6.apps.googleusercontent.com"
+                            <SocialLoginButton provider="facebook"
+                                               clientId="794210030409-1jblj5njdfsn27qnjv0nk326fm0o5oi6.apps.googleusercontent.com"
+                                               redirectUri="http://localhost:3000/signin/"/>
+
+                            <SocialLoginButton provider="google"
+                                               clientId="794210030409-1jblj5njdfsn27qnjv0nk326fm0o5oi6.apps.googleusercontent.com"
                                                redirectUri="http://localhost:3000/signin/"/>
                         </div>
-                        <h1 className="text-5xl font-thin mb-8">Sign In</h1>
-                        <form onSubmit={handleSignIn} className="w-[60%] flex flex-col space-y-6">
+
+                        <form onSubmit={handleSignIn} className="w-[60%] mt-20 flex flex-col space-y-6">
                             <div className="flex flex-col">
                                 <label htmlFor="email" className="mb-2 text-sm font-medium">
                                     E-mail
