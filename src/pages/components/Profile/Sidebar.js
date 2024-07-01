@@ -4,8 +4,8 @@ import {useRouter} from 'next/router';
 import Image from "next/image";
 import profileImage from "../../../../public/profile.svg";
 import {useAuth} from "@/context/AuthContext";
-
-const Sidebar = ({user, onTapClicked, currentTap}) => {
+import React from "react";
+const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
     const router = useRouter();
     const {logout} = useAuth();
     const navItems = [
@@ -52,6 +52,7 @@ const Sidebar = ({user, onTapClicked, currentTap}) => {
             </nav>
         </div>
     );
-};
+    Sidebar.displayName = "Sidebar";
+});
 
 export default Sidebar;

@@ -14,13 +14,13 @@ import {
     deleteNote,
     getFavouritesLists,
     getUserHistoryExams,
-    updateProfile,
+    updateProfile, getUniversities,
 } from "@/components/services/questions";
 import FavCard from "@/pages/components/Favourites/FavCard";
 import {toast} from "react-toastify";
 import QuestionCard from "@/pages/components/Favourites/QuestionCard";
 
-function PersonalInfo({user}) {
+const PersonalInfo = React.memo(({user, universities}) => {
     const [profileData, setProfileData] = useState({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -75,15 +75,17 @@ function PersonalInfo({user}) {
             <div className={`w-full flex items-center justify-center`}>
                 <div className="w-full mt-6 me-2">
                     <label className="block text-sm font-medium text-gray-700">University</label>
-                    <input
-                        type="text"
-                        value={user.university}
-                        onChange={(e) => {
-                            setProfileData({...profileData, university: e.target.value});
-                        }}
-                        placeholder={`University`}
-                        className="mt-1 me-2 py-2  px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
-                    />
+                    <select
+                        value={profileData.university}
+                        onChange={(e) => setProfileData({...profileData, university: e.target.value})}
+                        className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                    >
+                        {universities.map((university) => (
+                            <option key={university.id} value={university.name}>
+                                {university.name}
+                            </option>
+                        ))}
+                    </select>
                 </div>
                 <div className="w-full mt-6 ms-2">
                     <label className="block text-sm font-medium text-gray-700">Phone Number</label>
@@ -154,22 +156,13 @@ function PersonalInfo({user}) {
             </div>
         </div>
     </div>;
-}
+    PersonalInfo.displayName = "PersonalInfo";
+});
 
-function History() {
+const History = React.memo(({examObject: defaultExams}) => {
     const router = useRouter();
     const {token, loading} = useAuth();
-    const [examObject, setExamObject] = useState(null);
-    useEffect(() => {
-        if (token) {
-            getUserHistoryExams(token).then((response) => {
-                setExamObject(response);
-            }).catch((error) => {
-                console.error('Error fetching exam:', error);
-            });
-        }
-
-    }, [token]);
+    const [examObject, setExamObject] = useState(defaultExams);
     if (loading || !examObject) {
         return <SplashScreen/>
     }
@@ -209,9 +202,10 @@ function History() {
             </div>
         </div>
     </div>;
-}
+    History.displayName = "History";
+});
 
-function Notes() {
+const Notes = React.memo(() => {
     const router = useRouter();
     const [notes, setNotes] = useState(null);
     const {token, loading} = useAuth();
@@ -250,26 +244,17 @@ function Notes() {
             </div>
         </div>
     </div>;
+    Notes.displayName = "Notes";
 
-}
+});
 
-function Favourites() {
+const Favourites = React.memo(({favourites}) => {
     const router = useRouter();
     const {token, loading} = useAuth();
-    const [favourites, setFavourites] = useState(null);
+
     const [showQuestions, setShowQuestions] = useState(false);
     const [selectedFavourite, setSelectedFavourite] = useState(null);
 
-    useEffect(() => {
-        if (token) {
-            getFavouritesLists(token).then((response) => {
-                setFavourites(response);
-            }).catch((error) => {
-                console.error('Error fetching favourites:', error);
-            });
-        }
-
-    }, [token]);
     if (loading || !favourites) {
         return <SplashScreen/>
     }
@@ -309,19 +294,53 @@ function Favourites() {
             </div>
         }
     </>
+    Favourites.displayName = "Favourites";
+});
 
-}
-
-const Profile = () => {
+const Profile = React.memo(() => {
     const router = useRouter();
     const {user, token, loading} = useAuth();
-
+    const [universities, setUniversities] = useState([]);
     const [selectedTap, setSelectedTap] = React.useState('profile');
+    const [examObject, setExamObject] = useState(null);
+    const [favourites, setFavourites] = useState(null);
 
+    useEffect(() => {
+        if (token) {
+            getFavouritesLists(token).then((response) => {
+                setFavourites(response);
+            }).catch((error) => {
+                console.error('Error fetching favourites:', error);
+            });
+        }
+
+    }, [token]);
+
+    useEffect(() => {
+        if (token) {
+            getUserHistoryExams(token).then((response) => {
+                setExamObject(response);
+            }).catch((error) => {
+                console.error('Error fetching exam:', error);
+            });
+        }
+
+    }, [token]);
     useEffect(() => {
         if (!loading && !token) {
             router.push('/signin');
         }
+        if (!loading && token) {
+            // fetch notes
+            getUniversities(token).then((response) => {
+                console.log(response)
+                setUniversities(response);
+            }).catch((error) => {
+                console.error('Error fetching notes:', error);
+            });
+
+        }
+
     }, [token, loading, router]);
 
     if (loading) {
@@ -339,14 +358,31 @@ const Profile = () => {
                 <Sidebar user={user} onTapClicked={(tap) => {
                     setSelectedTap(tap);
                 }} currentTap={selectedTap}/>
-                {selectedTap === 'profile' ? <PersonalInfo user={user}/> : ""}
-                {selectedTap === 'history' ? <History/> : ""}
-                {selectedTap === 'favorite' ? <Favourites/> : ""}
-                {selectedTap === 'notes' ? <Notes/> : ""}
+                <div className={`w-full`}>
+                    <div className={`transition-container ${selectedTap === 'profile' ? 'show' : ''}`}>
+                        {selectedTap === 'profile' &&
+                            <PersonalInfo key="profile" user={user} universities={universities}/>}
+                    </div>
+                    <div className={`transition-container ${selectedTap === 'history' ? 'show' : ''}`}>
+                        {selectedTap === 'history' && <History key="history" examObject={examObject}/>}
+                    </div>
+                    <div className={`transition-container ${selectedTap === 'favorite' ? 'show' : ''}`}>
+                        {selectedTap === 'favorite' && <Favourites key="favorite" favourites={favourites}/>}
+                    </div>
+                    <div className={`transition-container ${selectedTap === 'notes' ? 'show' : ''}`}>
+                        {selectedTap === 'notes' && <Notes key="notes"/>}
+                    </div>
+                </div>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <Footer/>
         </div>
     );
-};
 
+});
+Profile.displayName = "Profile";
 export default Profile;

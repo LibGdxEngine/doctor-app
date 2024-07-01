@@ -81,7 +81,7 @@ const Start = () => {
             <div className={`px-20 flex flex-col items-start`}>
                 <h1 className={`font-bold text-5xl text-ldarkBlue`}>Please choose your Krok specifics</h1>
                 <div id={`lang`} className={`flex items-center justify-center my-10`}>
-                    <div className={`w-32 font-semibold text-xl text-ldarkBlue`}>
+                    <div className={`w-32 font-semibold text-2xl text-ldarkBlue`}>
                         Language
                     </div>
                     <div className={`flex mx-4`}>
@@ -93,7 +93,7 @@ const Start = () => {
                     </div>
                 </div>
                 <div id={`lang`} className={`flex items-center justify-center mb-10`}>
-                    <div className={`w-32 font-semibold text-xl text-ldarkBlue`}>
+                    <div className={`w-32 font-semibold text-2xl text-ldarkBlue`}>
                         Specialty
                     </div>
                     <div className={`flex mx-4`}>
@@ -107,7 +107,7 @@ const Start = () => {
                     </div>
                 </div>
                 <div id={`lang`} className={`flex items-center justify-center my-0`}>
-                    <div className={`w-32 font-semibold text-xl text-ldarkBlue`}>
+                    <div className={`w-32 font-semibold text-2xl text-ldarkBlue`}>
                         Level
                     </div>
                     <div className={`flex mx-4`}>
@@ -123,7 +123,11 @@ const Start = () => {
                 </div>
             </div>
         </div>
-
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <Footer/>
 
     </div>

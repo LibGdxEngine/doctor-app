@@ -7,6 +7,8 @@ import {useRouter} from "next/router";
 import {useAuth} from "@/context/AuthContext";
 import SplashScreen from "@/pages/components/SplashScreen";
 import loginLogo from "../../public/loginLogo.svg";
+import loginBtn from "../../public/login_button.svg";
+import loginFace from "../../public/login_face.svg";
 import woman from "../../public/woman.svg";
 import Link from "next/link";
 import Footer from "@/pages/components/Footer";
@@ -74,7 +76,11 @@ export default function SignUp() {
                     </div>
                     <div className={`w-full h-screen `}>
                         <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
-                            <h1 className="text-5xl font-thin mb-8">Sign In</h1>
+                            <div className={`w-full flex flex-col items-center justify-center`}>
+                                <Image style={{cursor:"pointer"}} src={loginBtn} alt={``} width={440} height={40}/>
+                                <Image style={{cursor:"pointer"}} className={`my-4`}
+                                       src={loginFace} alt={``} width={440} height={40}/>
+                            </div>
                             <form onSubmit={handleSignup} className="w-[60%] flex flex-col space-y-6">
                                 <div className="flex">
                                     <div className={`flex flex-col`}>
@@ -159,8 +165,8 @@ export default function SignUp() {
                             </form>
                             <p className="text-sm mt-6 text-center">
                                 Do not have any account?{' '}
-                                <Link href="/signup" className="text-indigo-600 hover:underline">
-                                    Sign Up
+                                <Link href="/signin" className="text-indigo-600 hover:underline">
+                                    Sign In
                                 </Link>
                             </p>
                         </div>

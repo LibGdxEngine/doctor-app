@@ -47,14 +47,14 @@ const Topic = () => {
 
         <div className={`flex flex-col items-start mx-20`}>
             <div className={`w-full h-full flex flex-col items-start justify-start pt-20`}>
-                <StepBar stepNumber={4} onStepClicked={(step)=>{
+                <StepBar stepNumber={4} onStepClicked={(step) => {
                     router.push(`/${step}`)
                 }}/>
                 <div className={`w-full grid grid-cols-6 mt-10`}>
                     {topics.map((topic, index) => {
                         return <CheckButton text={topic.name} key={index}
                                             onClick={() => setSelectedTopics([...selectedTopics, topic.id])}
-                                            />
+                        />
                     })}
                 </div>
                 <div onClick={handleNext} id={`next-btn`} className={`w-1/2 mt-10`}>
@@ -62,6 +62,11 @@ const Topic = () => {
                 </div>
             </div>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <Footer/>
     </div>
 };

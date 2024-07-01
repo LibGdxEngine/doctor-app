@@ -4,10 +4,10 @@ import {ToastContainer} from "react-toastify";
 import {AuthProvider} from "@/context/AuthContext";
 
 export default function App({Component, pageProps}) {
-    return <>
+    return <div className={`bg-light`}>
         <AuthProvider>
             <Component {...pageProps} />
         </AuthProvider>
         <ToastContainer/>
-    </>
+    </div>
 }

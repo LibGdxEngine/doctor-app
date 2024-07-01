@@ -5,9 +5,9 @@ import arrowDown from "../../../../public/arrowdown2.svg";
 function FaqItem({question, answer}) {
     const [expanded, setExpanded] = useState(false);
     return (
-        <div className={`flex flex-col mt-2 items-center justify-center m-3`}>
+        <div className={`w-[98%] me-2 faq-background flex flex-col mt-2 items-center justify-center my-3 rounded-8`}>
             <div
-                className={`w-full  h-12  max-h-screen border-[0.5px] px-2 border-lightDark flex flex-row items-center justify-between`}
+                className={`w-full  h-12  max-h-screen border-[0.5px] px-2 rounded-8 flex flex-row items-center justify-between`}
                 onClick={() => {
                     setExpanded(!expanded);
                 }}>
@@ -23,7 +23,7 @@ function FaqItem({question, answer}) {
 
             </div>
             {expanded && (
-                <div className="w-full px-2 flex items-start">
+                <div className="w-full px-2 flex items-start mt-4 mb-2">
                     {answer}
                 </div>
             )}
@@ -49,8 +49,8 @@ function HomeFAQs() {
         // Add more questions and answers as needed
     ];
 
-    return <div id={`faqs`} className={`mx-4 mt-2`}>
-        <div className={`text-base font-bold mb-2`}>Frequently Asked Questionsِ</div>
+    return <div id={`faqs`} className={`mx-28 mt-2`}>
+        <div style={{fontSize: "40px"}} className={`text-base font-bold mb-10`}>Frequently Asked Questions</div>
         <div className={`w-full h-full grid grid-cols-2 lg:grid-cols-1`}>
             {faqData.map((faq, index) => (
                 <FaqItem key={index} question={faq.question} answer={faq.answer}/>

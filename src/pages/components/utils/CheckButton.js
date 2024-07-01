@@ -14,10 +14,11 @@ function CheckButton({text, onClick = null}) {
     }
 
     const state = isChecked ? unchecked : checked;
-    return <div onClick={handleOnClick} style={{cursor: "pointer"}}
-                className={`w-40 flex justify-between px-5 py-1 mx-2 border border-0.5 border-ldarkBlue rounded-2xl my-2 `}>
-        <Image className={`me-1`} src={state} width={15} height={15} alt={``}/>
-        <div className={``}>
+    return <div onClick={handleOnClick} style={{cursor: "pointer", borderRadius: "20.64px"}}
+                className={`w-40 h-[50px] flex justify-between items-center px-5 py-1 mx-2 border border-0.5 border-ldarkBlue my-2 `}>
+        <Image className={`me-1`} src={state} width={20} height={20} alt={``}/>
+
+        <div className={`w-full text-center text-lg`}>
             {text}
         </div>
     </div>;

@@ -3,7 +3,9 @@ import Image from "next/image";
 import woman from "../../public/woman.svg";
 import loginLogo from "../../public/loginLogo.svg";
 import Footer from "@/pages/components/Footer";
-import LogoWithBlueName from "../../public/logo.svg";
+import loginIcons1 from "../../public/login_icons_1.svg";
+import loginIcons2 from "../../public/login_icons_2.svg";
+import loginIcons3 from "../../public/login_icons_3.svg";
 import React, {useEffect} from "react";
 import {useAuth} from "@/context/AuthContext";
 import {getToken, socialAuth} from "@/components/services/auth";
@@ -12,6 +14,9 @@ import SplashScreen from "@/pages/components/SplashScreen";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import NavBar from "@/pages/components/NavBar";
+import loginBtn from "../../public/login_button.svg";
+import loginFace from "../../public/login_face.svg";
+import SocialLoginButton from "@/pages/components/utils/SocialLoginButton";
 
 const Signin = () => {
     const router = useRouter();
@@ -21,11 +26,14 @@ const Signin = () => {
     const {login} = useAuth();
     const {token, loading} = useAuth();
 
-    const {access_token, provider} = router.query;
+    // const {access_token, provider} = router.query;
 
     useEffect(() => {
-        if (access_token) {
-            socialAuth(provider, access_token).then((response) => {
+        const hash = window.location.hash;
+        const params = new URLSearchParams(hash.substring(1));
+        const accessToken = params.get('access_token');
+        if (accessToken) {
+            socialAuth('google', accessToken).then((response) => {
                 toast.success("Logged in successfully");
                 login(response.token);
                 router.push("/");
@@ -33,7 +41,7 @@ const Signin = () => {
                 console.error('Error during social login:', error);
             });
         }
-    }, [access_token, provider]);
+    }, []);
 
 
     if (loading) {
@@ -55,25 +63,34 @@ const Signin = () => {
             console.error('Error during signup:', error);
         }
     }
-    return <div className={`w-full flex flex-col`}>
-        <NavBar />
-        <div className="relative min-h-screen bg-contain bg-no-repeat  "
-             style={{backgroundImage: 'url(/login_bg.svg)'}}>
+    return <div className={`w-full h-full flex flex-col`}>
+        <NavBar/>
+        <div className="w-full h-full  relative min-h-screen bg-no-repeat bg-contain"
+             style={{backgroundImage: 'url(/login_bg.svg)',}}>
 
-            <div className={`w-full flex items-center justify-center`}>
-                <div className={`w-full h-screen flex flex-col items-center justify-center`}>
+            <div className={`w-full h-full   flex items-center justify-center`}>
+
+                <div className={`w-full h-full relative flex flex-col items-center justify-center`}>
                     <div className={`w-32 mt-10`}>
                         <Image src={loginLogo} alt={``} width={200} height={200}/>
                     </div>
-                    <div className={`w-60 mt-20`}>
-                        <Image src={woman} alt={``} width={200} height={200}/>
+                    <div className={`w-72 ms-10 mt-10`}>
+                        <Image src={woman} alt={``} width={250} height={250}/>
                     </div>
+                    <Image src={loginIcons1} alt={``} width={155} height={100} className={`absolute right-20 bottom-44`}/>
+                    <Image src={loginIcons2} alt={``} width={100} height={100} className={`absolute left-20 bottom-44`}/>
+                    <Image src={loginIcons3} alt={``} width={100} height={100} className={`absolute left-40 bottom-10`}/>
                 </div>
                 <div className={`w-full h-screen `}>
                     <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
+                        <div className={`w-full flex flex-col items-center justify-center`}>
+                            <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={440} height={40}/>asd
+                            <SocialLoginButton provider="google" clientId="794210030409-1jblj5njdfsn27qnjv0nk326fm0o5oi6.apps.googleusercontent.com"
+                                               redirectUri="http://localhost:3000/signin/"/>
+                        </div>
                         <h1 className="text-5xl font-thin mb-8">Sign In</h1>
                         <form onSubmit={handleSignIn} className="w-[60%] flex flex-col space-y-6">
-                            <div  className="flex flex-col">
+                            <div className="flex flex-col">
                                 <label htmlFor="email" className="mb-2 text-sm font-medium">
                                     E-mail
                                 </label>

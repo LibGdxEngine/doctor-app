@@ -66,25 +66,26 @@ function HomePage() {
                 </div>
                 <div className="h-full  flex flex-col items-center justify-center w-full">
 
-                    <div className={`w-full px-28 h-full flex flex-col justify-between py-28`}>
-                        <div className={`text-white text-opacity-40 text-6xl font-extrabold`}>
+                    <div className={`w-full px-28 h-full flex flex-col justify-between pb-28 pt-6`}>
+                        <div style={{fontSize: "128px", fontWeight: "700", fontFamily: "Calibri"}}
+                             className={`text-white text-opacity-40 font-extrabold`}>
                             KROK PLUS
+                            <div className="border-t border-2 border-white border-opacity-25 mb-8"></div>
                         </div>
 
-                        <div className="border-t border-white border-opacity-25"></div>
 
-                        <div className={`text-white font-bold text-5xl`}>
-                            Get Motivated In Minutes
+                        <div style={{fontSize: "60.45px", fontFamily: "Calibri"}} className={`text-white font-bold text-5xl`}>
+                        Get Motivated In Minutes
                         </div>
-                        <div className={`text-white font-semibold text-4xl`}>
+                        <div style={{fontSize: "50.45px", fontFamily: "Calibri", lineHeight: "50px"}}  className={`text-white mt-4 font-semibold text-4xl`}>
                             “The earlier you start working on something, the earlier you will see results.”
                         </div>
-                        <div className={`text-white font-base text-2xl`}>
+                        <div className={`text-white font-base text-2xl mt-4`}>
                             “Every morning you have two choices: continue to sleep with your dreams, or wake up and
                             chase
                             them.”
                         </div>
-                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-96`}>
+                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-96 mt-4`}>
                             <Image src={actionButton} alt={``} width={500} height={500}/>
                         </div>
                     </div>

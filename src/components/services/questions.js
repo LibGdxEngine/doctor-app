@@ -259,6 +259,20 @@ export const getNotes = async (token) => {
     }
 };
 
+export const getUniversities = async (token) => {
+    try {
+        const response = await axiosInstance.get(`questions/university/`, {
+            headers: {
+                "Authorization": `Token ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error adding question to list:', error);
+        throw error;
+    }
+};
+
 export const deleteNote = async (token, noteId) => {
     try {
         const response = await axiosInstance.delete(`questions/notes/${noteId}/`, {

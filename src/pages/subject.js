@@ -46,14 +46,14 @@ const Subject = () => {
 
         <div className={`flex flex-col items-start mx-20`}>
             <div className={`w-full h-full flex flex-col items-start justify-start  pt-20`}>
-                <StepBar stepNumber={2} onStepClicked={(step)=>{
+                <StepBar stepNumber={2} onStepClicked={(step) => {
                     router.push(`/${step}`)
                 }}/>
                 <div className={`w-full grid grid-cols-6 mt-10`}>
                     {subjects.map((subject, index) => {
                         return <CheckButton text={subject.name} key={index}
                                             onClick={() => setSelectedSubjects([...selectedSubjects, subject.id])}
-                                            />
+                        />
                     })}
                 </div>
                 <div onClick={handleNext} id={`next-btn`} className={`w-1/2 mt-10`}>
@@ -61,6 +61,11 @@ const Subject = () => {
                 </div>
             </div>
         </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <Footer/>
     </div>
 };

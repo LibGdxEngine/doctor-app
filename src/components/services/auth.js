@@ -37,7 +37,7 @@ export const getUser = async (token) => {
 
 export const socialAuth = async (provider, accessToken) => {
     try {
-        const response = await axiosInstance.post('/user/social-login/', {
+        const response = await axiosInstance.post('/user/social-login-token/', {
             provider,
             access_token: accessToken,
         });
