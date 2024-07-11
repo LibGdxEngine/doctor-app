@@ -9,13 +9,15 @@ import {useAuth} from "@/context/AuthContext";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
+import SearchBar from "@/pages/components/Home/SearchBar";
+import SectionsHeader from "@/pages/components/SectionsHeader";
 
 const Filter = () => {
     const router = useRouter();
     const {token, loading} = useAuth();
     const [state, setState] = useState(null);
     const [questionsCount, setQuestionsCount] = useState(0);
-    const [numberOfSelectedQuestions, setNumberOfSelectedQuestions] = useState(10);
+    const [numberOfSelectedQuestions, setNumberOfSelectedQuestions] = useState(0);
 
     useEffect(() => {
         setState(JSON.parse(localStorage.getItem("state")));
@@ -23,9 +25,9 @@ const Filter = () => {
 
     useEffect(() => {
         if (token && state) {
-            console.log(state)
             getQuestionsCount(token, state).then((response) => {
                 setQuestionsCount(response.count);
+                setNumberOfSelectedQuestions(response.count);
             }).catch((error) => {
                 console.error('Error getting questions count:', error);
             });
@@ -49,6 +51,10 @@ const Filter = () => {
         });
     }
     return <div className={`w-full h-screen bg-white flex  flex-col items-start justify-start`}>
+        <div className={`w-full hidden md:block`}>
+            <SearchBar/>
+            <SectionsHeader/>
+        </div>
         <NavBar/>
         <div className={`w-full`}>
 
@@ -57,12 +63,13 @@ const Filter = () => {
                 <div className={`w-full px-6 pt-10`}>
                     <KrokSpecifics/>
                 </div>
-                <div className="w-full grid grid-cols-2 md:grid-cols-2 gap-6 p-6 bg-white rounded-lg ">
-                    <QuestionsFilter onChange={(event)=>{
-                        if(event['All'] === true) {
-                        }else if(event['Unused Questions'] === event['Used Questions']) {
-                        }else if(event['Correct Questions'] === event['Incorrect Questions']) {
-                        }else {
+                {JSON.stringify(numberOfSelectedQuestions)}
+                <div className="w-full grid grid-cols-2 md:grid-cols-1 gap-6 p-6 bg-white rounded-lg ">
+                    <QuestionsFilter onChange={(event) => {
+                        if (event['All'] === true) {
+                        } else if (event['Unused Questions'] === event['Used Questions']) {
+                        } else if (event['Correct Questions'] === event['Incorrect Questions']) {
+                        } else {
                             if (event['Unused Questions']) {
                                 setState({...state, "is_used": "False"});
                             } else if (event['Used Questions']) {
@@ -76,11 +83,11 @@ const Filter = () => {
                                 console.log("false")
                             }
                         }
-                        console.log(state)
                     }}/>
                     <div className={`w-full flex flex-col items-start justify-end`}>
-                        <QuestionsPractice questionsCount={questionsCount} onChange={(number) => {
+                        <QuestionsPractice questionsCount={questionsCount} selected={numberOfSelectedQuestions} onChange={(number) => {
                             setNumberOfSelectedQuestions(number);
+                            setQuestionsCount(questionsCount);
                         }}/>
                         <ActionButtons onClick={handleOnCreateJourneyClicked}/>
                     </div>

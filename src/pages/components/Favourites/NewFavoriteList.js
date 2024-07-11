@@ -11,7 +11,7 @@ const NewFavoriteList = ({ onClose, onSave }) => {
         if (listName.trim()) {
             createFavoriteList(token, {name: listName}).then((response) => {
                 toast.success('Favorite list created successfully');
-                onSave(listName);
+                onSave(listName, response.pkid);
                 onClose();
             }).catch((error) => {
                 toast.error('Error creating favorite list');

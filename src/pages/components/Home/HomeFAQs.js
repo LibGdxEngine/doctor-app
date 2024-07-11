@@ -49,8 +49,8 @@ function HomeFAQs() {
         // Add more questions and answers as needed
     ];
 
-    return <div id={`faqs`} className={`mx-28 mt-2`}>
-        <div style={{fontSize: "40px"}} className={`text-base font-bold mb-10`}>Frequently Asked Questions</div>
+    return <div id={`faqs`} className={`mx-28 sm:mx-4 mt-2`}>
+        <div  className={`w-full font-bold mb-10 sm:mb-2 text-4xl sm:text-2xl`}>Frequently Asked Questions</div>
         <div className={`w-full h-full grid grid-cols-2 lg:grid-cols-1`}>
             {faqData.map((faq, index) => (
                 <FaqItem key={index} question={faq.question} answer={faq.answer}/>

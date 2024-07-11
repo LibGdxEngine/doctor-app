@@ -1,11 +1,13 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import NavBar from "@/pages/components/NavBar";
 import Footer from "@/pages/components/Footer";
 import {searchForQuestions} from "@/components/services/questions";
 import {useAuth} from "@/context/AuthContext";
-import {toast} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import QuestionCard from "@/pages/components/Questions/QuestionCard";
 import {useRouter} from "next/router";
+import SearchBar from "@/pages/components/Home/SearchBar";
+import SectionsHeader from "@/pages/components/SectionsHeader";
 
 const Search = () => {
     const router = useRouter();
@@ -48,8 +50,14 @@ const Search = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 flex flex-col items-center">
+            <div className={`w-full hidden md:block`}>
+                <SearchBar/>
+                {/*<SectionsHeader/>*/}
+                <ToastContainer position={'bottom-center'} />
+            </div>
+
             <NavBar/>
-            <h1 className="text-4xl font-extrabold text-white my-8">Search Your Question</h1>
+            <h1 className="text-4xl font-extrabold text-white my-8 text-center">Search Your Question</h1>
 
             <div className="w-full max-w-md">
                 {results.map((result) => (

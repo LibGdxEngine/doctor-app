@@ -19,7 +19,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
         Loading...
     </>;
     return (
-        <div className="w-1/3 bg-white shadow-md">
+        <div className="w-1/3 sm:w-full bg-white shadow-md">
             <div className="p-4">
                 <Image
                     className="w-24 h-24 rounded-full mx-auto"

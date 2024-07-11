@@ -108,31 +108,31 @@ const QuestionWindow = ({
                     <div className={`w-full flex items-center justify-center`}>
                         <Image style={{cursor: "pointer"}} onClick={()=>{
                             openReportsModal()
-                        }} className={`mx-2`} src={icon1} alt={``} width={35} height={35}/>
+                        }} className={`mx-2 sm:mx-0`} src={icon1} alt={``} width={35} height={35}/>
                         {type === 'study' ? <><Image style={{cursor: "pointer"}} onClick={() => {
                             setShowHint(!showHint);
                             setShowVideoHint(false);
-                        }} className={`mx-2`} src={hint} alt={``} width={35} height={35}/>
+                        }} className={`mx-2 sm:mx-0`} src={hint} alt={``} width={35} height={35}/>
                             <Image style={{cursor: "pointer"}} onClick={() => {
                                 setShowHint(false);
                                 setShowVideoHint(!showVideoHint);
-                            }} className={`mx-2`} src={video_hint} alt={``} width={35} height={35}/></> : ""}
+                            }} className={`mx-2 sm:mx-0`} src={video_hint} alt={``} width={35} height={35}/></> : ""}
 
 
                         <Image style={{cursor: "pointer"}} onClick={() => {
                             //     add to favourites
                             openModal()
-                        }} className={`mx-2`} src={icon2} alt={``} width={35} height={35}/>
+                        }} className={`mx-2 sm:mx-0`} src={icon2} alt={``} width={35} height={35}/>
                         <Image style={{cursor: "pointer"}} onClick={() => {
                             openNotesModal();
-                        }} className={`mx-2`} src={icon3} alt={``} width={35} height={35}/>
+                        }} className={`mx-2 sm:mx-0`} src={icon3} alt={``} width={35} height={35}/>
                         {type === 'study' ? <Image style={{cursor: "pointer"}} onClick={()=>{
                             navigator.clipboard.writeText(questions.text).then(() => {
                                 toast.success("Copied to clipboard");
                             }).catch(err => {
                                 console.error('Failed to copy text: ', err);
                             });
-                        }} className={`mx-2`} src={copy} alt={``} width={35} height={35}/> : ""}
+                        }} className={`mx-2 sm:mx-0`} src={copy} alt={``} width={35} height={35}/> : ""}
                     </div>
                     {type === "study" ? <CountUpTimer max={10000} onTimeChange={(time_elapsed) => {
                         setTimeLeft(time_elapsed);
@@ -178,19 +178,19 @@ const QuestionWindow = ({
 
                 </div>
 
-                <div className="flex justify-between items-center mt-6 pe-4">
+                <div className="w-full flex justify-between items-center mt-6 pe-4">
                     <button
                         onClick={() => {
                             router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) - 1}`);
                         }}
                         className={`w-40 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{"<"}</button>
                     .
-                    <div>
+                    <div className={`sm:flex text-xs`}>
                         <button
                             onClick={() => {
                                 router.push(`/home`)
                             }}
-                            className={`w-40 bg-gray-200 text-gray-700 rounded-lg py-2 px-4 mr-2 ${showResults ? "hidden" : ""}`}>Resume
+                            className={`w-40 sm:w-full bg-gray-200 text-gray-700 rounded-lg py-2 px-4 mr-2 ${showResults ? "hidden" : ""}`}>Resume
                             Later
                         </button>
                         {showResults ? <button onClick={() => {
@@ -200,7 +200,7 @@ const QuestionWindow = ({
                             </button>
                             :
                             <button onClick={handleAnswerClicked}
-                                    className="w-40 bg-blue-500 text-white rounded-lg py-2 px-4">Check
+                                    className="w-40 sm:w-full bg-blue-500 text-white rounded-lg py-2 px-4">Check
                             </button>}
                     </div>
                 </div>

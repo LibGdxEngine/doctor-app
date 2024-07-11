@@ -19,6 +19,9 @@ import {
 import FavCard from "@/pages/components/Favourites/FavCard";
 import {toast} from "react-toastify";
 import QuestionCard from "@/pages/components/Favourites/QuestionCard";
+import {log} from "next/dist/server/typescript/utils";
+import SearchBar from "@/pages/components/Home/SearchBar";
+import SectionsHeader from "@/pages/components/SectionsHeader";
 
 const PersonalInfo = React.memo(({user, universities}) => {
     const [profileData, setProfileData] = useState({
@@ -166,6 +169,11 @@ const History = React.memo(({examObject: defaultExams}) => {
     if (loading || !examObject) {
         return <SplashScreen/>
     }
+    const first_question = examObject[0]['questions'][0];
+    const level = first_question.level.name;
+    const language = first_question.language.name;
+    const specificity = first_question.specificity.name;
+
     return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
         <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
             <h1 className="text-2xl font-bold mb-6">History</h1>
@@ -174,7 +182,8 @@ const History = React.memo(({examObject: defaultExams}) => {
                     <div key={index} className="bg-gray-50 p-4 rounded-lg shadow">
                         <div className="flex justify-between items-center">
                             <div>
-                                <h2 className="text-lg font-semibold">Type ({item.type} mood)</h2>
+                                <h1 className="text-xl font-semibold">{level} {language} {specificity} Exam</h1>
+                                <h2 className="text-lg ">Type ({item.type} mood)</h2>
                                 <p className="text-gray-500">{parseInt(item.current_question) / item.questions.length * 100}%
                                     Completed</p>
                             </div>
@@ -248,10 +257,10 @@ const Notes = React.memo(() => {
 
 });
 
-const Favourites = React.memo(({favourites}) => {
+const Favourites = React.memo(({favourites: myFav}) => {
     const router = useRouter();
     const {token, loading} = useAuth();
-
+    const [favourites, setFavourites] = useState(myFav);
     const [showQuestions, setShowQuestions] = useState(false);
     const [selectedFavourite, setSelectedFavourite] = useState(null);
 
@@ -333,7 +342,6 @@ const Profile = React.memo(() => {
         if (!loading && token) {
             // fetch notes
             getUniversities(token).then((response) => {
-                console.log(response)
                 setUniversities(response);
             }).catch((error) => {
                 console.error('Error fetching notes:', error);
@@ -353,8 +361,12 @@ const Profile = React.memo(() => {
 
     return (
         <div className="w-full flex flex-col items-center justify-center">
+            <div className={`w-full hidden md:block`}>
+                <SearchBar/>
+                <SectionsHeader/>
+            </div>
             <NavBar/>
-            <div className={`w-full flex`}>
+            <div className={`w-full flex sm:flex-col`}>
                 <Sidebar user={user} onTapClicked={(tap) => {
                     setSelectedTap(tap);
                 }} currentTap={selectedTap}/>

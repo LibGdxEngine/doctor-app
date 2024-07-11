@@ -17,20 +17,8 @@ import HomeFAQs from "@/pages/components/Home/HomeFAQs";
 import {useRouter} from "next/router";
 import NavBar from "@/pages/components/NavBar";
 import FlowingIcons from "@/pages/components/utils/FlowingIcons";
+import SectionsHeader from "@/pages/components/SectionsHeader";
 
-function SectionsHeader() {
-    return <div id={`sections-header`} className={`w-full mt-2 flex items-center justify-center px-4`}>
-        <div className={`w-full rounded-8 px-5 py-1 text-navyBlue border border-0.5 border-lightDark mx-1`}>
-            Material
-        </div>
-        <div className={`w-full rounded-8 px-5 py-1 text-navyBlue border border-0.5 border-lightDark mx-1`}>
-            Material
-        </div>
-        <div className={`w-full rounded-8 px-5 py-1 text-navyBlue border border-0.5 border-lightDark mx-1`}>
-            Material
-        </div>
-    </div>;
-}
 
 function HomeSlider() {
     return <div id={`home-slider`} className={`w-full h-fit px-4 mt-4`}>
@@ -48,7 +36,6 @@ function HomePage() {
     return <div id={`home-container`} className={`w-full h-full`}>
 
         <div className="hidden lg:block">
-            <NavBar />
             <SearchBar/>
             <SectionsHeader/>
             <HomeSlider/>

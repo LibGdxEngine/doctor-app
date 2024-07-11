@@ -5,12 +5,12 @@ import follow from "../../../public/follow.svg";
 
 function Footer() {
     return <>
-        <div id={`footer`} className={`bg-navyBlue w-full h-fit py-12 mt-0 z-20 flex items-center justify-between`}>
-            <div className={`w-fit flex items-center justify-center`}>
-                <Image className={`mx-10`} src={app1} alt={``} width={150} height={150}/>
+        <div id={`footer`} className={`bg-navyBlue w-full h-fit py-12 mt-0 z-20 flex sm:flex-col items-center justify-between`}>
+            <div className={`w-fit flex sm:flex-col items-center justify-center`}>
+                <Image className={`mx-10 sm:my-2`} src={app1} alt={``} width={150} height={150}/>
                 <Image src={app2} alt={``} width={150} height={150}/>
             </div>
-            <div className={`w-fit flex items-center justify-center`}>
+            <div className={`w-fit flex sm:my-2 items-center justify-center`}>
                 <Image className={`mx-10`} src={follow} alt={``} width={150} height={150}/>
             </div>
 

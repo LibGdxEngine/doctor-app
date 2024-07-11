@@ -5,6 +5,8 @@ import {useRouter} from "next/router";
 import {useAuth} from "@/context/AuthContext";
 import {useEffect, useState} from "react";
 import {getExamJourney, getSingleFavouritesListDetails, updateExamJourney} from "@/components/services/questions";
+import SearchBar from "@/pages/components/Home/SearchBar";
+import SectionsHeader from "@/pages/components/SectionsHeader";
 
 const Quiz = () => {
     const router = useRouter();
@@ -28,6 +30,10 @@ const Quiz = () => {
     }, [token, id]);
 
     return <div className={`w-full flex flex-col items-start justify-center bg-white`}>
+        <div className={`w-full hidden md:block`}>
+            <SearchBar/>
+            <SectionsHeader/>
+        </div>
         <NavBar/>
 
         <div className={`w-full h-full items-center justify-center`}>

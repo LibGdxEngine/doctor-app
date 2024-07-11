@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 
-const QuestionsPractice = ({onChange = null, questionsCount}) => {
-    const [numberOfQuestions, setNumberOfQuestions] = useState(10);
+const QuestionsPractice = ({onChange = null, selected, questionsCount}) => {
+    console.log(questionsCount)
+    console.log(selected)
+    const [numberOfQuestions, setNumberOfQuestions] = useState(questionsCount);
 
     const handleIncrease = () => {
         if (numberOfQuestions < 200) {
@@ -25,12 +27,12 @@ const QuestionsPractice = ({onChange = null, questionsCount}) => {
             <div className="mb-4 text-gray-500">You can have up to {questionsCount} questions.</div>
             <div className="flex items-center space-x-2">
                 <button onClick={handleDecrease} className="px-2 py-1 bg-blue-100 rounded">{"<"}</button>
-                <input onChange={()=>{
-                    setNumberOfQuestions(parseInt(event.target.value));
-                }} type="text" value={numberOfQuestions} className="w-12 text-center border border-gray-300 rounded"
-                       defaultValue="10"/>
+                <input onChange={() => {
+                    // setNumberOfQuestions(parseInt(event.target.value));
+                }} type="text" value={selected} className="w-12 text-center border border-gray-300 rounded"
+                       />
                 <button onClick={handleIncrease} className="px-2 py-1 bg-blue-100 rounded">{">"}</button>
-                <input type="text" className="w-16 text-center border border-gray-300 rounded" defaultValue="200"
+                <input type="text" className="w-16 text-center border border-gray-300 rounded"
                        value={questionsCount}/>
             </div>
         </div>

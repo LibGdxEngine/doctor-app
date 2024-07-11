@@ -16,7 +16,6 @@ const FavoriteList = () => {
 
     useEffect(() => {
         getFavouritesLists(token).then((response) => {
-            console.log(response)
             setItems(response);
         }).catch((error) => {
             console.error('Error fetching favorite lists:', error);
@@ -25,7 +24,7 @@ const FavoriteList = () => {
 
     const handleAddToFavorites = () => {
         if (selectedItem) {
-            addQuestionToFavoritesList(token, selectedItem,  630).then((response) => {
+            addQuestionToFavoritesList(token, selectedItem, 630).then((response) => {
                 toast.success('Question added to favorite list');
             }).catch((error) => {
                 toast.error('Error adding question to favorite list');
@@ -34,14 +33,15 @@ const FavoriteList = () => {
         } else {
             toast.error('Please select a favorite list');
         }
+
     }
 
-    const handleSelect = (id) => {
-        setSelectedItem(id);
+    const handleSelect = (pkid) => {
+        setSelectedItem(pkid);
     };
 
-    const handleSaveNewList = (name) => {
-        const newItem = {id: items.length + 1, name};
+    const handleSaveNewList = (name, pkid) => {
+        const newItem = {pkid, name};
         setItems([...items, newItem]);
     };
 
@@ -57,7 +57,7 @@ const FavoriteList = () => {
             </div>
             {items.map((item) => (
                 <div
-                    key={item.id}
+                    key={item.pkid}
                     className={`flex items-center p-4 mb-2 rounded-lg border ${selectedItem === item.pkid ? 'border-blue-500 bg-blue-50' : 'border-gray-200'}`}
                     onClick={() => handleSelect(item.pkid)}
                 >
