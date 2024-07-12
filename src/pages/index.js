@@ -21,7 +21,9 @@ const Home = () => {
                 <br/>
                 <br/>
             </div>
-            <VideoPlayer/>
+            <div className={`sm:hidden`}>
+                <VideoPlayer/>
+            </div>
             <br/>
             <br/>
             <br/>

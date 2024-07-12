@@ -18,6 +18,7 @@ import {useRouter} from "next/router";
 import NavBar from "@/pages/components/NavBar";
 import FlowingIcons from "@/pages/components/utils/FlowingIcons";
 import SectionsHeader from "@/pages/components/SectionsHeader";
+import VideoPlayer from "@/pages/components/utils/VideoPlayer";
 
 
 function HomeSlider() {
@@ -39,6 +40,9 @@ function HomePage() {
             <SearchBar/>
             <SectionsHeader/>
             <HomeSlider/>
+            <br/>
+            <VideoPlayer/>
+            <br/>
             <HomeFAQs/>
         </div>
         <div className="block lg:hidden relative">
