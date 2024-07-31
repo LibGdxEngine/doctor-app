@@ -14,7 +14,7 @@ import {
     deleteNote,
     getFavouritesLists,
     getUserHistoryExams,
-    updateProfile, getUniversities,
+    updateProfile, getUniversities, getSpecificities,
 } from "@/components/services/questions";
 import FavCard from "@/pages/components/Favourites/FavCard";
 import {toast} from "react-toastify";
@@ -169,14 +169,27 @@ const History = React.memo(({examObject: defaultExams}) => {
     if (loading || !examObject) {
         return <SplashScreen/>
     }
-    const first_question = examObject[0]['questions'][0];
-    const level = first_question.level.name;
-    const language = first_question.language.name;
-    const specificity = first_question.specificity.name;
+    let first_question = null;
+    let level = null;
+    let language = null;
+    let specificity = null;
+    if (examObject.length > 0) {
+        try {
+            first_question = examObject[0]['questions'][0];
+            level = first_question?.level.name;
+            language = first_question?.language.name;
+            specificity = first_question?.specificity.name;
+        }catch (err) {
+            console.error('Error parsing exam questions:', err);
+        }
+
+    }
+
 
     return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
         <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
             <h1 className="text-2xl font-bold mb-6">History</h1>
+            <div>{level} {language} {specificity}</div>
             <div className="space-y-4">
                 {examObject.map((item, index) => (
                     <div key={index} className="bg-gray-50 p-4 rounded-lg shadow">
