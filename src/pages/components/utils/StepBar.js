@@ -1,8 +1,9 @@
 import Image from "next/image";
 import backBtnIcon from "../../../../public/mobile icons.svg";
-import {router} from "next/client";
+import {useRouter} from "next/router";
 
 function StepBar({stepNumber = 1, onStepClicked}) {
+    const router = useRouter();
     const handleOnStepClicked = (step) => {
         if (onStepClicked) {
             onStepClicked(step)
