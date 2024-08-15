@@ -36,11 +36,11 @@ const System = () => {
     }, [token, state]);
 
     function handleNext() {
-        if(selectedSystems.length === 0) {
+        if (selectedSystems.length === 0) {
             toast.error("Please select at least one system");
             return;
         }
-        localStorage.setItem("state", JSON.stringify({...state,"systems": selectedSystems}));
+        localStorage.setItem("state", JSON.stringify({...state, "systems": selectedSystems}));
         router.push("/filter");
     }
 
@@ -58,7 +58,14 @@ const System = () => {
                 <div className={`w-full grid grid-cols-6 sm:grid-cols-3 mt-10`}>
                     {systems.map((system, index) => {
                         return <CheckButton text={system.name} key={index}
-                                            onClick={() => setSelectedSystems([...selectedSystems, system.id])}
+                                            isSelected={selectedSystems.includes(system.id)}
+                                            onClick={() => {
+                                                if (selectedSystems.includes(system.id)) {
+                                                    setSelectedSystems(selectedSystems.filter(item => item !== system.id));
+                                                } else {
+                                                    setSelectedSystems([...selectedSystems, system.id]);
+                                                }
+                                            }}
                         />
                     })}
                 </div>

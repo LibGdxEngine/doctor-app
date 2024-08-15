@@ -16,9 +16,9 @@ const Start = () => {
     const router = useRouter();
     const {token, loading} = useAuth();
 
-    const [selectedLanguages, setSelectedLanguages] = useState([]);
-    const [selectedSpecificities, setSelectedSpecificities] = useState([]);
-    const [selectedLevels, setSelectedLevels] = useState([]);
+    const [selectedLanguage, setSelectedLanguage] = useState(null);
+    const [selectedSpecificity, setSelectedSpecificity] = useState(null);
+    const [selectedLevel, setSelectedLevel] = useState(null);
 
     const [languages, setLanguages] = useState([]);
     const [specificities, setSpecificities] = useState([]);
@@ -34,12 +34,12 @@ const Start = () => {
             getSpecificities(token).then((response) => {
                 setSpecificities(response);
             }).catch((error) => {
-                console.error('Error fetching languages:', error);
+                console.error('Error fetching specificities:', error);
             });
             getLevels(token).then((response) => {
                 setLevels(response);
             }).catch((error) => {
-                console.error('Error fetching languages:', error);
+                console.error('Error fetching levels:', error);
             });
         }
     }, [token]);
@@ -61,81 +61,100 @@ const Start = () => {
 
 
     function handleNext() {
-        if (selectedLevels.length === 0 || selectedLanguages.length === 0 || selectedSpecificities.length === 0) {
-            toast.error("Please select at least one option")
+        if (!selectedLevel || !selectedLanguage || !selectedSpecificity) {
+            toast.error("Please select an option from each category");
             return;
         }
         localStorage.setItem("state", JSON.stringify({
-            "language": selectedLanguages[0],
-            "specificity": selectedSpecificities[0],
-            "level": selectedLevels[0]
-        }))
+            "language": selectedLanguage,
+            "specificity": selectedSpecificity,
+            "level": selectedLevel
+        }));
         router.push({
             pathname: '/year'
         });
     }
 
-    return <div className={`w-full h-fit flex flex-col items-start justify-start bg-white`}>
-        <div className={`w-full hidden sm:block`}>
-            <SearchBar/>
-            <SectionsHeader />
-        </div>
-        <NavBar/>
+    return (
+        <div className="w-full h-fit flex flex-col items-start justify-start bg-white">
+            <div className="w-full hidden sm:block">
+                <SearchBar/>
+                <SectionsHeader/>
+            </div>
+            <NavBar/>
 
-        <div className={`w-full h-full flex flex-col items-start justify-start  pt-20`}>
-            <div className={`w-full px-20 sm:px-2 flex flex-col items-start`}>
-                <div className={`font-bold text-5xl text-ldarkBlue sm:text-sm`}>Please choose your Krok specifics</div>
-                <div id={`lang`} className={`sm:w-full flex sm:flex-col sm:items-start items-center justify-center my-10`}>
-                    <div className={`w-32 sm:mx-4 font-semibold text-2xl text-ldarkBlue`}>
-                        Language
+            <div className="w-full h-full flex flex-col items-start justify-start pt-20">
+                <div className="w-full px-20 sm:px-2 flex flex-col items-start">
+                    <div className="font-bold text-5xl text-ldarkBlue sm:text-sm">Please choose your Krok specifics
                     </div>
-                    <div className={`sm:w-full flex mx-4 sm:mx-0`}>
-                        {languages.map((language, index) => {
-                            return <CheckButton key={index} text={language.name} onClick={() => {
-                                setSelectedLanguages([...selectedLanguages, language.id]);
-                            }}/>
-                        })}
-                    </div>
-                </div>
-                <div id={`spec`} className={`sm:w-full flex sm:flex-col sm:items-start items-center justify-center mb-10`}>
-                    <div className={`w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue`}>
-                        Specialty
-                    </div>
-                    <div className={`sm:w-full flex mx-4 sm:mx-0`}>
+                    <div id="lang"
+                         className="sm:w-full flex sm:flex-col sm:items-start items-center justify-center my-10">
+                        <div className="w-32 sm:mx-4 font-semibold text-2xl text-ldarkBlue">
+                            Language
+                        </div>
+                        <div className="sm:w-full flex mx-4 sm:mx-0">
+                            {languages.map((language, index) => {
+                                return <div key={index}>
+                                    <CheckButton
+                                        key={index}
+                                        text={language.name}
+                                        isSelected={selectedLanguage === language.id}
+                                        onClick={() => {
+                                            if (selectedLanguage === language.id) {
+                                                console.log('Yes');
+                                                setSelectedLanguage(null);
+                                            } else {
+                                                console.log("No")
+                                                setSelectedLanguage(language.id);
+                                            }
+                                        }}
+                                    />
+                                </div>
 
-                        {specificities.map((specific, index) => {
-                            return <CheckButton key={index} text={specific.name} onClick={() => {
-                                setSelectedSpecificities([...selectedSpecificities, specific.id])
-                            }}/>
-                        })}
-
+                            })}
+                        </div>
                     </div>
-                </div>
-                <div id={`level`} className={`sm:w-full w-fit flex sm:flex-col sm:items-start items-center justify-center my-0`}>
-                    <div className={`w-32 sm:w-full sm:mx-4  font-semibold text-2xl text-ldarkBlue`}>
-                        Level
+                    <div id="spec"
+                         className="sm:w-full flex sm:flex-col sm:items-start items-center justify-center mb-10">
+                        <div className="w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue">
+                            Specialty
+                        </div>
+                        <div className="sm:w-full flex mx-4 sm:mx-0">
+                            {specificities.map((specific, index) => (
+                                <CheckButton
+                                    key={index}
+                                    text={specific.name}
+                                    isSelected={selectedSpecificity === specific.id}
+                                    onClick={() => setSelectedSpecificity(specific.id)}
+                                />
+                            ))}
+                        </div>
                     </div>
-                    <div className={`sm:w-full flex mx-4 sm:mx-0`}>
-                        {levels.map((level, index) => {
-                            return <CheckButton key={index} text={level.name} onClick={() => {
-                                setSelectedLevels([...selectedLevels, level.id]);
-                            }}/>
-                        })}
+                    <div id="level"
+                         className="sm:w-full w-fit flex sm:flex-col sm:items-start items-center justify-center my-0">
+                        <div className="w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue">
+                            Level
+                        </div>
+                        <div className="sm:w-full flex mx-4 sm:mx-0">
+                            {levels.map((level, index) => (
+                                <CheckButton
+                                    key={index}
+                                    text={level.name}
+                                    isSelected={selectedLevel === level.id}
+                                    onClick={() => setSelectedLevel(level.id)}
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <div onClick={handleNext} id={`next-btn`} className={`w-2/3 sm:w-full mt-10`}>
-                    <ActionButton text={`Next`}/>
+                    <div onClick={handleNext} id="next-btn" className="w-2/3 sm:w-full mt-10">
+                        <ActionButton text="Next"/>
+                    </div>
                 </div>
             </div>
+            <br/><br/><br/><br/><br/>
+            <Footer/>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <Footer/>
-
-    </div>
+    );
 };
 
 export default Start;

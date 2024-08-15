@@ -127,3 +127,68 @@ body {
     background: #f0f0f0; /* Corner of the scrollbar (bottom-right) */
 }
 
+.responsive-font {
+    font-size: 128px;
+}
+
+@media (max-width: 1330px) {
+    .responsive-font {
+        font-size: 96px; /* adjust as needed */
+    }
+}
+
+@media (max-width: 1190px) {
+    .responsive-font {
+        font-size: 64px; /* adjust as needed */
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-font {
+        font-size: 48px; /* adjust as needed */
+    }
+}
+
+.sm-responsive-font {
+    font-size: 60.45px;
+}
+
+@media (max-width: 1330px) {
+    .sm-responsive-font {
+        font-size: 50.45px; /* adjust as needed */
+    }
+}
+
+@media (max-width: 1190px) {
+    .sm-responsive-font {
+        font-size: 45px; /* adjust as needed */
+    }
+}
+
+@media (max-width: 480px) {
+    .sm-responsive-font {
+        font-size: 30px; /* adjust as needed */
+    }
+}
+
+.xs-responsive-font {
+    font-size: 50.45px;
+}
+
+@media (max-width: 1330px) {
+    .xs-responsive-font {
+        font-size: 40.45px; /* adjust as needed */
+    }
+}
+
+@media (max-width: 1190px) {
+    .xs-responsive-font {
+        font-size: 30px; /* adjust as needed */
+    }
+}
+
+@media (max-width: 480px) {
+    .xs-responsive-font {
+        font-size: 30px; /* adjust as needed */
+    }
+}

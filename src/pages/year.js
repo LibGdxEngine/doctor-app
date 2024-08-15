@@ -59,9 +59,18 @@ const Year = () => {
                 }}/>
                 <div className={`w-full grid grid-cols-6 sm:grid-cols-3 mt-10`}>
                     {years.map((year, index) => {
-                        return <CheckButton text={year.year} key={index}
-                                            onClick={() => setSelectedYears([...selectedYears, year.id])}
-                        />
+                        return <div key={index}>
+                            <CheckButton text={year.year} key={index}
+                                         isSelected={selectedYears.includes(year.id)}
+                                         onClick={() => {
+                                             if (selectedYears.includes(year.id)) {
+                                                 setSelectedYears(selectedYears.filter(item => item !== year.id));
+                                             } else {
+                                                 setSelectedYears([...selectedYears, year.id]);
+                                             }
+                                         }}
+                            />
+                        </div>
                     })}
                 </div>
                 <div onClick={handleNext} id={`next-btn`} className={`w-1/2 sm:w-full mt-10`}>

@@ -57,7 +57,14 @@ const Subject = () => {
                 <div className={`w-full grid grid-cols-6 sm:grid-cols-3 mt-10`}>
                     {subjects.map((subject, index) => {
                         return <CheckButton text={subject.name} key={index}
-                                            onClick={() => setSelectedSubjects([...selectedSubjects, subject.id])}
+                                            isSelected={selectedSubjects.includes(subject.id)}
+                                            onClick={() => {
+                                                if(selectedSubjects.includes(subject.id)) {
+                                                    setSelectedSubjects(selectedSubjects.filter(item => item !== subject.id));
+                                                }else {
+                                                    setSelectedSubjects([...selectedSubjects, subject.id]);
+                                                }
+                                            }}
                         />
                     })}
                 </div>

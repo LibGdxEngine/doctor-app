@@ -26,11 +26,11 @@ const NavBar = () => {
             router.push('/');
         }} src={logo} alt={``} width={50} height={50}/>
         <div className={`w-full flex flex-row items-center justify-between mx-4`}>
-            <div className={`text-xl text-white ms-10 `}>Material</div>
-            <div className={`text-xl text-white ms-1 `}>Discussion</div>
+            <div className={`text-base text-white ms-10 `}>Material</div>
+            <div className={`text-base text-white ms-1 `}>Discussion</div>
             <div style={{cursor: "pointer"}} onClick={() => {
                 router.push('/start');
-            }} className={`text-xl text-white ms-1 line-clamp-1`}>Generate Quiz
+            }} className={`text-base text-white ms-1 line-clamp-1`}>Generate Quiz
             </div>
         </div>
 
@@ -41,6 +41,7 @@ const NavBar = () => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     className="w-full h-full bg-white py-2 focus:border-lightDark outline-none rounded-full px-2 ps-12"
+                    placeholder={`search about ....`}
                 />
                 <FontAwesomeIcon
                     className="absolute p-1 left-8 top-[28%] -translate-x-[50%]"

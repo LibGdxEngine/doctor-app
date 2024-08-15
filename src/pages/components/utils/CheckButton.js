@@ -3,8 +3,8 @@ import unchecked from "../../../../public/tickcircle.svg";
 import checked from "../../../../public/tickcircleunchecked.svg";
 import Image from "next/image";
 
-function CheckButton({text, onClick = null}) {
-    const [isChecked, setIsChecked] = useState(false);
+function CheckButton({text, onClick = null, isSelected = false}) {
+    const [isChecked, setIsChecked] = useState(isSelected);
 
     function handleOnClick() {
         setIsChecked(!isChecked);
@@ -13,7 +13,7 @@ function CheckButton({text, onClick = null}) {
         }
     }
 
-    const state = isChecked ? unchecked : checked;
+    const state = isSelected ? unchecked : checked;
     return <div onClick={handleOnClick} style={{cursor: "pointer", borderRadius: "20.64px"}}
                 className={`w-40 sm:w-full sm:h-[28px] h-[50px] flex justify-between 
                 items-center px-5 sm:px-8 py-1 border border-0.5 border-ldarkBlue my-2 mx-2`}>

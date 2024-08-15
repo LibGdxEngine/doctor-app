@@ -35,11 +35,11 @@ const Topic = () => {
     }, [token, state]);
 
     function handleNext() {
-        if(selectedTopics.length === 0) {
+        if (selectedTopics.length === 0) {
             toast.error("Please select at least one topic");
             return;
         }
-        localStorage.setItem("state", JSON.stringify({...state,"topics": selectedTopics}));
+        localStorage.setItem("state", JSON.stringify({...state, "topics": selectedTopics}));
         router.push("/filter");
     }
 
@@ -58,7 +58,14 @@ const Topic = () => {
                 <div className={`w-full grid grid-cols-6 sm:grid-cols-3 mt-10`}>
                     {topics.map((topic, index) => {
                         return <CheckButton text={topic.name} key={index}
-                                            onClick={() => setSelectedTopics([...selectedTopics, topic.id])}
+                                            isSelected={selectedTopics.includes(topic.id)}
+                                            onClick={() => {
+                                                if (selectedTopics.includes(topic.id)) {
+                                                    setSelectedTopics(selectedTopics.filter(item => item !== topic.id));
+                                                } else {
+                                                    setSelectedTopics([...selectedTopics, topic.id]);
+                                                }
+                                            }}
                         />
                     })}
                 </div>

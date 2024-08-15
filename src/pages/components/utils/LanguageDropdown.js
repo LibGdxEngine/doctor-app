@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 
 // Import flag images
 import usaFlag from '../../../../public/flag1.svg'
-import franceFlag from '../../../../public/flag1.svg'
+import flag2 from '../../../../public/flag2.svg'
+
 import dropdownIcon from '../../../../public/dropdownIcon.svg'
 
 const LanguageDropdown = () => {
@@ -27,12 +28,12 @@ const LanguageDropdown = () => {
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     <Image
-                        src={router.locale === 'en' ? usaFlag : franceFlag}
-                        alt={router.locale === 'en' ? 'USA Flag' : 'France Flag'}
+                        src={router.locale === 'en' ? usaFlag : flag2}
+                        alt={router.locale === 'en' ? 'USA Flag' : 'Ukrainian Flag'}
                         width={24}
                         height={24}
                     />
-                    <span className="ml-2">{router.locale === 'en' ? 'English' : 'French'}</span>
+                    <span className="ml-2">{router.locale === 'en' ? 'English' : 'Ukrainian'}</span>
                     <Image src={dropdownIcon} alt={``} width={30} height={30} />
                 </button>
             </div>
@@ -46,8 +47,8 @@ const LanguageDropdown = () => {
                             English
                         </button>
                         <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 w-full text-left" onClick={() => handleLanguageChange('fr')}>
-                            <Image src={franceFlag} alt="France Flag" width={24} height={24} className="inline mr-2" />
-                            French
+                            <Image src={flag2} alt="France Flag" width={24} height={24} className="inline mr-2" />
+                            Ukrainian
                         </button>
                     </div>
                 </div>
