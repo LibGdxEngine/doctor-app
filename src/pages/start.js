@@ -82,7 +82,6 @@ const Start = () => {
                 <SectionsHeader/>
             </div>
             <NavBar/>
-
             <div className="w-full h-full flex flex-col items-start justify-start pt-20">
                 <div className="w-full px-20 sm:px-2 flex flex-col items-start">
                     <div className="font-bold text-5xl text-ldarkBlue sm:text-sm">Please choose your Krok specifics
@@ -101,10 +100,8 @@ const Start = () => {
                                         isSelected={selectedLanguage === language.id}
                                         onClick={() => {
                                             if (selectedLanguage === language.id) {
-                                                console.log('Yes');
                                                 setSelectedLanguage(null);
                                             } else {
-                                                console.log("No")
                                                 setSelectedLanguage(language.id);
                                             }
                                         }}

@@ -81,8 +81,8 @@ function HomePage() {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <Image className={`h-full w-full py-20 px-20`} src={homeImg} alt={``} height={500} width={500}/>
+                <div className={`w-[60%] h-full`}>
+                    <Image className={`h-full w-full `} src={homeImg} alt={``} height={763} width={870}/>
                 </div>
             </div>
 

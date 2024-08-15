@@ -1,25 +1,39 @@
+import Image from "next/image";
+import backBtnIcon from "../../../../public/mobile icons.svg";
+import {router} from "next/client";
+
 function StepBar({stepNumber = 1, onStepClicked}) {
     const handleOnStepClicked = (step) => {
-        if(onStepClicked){
+        if (onStepClicked) {
             onStepClicked(step)
         }
     }
-    return <div className={`w-full`}>
+    return <div className={`w-full flex flex-col items-start`}>
         <h1 className={`font-bold text-5xl text-ldarkBlue sm:text-sm`}>Please choose your Krok specifics</h1>
+        <div onClick={()=>{
+            router.back();
+        }} style={{cursor: "pointer"}} className={`flex flex-row items-center justify-center mt-2`}>
+            <Image src={backBtnIcon} alt={`back`} width={40} height={40}/>
+            <div style={{color: "#4DD4B2CC", fontWeight: "bold", fontSize: "22px"}}>Go back to previous filter ?</div>
+        </div>
         <div
             className={`w-[90%] sm:w-full h-20 sm:h-16 border border-ldarkBlue rounded-2xl flex items-center justify-between px-20 sm:px-4 mt-10`}>
-            <p style={{cursor:"pointer"}} onClick={() => {
+            <p style={{cursor: "pointer"}} onClick={() => {
                 handleOnStepClicked('year')
-            }} className={`${stepNumber === 1 ? "text-ldarkBlue" : "text-gray-300"} text-2xl sm:text-lg font-semibold`}>Year</p>
-            <p style={{cursor:"pointer"}} onClick={() => {
+            }}
+               className={`${stepNumber === 1 ? "text-ldarkBlue" : "text-gray-300"} text-2xl sm:text-lg font-semibold`}>Year</p>
+            <p style={{cursor: "pointer"}} onClick={() => {
                 handleOnStepClicked('subject')
-            }} className={`${stepNumber === 2 ? "text-ldarkBlue" : "text-gray-300"} text-2xl sm:text-lg font-semibold`}>Subject</p>
-            <p style={{cursor:"pointer"}} onClick={() => {
+            }}
+               className={`${stepNumber === 2 ? "text-ldarkBlue" : "text-gray-300"} text-2xl sm:text-lg font-semibold`}>Subject</p>
+            <p style={{cursor: "pointer"}} onClick={() => {
                 handleOnStepClicked('system')
-            }} className={`${stepNumber === 3 ? "text-ldarkBlue" : "text-gray-300"} text-2xl sm:text-lg font-semibold`}>System</p>
-            <p style={{cursor:"pointer"}} onClick={() => {
+            }}
+               className={`${stepNumber === 3 ? "text-ldarkBlue" : "text-gray-300"} text-2xl sm:text-lg font-semibold`}>System</p>
+            <p style={{cursor: "pointer"}} onClick={() => {
                 handleOnStepClicked('topic')
-            }} className={`${stepNumber === 4 ? "text-ldarkBlue" : "text-gray-300"} text-2xl sm:text-lg font-semibold`}>Topic</p>
+            }}
+               className={`${stepNumber === 4 ? "text-ldarkBlue" : "text-gray-300"} text-2xl sm:text-lg font-semibold`}>Topic</p>
         </div>
     </div>;
 }

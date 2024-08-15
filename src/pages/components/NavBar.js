@@ -11,13 +11,14 @@ import {useState} from "react";
 const NavBar = () => {
     const [inputValue, setInputValue] = useState('');
     const router = useRouter();
+    const isActive = (path) => router.pathname === path;
     const {token} = useAuth();
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim()) {
             router.push({
                 pathname: '/search',
-                query: { token: inputValue.trim() }
+                query: {token: inputValue.trim()}
             });
         }
     };
@@ -25,12 +26,40 @@ const NavBar = () => {
         <Image style={{cursor: "pointer"}} onClick={() => {
             router.push('/');
         }} src={logo} alt={``} width={50} height={50}/>
-        <div className={`w-full flex flex-row items-center justify-between mx-4`}>
-            <div className={`text-base text-white ms-10 `}>Material</div>
-            <div className={`text-base text-white ms-1 `}>Discussion</div>
-            <div style={{cursor: "pointer"}} onClick={() => {
-                router.push('/start');
-            }} className={`text-base text-white ms-1 line-clamp-1`}>Generate Quiz
+
+        <div className="w-full flex flex-row items-center justify-between mx-4">
+            <div
+                style={{cursor: "pointer"}}
+                onClick={() => {
+                    router.replace("/");
+                }}
+                className={`text-base ms-10 group relative ${isActive('/') ? 'text-gray-300' : 'text-white'}`}
+            >
+                Home
+                <div
+                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/') ? 'scale-x-100' : ''}`}></div>
+            </div>
+            <div
+                style={{cursor: "pointer"}}
+                onClick={() => {
+                    router.replace("/material");
+                }}
+                className={`text-base ms-1 group relative ${isActive('/material') ? 'text-gray-300' : 'text-white'}`}
+            >
+                Material
+                <div
+                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/material') ? 'scale-x-100' : ''}`}></div>
+            </div>
+            <div
+                style={{cursor: "pointer"}}
+                onClick={() => {
+                    router.push('/start');
+                }}
+                className={`text-base ms-1 line-clamp-1 group relative ${isActive('/start') ? 'text-gray-300' : 'text-white'}`}
+            >
+                Generate Quiz
+                <div
+                    className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/start') ? 'scale-x-100' : ''}`}></div>
             </div>
         </div>
 
@@ -57,29 +86,31 @@ const NavBar = () => {
             )}
         </form>
 
+        <div className={`w-fit flex items-end justify-end mx-10 z-100`}>
+            <LanguageDropdown/>
+        </div>
+
         <div style={{cursor: "pointer"}} onClick={() => {
             router.push('/profile');
-        }} id={`profile-icon-container`} className={`w-full flex items-center justify-start `}>
+        }} id={`profile-icon-container`}
+             className={`w-full  flex items-center justify-end pe-10`}>
             <Image width={35} height={35} src={user} alt={`profile`} objectFit={`cover`}
                    className={`w-10 h-10 rounded-full me-2`}/>
             <div className={`flex flex-col`}>
                 {token ? <>
-                    <div className={`text-xs text-white`}>
+                    <div className={`text-xs text-black`}>
                         Hello, User
                     </div>
-                    <div className={`text-sm text-white`}>
+                    <div className={`text-sm text-black`}>
                         Welcome Backs
                     </div>
                 </> : <div>
-                    <div className={`text-sm text-white`}>
+                    <div className={`text-sm text-black`}>
                         Authentication
                     </div>
 
                 </div>}
             </div>
-        </div>
-        <div className={`w-fit flex items-end justify-end pe-20 z-100`}>
-            <LanguageDropdown/>
         </div>
 
     </div>
