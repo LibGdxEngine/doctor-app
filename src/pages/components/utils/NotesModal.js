@@ -1,6 +1,5 @@
 // components/FavoritesModal.jsx
 import {useEffect, useState} from 'react';
-import FavoriteList from "@/pages/components/Favourites/FavoriteList";
 import {useAuth} from "@/context/AuthContext";
 import {createNewNote} from "@/components/services/questions";
 import {toast} from "react-toastify";
@@ -10,7 +9,6 @@ const NotesModal = ({isOpen, onClose, question}) => {
         const {token, loading} = useAuth();
         const [note, setNote] = useState('');
         const handleSaveNote = () => {
-            console.log(question)
             createNewNote(token, note, question).then((response) => {
                 toast.success('Note saved successfully');
             }).catch((error) => {

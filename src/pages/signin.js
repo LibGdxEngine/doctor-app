@@ -58,7 +58,7 @@ const Signin = () => {
         try {
             const response = await getToken({email, password});
             login(response.token);
-            router.replace("/home");
+            router.replace("/start");
             // Handle successful signup (e.g., redirect to login)
         } catch (error) {
             toast.error("Invalid credentials", error.toString());
@@ -101,9 +101,12 @@ const Signin = () => {
                                 <SocialLoginButton provider="google"
                                                    clientId="794210030409-1jblj5njdfsn27qnjv0nk326fm0o5oi6.apps.googleusercontent.com"
                                                    redirectUri="http://localhost:3000/signin/"/>
+                                <SocialLoginButton provider="apple"
+                                                   clientId="794210030409-1jblj5njdfsn27qnjv0nk326fm0o5oi6.apps.googleusercontent.com"
+                                                   redirectUri="http://localhost:3000/signin/"/>
                             </div>
 
-                            <form onSubmit={handleSignIn} className="w-[60%] mt-20 flex flex-col space-y-6">
+                            <form onSubmit={handleSignIn} className="w-[60%] mt-16 flex flex-col space-y-6">
                                 <div className="flex flex-col">
                                     <label htmlFor="email" className="mb-2 text-sm font-medium">
                                         E-mail

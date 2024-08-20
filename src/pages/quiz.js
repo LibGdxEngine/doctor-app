@@ -4,7 +4,7 @@ import Footer from "@/pages/components/Footer";
 import {useRouter} from "next/router";
 import {useAuth} from "@/context/AuthContext";
 import {useEffect, useState} from "react";
-import {getExamJourney, getSingleFavouritesListDetails, updateExamJourney} from "@/components/services/questions";
+import {getExamJourney, updateExamJourney} from "@/components/services/questions";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
 
@@ -51,6 +51,7 @@ const Quiz = () => {
                             time_left,
                             progress: {
                                 ...examObject.progress, [q.toString()]: {
+                                    question_text: examObject.questions[q].text,
                                     answer: selectedAnswer,
                                     is_correct: examObject.questions[q].correct_answer === selectedAnswer
                                 }
@@ -74,10 +75,7 @@ const Quiz = () => {
                     }}
                 />}
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+
         <br/>
         <Footer/>
     </div>

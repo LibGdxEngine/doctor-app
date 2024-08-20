@@ -9,12 +9,10 @@ import SplashScreen from "@/pages/components/SplashScreen";
 import loginLogo from "../../public/loginLogo.svg";
 import loginBtn from "../../public/login_button.svg";
 import loginFace from "../../public/login_face.svg";
-import woman from "../../public/woman.svg";
+import loginApple from "../../public/Group 26086666-svg.svg";
 import Link from "next/link";
 import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
-import SearchBar from "@/pages/components/Home/SearchBar";
-import SectionsHeader from "@/pages/components/SectionsHeader";
 import SignupPage from "@/pages/components/Auth/SignupPage";
 
 export default function SignUp() {
@@ -85,12 +83,15 @@ export default function SignUp() {
                         </div>
                         <div className={`w-full h-screen `}>
                             <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
-                                <div className={`w-full flex flex-col items-center justify-center`}>
-                                    <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={440} height={40}/>
-                                    <Image style={{cursor: "pointer"}} className={`my-4`}
-                                           src={loginFace} alt={``} width={440} height={40}/>
+                                <h1 className="text-5xl font-thin mb-8">Sign Up</h1>
+                                <div className={`w-fit flex flex-col items-center justify-center`}>
+                                    <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={400} height={40}/>
+                                     <Image style={{cursor: "pointer"}} className={`my-4`}
+                                           src={loginFace} alt={``} width={400} height={40}/>
+                                    <Image style={{cursor: "pointer"}} className={`my-0 mb-2`} src={loginApple} alt={``} width={400} height={40}/>
+
                                 </div>
-                                <form onSubmit={handleSignup} className="w-[60%] flex flex-col space-y-6">
+                                <form onSubmit={handleSignup} className="w-[60%] flex flex-col space-y-2">
                                     <div className="flex">
                                         <div className={`flex flex-col`}>
                                             <label htmlFor="email" className="mb-2 text-sm font-medium">
@@ -101,7 +102,7 @@ export default function SignUp() {
                                                 id="first_name"
                                                 value={firstName}
                                                 onChange={(e) => setFirstname(e.target.value)}
-                                                className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                                className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                                                 placeholder="Enter your first name"
                                             />
                                         </div>
@@ -114,7 +115,7 @@ export default function SignUp() {
                                                 id="second_name"
                                                 value={lastName}
                                                 onChange={(e) => setLastname(e.target.value)}
-                                                className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                                className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                                                 placeholder="Enter your last name"
                                             />
                                         </div>
@@ -128,7 +129,7 @@ export default function SignUp() {
                                             id="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                            className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                                             placeholder="Enter your email"
                                         />
                                     </div>
@@ -141,7 +142,7 @@ export default function SignUp() {
                                             id="password"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                            className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                                             placeholder="Enter your password"
                                         />
                                     </div>
@@ -154,7 +155,7 @@ export default function SignUp() {
                                             id="password2"
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
-                                            className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                            className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                                             placeholder="Enter your password again"
                                         />
                                     </div>
@@ -172,7 +173,7 @@ export default function SignUp() {
                                         Sign Up
                                     </button>
                                 </form>
-                                <p className="text-sm mt-6 text-center">
+                                <p className="text-sm mt-3 text-center">
                                     Do not have any account?{' '}
                                     <Link href="/signin" className="text-indigo-600 hover:underline">
                                         Sign In
@@ -181,6 +182,10 @@ export default function SignUp() {
                             </div>
                         </div>
                     </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <Footer/>
 
 

@@ -90,7 +90,7 @@ const QuestionWindow = ({
     }
     return (
         <div className="w-full h-full min-h-screen bg-white p-4 flex flex-col items-center">
-            <FavoritesModal isOpen={isModalOpen} onClose={closeModal}>
+            <FavoritesModal isOpen={isModalOpen} onClose={closeModal} question={questions}>
 
             </FavoritesModal>
             <NotesModal isOpen={isNotesModalOpen} onClose={closeNotesModal} question={questions.id}>
@@ -161,7 +161,9 @@ const QuestionWindow = ({
                         </>
                         : <>
                             <div className={`w-fit max-h-[416px] pt-2`}>
-                                <NumberScroll numbers={numbers} selected={parseInt(questionIndex)} answers={type === "study" ? progress : null}/>
+                                <NumberScroll numbers={numbers} selected={parseInt(questionIndex)} onNumberClicked={(questionNumber)=>{
+                                    router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionNumber) - 1}`)
+                                }} answers={type === "study" ? progress : null}/>
                             </div>
 
                             <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4">
@@ -181,12 +183,25 @@ const QuestionWindow = ({
                 </div>
 
                 <div className="w-full flex justify-between items-center mt-6 pe-4">
-                    <button
-                        onClick={() => {
-                            router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) - 1}`);
-                        }}
-                        className={`w-40 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{"<"}</button>
-                    .
+                    <div>
+                        <button
+                            onClick={() => {
+                                if (questionIndex <= 0) {
+                                    return;
+                                }
+                                router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) - 1}`);
+                            }}
+                            className={`w-40 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{"<"}</button>
+                        <button
+                            onClick={() => {
+                                if(questionIndex >= numbers.length - 1) {
+                                    return;
+                                }
+                                router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) + 1}`);
+                            }}
+                            className={`w-40 mx-2 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{">"}</button>
+
+                    </div>
                     <div className={`sm:flex text-xs`}>
                         <button
                             onClick={() => {
@@ -202,7 +217,7 @@ const QuestionWindow = ({
                             </button>
                             :
                             <button onClick={handleAnswerClicked}
-                                    className="w-40 sm:w-full bg-blue-500 text-white rounded-lg py-2 px-4">Check
+                                    className="w-40 sm:w-full bg-blue-500 text-white rounded-lg py-2 px-4">Submit
                             </button>}
                     </div>
                 </div>

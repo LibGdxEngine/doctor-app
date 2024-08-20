@@ -22,7 +22,6 @@ const Year = () => {
 
     useEffect(() => {
         if (token && state) {
-            console.log(state)
             getYears(token, state).then((response) => {
                 setYears(response);
             }).catch((error) => {

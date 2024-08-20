@@ -44,18 +44,21 @@ const Filter = () => {
     };
 
     const handleOnCreateJourneyClicked = (isExam) => {
-        if(numberOfSelectedQuestions === 0){
+        if (numberOfSelectedQuestions === 0) {
             toast.error("Please select at least one question");
             return;
         }
-        if(numberOfSelectedQuestions > questionsCount){
+        if (numberOfSelectedQuestions > questionsCount) {
             toast.error("Selected questions count exceeds the available questions");
             return;
         }
+
         createExamJourney(token, {
             ...state,
             number_of_questions: numberOfSelectedQuestions,
             type: isExam ? "exam" : "study",
+            is_used: state.is_used,
+            is_correct: state.is_correct
         })
             .then((response) => {
                 router.push({
@@ -79,7 +82,7 @@ const Filter = () => {
     };
 
     return (
-        <div className="w-full h-screen bg-white flex flex-col items-start justify-start">
+        <div className="w-full h-full bg-white flex flex-col items-start justify-start">
             <div className="w-full hidden md:block">
                 <SearchBar/>
                 <SectionsHeader/>
@@ -106,6 +109,9 @@ const Filter = () => {
                     </div>
                 </div>
             </div>
+            <br/>
+            <br/>
+            <br/>
             <Footer/>
         </div>
     );

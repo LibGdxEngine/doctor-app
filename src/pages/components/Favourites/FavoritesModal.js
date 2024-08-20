@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import FavoriteList from "@/pages/components/Favourites/FavoriteList";
 
 
-const FavoritesModal = ({ isOpen, onClose }) => {
+const FavoritesModal = ({ isOpen, onClose, question}) => {
     useEffect(() => {
         const handleEscape = (event) => {
             if (event.key === 'Escape') {
@@ -35,7 +35,7 @@ const FavoritesModal = ({ isOpen, onClose }) => {
                     >
                         &times;
                     </button>
-                    <FavoriteList />
+                    <FavoriteList question={question} />
                 </div>
             </div>
         </div>

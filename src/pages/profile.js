@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import Sidebar from "/src/pages/components/Profile/Sidebar"
 import Image from "next/image";
-import profileImage from "../../public/profile.svg";
+import profilePlaceHolder from "../../public/profile.svg";
 import NavBar from "@/pages/components/NavBar";
 import Footer from "@/pages/components/Footer";
 import {useRouter} from "next/router";
@@ -24,141 +24,157 @@ import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
 
 const PersonalInfo = React.memo(({user, universities}) => {
+
+    const [profileImage, setProfileImage] = useState(user.profile_photo);
     const [profileData, setProfileData] = useState({
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
         university: user.university,
         phone_number: user.phone_number,
+        profile_photo: user.profile_photo,
     });
 
     const {token} = useAuth();
+    const photo = profileImage === null ? profilePlaceHolder : profileImage;
+    const handleImageClick = () => {
+        document.getElementById('profileImageInput').click();
+    };
 
-    return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
-        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
-            <div className="w-full  flex items-center justify-start">
-                <Image
-                    className="w-24 h-24 rounded-full mx-auto"
-                    src={profileImage}
-                    width={150}
-                    height={150}
-                    alt="Profile Picture"
-                />
-                <div className={`w-full `}>
-                    <h1 className="text-2xl font-bold">{user.first_name} {user.last_name}</h1>
-                    <p className="text-gray-600">{user.email}</p>
-                </div>
-            </div>
-            <div className={`w-full flex items-center justify-center`}>
-                <div className="w-full mt-6 me-2">
-                    <label className="block text-sm font-medium text-gray-700">First Name</label>
+    // Handle file input change and convert to base64
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const base64String = reader.result;
+                setProfileData({ ...profileData,profile_photo: base64String}); // Store the base64 string
+                setProfileImage(base64String); // Update the image preview
+            };
+            reader.readAsDataURL(file); // Convert to base64
+        }
+    };
+
+    return (
+        <div className="w-full min-h-screen flex-1 flex flex-col items-center">
+            <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
+                <div className="w-full flex items-center justify-start">
+                    <Image
+                        className="w-24 h-24 rounded-full mx-2"
+                        src={photo}
+                        width={150}
+                        height={150}
+                        alt="Profile Picture"
+                        onClick={handleImageClick}
+                    />
+                    <div className="w-full">
+                        <h1 className="text-2xl font-bold">{profileData.first_name} {profileData.last_name}</h1>
+                        <p className="text-gray-600">{profileData.email}</p>
+                    </div>
                     <input
-                        type="text"
-                        value={user.first_name}
-                        onChange={(e) => {
-                            setProfileData({...profileData, first_name: e.target.value});
-                        }}
-                        placeholder={`First Name`}
-                        className="mt-1 me-2 py-2  px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                        id="profileImageInput"
+                        type="file"
+                        accept="image/*"
+                        style={{display: 'none'}} // Hide the file input
+                        onChange={handleFileChange}
                     />
                 </div>
-                <div className="w-full mt-6 ms-2">
-                    <label className="block text-sm font-medium text-gray-700">Last Name</label>
+                <div className="w-full flex items-center justify-center">
+                    <div className="w-full mt-6 me-2">
+                        <label className="block text-sm font-medium text-gray-700">First Name</label>
+                        <input
+                            type="text"
+                            value={profileData.first_name} // Use profileData here
+                            onChange={(e) => {
+                                setProfileData({...profileData, first_name: e.target.value});
+                            }}
+                            placeholder="First Name"
+                            className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                        />
+                    </div>
+                    <div className="w-full mt-6 ms-2">
+                        <label className="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input
+                            type="text"
+                            value={profileData.last_name} // Use profileData here
+                            onChange={(e) => {
+                                setProfileData({...profileData, last_name: e.target.value});
+                            }}
+                            placeholder="Last Name"
+                            className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                        />
+                    </div>
+                </div>
+                <div className="w-full flex items-center justify-center">
+                    <div className="w-full mt-6 me-2">
+                        <label className="block text-sm font-medium text-gray-700">University</label>
+                        <select
+                            value={profileData.university} // Use profileData here
+                            onChange={(e) => setProfileData({...profileData, university: e.target.value})}
+                            className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                        >
+                            {universities.map((university) => (
+                                <option key={university.id} value={university.name}>
+                                    {university.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="w-full mt-6 ms-2">
+                        <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+                        <input
+                            type="phone"
+                            value={profileData.phone_number} // Use profileData here
+                            onChange={(e) => {
+                                setProfileData({...profileData, phone_number: e.target.value});
+                            }}
+                            placeholder="Phone Number"
+                            className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                        />
+                    </div>
+                </div>
+                <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700">Email</label>
                     <input
-                        value={user.last_name}
-                        type="text"
+                        type="email"
+                        value={profileData.email} // Use profileData here
                         onChange={(e) => {
-                            setProfileData({...profileData, last_name: e.target.value});
+                            setProfileData({...profileData, email: e.target.value});
                         }}
-                        placeholder={`Last Name`}
-                        className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                        className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Email"
                     />
                 </div>
-            </div>
-            <div className={`w-full flex items-center justify-center`}>
-                <div className="w-full mt-6 me-2">
-                    <label className="block text-sm font-medium text-gray-700">University</label>
-                    <select
-                        value={profileData.university}
-                        onChange={(e) => setProfileData({...profileData, university: e.target.value})}
-                        className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700">New Password</label>
+                    <input
+                        type="password"
+                        placeholder="New Password"
+                        onChange={(e) => {
+                            setProfileData({...profileData, password: e.target.value});
+                        }}
+                        className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
+                </div>
+
+                <div className="mt-6">
+                    <button
+                        onClick={() => {
+                            updateProfile(token, profileData).then((response) => {
+                                toast.success('Profile updated successfully');
+                            }).catch((error) => {
+                                toast.error('Error updating profile');
+                            });
+                        }}
+                        type="submit"
+                        className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navyBlue hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navyBlue"
                     >
-                        {universities.map((university) => (
-                            <option key={university.id} value={university.name}>
-                                {university.name}
-                            </option>
-                        ))}
-                    </select>
+                        Save
+                    </button>
                 </div>
-                <div className="w-full mt-6 ms-2">
-                    <label className="block text-sm font-medium text-gray-700">Phone Number</label>
-                    <input
-                        value={user.phone_number}
-                        type="phone"
-                        onChange={(e) => {
-                            setProfileData({...profileData, phone_number: e.target.value});
-                        }}
-                        placeholder={`Phone Number`}
-                        className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
-                    />
-                </div>
-            </div>
-            <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                    value={user.email}
-                    type="email"
-                    onChange={(e) => {
-                        setProfileData({...profileData, email: e.target.value});
-                    }
-                    }
-                    className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    placeholder={`Email`}
-                />
-            </div>
-            <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700">New Password</label>
-                <input
-                    type="password"
-                    placeholder={`New Password`}
-                    onChange={(e) => {
-                        setProfileData({...profileData, password: e.target.value});
-                    }}
-                    className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-            </div>
-            <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700">Confirm Password</label>
-                <input
-                    type="password"
-                    onChange={(e) => {
-                        setProfileData({...profileData, password2: e.target.value});
-                    }}
-                    placeholder={`Confirm Password`}
-                    className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-            </div>
-
-            <div className="mt-6">
-                <button
-                    onClick={() => {
-                        updateProfile(token, profileData).then((response) => {
-                            toast.success('Profile updated successfully');
-                        }).catch((error) => {
-                            toast.error('Error updating profile');
-                        });
-                    }}
-                    type="submit"
-                    className="w-full inline-flex justify-center py-2 px-4 border
-                             border-transparent shadow-sm text-sm font-medium rounded-md
-                              text-white bg-navyBlue hover:bg-indigo-500 focus:outline-none focus:ring-2
-                               focus:ring-offset-2 focus:ring-navyBlue"
-                >
-                    Save
-                </button>
             </div>
         </div>
-    </div>;
+    );
     PersonalInfo.displayName = "PersonalInfo";
 });
 
@@ -179,7 +195,7 @@ const History = React.memo(({examObject: defaultExams}) => {
             level = first_question?.level.name;
             language = first_question?.language.name;
             specificity = first_question?.specificity.name;
-        }catch (err) {
+        } catch (err) {
             console.error('Error parsing exam questions:', err);
         }
 
@@ -249,7 +265,7 @@ const Notes = React.memo(() => {
                 {notes && notes.map((note, index) => {
                     return <div key={note.id} className="bg-gray-50 p-4 rounded-lg shadow flex flex-col items-end">
                         <div className={`w-full `}>
-                            <div className={`w-full bg-blue-100 rounded-full px-4`}>Q-{note.question.text}</div>
+                            <div className={`w-full bg-blue-100 rounded-full px-4`}>{`Q- ${note.question.text}`}</div>
                             <div className={`px-4 mt-2`}>
                                 {note.note_text}
                             </div>

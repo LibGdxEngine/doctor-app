@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import NumberItem from "@/pages/components/Quiz/NumberItem";
 
-const NumberScroll = ({ numbers, selected=0, answers=null }) => {
+const NumberScroll = ({numbers, selected = 0, onNumberClicked, answers = null}) => {
     const [selectedNumber, setSelectedNumber] = useState(null);
 
     const handleNumberClick = (number) => {
+        onNumberClicked(number);
         setSelectedNumber(number);
     };
 

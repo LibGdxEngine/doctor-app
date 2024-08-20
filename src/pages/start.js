@@ -16,6 +16,7 @@ const Start = () => {
     const router = useRouter();
     const {token, loading} = useAuth();
 
+
     const [selectedLanguage, setSelectedLanguage] = useState(null);
     const [selectedSpecificity, setSelectedSpecificity] = useState(null);
     const [selectedLevel, setSelectedLevel] = useState(null);
@@ -23,6 +24,15 @@ const Start = () => {
     const [languages, setLanguages] = useState([]);
     const [specificities, setSpecificities] = useState([]);
     const [levels, setLevels] = useState([]);
+
+    useEffect(() => {
+        const existingState = JSON.parse(localStorage.getItem("state"));
+        if(existingState){
+            setSelectedLanguage(existingState.language);
+            setSelectedSpecificity(existingState.specificity);
+            setSelectedLevel(existingState.level);
+        }
+    }, []);
 
     useEffect(() => {
         if (token) {

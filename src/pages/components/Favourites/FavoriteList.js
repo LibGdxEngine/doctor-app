@@ -6,7 +6,7 @@ import {useAuth} from "@/context/AuthContext";
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
 
-const FavoriteList = () => {
+const FavoriteList = ({question}) => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [items, setItems] = useState([]);
     const router = useRouter();
@@ -24,7 +24,7 @@ const FavoriteList = () => {
 
     const handleAddToFavorites = () => {
         if (selectedItem) {
-            addQuestionToFavoritesList(token, selectedItem, 630).then((response) => {
+            addQuestionToFavoritesList(token, selectedItem, question.id).then((response) => {
                 toast.success('Question added to favorite list');
             }).catch((error) => {
                 toast.error('Error adding question to favorite list');
