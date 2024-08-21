@@ -36,7 +36,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
     });
 
     const {token} = useAuth();
-    const photo = profileImage === null ? profilePlaceHolder : profileImage;
+    const photo = (profileImage === null || profileImage.length <= 30) ? profilePlaceHolder : profileImage;
     const handleImageClick = () => {
         document.getElementById('profileImageInput').click();
     };
