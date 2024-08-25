@@ -82,8 +82,10 @@ const QuestionWindow = ({
     const handleAnswer = (index) => {
         setSelectedAnswer(index);
     };
-
-    let actionBtnText = parseInt(questionIndex) === numbers.length - 1 ? "Submit" : "Check";
+    let actionBtnText = "Check";
+    if(numbers){
+        actionBtnText = parseInt(questionIndex) === numbers.length - 1 ? "Submit" : "Check";
+    }
 
     if(!questions){
         return <div>
