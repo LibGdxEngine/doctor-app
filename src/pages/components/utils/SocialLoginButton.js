@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 import Image from "next/image";
 import loginBtn from "../../../../public/login_button.svg";
 import loginFace from "../../../../public/login_face.svg";
-import loginApple from "../../../../public/Group 26086666-svg.svg";
+import loginApple from "../../../../public/Group 48095648.svg";
 
 const SocialLoginButton = ({provider, clientId, redirectUri}) => {
     const router = useRouter();

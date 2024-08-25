@@ -2,7 +2,7 @@ import Image from "next/image";
 import logo from "../../../public/logo.svg";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import user from "../../../public/profile.svg";
+import userIcon from "../../../public/profile.svg";
 import LanguageDropdown from "@/pages/components/utils/LanguageDropdown";
 import {useRouter} from "next/router";
 import {useAuth} from "@/context/AuthContext";
@@ -12,7 +12,7 @@ const NavBar = () => {
     const [inputValue, setInputValue] = useState('');
     const router = useRouter();
     const isActive = (path) => router.pathname === path;
-    const {token} = useAuth();
+    const {token, user} = useAuth();
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim()) {
@@ -22,9 +22,14 @@ const NavBar = () => {
             });
         }
     };
+    let userProfilePhoto = userIcon;
+    if (user) {
+        userProfilePhoto = user.profile_photo.toString().length <= 50 ? userIcon : user.profile_photo;
+    }
+
     return <div className={`w-full h-20 z-100`}>
         <div id={`navbar`}
-             className={`w-full fixed h-20 flex md:hidden items-center justify-between navbar ps-20 py-2 z-100`}>
+             className={`w-full fixed h-20 flex md:hidden items-center justify-between navbar ps-20 py-2 z-40`}>
             <Image style={{cursor: "pointer"}} onClick={() => {
                 router.push('/');
             }} src={logo} alt={``} width={50} height={50}/>
@@ -96,7 +101,7 @@ const NavBar = () => {
                 router.push('/profile');
             }} id={`profile-icon-container`}
                  className={`w-full  flex items-center justify-end pe-10`}>
-                <Image width={35} height={35} src={user} alt={`profile`} objectFit={`cover`}
+                <Image width={35} height={35} src={userProfilePhoto} alt={`profile`} objectFit={`cover`}
                        className={`w-10 h-10 rounded-full me-2`}/>
                 <div className={`flex flex-col`}>
                     {token ? <>

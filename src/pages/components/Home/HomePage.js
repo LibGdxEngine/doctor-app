@@ -76,7 +76,7 @@ function HomePage() {
                             chase
                             them.”
                         </div>
-                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-96 mt-4`}>
+                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-80 2xl:w-96 mt-4`}>
                             <Image src={actionButton} alt={``} width={500} height={500}/>
                         </div>
                     </div>

@@ -37,6 +37,7 @@ const Quiz = () => {
         <NavBar/>
 
         <div className={`w-full h-full items-center justify-center`}>
+
             {examObject &&
                 <QuestionWindow
                     examJourneyId={id}
@@ -61,6 +62,7 @@ const Quiz = () => {
                             examObject.progress = {
                                 ...examObject.progress,
                                 [q.toString()]: {
+                                    question_text: examObject.questions[q].text,
                                     answer: selectedAnswer,
                                     is_correct: examObject.questions[q].correct_answer === selectedAnswer
                                 }

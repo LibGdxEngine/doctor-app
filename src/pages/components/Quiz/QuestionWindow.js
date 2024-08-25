@@ -83,6 +83,8 @@ const QuestionWindow = ({
         setSelectedAnswer(index);
     };
 
+    let actionBtnText = parseInt(questionIndex) === numbers.length - 1 ? "Submit" : "Check";
+
     if(!questions){
         return <div>
             <SplashScreen />
@@ -217,7 +219,7 @@ const QuestionWindow = ({
                             </button>
                             :
                             <button onClick={handleAnswerClicked}
-                                    className="w-40 sm:w-full bg-blue-500 text-white rounded-lg py-2 px-4">Submit
+                                    className="w-40 sm:w-full bg-blue-500 text-white rounded-lg py-2 px-4">{actionBtnText}
                             </button>}
                     </div>
                 </div>

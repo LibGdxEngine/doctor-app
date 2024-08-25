@@ -5,6 +5,7 @@ import Image from "next/image";
 import profileImage from "../../../../public/profile.svg";
 import {useAuth} from "@/context/AuthContext";
 import React from "react";
+import profilePlaceHolder from "../../../../public/profile.svg";
 const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
     const router = useRouter();
     const {logout} = useAuth();
@@ -15,6 +16,11 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
         {name: 'Notes', href: 'notes'},
         // {name: 'Logout', href: 'logout'},
     ];
+    let userProfilePhoto = profilePlaceHolder;
+    if (user) {
+        userProfilePhoto = user.profile_photo.toString().length <= 50 ? profilePlaceHolder : user.profile_photo;
+    }
+
     if(!user) return <>
         Loading...
     </>;
@@ -23,7 +29,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
             <div className="p-4">
                 <Image
                     className="w-24 h-24 rounded-full mx-auto"
-                    src={profileImage}
+                    src={userProfilePhoto}
                     width={150}
                     height={150}
                     alt="Profile Picture"

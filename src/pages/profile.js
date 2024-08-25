@@ -22,10 +22,13 @@ import QuestionCard from "@/pages/components/Favourites/QuestionCard";
 import {log} from "next/dist/server/typescript/utils";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
+import userIcon from "../../public/profile.svg";
+import LoadingSpinner from "@/pages/components/utils/LoadingSpinner";
 
 const PersonalInfo = React.memo(({user, universities}) => {
 
     const [profileImage, setProfileImage] = useState(user.profile_photo);
+    const [isLoading, setIsLoading] = useState(false);
     const [profileData, setProfileData] = useState({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -48,7 +51,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 const base64String = reader.result;
-                setProfileData({ ...profileData,profile_photo: base64String}); // Store the base64 string
+                setProfileData({...profileData, profile_photo: base64String}); // Store the base64 string
                 setProfileImage(base64String); // Update the image preview
             };
             reader.readAsDataURL(file); // Convert to base64
@@ -60,6 +63,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
             <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
                 <div className="w-full flex items-center justify-start">
                     <Image
+                        style={{cursor: "pointer"}}
                         className="w-24 h-24 rounded-full mx-2"
                         src={photo}
                         width={150}
@@ -158,19 +162,23 @@ const PersonalInfo = React.memo(({user, universities}) => {
                 </div>
 
                 <div className="mt-6">
-                    <button
+                    {isLoading ? <LoadingSpinner/> : <button
                         onClick={() => {
+                            setIsLoading(true);
                             updateProfile(token, profileData).then((response) => {
                                 toast.success('Profile updated successfully');
+                                setIsLoading(false);
                             }).catch((error) => {
                                 toast.error('Error updating profile');
+                                setIsLoading(false);
                             });
                         }}
                         type="submit"
                         className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navyBlue hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navyBlue"
                     >
                         Save
-                    </button>
+                    </button>}
+
                 </div>
             </div>
         </div>
@@ -379,6 +387,7 @@ const Profile = React.memo(() => {
         }
 
     }, [token, loading, router]);
+
 
     if (loading) {
         return <SplashScreen/>

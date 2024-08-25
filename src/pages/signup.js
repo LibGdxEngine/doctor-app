@@ -9,7 +9,7 @@ import SplashScreen from "@/pages/components/SplashScreen";
 import loginLogo from "../../public/loginLogo.svg";
 import loginBtn from "../../public/login_button.svg";
 import loginFace from "../../public/login_face.svg";
-import loginApple from "../../public/Group 26086666-svg.svg";
+import loginApple from "../../public/Group 48095648.svg";
 import Link from "next/link";
 import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
@@ -91,7 +91,7 @@ export default function SignUp() {
                                     <Image style={{cursor: "pointer"}} className={`my-0 mb-2`} src={loginApple} alt={``} width={400} height={40}/>
 
                                 </div>
-                                <form onSubmit={handleSignup} className="w-[60%] flex flex-col space-y-2">
+                                <form onSubmit={handleSignup} className="w-[60%] flex flex-col space-y-2 mt-4">
                                     <div className="flex">
                                         <div className={`flex flex-col`}>
                                             <label htmlFor="email" className="mb-2 text-sm font-medium">
