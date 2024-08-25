@@ -49,7 +49,11 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
                 ))}
                 <div onClick={() => {
                     logout();
-                    router.replace("/signin");
+                    // Navigate to the /signin page
+                    router.replace('/signin').then(() => {
+                        // Refresh the page after the route change is complete
+                        window.location.reload();
+                    });
                 }}
                      className={`h-28 flex items-center justify-center border border-gray-50`}>
                    Logout

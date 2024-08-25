@@ -106,14 +106,14 @@ const NavBar = () => {
                 <div className={`flex flex-col`}>
                     {token ? <>
                         <div className={`text-xs text-black`}>
-                            Hello, User
+                            Hello, {user?.first_name}
                         </div>
                         <div className={`text-sm text-black`}>
-                            Welcome Backs
+                            Welcome Back
                         </div>
                     </> : <div>
                         <div className={`text-sm text-black`}>
-                            Authentication
+                            Sign In
                         </div>
 
                     </div>}
