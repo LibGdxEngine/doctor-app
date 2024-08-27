@@ -166,7 +166,6 @@ const QuestionWindow = ({
                         </>
                         : <>
                             <div className={`w-fit max-h-[416px] pt-2`}>
-                                {JSON.stringify(progress)}
                                 <NumberScroll numbers={numbers} selected={parseInt(questionIndex)} onNumberClicked={(questionNumber)=>{
                                     router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionNumber) - 1}`)
                                 }} answers={type === "study" ? progress : null}/>
