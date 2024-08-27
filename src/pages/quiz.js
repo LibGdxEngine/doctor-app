@@ -47,14 +47,14 @@ const Quiz = () => {
                     type={examObject.type}
                     progress={examObject.progress}
                     timeLeft={examObject.time_left}
-                    onCheck={(selectedAnswer, time_left) => {
+                    onCheck={(selectedAnswerAsText, selectedAnswerIndex, time_left) => {
                         updateExamJourney(token, id, {
                             time_left,
                             progress: {
                                 ...examObject.progress, [q.toString()]: {
                                     question_text: examObject.questions[q].text,
-                                    answer: selectedAnswer,
-                                    is_correct: examObject.questions[q].correct_answer === selectedAnswer
+                                    answer: selectedAnswerIndex,
+                                    is_correct: examObject.questions[q].correct_answer.answer.trim() === selectedAnswerAsText.trim()
                                 }
                             },
                             current_question: parseInt(q) + 1
@@ -63,8 +63,8 @@ const Quiz = () => {
                                 ...examObject.progress,
                                 [q.toString()]: {
                                     question_text: examObject.questions[q].text,
-                                    answer: selectedAnswer,
-                                    is_correct: examObject.questions[q].correct_answer === selectedAnswer
+                                    answer: selectedAnswerIndex,
+                                    is_correct: examObject.questions[q].correct_answer.answer.trim() === selectedAnswerAsText.trim()
                                 }
                             };
                             if (q < length - 1) {

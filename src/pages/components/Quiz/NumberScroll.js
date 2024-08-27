@@ -16,7 +16,7 @@ const NumberScroll = ({numbers, selected = 0, onNumberClicked, answers = null}) 
                 <NumberItem
                     key={number}
                     number={number}
-                    answer={answers ? number < selected + 1 ? answers[number - 1] : null : null}
+                    answer={answers ? number < selected + 1 ? answers[number - 1] : answers[number - 1] : null}
                     isSelected={number === selected + 1}
                     onClick={handleNumberClick}
                 />

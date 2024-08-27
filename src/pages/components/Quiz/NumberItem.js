@@ -3,8 +3,8 @@ import React from 'react';
 const NumberItem = ({ number,answer, isSelected, onClick }) => {
     let answerState = 0;
 
-    if (answer === null){
-        answerState = "border-white";
+    if (answer === null || answer === undefined){
+        answerState = "border-orange-300";
     }else if (answer === true){
         answerState = "border-green-500";
     }else{

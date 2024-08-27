@@ -209,11 +209,31 @@ const History = React.memo(({examObject: defaultExams}) => {
 
     }
 
+    const calculateScorePercentage = (questions) => {
+        const values = Object.values(questions); // Extract object values
+        const totalQuestions = values.length; // Total number of questions
+
+        // If there are no questions, return 0.0 to avoid division by zero.
+        if (totalQuestions === 0) {
+            return 0.0;
+        }
+
+        const correctAnswers = values.filter(item => item.is_correct === true).length; // Count correct answers
+        const percentage = (correctAnswers / totalQuestions) * 100; // Calculate percentage
+        const formattedPercentage = parseFloat(percentage.toFixed(1)); // Format to one decimal place
+
+        // Check if the formattedPercentage is a real number or NaN
+        if (isNaN(formattedPercentage)) {
+            console.error("Error: The calculated percentage is not a number.");
+            return 0.0; // or any default value you prefer
+        }
+
+        return formattedPercentage;
+    };
 
     return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
         <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
             <h1 className="text-2xl font-bold mb-6">History</h1>
-            <div>{level} {language} {specificity}</div>
             <div className="space-y-4">
                 {examObject.map((item, index) => (
                     <div key={index} className="bg-gray-50 p-4 rounded-lg shadow">
@@ -221,8 +241,13 @@ const History = React.memo(({examObject: defaultExams}) => {
                             <div>
                                 <h1 className="text-xl font-semibold">{level} {language} {specificity} Exam</h1>
                                 <h2 className="text-lg ">Type ({item.type} mood)</h2>
-                                <p className="text-gray-500">{parseInt(item.current_question) / item.questions.length * 100}%
-                                    Completed</p>
+                                <div className={`flex `}>
+                                    <p className="text-gray-500 me-2">{parseFloat((parseInt(item.current_question) / item.questions.length * 100).toFixed(1))}%
+                                        Completed</p>
+                                    -
+                                    <p className="text-gray-500 mx-2"> Score {calculateScorePercentage(item.progress) + "%"} </p>
+                                </div>
+
                             </div>
                             <div className="flex space-x-2">
                                 <button onClick={() => {

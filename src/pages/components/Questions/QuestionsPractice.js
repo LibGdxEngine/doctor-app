@@ -20,8 +20,8 @@ const QuestionsPractice = ({ onChange = null, selected, questionsCount }) => {
     }, [numberOfQuestions, onChange]);
 
     useEffect(() => {
-        setNumberOfQuestions(selected);
-    }, []);
+        setNumberOfQuestions(questionsCount);
+    }, [questionsCount]);
 
     return (
         <div className="w-full h-full bg-blue-50 p-8 rounded-lg shadow-md">

@@ -60,7 +60,8 @@ const QuestionWindow = ({
         const values = Object.values(progress);
         const total = values.length;
         const trueCount = values.filter(value => value === true).length;
-        return (trueCount / total) * 100;
+        const percentage = (trueCount / total) * 100;
+        return parseFloat(percentage.toFixed(1));
     };
 
     const handleAnswerClicked = () => {
@@ -70,9 +71,9 @@ const QuestionWindow = ({
         }
         setProgress(prevProgress => ({
             ...prevProgress,
-            [questionIndex]: questions.answers[selectedAnswer].answer === questions.correct_answer.answer
+            [questionIndex]: questions.answers[selectedAnswer].answer.trim() === questions.correct_answer.answer.trim()
         }));
-        onCheck(selectedAnswer, timeLeft);
+        onCheck(questions.answers[selectedAnswer].answer, selectedAnswer, timeLeft);
         setSelectedAnswer(null);
         if (parseInt(questionIndex) === numbers.length - 1) {
             setShowResults(true);
@@ -165,6 +166,7 @@ const QuestionWindow = ({
                         </>
                         : <>
                             <div className={`w-fit max-h-[416px] pt-2`}>
+                                {JSON.stringify(progress)}
                                 <NumberScroll numbers={numbers} selected={parseInt(questionIndex)} onNumberClicked={(questionNumber)=>{
                                     router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionNumber) - 1}`)
                                 }} answers={type === "study" ? progress : null}/>

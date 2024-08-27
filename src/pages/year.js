@@ -72,8 +72,16 @@ const Year = () => {
                         </div>
                     })}
                 </div>
-                <div onClick={handleNext} id={`next-btn`} className={`w-1/2 sm:w-full mt-10`}>
-                    <ActionButton text={`Next`}/>
+                <div className={`flex flex-row w-2/3`}>
+                    <div style={{cursor: "pointer"}} onClick={() => {
+                        router.replace("/start")
+                    }} id={`next-btn`} className={`w-1/3 sm:w-full mt-10`}>
+                        <ActionButton text={`Back`} className={`!bg-gray-400`}/>
+                    </div>
+                    <div style={{cursor: "pointer"}} onClick={handleNext} id={`next-btn`} className={`w-2/3 sm:w-full mt-10 mx-2`}>
+                        <ActionButton text={`Next`}/>
+                    </div>
+
                 </div>
             </div>
         </div>
