@@ -17,6 +17,7 @@ import NotesModal from "@/pages/components/utils/NotesModal";
 import CountUpTimer from "@/pages/components/Quiz/CountUpTimer";
 import ReportsModal from "@/pages/components/utils/ReportsModal";
 import SplashScreen from "@/pages/components/SplashScreen";
+import HighlightedText from "@/pages/components/Questions/HighlightedText";
 
 const QuestionWindow = ({
                             examJourneyId,
@@ -47,7 +48,7 @@ const QuestionWindow = ({
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [showResults, setShowResults] = useState(false);
     const [timeLeft, setTimeLeft] = useState(time);
-    if(!historyProgress) {
+    if (!historyProgress) {
         historyProgress = {};
     }
     const mappedProgress = Object.entries(historyProgress).reduce((acc, [key, value]) => {
@@ -63,6 +64,26 @@ const QuestionWindow = ({
         const percentage = (trueCount / total) * 100;
         return parseFloat(percentage.toFixed(1));
     };
+    const valuesToHighlight = questions?.hint.split(',').map(value => value.trim());
+
+    // Step 2: Split the text into words
+    const text = questions && questions.text;
+    const words = text ? text.split(' ') : [];
+    const highlightedText = words.map((word, index) => {
+        const isHighlighted = valuesToHighlight.includes(word);
+        return (
+            <span
+                key={index}
+                style={{
+                    backgroundColor: isHighlighted ? 'yellow' : 'transparent'
+                }}
+            >
+        {word}
+                {/* Adding a space after each word */}
+                {index < words.length - 1 ? ' ' : ''}
+      </span>
+        );
+    });
 
     const handleAnswerClicked = () => {
         if (selectedAnswer === null) {
@@ -84,13 +105,13 @@ const QuestionWindow = ({
         setSelectedAnswer(index);
     };
     let actionBtnText = "Check";
-    if(numbers){
+    if (numbers) {
         actionBtnText = parseInt(questionIndex) === numbers.length - 1 ? "Submit" : "Check";
     }
 
-    if(!questions){
+    if (!questions) {
         return <div>
-            <SplashScreen />
+            <SplashScreen/>
         </div>
     }
     return (
@@ -113,7 +134,7 @@ const QuestionWindow = ({
                         className="text-2xl text-gray-500">Level 6</span>
                     </div>
                     <div className={`w-full flex items-center justify-center`}>
-                        <Image style={{cursor: "pointer"}} onClick={()=>{
+                        <Image style={{cursor: "pointer"}} onClick={() => {
                             openReportsModal()
                         }} className={`mx-2 sm:mx-0`} src={icon1} alt={``} width={35} height={35}/>
                         {type === 'study' ? <><Image style={{cursor: "pointer"}} onClick={() => {
@@ -133,7 +154,7 @@ const QuestionWindow = ({
                         <Image style={{cursor: "pointer"}} onClick={() => {
                             openNotesModal();
                         }} className={`mx-2 sm:mx-0`} src={icon3} alt={``} width={35} height={35}/>
-                        {type === 'study' ? <Image style={{cursor: "pointer"}} onClick={()=>{
+                        {type === 'study' ? <Image style={{cursor: "pointer"}} onClick={() => {
                             navigator.clipboard.writeText(questions.text).then(() => {
                                 toast.success("Copied to clipboard");
                             }).catch(err => {
@@ -166,15 +187,17 @@ const QuestionWindow = ({
                         </>
                         : <>
                             <div className={`w-fit max-h-[416px] pt-2`}>
-                                <NumberScroll numbers={numbers} selected={parseInt(questionIndex)} onNumberClicked={(questionNumber)=>{
-                                    router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionNumber) - 1}`)
-                                }} answers={type === "study" ? progress : null}/>
+                                <NumberScroll numbers={numbers} selected={parseInt(questionIndex)}
+                                              onNumberClicked={(questionNumber) => {
+                                                  router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionNumber) - 1}`)
+                                              }} answers={type === "study" ? progress : null}/>
                             </div>
 
                             <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4">
 
                                 <p className="text-lg font-bold">
-                                    {questions && questions.text}</p>
+                                    {showHint ? highlightedText : questions.text}
+                                </p>
                                 <div className="w-full mt-4">
                                     {questions && questions.answers.map((option, index) => (
                                         <QuestionItem question={option.answer} index={index}
@@ -199,7 +222,7 @@ const QuestionWindow = ({
                             className={`w-40 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{"<"}</button>
                         <button
                             onClick={() => {
-                                if(questionIndex >= numbers.length - 1) {
+                                if (questionIndex >= numbers.length - 1) {
                                     return;
                                 }
                                 router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) + 1}`);

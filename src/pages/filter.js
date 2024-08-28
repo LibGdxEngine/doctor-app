@@ -93,7 +93,6 @@ const Filter = () => {
                     <div className="w-full px-6 pt-10">
                         <KrokSpecifics/>
                     </div>
-                    {JSON.stringify()}
                     <div className="w-full grid grid-cols-2 md:grid-cols-1 gap-6 p-6 bg-white rounded-lg">
                         <QuestionsFilter onChange={handleFilterChange}/>
                         <div className="w-full flex flex-col items-start justify-end">

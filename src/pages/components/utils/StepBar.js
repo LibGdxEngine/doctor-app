@@ -11,12 +11,12 @@ function StepBar({stepNumber = 1, onStepClicked}) {
     }
     return <div className={`w-full flex flex-col items-start`}>
         <h1 className={`font-bold text-5xl text-ldarkBlue sm:text-sm`}>Please choose your Krok specifics</h1>
-        <div onClick={()=>{
-            router.back();
-        }} style={{cursor: "pointer"}} className={`flex flex-row items-center justify-center mt-2`}>
-            <Image src={backBtnIcon} alt={`back`} width={40} height={40}/>
-            <div style={{color: "#4DD4B2CC", fontWeight: "bold", fontSize: "22px"}}>Go back to previous filter ?</div>
-        </div>
+        {/*<div onClick={()=>{*/}
+        {/*    router.back();*/}
+        {/*}} style={{cursor: "pointer"}} className={`flex flex-row items-center justify-center mt-2`}>*/}
+        {/*    <Image src={backBtnIcon} alt={`back`} width={40} height={40}/>*/}
+        {/*    <div style={{color: "#4DD4B2CC", fontWeight: "bold", fontSize: "22px"}}>Go back to previous filter ?</div>*/}
+        {/*</div>*/}
         <div
             className={`w-[90%] sm:w-full h-20 sm:h-16 border border-ldarkBlue rounded-2xl flex items-center justify-between px-20 sm:px-4 mt-10`}>
             <p style={{cursor: "pointer"}} onClick={() => {

@@ -59,7 +59,7 @@ const Search = () => {
             <NavBar/>
             <h1 className="text-4xl font-extrabold text-white my-8 text-center">Search Your Question</h1>
 
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-xl">
                 {results.map((result) => (
                     <div
                         key={result.id}

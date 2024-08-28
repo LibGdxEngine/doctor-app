@@ -7,7 +7,7 @@ const QuestionCard = ({question}) => {
         return null;
     }
     return (
-        <div className="max-w-sm  overflow-hidden p-2 bg-white">
+        <div className="max-w-md  overflow-hidden p-2 bg-white">
             <div className="font-bold text-xl mb-2">Question Filters</div>
             <div className="mb-4">
                 <span
