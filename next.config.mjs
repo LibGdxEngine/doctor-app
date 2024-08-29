@@ -3,7 +3,8 @@ import nextI18NextConfig from './next-i18next.config.mjs';
 
 const nextConfig = {
   reactStrictMode: true,
-  ...nextI18NextConfig, // Spread the i18n configuration into the Next.js config
+  swcMinify: true,  // Use SWC for minification instead of Terser
+  ...nextI18NextConfig,  // Spread the i18n configuration into the Next.js config
 };
 
 export default nextConfig;
