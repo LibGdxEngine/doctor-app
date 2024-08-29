@@ -11,8 +11,10 @@ import NavBar from "@/pages/components/NavBar";
 import KrokSpecifics from "@/pages/components/Questions/KrokSpecifics";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
+import {useTranslation} from "react-i18next";
 
 const Filter = () => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const {token, loading} = useAuth();
     const [state, setState] = useState(null);

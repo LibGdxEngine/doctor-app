@@ -14,8 +14,10 @@ import Link from "next/link";
 import Footer from "@/pages/components/Footer";
 import NavBar from "@/pages/components/NavBar";
 import SignupPage from "@/pages/components/Auth/SignupPage";
+import {useTranslation} from "react-i18next";
 
 export default function SignUp() {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const [firstName, setFirstname] = useState('');
     const [lastName, setLastname] = useState('');
@@ -74,16 +76,15 @@ export default function SignUp() {
                                 <Image src={loginLogo} alt={``} width={200} height={200}/>
                             </div>
                             <div className={`w-full text-center font-light mt-5 px-20`}>
-                                <h1 style={{fontSize: "60px"}} className={`w-full text-white text-start`}>Create Your
-                                    Account</h1>
+                                <h1 style={{fontSize: "60px"}} className={`w-full text-white text-start`}>{t("CreateYourAccount")}</h1>
                                 <h6 style={{letterSpacing: "15px"}} className={`text-white text-4xl w-full text-start`}>
-                                    Fill in the form to create an account and start taking the test.
+                                    {t("Fill")}
                                 </h6>
                             </div>
                         </div>
                         <div className={`w-full h-screen `}>
                             <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
-                                <h1 className="text-5xl font-thin mb-8">Sign Up</h1>
+                                <h1 className="text-5xl font-thin mb-8">{t("SignUp")}</h1>
                                 <div className={`w-fit flex flex-col items-center justify-center`}>
                                     <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={400} height={40}/>
                                      <Image style={{cursor: "pointer"}} className={`my-4`}
@@ -95,7 +96,7 @@ export default function SignUp() {
                                     <div className="flex">
                                         <div className={`flex flex-col`}>
                                             <label htmlFor="email" className="mb-2 text-sm font-medium">
-                                                First Name
+                                                {t("FirstName")}
                                             </label>
                                             <input
                                                 type="text"
@@ -108,7 +109,7 @@ export default function SignUp() {
                                         </div>
                                         <div className={`flex flex-col mx-2`}>
                                             <label htmlFor="second_name" className="mb-2 text-sm font-medium">
-                                                second Name
+                                                {t("LastName")}
                                             </label>
                                             <input
                                                 type="text"
@@ -122,7 +123,7 @@ export default function SignUp() {
                                     </div>
                                     <div className="flex flex-col">
                                         <label htmlFor="email" className="mb-2 text-sm font-medium">
-                                            E-mail
+                                            {t("Email")}
                                         </label>
                                         <input
                                             type="email"
@@ -135,7 +136,7 @@ export default function SignUp() {
                                     </div>
                                     <div className="flex flex-col">
                                         <label htmlFor="password" className="mb-2 text-sm font-medium">
-                                            Password
+                                            {t("Password")}
                                         </label>
                                         <input
                                             type="password"
@@ -148,7 +149,7 @@ export default function SignUp() {
                                     </div>
                                     <div className="flex flex-col">
                                         <label htmlFor="password2" className="mb-2 text-sm font-medium">
-                                            Re-Password
+                                            Re-{t("Password")}
                                         </label>
                                         <input
                                             type="password"
@@ -164,19 +165,19 @@ export default function SignUp() {
                                             setIsChecked(e.target.checked)
                                         }} type="checkbox" id="terms" className="mr-2"/>
                                         <label htmlFor="terms" className="text-sm">
-                                            I accept the terms of use and privacy policy
+                                            {t("IAccept")}
                                         </label>
                                     </div>
                                     <button
                                         type={`submit`}
                                         className="w-full bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Sign Up
+                                        {t("SignUp")}
                                     </button>
                                 </form>
                                 <p className="text-sm mt-3 text-center">
-                                    Do not have any account?{' '}
+                                    {t("DoNotHaveAccount")}{' '}
                                     <Link href="/signin" className="text-indigo-600 hover:underline">
-                                        Sign In
+                                        {t('SignIn')}
                                     </Link>
                                 </p>
                             </div>

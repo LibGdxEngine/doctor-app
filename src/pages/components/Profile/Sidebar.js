@@ -6,7 +6,9 @@ import profileImage from "../../../../public/profile.svg";
 import {useAuth} from "@/context/AuthContext";
 import React from "react";
 import profilePlaceHolder from "../../../../public/profile.svg";
+import {useTranslation} from "react-i18next";
 const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const {logout} = useAuth();
     const navItems = [
@@ -44,7 +46,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
                     }} key={item.name}
                          className={`h-28 ${currentTap === item.href.toLowerCase().trim() ? "bg-searchColor" : ""} 
                     flex items-center justify-center ${currentTap === item.href.toLowerCase().trim() ? "text-white" : "text-gray-500"} border border-gray-50`}>
-                        {item.name}
+                        {t(`${item.name}`)}
                     </div>
                 ))}
                 <div onClick={() => {
@@ -56,7 +58,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
                     });
                 }}
                      className={`h-28 flex items-center justify-center border border-gray-50`}>
-                   Logout
+                    {t("Logout")}
                 </div>
 
             </nav>

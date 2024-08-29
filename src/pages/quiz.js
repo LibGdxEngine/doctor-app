@@ -7,8 +7,10 @@ import {useEffect, useState} from "react";
 import {getExamJourney, updateExamJourney} from "@/components/services/questions";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
+import {useTranslation} from "react-i18next";
 
 const Quiz = () => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     let {id, q} = router.query;
     if (!q) {

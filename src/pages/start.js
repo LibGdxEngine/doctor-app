@@ -10,9 +10,11 @@ import {getLanguages, getSpecificities, getLevels} from "@/components/services/q
 import {toast} from "react-toastify";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
+import {useTranslation} from "react-i18next";
 
 
 const Start = () => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const {token, loading} = useAuth();
 
@@ -72,7 +74,7 @@ const Start = () => {
 
     function handleNext() {
         if (!selectedLevel || !selectedLanguage || !selectedSpecificity) {
-            toast.error("Please select an option from each category");
+            toast.error(`${t("PleaseSelectAtLeastOne")}`);
             return;
         }
         localStorage.setItem("state", JSON.stringify({
@@ -94,12 +96,12 @@ const Start = () => {
             <NavBar/>
             <div className="w-full h-full flex flex-col items-start justify-start pt-20">
                 <div className="w-full px-20 sm:px-2 flex flex-col items-start">
-                    <div className="font-bold text-5xl text-ldarkBlue sm:text-sm">Please choose your Krok specifics
+                    <div className="font-bold text-5xl text-ldarkBlue sm:text-sm">{t("PleaseChoose")}
                     </div>
                     <div id="lang"
                          className="sm:w-full flex sm:flex-col sm:items-start items-center justify-center my-10">
                         <div className="w-32 sm:mx-4 font-semibold text-2xl text-ldarkBlue">
-                            Language
+                            {t("Language")}
                         </div>
                         <div className="sm:w-full flex mx-4 sm:mx-0">
                             {languages.map((language, index) => {
@@ -124,7 +126,7 @@ const Start = () => {
                     <div id="spec"
                          className="sm:w-full flex sm:flex-col sm:items-start items-center justify-center mb-10">
                         <div className="w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue">
-                            Specialty
+                            {t("Specialty")}
                         </div>
                         <div className="sm:w-full flex mx-4 sm:mx-0">
                             {specificities.map((specific, index) => (
@@ -140,7 +142,7 @@ const Start = () => {
                     <div id="level"
                          className="sm:w-full w-fit flex sm:flex-col sm:items-start items-center justify-center my-0">
                         <div className="w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue">
-                            Level
+                            {t("Level")}
                         </div>
                         <div className="sm:w-full flex mx-4 sm:mx-0">
                             {levels.map((level, index) => (
@@ -154,7 +156,7 @@ const Start = () => {
                         </div>
                     </div>
                     <div onClick={handleNext} id="next-btn" className="w-2/3 sm:w-full mt-10">
-                        <ActionButton text="Next"/>
+                        <ActionButton text={`${t("Next")}`}/>
                     </div>
                 </div>
             </div>

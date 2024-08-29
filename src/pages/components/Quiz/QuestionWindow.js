@@ -18,6 +18,7 @@ import CountUpTimer from "@/pages/components/Quiz/CountUpTimer";
 import ReportsModal from "@/pages/components/utils/ReportsModal";
 import SplashScreen from "@/pages/components/SplashScreen";
 import HighlightedText from "@/pages/components/Questions/HighlightedText";
+import {useTranslation} from "react-i18next";
 
 const QuestionWindow = ({
                             examJourneyId,
@@ -29,6 +30,7 @@ const QuestionWindow = ({
                             time,
                             onCheck
                         }) => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const [isModalOpen, setModalOpen] = useState(false);
     const [isNotesModalOpen, setNotesModalOpen] = useState(false);
@@ -87,7 +89,7 @@ const QuestionWindow = ({
 
     const handleAnswerClicked = () => {
         if (selectedAnswer === null) {
-            toast.error("Select At least one Answer");
+            toast.error(t("PleaseSelectAtLeastOne"));
             return;
         }
         setProgress(prevProgress => ({
@@ -104,9 +106,9 @@ const QuestionWindow = ({
     const handleAnswer = (index) => {
         setSelectedAnswer(index);
     };
-    let actionBtnText = "Check";
+    let actionBtnText = t("Check");
     if (numbers) {
-        actionBtnText = parseInt(questionIndex) === numbers.length - 1 ? "Submit" : "Check";
+        actionBtnText = parseInt(questionIndex) === numbers.length - 1 ?  t("Submit") : t("Check");
     }
 
     if (!questions) {
@@ -127,11 +129,11 @@ const QuestionWindow = ({
             </ReportsModal>
             <div className="w-full max-w-5xl bg-white p-6">
                 <div style={{cursor: "pointer"}} className="text-green-500 text-2xl hover:underline">
-                    Back to generate quiz page
+                    {t("BackToGenerateQuizPage")}
                 </div>
                 <div className="w-full mt-4 flex justify-between items-center pe-4">
-                    <div className="text-navyBlue text-3xl font-semibold">Quiz: <span
-                        className="text-2xl text-gray-500">Level 6</span>
+                    <div className="text-navyBlue text-3xl font-semibold">{t("Quiz")}: <span
+                        className="text-2xl text-gray-500">{type === "study" ? t("StudyMood") : t("ExamMood")}</span>
                     </div>
                     <div className={`w-full flex items-center justify-center`}>
                         <Image style={{cursor: "pointer"}} onClick={() => {
@@ -156,7 +158,7 @@ const QuestionWindow = ({
                         }} className={`mx-2 sm:mx-0`} src={icon3} alt={``} width={35} height={35}/>
                         {type === 'study' ? <Image style={{cursor: "pointer"}} onClick={() => {
                             navigator.clipboard.writeText(questions.text).then(() => {
-                                toast.success("Copied to clipboard");
+                                toast.success(t("Copied"));
                             }).catch(err => {
                                 console.error('Failed to copy text: ', err);
                             });
@@ -173,9 +175,9 @@ const QuestionWindow = ({
 
                 </div>
                 {showHint ? <div
-                    className="w-full  rounded-xl p-4 mx-4 text-3xl text-center text-gray-500">{questions.hint === "" ? "No Hint Available" : questions.hint}</div> : ""}
+                    className="w-full  rounded-xl p-4 mx-4 text-3xl text-center text-gray-500">{questions.hint === "" ? t("NoHintAvailable") : questions.hint}</div> : ""}
                 {showVideoHint ? <div
-                    className="w-full  rounded-xl p-4 mx-4 text-3xl text-center text-gray-500">{questions.video_hint === "" ? "No Video Available" :
+                    className="w-full  rounded-xl p-4 mx-4 text-3xl text-center text-gray-500">{questions.video_hint === "" ? t("NoVideoAvailable") :
                     <YouTubePlayer url={`${questions.video_hint}`}/>}</div> : ""}
 
                 <div className="w-full flex mt-4 max-h-screen">
@@ -235,8 +237,7 @@ const QuestionWindow = ({
                             onClick={() => {
                                 router.push(`/home`)
                             }}
-                            className={`w-40 sm:w-full bg-gray-200 text-gray-700 rounded-lg py-2 px-4 mr-2 ${showResults ? "hidden" : ""}`}>Resume
-                            Later
+                            className={`w-40 sm:w-full bg-gray-200 text-gray-700 rounded-lg py-2 px-4 mr-2 ${showResults ? "hidden" : ""}`}>{t("ResumeLater")}
                         </button>
                         {showResults ? <button onClick={() => {
                                 router.replace("/home");

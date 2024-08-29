@@ -24,9 +24,10 @@ import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
 import userIcon from "../../public/profile.svg";
 import LoadingSpinner from "@/pages/components/utils/LoadingSpinner";
+import {useTranslation} from "react-i18next";
 
 const PersonalInfo = React.memo(({user, universities}) => {
-
+    const {t, i18n} = useTranslation("common");
     const [profileImage, setProfileImage] = useState(user.profile_photo);
     const [isLoading, setIsLoading] = useState(false);
     const [profileData, setProfileData] = useState({
@@ -85,7 +86,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                 </div>
                 <div className="w-full flex items-center justify-center">
                     <div className="w-full mt-6 me-2">
-                        <label className="block text-sm font-medium text-gray-700">First Name</label>
+                        <label className="block text-sm font-medium text-gray-700">{t("FirstName")}</label>
                         <input
                             type="text"
                             value={profileData.first_name} // Use profileData here
@@ -97,7 +98,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                         />
                     </div>
                     <div className="w-full mt-6 ms-2">
-                        <label className="block text-sm font-medium text-gray-700">Last Name</label>
+                        <label className="block text-sm font-medium text-gray-700">{t("LastName")}</label>
                         <input
                             type="text"
                             value={profileData.last_name} // Use profileData here
@@ -111,7 +112,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                 </div>
                 <div className="w-full flex items-center justify-center">
                     <div className="w-full mt-6 me-2">
-                        <label className="block text-sm font-medium text-gray-700">University</label>
+                        <label className="block text-sm font-medium text-gray-700">{t("University")}</label>
                         <select
                             value={profileData.university} // Use profileData here
                             onChange={(e) => setProfileData({...profileData, university: e.target.value})}
@@ -125,7 +126,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                         </select>
                     </div>
                     <div className="w-full mt-6 ms-2">
-                        <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+                        <label className="block text-sm font-medium text-gray-700">{t("PhoneNumber")}</label>
                         <input
                             type="phone"
                             value={profileData.phone_number} // Use profileData here
@@ -138,7 +139,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                     </div>
                 </div>
                 <div className="mt-4">
-                    <label className="block text-sm font-medium text-gray-700">Email</label>
+                    <label className="block text-sm font-medium text-gray-700">{t("Email")}</label>
                     <input
                         type="email"
                         value={profileData.email} // Use profileData here
@@ -150,7 +151,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                     />
                 </div>
                 <div className="mt-4">
-                    <label className="block text-sm font-medium text-gray-700">New Password</label>
+                    <label className="block text-sm font-medium text-gray-700">{t("NewPassword")}</label>
                     <input
                         type="password"
                         placeholder="New Password"
@@ -176,7 +177,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                         type="submit"
                         className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navyBlue hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navyBlue"
                     >
-                        Save
+                        {t("Save")}
                     </button>}
 
                 </div>
@@ -187,6 +188,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
 });
 
 const History = React.memo(({examObject: defaultExams}) => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const {token, loading} = useAuth();
     const [examObject, setExamObject] = useState(defaultExams);
@@ -233,13 +235,13 @@ const History = React.memo(({examObject: defaultExams}) => {
 
     return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
         <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
-            <h1 className="text-2xl font-bold mb-6">History</h1>
+            <h1 className="text-2xl font-bold mb-6">{t("History")}</h1>
             <div className="space-y-4">
                 {examObject.map((item, index) => (
                     <div key={index} className="bg-gray-50 p-4 rounded-lg shadow">
                         <div className="flex justify-between items-center">
                             <div>
-                                <h1 className="text-xl font-semibold">{level} {language} {specificity} Exam</h1>
+                                <h1 className="text-xl font-semibold">{level} {language} {specificity} {t("Exam")}</h1>
                                 <h2 className="text-lg ">Type ({item.type} mood)</h2>
                                 <div className={`flex `}>
                                     <p className="text-gray-500 me-2">{parseFloat((parseInt(item.current_question) / item.questions.length * 100).toFixed(1))}%
@@ -254,13 +256,13 @@ const History = React.memo(({examObject: defaultExams}) => {
                                     router.push(`/quiz?id=${item.id}&q=${parseInt(item.current_question)}`);
                                 }}
                                         className={`bg-blue-500 text-white px-3 py-1 rounded-md ${parseInt(item.current_question) / item.questions.length * 100 === 100 ? "hidden" : ""}`}>
-                                    Resume studying
+                                    {t("ResumeStudy")}
                                 </button>
                                 <button onClick={() => {
                                     deleteExamJourney(token, item.id).then((response) => {
                                         setExamObject(examObject.filter((exam) => exam.id !== item.id));
                                     });
-                                }} className="bg-red-500 text-white px-3 py-1 rounded-md">Delete
+                                }} className="bg-red-500 text-white px-3 py-1 rounded-md">{t("Delete")}
                                 </button>
                             </div>
                         </div>
@@ -277,6 +279,7 @@ const History = React.memo(({examObject: defaultExams}) => {
 });
 
 const Notes = React.memo(() => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const [notes, setNotes] = useState(null);
     const {token, loading} = useAuth();
@@ -292,7 +295,7 @@ const Notes = React.memo(() => {
     }, [token]);
     return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
         <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
-            <h1 className="text-2xl font-bold mb-6">Notes</h1>
+            <h1 className="text-2xl font-bold mb-6">{t("Notes")}</h1>
             <div className="space-y-4">
 
                 {notes && notes.map((note, index) => {
@@ -320,6 +323,7 @@ const Notes = React.memo(() => {
 });
 
 const Favourites = React.memo(({favourites: myFav}) => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const {token, loading} = useAuth();
     const [favourites, setFavourites] = useState(myFav);
@@ -346,7 +350,7 @@ const Favourites = React.memo(({favourites: myFav}) => {
             </div>
             :
             <div className="w-full h-fit mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
-                {favourites.length === 0 ? <h1 className={`text-3xl mt-20`}>No favourites found</h1> : ""}
+                {favourites.length === 0 ? <h1 className={`text-3xl mt-20`}>{t("NoFavourite")}</h1> : ""}
                 {favourites.map((item, index) => {
                     return <FavCard key={index} title={item.name} numOfQuestions={item.questions.length}
                                     onDeleteClicked={() => {
@@ -369,6 +373,7 @@ const Favourites = React.memo(({favourites: myFav}) => {
 });
 
 const Profile = React.memo(() => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const {user, token, loading} = useAuth();
     const [universities, setUniversities] = useState([]);

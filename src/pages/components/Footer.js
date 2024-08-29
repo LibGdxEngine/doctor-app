@@ -3,8 +3,10 @@ import app1 from "../../../public/Group 21.svg";
 import app2 from "../../../public/Group 20.svg";
 import follow from "../../../public/follow.svg";
 import BGsvg from "../../../public/BG-svg (1).svg";
+import {useTranslation} from "react-i18next";
 
 function Footer() {
+    const {t, i18n} = useTranslation("common");
     return <>
         <div id={`footer`}
              className={`bg-navyBlue w-full h-fit py-12 mt-0 z-20 flex sm:flex-col items-center justify-between`}>
@@ -26,7 +28,7 @@ function Footer() {
 
         </div>
         <div className={`w-full h-10 bg-darkBlue text-center text-white text-xs flex items-center justify-center`}>
-            All rights reserved to - KROK PLUS
+            {t("AllRights")} - KROK PLUS
         </div>
     </>;
 }

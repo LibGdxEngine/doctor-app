@@ -1,9 +1,11 @@
 // components/FavoritesModal.jsx
 import { useEffect } from 'react';
 import FavoriteList from "@/pages/components/Favourites/FavoriteList";
+import {useTranslation} from "react-i18next";
 
 
 const FavoritesModal = ({ isOpen, onClose, question}) => {
+    const {t, i18n} = useTranslation("common");
     useEffect(() => {
         const handleEscape = (event) => {
             if (event.key === 'Escape') {

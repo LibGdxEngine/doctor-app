@@ -19,8 +19,10 @@ import loginFace from "../../public/login_face.svg";
 import SocialLoginButton from "@/pages/components/utils/SocialLoginButton";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
+import {useTranslation} from "react-i18next";
 
 const Signin = () => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -92,7 +94,7 @@ const Signin = () => {
                     </div>
                     <div className={`w-full h-screen `}>
                         <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
-                            <h1 className="text-5xl font-thin mb-8">Sign In</h1>
+                            <h1 className="text-5xl font-thin mb-8">{t("SignIn")}</h1>
                             <div className={`w-full flex flex-col items-center justify-center`}>
                                 <SocialLoginButton provider="facebook"
                                                    clientId="794210030409-1jblj5njdfsn27qnjv0nk326fm0o5oi6.apps.googleusercontent.com"
@@ -109,7 +111,7 @@ const Signin = () => {
                             <form onSubmit={handleSignIn} className="w-[60%] mt-16 flex flex-col space-y-6">
                                 <div className="flex flex-col">
                                     <label htmlFor="email" className="mb-2 text-sm font-medium">
-                                        E-mail
+                                        {t("Email")}
                                     </label>
                                     <input
                                         type="email"
@@ -122,7 +124,7 @@ const Signin = () => {
                                 </div>
                                 <div className="flex flex-col">
                                     <label htmlFor="password" className="mb-2 text-sm font-medium">
-                                        Password
+                                        {t("Password")}
                                     </label>
                                     <input
                                         type="password"
@@ -136,19 +138,19 @@ const Signin = () => {
                                 <div className="flex items-center">
                                     <input type="checkbox" id="terms" className="mr-2"/>
                                     <label htmlFor="terms" className="text-sm">
-                                        I accept the terms of use and privacy policy
+                                        {t("IAccept")}
                                     </label>
                                 </div>
                                 <button
                                     type={`submit`}
                                     className="w-full bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Login
+                                    {t("SignIn")}
                                 </button>
                             </form>
                             <p className="text-sm mt-6 text-center">
-                                Do not have any account?{' '}
+                                {t("DoNotHaveAccount")}{' '}
                                 <Link href="/signup" className="text-indigo-600 hover:underline">
-                                    Sign Up
+                                    {t("SignUp")}
                                 </Link>
                             </p>
                         </div>

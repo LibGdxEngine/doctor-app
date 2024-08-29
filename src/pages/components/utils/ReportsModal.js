@@ -4,9 +4,11 @@ import FavoriteList from "@/pages/components/Favourites/FavoriteList";
 import {useAuth} from "@/context/AuthContext";
 import {createNewReport} from "@/components/services/questions";
 import {toast} from "react-toastify";
+import {useTranslation} from "react-i18next";
 
 
 const ReportsModal = ({isOpen, onClose, question}) => {
+        const {t, i18n} = useTranslation("common");
         const {token, loading} = useAuth();
         const [report, setReport] = useState('');
         const handleSaveNote = () => {
@@ -49,15 +51,15 @@ const ReportsModal = ({isOpen, onClose, question}) => {
                             &times;
                         </button>
                         <div className={`flex flex-col w-96 h-60 pb-10`}>
-                            <h1 className={`font-bold`}>Write your Report</h1>
-                            <input value={report} onChange={(e)=>{
+                            <h1 className={`font-bold`}>{t("WriteYourReport")}</h1>
+                            <input value={report} onChange={(e) => {
                                 setReport(e.target.value);
                             }} type="text" className={`h-60 mt-4 px-2 rounded-3xl bg-indigo-50 w-full`}/>
                             <button onClick={() => {
                                 handleSaveNote();
                                 setReport('');
                                 onClose();
-                            }} className={`bg-indigo-500 text-white rounded-lg py-2 px-4 mt-4`}>Report
+                            }} className={`bg-indigo-500 text-white rounded-lg py-2 px-4 mt-4`}>{t("Report")}
                             </button>
                         </div>
                     </div>

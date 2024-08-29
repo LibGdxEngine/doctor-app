@@ -11,9 +11,10 @@ import {getYears} from "@/components/services/questions";
 import {toast} from "react-toastify";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
+import {useTranslation} from "react-i18next";
 
 const Year = () => {
-
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const {token, loading} = useAuth();
     const [state, setState] = useState(null);
@@ -76,10 +77,10 @@ const Year = () => {
                     <div style={{cursor: "pointer"}} onClick={() => {
                         router.replace("/start")
                     }} id={`next-btn`} className={`w-1/3 sm:w-full mt-10`}>
-                        <ActionButton text={`Back`} className={`!bg-gray-400`}/>
+                        <ActionButton text={`${t("Back")}`} className={`!bg-gray-400`}/>
                     </div>
                     <div style={{cursor: "pointer"}} onClick={handleNext} id={`next-btn`} className={`w-2/3 sm:w-full mt-10 mx-2`}>
-                        <ActionButton text={`Next`}/>
+                        <ActionButton text={`${t("Next")}`}/>
                     </div>
 
                 </div>

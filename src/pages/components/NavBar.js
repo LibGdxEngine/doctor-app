@@ -7,8 +7,10 @@ import LanguageDropdown from "@/pages/components/utils/LanguageDropdown";
 import {useRouter} from "next/router";
 import {useAuth} from "@/context/AuthContext";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
 
 const NavBar = () => {
+    const {t, i18n} = useTranslation("common");
     const [inputValue, setInputValue] = useState('');
     const router = useRouter();
     const isActive = (path) => router.pathname === path;
@@ -42,7 +44,7 @@ const NavBar = () => {
                     }}
                     className={`text-base ms-10 group relative ${isActive('/') ? 'text-gray-300' : 'text-white'}`}
                 >
-                    Home
+                    {t("Home")}
                     <div
                         className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/') ? 'scale-x-100' : ''}`}></div>
                 </div>
@@ -53,7 +55,7 @@ const NavBar = () => {
                     }}
                     className={`text-base ms-1 group relative ${isActive('/material') ? 'text-gray-300' : 'text-white'}`}
                 >
-                    Material
+                    {t("Material")}
                     <div
                         className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/material') ? 'scale-x-100' : ''}`}></div>
                 </div>
@@ -64,7 +66,7 @@ const NavBar = () => {
                     }}
                     className={`text-base ms-1 line-clamp-1 group relative ${isActive('/start') ? 'text-gray-300' : 'text-white'}`}
                 >
-                    Generate Quiz
+                    {t("GenerateQuiz")}
                     <div
                         className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/start') ? 'scale-x-100' : ''}`}></div>
                 </div>
@@ -77,7 +79,7 @@ const NavBar = () => {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         className="w-full h-full bg-white py-2 focus:border-lightDark outline-none rounded-full px-2 ps-12"
-                        placeholder={`search about ....`}
+                        placeholder={`${t("Search")} ....`}
                     />
                     <FontAwesomeIcon
                         className="absolute p-1 left-8 top-[28%] -translate-x-[50%]"
@@ -106,14 +108,14 @@ const NavBar = () => {
                 <div className={`flex flex-col`}>
                     {token ? <>
                         <div className={`text-xs text-black`}>
-                            Hello, {user?.first_name}
+                            {t("Hello")}, {user?.first_name}
                         </div>
                         <div className={`text-sm text-black`}>
-                            Welcome Back
+                            {t("Welcome")}
                         </div>
                     </> : <div>
                         <div className={`text-sm text-black`}>
-                            Sign In
+                            {t("SignIn")}
                         </div>
 
                     </div>}

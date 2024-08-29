@@ -3,9 +3,11 @@ import {useEffect, useState} from 'react';
 import {useAuth} from "@/context/AuthContext";
 import {createNewNote} from "@/components/services/questions";
 import {toast} from "react-toastify";
+import {useTranslation} from "react-i18next";
 
 
 const NotesModal = ({isOpen, onClose, question}) => {
+        const {t, i18n} = useTranslation("common");
         const {token, loading} = useAuth();
         const [note, setNote] = useState('');
         const handleSaveNote = () => {
@@ -48,15 +50,15 @@ const NotesModal = ({isOpen, onClose, question}) => {
                             &times;
                         </button>
                         <div className={`flex flex-col w-96 h-60 pb-10`}>
-                            <h1 className={`font-bold`}>Write your note</h1>
-                            <input value={note} onChange={(e)=>{
+                            <h1 className={`font-bold`}>{t("WriteYourNote")}</h1>
+                            <input value={note} onChange={(e) => {
                                 setNote(e.target.value);
                             }} type="text" className={`h-60 mt-4 px-2 rounded-3xl bg-indigo-50 w-full`}/>
                             <button onClick={() => {
                                 handleSaveNote();
                                 setNote('');
                                 onClose();
-                            }} className={`bg-indigo-500 text-white rounded-lg py-2 px-4 mt-4`}>Save
+                            }} className={`bg-indigo-500 text-white rounded-lg py-2 px-4 mt-4`}>{t("Save")}
                             </button>
                         </div>
                     </div>

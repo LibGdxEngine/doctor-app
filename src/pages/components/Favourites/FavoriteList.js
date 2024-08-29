@@ -5,8 +5,10 @@ import {addQuestionToFavoritesList, getFavouritesLists} from "@/components/servi
 import {useAuth} from "@/context/AuthContext";
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
+import {useTranslation} from "react-i18next";
 
 const FavoriteList = ({question}) => {
+    const {t, i18n} = useTranslation("common");
     const [selectedItem, setSelectedItem] = useState(null);
     const [items, setItems] = useState([]);
     const router = useRouter();
@@ -31,7 +33,7 @@ const FavoriteList = ({question}) => {
                 console.error('Error adding question to favorite list:', error);
             });
         } else {
-            toast.error('Please select a favorite list');
+            toast.error(t("PleaseEnterFavList"));
         }
 
     }
@@ -47,13 +49,13 @@ const FavoriteList = ({question}) => {
 
     return (
         <div className="w-96 p-6 bg-white">
-            <h2 className="text-2xl font-semibold text-center mb-6">Add to Favorite</h2>
+            <h2 className="text-2xl font-semibold text-center mb-6">{t("AddToFavorite")}</h2>
             <div
                 className="mb-4 p-4 bg-gray-100 rounded-lg flex items-center cursor-pointer"
                 onClick={() => setCreatingNewList(true)}
             >
                 <span className="text-gray-500 mr-2">+</span>
-                <span className="text-gray-500">Create new favorite list</span>
+                <span className="text-gray-500">{t("CreateNewFavoriteList")}</span>
             </div>
             {items.map((item) => (
                 <div
@@ -71,8 +73,7 @@ const FavoriteList = ({question}) => {
                 </div>
             ))}
             <button onClick={handleAddToFavorites}
-                    className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700 mt-4">Add to
-                favorite
+                    className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-700 mt-4">{t("AddToFavoriteList")}
             </button>
 
             {isCreatingNewList && (

@@ -1,6 +1,7 @@
 import {useState} from "react";
 import Image from "next/image";
 import arrowDown from "../../../../public/arrowdown2.svg";
+import {useTranslation} from "react-i18next";
 
 
 
@@ -33,6 +34,7 @@ function FaqItem({ question, answer }) {
 
 
 function HomeFAQs() {
+    const {t, i18n} = useTranslation("common");
     const faqData = [
         {
             question: "Question 1",
@@ -52,7 +54,7 @@ function HomeFAQs() {
     return (
         <div id="faqs" className="mx-28 sm:mx-4 mt-2">
             <div className="w-full font-bold mb-10 sm:mb-2 text-4xl sm:text-2xl">
-                Frequently Asked Questions
+                {t("FAQ")}
             </div>
             <div className="w-full h-full grid grid-cols-2 gap-4 lg:grid-cols-1">
                 {faqData.map((faq, index) => (

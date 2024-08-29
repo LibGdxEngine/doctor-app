@@ -3,6 +3,7 @@ import sliderImage from "../../../../public/sliderImage.svg";
 import arrowDown from "../../../../public/arrowdown2.svg";
 import homeBackground from "../../../../public/home_background.svg";
 import actionButton from "../../../../public/Button Primary Color.svg";
+import actionButton2 from "../../../../public/Button Primary Color2.svg";
 import homeImg from "../../../../public/home_img.svg";
 import logo from "../../../../public/logo.svg";
 import TopBar from "@/pages/components/Home/TopBar";
@@ -19,7 +20,7 @@ import NavBar from "@/pages/components/NavBar";
 import FlowingIcons from "@/pages/components/utils/FlowingIcons";
 import SectionsHeader from "@/pages/components/SectionsHeader";
 import VideoPlayer from "@/pages/components/utils/VideoPlayer";
-
+import { useTranslation } from 'react-i18next';
 
 function HomeSlider() {
     return <div id={`home-slider`} className={`w-full h-fit px-4 mt-4`}>
@@ -30,10 +31,12 @@ function HomeSlider() {
 
 function HomePage() {
     const router = useRouter();
+    const {t, i18n} = useTranslation("common");
+
     function handleStart() {
         router.push('/start')
     }
-
+    const actionBtn = i18n.language === "en" ? actionButton : actionButton2;
     return <div id={`home-container`} className={`w-full h-full`}>
 
         <div className="hidden lg:block">
@@ -66,18 +69,16 @@ function HomePage() {
 
 
                         <div style={{ fontFamily: "Calibri"}} className={`sm-responsive-font text-white font-bold text-5xl`}>
-                        Get Motivated In Minutes
+                            {t("GetMotivatedInMinutes")}
                         </div>
                         <div style={{fontFamily: "Calibri", lineHeight: "50px"}}  className={`xs-responsive-font text-white mt-4 font-semibold text-4xl`}>
-                            “The earlier you start working on something, the earlier you will see results.”
+                            “{t("TheEarlier")}.”
                         </div>
                         <div className={`text-white font-base text-2xl mt-4`}>
-                            “Every morning you have two choices: continue to sleep with your dreams, or wake up and
-                            chase
-                            them.”
+                            “{t("EveryMorning")}.”
                         </div>
                         <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-80 2xl:w-96 mt-4`}>
-                            <Image src={actionButton} alt={``} width={500} height={500}/>
+                            <Image src={actionBtn} alt={``} width={500} height={500}/>
                         </div>
                     </div>
                 </div>
