@@ -20,6 +20,7 @@ import SocialLoginButton from "@/pages/components/utils/SocialLoginButton";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
 import {useTranslation} from "react-i18next";
+import {log} from "next/dist/server/typescript/utils";
 
 const Signin = () => {
     const {t, i18n} = useTranslation("common");
@@ -45,7 +46,7 @@ const Signin = () => {
                 console.error('Error during social login:', error);
             });
         }
-    }, []);
+    }, [login, router]);
 
 
     if (loading) {

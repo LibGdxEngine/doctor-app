@@ -15,17 +15,6 @@ const Search = () => {
 
     const [results, setResults] = useState([]);
     const {token} = useAuth();
-
-    useEffect(() => {
-        if (!token) {
-            router.push('/signin');
-        }
-        if (router) {
-            setQuery(router.query.token || '');
-            handleSearch();
-        }
-    }, [router, token]);
-
     const handleSearch = async () => {
 
         // Fetch initial data
@@ -47,6 +36,17 @@ const Search = () => {
             console.error('Error searching for questions:', error);
         });
     };
+
+    useEffect(() => {
+        if (!token) {
+            router.push('/signin');
+        }
+        if (router) {
+            setQuery(router.query.token || '');
+            handleSearch();
+        }
+    }, [router, token, handleSearch]);
+
 
     return (
         <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 flex flex-col items-center">
