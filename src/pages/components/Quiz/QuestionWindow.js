@@ -164,14 +164,16 @@ const QuestionWindow = ({
                             });
                         }} className={`mx-2 sm:mx-0`} src={copy} alt={``} width={35} height={35}/> : ""}
                     </div>
-                    {type === "study" ? <CountUpTimer max={10000} onTimeChange={(time_elapsed) => {
-                        setTimeLeft(time_elapsed);
-                    }}></CountUpTimer> : <CountdownTimer initialSeconds={timeLeft} onTimeChange={(time_left) => {
-                        if (time_left === 0) {
-                            setShowResults(true);
-                        }
-                        setTimeLeft(time_left);
-                    }}/>}
+                    <div className={`sm:mt-20`}>
+                        {type === "study" ? <CountUpTimer max={10000} onTimeChange={(time_elapsed) => {
+                            setTimeLeft(time_elapsed);
+                        }}></CountUpTimer> : <CountdownTimer initialSeconds={timeLeft} onTimeChange={(time_left) => {
+                            if (time_left === 0) {
+                                setShowResults(true);
+                            }
+                            setTimeLeft(time_left);
+                        }}/>}
+                    </div>
 
                 </div>
                 {showHint ? <div
@@ -232,7 +234,7 @@ const QuestionWindow = ({
                             className={`w-40 mx-2 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{">"}</button>
 
                     </div>
-                    <div className={`sm:flex text-xs`}>
+                    <div className={`sm:flex-col text-xs`}>
                         <button
                             onClick={() => {
                                 router.push(`/home`)

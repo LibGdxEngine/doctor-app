@@ -11,12 +11,15 @@ import {toast} from "react-toastify";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
 import {useTranslation} from "react-i18next";
+import Image from "next/image";
+import notificationsIcon from "../../public/🦆 icon _bell notification_.svg";
+import userIcon from "../../public/profile.svg";
 
 
 const Start = () => {
     const {t, i18n} = useTranslation("common");
     const router = useRouter();
-    const {token, loading} = useAuth();
+    const {token,user, loading} = useAuth();
 
 
     const [selectedLanguage, setSelectedLanguage] = useState(null);
@@ -26,7 +29,10 @@ const Start = () => {
     const [languages, setLanguages] = useState([]);
     const [specificities, setSpecificities] = useState([]);
     const [levels, setLevels] = useState([]);
-
+    let userProfilePhoto = userIcon;
+    if (user) {
+        userProfilePhoto = user.profile_photo.toString().length <= 50 ? userIcon : user.profile_photo;
+    }
     useEffect(() => {
         const existingState = JSON.parse(localStorage.getItem("state"));
         if(existingState){
@@ -90,11 +96,41 @@ const Start = () => {
     return (
         <div className="w-full h-fit flex flex-col items-start justify-start bg-white">
             <div className="w-full hidden sm:block">
+                <div className={`w-full h-fit flex items-center justify-between px-4 mt-1`}>
+                    <div>
+                        <div style={{cursor: "pointer"}} onClick={() => {
+                            router.push('/profile');
+                        }} id={`profile-icon-container`}
+                             className={`w-full  flex items-center justify-end pe-10`}>
+                            <Image width={35} height={35} src={userProfilePhoto} alt={`profile`} objectFit={`cover`}
+                                   className={`w-10 h-10 rounded-full me-2`}/>
+                            <div className={`flex flex-col`}>
+                                {token ? <>
+                                    <div className={`text-xs text-black`}>
+                                        {t("Hello")}, {user?.first_name}
+                                    </div>
+                                    <div className={`text-sm text-black`}>
+                                        {t("Welcome")}
+                                    </div>
+                                </> : <div>
+                                    <div className={`text-sm text-black`}>
+                                        {t("SignIn")}
+                                    </div>
+
+                                </div>}
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <Image width={20} height={20} src={notificationsIcon} alt={`profile`} objectFit={`cover`}
+                               className={`w-4 h-4 rounded-full m-2`}/>
+                    </div>
+                </div>
                 <SearchBar/>
                 <SectionsHeader/>
             </div>
             <NavBar/>
-            <div className="w-full h-full flex flex-col items-start justify-start pt-20">
+            <div className="w-full h-full flex flex-col items-start justify-start pt-20 sm:pt-1 overflow-x-scroll">
                 <div className="w-full px-20 sm:px-2 flex flex-col items-start">
                     <div className="font-bold text-5xl text-ldarkBlue sm:text-sm">{t("PleaseChoose")}
                     </div>

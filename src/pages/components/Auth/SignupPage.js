@@ -9,9 +9,14 @@ import {useAuth} from "@/context/AuthContext";
 import SplashScreen from "@/pages/components/SplashScreen";
 import {toast} from "react-toastify";
 import {createUser} from "@/components/services/auth";
+import loginBtn from "../../../../public/login_button.svg";
+import loginFace from "../../../../public/login_face.svg";
+import loginApple from "../../../../public/Group 48095648.svg";
+import {useTranslation} from "react-i18next";
 
 function SignupPage() {
     const router = useRouter();
+    const {t, i18n} = useTranslation("common");
     const [firstName, setFirstname] = useState('');
     const [lastName, setLastname] = useState('');
     const [email, setEmail] = useState('');
@@ -72,20 +77,25 @@ function SignupPage() {
             setConfirmPassword={setConfirmPassword}
         />
         <div onClick={handleSignup} className={`w-full px-3 mt-8`}>
-            <ActionButton text={`Signup`}/>
+            <ActionButton text={`${t("SignUp")}`}/>
         </div>
         <div className={`flex items-center justify-center w-full px-12 mt-8 `}>
             <span className="flex-grow h-0.5 bg-lightDark"></span>
-            <div className="mx-4 text-gray-600">or signup with</div>
+            <div className="mx-4 text-gray-600">{t("OrContinue")}</div>
             <span className="flex-grow h-0.5 bg-lightDark"></span>
         </div>
-        <div onClick={handleLogin} className={`w-full flex items-center justify-center mt-4`}>
-            <Image className={`w-full px-12 max-h-12`} src={LoginWithGoogleBtn} alt={``}/>
+        <div className={`w-full flex flex-col items-center justify-center mt-4 px-10`}>
+            <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={400} height={40}/>
+            <Image style={{cursor: "pointer"}} className={`my-4`}
+                   src={loginFace} alt={``} width={400} height={40}/>
+            <Image style={{cursor: "pointer"}} className={`my-0 mb-2`} src={loginApple} alt={``} width={400}
+                   height={40}/>
+
         </div>
         <div onClick={() => {
             router.push('/signin');
         }} className={`w-full h-full text-center mt-4 bg-white mb-20`}>
-            Already have an account ? <span className={`w-full px-2 max-h-12 underline`}>Sign In</span>
+            {t("AlreadyHaveAccount")} ? <span className={`w-full px-2 max-h-12 underline`}>{t("SignIn")}</span>
         </div>
     </div>;
 }

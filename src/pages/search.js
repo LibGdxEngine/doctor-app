@@ -8,8 +8,10 @@ import QuestionCard from "@/pages/components/Questions/QuestionCard";
 import {useRouter} from "next/router";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
+import {useTranslation} from "react-i18next";
 
 const Search = () => {
+    const {t, i18n} = useTranslation("common");
     const router = useRouter();
     const [query, setQuery] = useState('');
 
@@ -45,7 +47,7 @@ const Search = () => {
             setQuery(router.query.token || '');
             handleSearch();
         }
-    }, [router, token, handleSearch]);
+    }, [router, token]);
 
 
     return (
@@ -57,7 +59,7 @@ const Search = () => {
             </div>
 
             <NavBar/>
-            <h1 className="text-4xl font-extrabold text-white my-8 text-center">Search Your Question</h1>
+            <h1 className="text-4xl font-extrabold text-white my-8 text-center">{t("Search")}</h1>
 
             <div className="w-full max-w-xl">
                 {results.map((result) => (

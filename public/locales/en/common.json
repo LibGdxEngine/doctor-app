@@ -80,5 +80,10 @@
   "DoNotHaveAccount": "Do not have any account?",
   "AlreadyHaveAccount": "Already have  account?",
   "Fill": "Fill in the form to create an account and start taking the test",
-  "CreateYourAccount": "Create Your Account"
+  "CreateYourAccount": "Create Your Account",
+  "EnterFirstName":  "Enter your first name",
+  "EnterLastName":  "Enter your last name",
+  "EnterEmail":  "Enter your email",
+  "EnterPassword":  "Enter your password",
+  "OrContinue": "or continue with"
 }

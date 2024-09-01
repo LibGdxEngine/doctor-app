@@ -29,7 +29,7 @@ const CountUpTimer = ({ max, onTimeChange }) => {
     const remainingSeconds = seconds % 60;
 
     return (
-        <div>
+        <div className={`block`}>
             {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
         </div>
     );

@@ -9,21 +9,20 @@ import logo from "../../../../public/logo.svg";
 import TopBar from "@/pages/components/Home/TopBar";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import {useState} from "react";
-import searchIcon from "../../../../public/searchIcon.svg";
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import user from "../../../../public/profile.svg";
-import LanguageDropdown from "@/pages/components/utils/LanguageDropdown";
+import notificationsIcon from "../../../../public/🦆 icon _bell notification_.svg";
+
 import HomeFAQs from "@/pages/components/Home/HomeFAQs";
 import {useRouter} from "next/router";
 import NavBar from "@/pages/components/NavBar";
 import FlowingIcons from "@/pages/components/utils/FlowingIcons";
 import SectionsHeader from "@/pages/components/SectionsHeader";
 import VideoPlayer from "@/pages/components/utils/VideoPlayer";
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
+import userIcon from "../../../../public/profile.svg";
+import {useAuth} from "@/context/AuthContext";
 
-function HomeSlider() {
-    return <div id={`home-slider`} className={`w-full h-fit px-4 mt-4`}>
+function HomeSlider({onClick}) {
+    return <div onClick={onClick} id={`home-slider`} className={`w-full h-fit px-4 mt-4`}>
         <Image src={sliderImage} width={750} height={650} alt={``}/>
     </div>;
 }
@@ -36,13 +35,52 @@ function HomePage() {
     function handleStart() {
         router.push('/start')
     }
+
     const actionBtn = i18n.language === "en" ? actionButton : actionButton2;
+    const {token, user} = useAuth();
+    let userProfilePhoto = userIcon;
+    if (user) {
+        userProfilePhoto = user.profile_photo.toString().length <= 50 ? userIcon : user.profile_photo;
+    }
     return <div id={`home-container`} className={`w-full h-full`}>
 
         <div className="hidden lg:block">
+
+            <div className={`w-full h-fit flex items-center justify-between px-4 mt-1`}>
+                <div>
+                    <div style={{cursor: "pointer"}} onClick={() => {
+                        router.push('/profile');
+                    }} id={`profile-icon-container`}
+                         className={`w-full  flex items-center justify-end pe-10`}>
+                        <Image width={35} height={35} src={userProfilePhoto} alt={`profile`} objectFit={`cover`}
+                               className={`w-10 h-10 rounded-full me-2`}/>
+                        <div className={`flex flex-col`}>
+                            {token ? <>
+                                <div className={`text-xs text-black`}>
+                                    {t("Hello")}, {user?.first_name}
+                                </div>
+                                <div className={`text-sm text-black`}>
+                                    {t("Welcome")}
+                                </div>
+                            </> : <div>
+                                <div className={`text-sm text-black`}>
+                                    {t("SignIn")}
+                                </div>
+
+                            </div>}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <Image width={20} height={20} src={notificationsIcon} alt={`profile`} objectFit={`cover`}
+                           className={`w-4 h-4 rounded-full m-2`}/>
+                </div>
+            </div>
             <SearchBar/>
             <SectionsHeader/>
-            <HomeSlider/>
+            <HomeSlider onClick={() => {
+                router.push("/start")
+            }}/>
             <br/>
             <VideoPlayer/>
             <br/>
@@ -61,17 +99,19 @@ function HomePage() {
                 <div className="h-full  flex flex-col items-center justify-center w-full">
 
                     <div className={`w-full px-28 h-full flex flex-col justify-between pb-28 pt-6`}>
-                        <div style={{ fontWeight: "700", fontFamily: "Calibri"}}
+                        <div style={{fontWeight: "700", fontFamily: "Calibri"}}
                              className={`responsive-font text-white text-opacity-40 font-extrabold`}>
                             KROK PLUS
                             <div className="border-t border-2 border-white border-opacity-25 mb-8"></div>
                         </div>
 
 
-                        <div style={{ fontFamily: "Calibri"}} className={`sm-responsive-font text-white font-bold text-5xl`}>
+                        <div style={{fontFamily: "Calibri"}}
+                             className={`sm-responsive-font text-white font-bold text-5xl`}>
                             {t("GetMotivatedInMinutes")}
                         </div>
-                        <div style={{fontFamily: "Calibri", lineHeight: "50px"}}  className={`xs-responsive-font text-white mt-4 font-semibold text-4xl`}>
+                        <div style={{fontFamily: "Calibri", lineHeight: "50px"}}
+                             className={`xs-responsive-font text-white mt-4 font-semibold text-4xl`}>
                             “{t("TheEarlier")}.”
                         </div>
                         <div className={`text-white font-base text-2xl mt-4`}>

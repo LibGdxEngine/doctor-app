@@ -104,7 +104,7 @@ export default function SignUp() {
                                                 value={firstName}
                                                 onChange={(e) => setFirstname(e.target.value)}
                                                 className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                                placeholder="Enter your first name"
+                                                placeholder={`${t("EnterFirstName")}`}
                                             />
                                         </div>
                                         <div className={`flex flex-col mx-2`}>
@@ -117,7 +117,7 @@ export default function SignUp() {
                                                 value={lastName}
                                                 onChange={(e) => setLastname(e.target.value)}
                                                 className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                                placeholder="Enter your last name"
+                                                placeholder={`${t("EnterLastName")}`}
                                             />
                                         </div>
                                     </div>
@@ -131,7 +131,7 @@ export default function SignUp() {
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                            placeholder="Enter your email"
+                                            placeholder={`${t("EnterEmail")}`}
                                         />
                                     </div>
                                     <div className="flex flex-col">
@@ -144,7 +144,7 @@ export default function SignUp() {
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                            placeholder="Enter your password"
+                                            placeholder={`${t("EnterPassword")}`}
                                         />
                                     </div>
                                     <div className="flex flex-col">
@@ -157,7 +157,7 @@ export default function SignUp() {
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
                                             className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                            placeholder="Enter your password again"
+                                            placeholder={`${t("EnterPassword")}`}
                                         />
                                     </div>
                                     <div className="flex items-center">
