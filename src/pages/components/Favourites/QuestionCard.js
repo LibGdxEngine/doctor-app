@@ -7,8 +7,8 @@ const QuestionCard = ({ number, question, answers, correctAnswer }) => {
     }
     return (
         <div className="w-full px-10 mx-20 bg-white shadow-md rounded-lg p-6">
-            <h1 className="text-2xl font-semibold mb-4">Question {number}</h1>
-            <h2 className="text-xl font-semibold mb-4">{question}</h2>
+            <h1 className="text-2xl font-semibold mb-4 text-black">Question {number}</h1>
+            <h2 className="text-xl font-semibold mb-4 text-black">{question}</h2>
             <ul className="grid grid-cols-1 gap-4">
                 {answers.map((answer, index) => (
                     <li key={index} className="flex items-center">
@@ -19,7 +19,7 @@ const QuestionCard = ({ number, question, answers, correctAnswer }) => {
                             value={answer.answer}
                             className="mr-2"
                         />
-                        <label htmlFor={`answer-${index}`}>{answer.answer}</label>
+                        <label htmlFor={`answer-${index} text-black`}>{answer.answer}</label>
                     </li>
                 ))}
             </ul>

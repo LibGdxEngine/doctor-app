@@ -46,7 +46,7 @@ function HomePage() {
 
         <div className="hidden lg:block">
 
-            <div className={`w-full h-fit flex items-center justify-between px-4 mt-1`}>
+            <div className={`w-full h-full flex items-center justify-between px-4 mt-1`}>
                 <div>
                     <div style={{cursor: "pointer"}} onClick={() => {
                         router.push('/profile');
@@ -86,13 +86,13 @@ function HomePage() {
             <br/>
             <HomeFAQs/>
         </div>
-        <div className="block lg:hidden relative">
+        <div className="w-full h-full block lg:hidden relative">
 
             <NavBar/>
 
             <Image className={`absolute bg-cover`} src={homeBackground} alt={``} width={1500} height={1500}/>
 
-            <div className="h-screen flex items-end justify-center relative">
+            <div className="w-full h-full flex items-end justify-center relative">
                 <div style={{zIndex: "-100"}} className={`w-full min-h-screen absolute z-[-1] mt-20`}>
                     <FlowingIcons/>
                 </div>
@@ -117,13 +117,13 @@ function HomePage() {
                         <div className={`text-white font-base text-2xl mt-4`}>
                             “{t("EveryMorning")}.”
                         </div>
-                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-80 2xl:w-96 mt-4`}>
+                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-80 2xl:w-96 `}>
                             <Image src={actionBtn} alt={``} width={500} height={500}/>
                         </div>
                     </div>
                 </div>
                 <div className={`w-[60%] h-full`}>
-                    <Image className={`h-full w-full `} src={homeImg} alt={``} height={763} width={870}/>
+                    <Image className={`h-full w-full mb-20`} src={homeImg} alt={``} height={763} width={870}/>
                 </div>
             </div>
 

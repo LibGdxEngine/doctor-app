@@ -39,7 +39,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
                 <h2 className="mt-4 text-center text-xl font-semibold">{user.first_name} {user.last_name}</h2>
                 <p className="mt-2 text-center text-gray-600">{user.email}</p>
             </div>
-            <nav style={{cursor: "pointer"}} className="mt-10">
+            <nav style={{cursor: "pointer"}} className="mt-10 sm:grid sm:grid-cols-3">
                 {navItems.map((item) => (
                     <div onClick={() => {
                         onTapClicked(item.href);
@@ -57,7 +57,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
                         window.location.reload();
                     });
                 }}
-                     className={`h-28 flex items-center justify-center border border-gray-50`}>
+                     className={`h-28 flex items-center justify-center border border-gray-50 text-black`}>
                     {t("Logout")}
                 </div>
 

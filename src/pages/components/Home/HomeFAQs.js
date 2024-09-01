@@ -4,8 +4,7 @@ import arrowDown from "../../../../public/arrowdown2.svg";
 import {useTranslation} from "react-i18next";
 
 
-
-function FaqItem({ question, answer }) {
+function FaqItem({question, answer}) {
     const [expanded, setExpanded] = useState(false);
 
     return (
@@ -14,7 +13,7 @@ function FaqItem({ question, answer }) {
                 className="w-full h-12 max-h-screen border-[0.5px] px-2 rounded-8 flex flex-row items-center justify-between cursor-pointer"
                 onClick={() => setExpanded(!expanded)}
             >
-                <div>{question}</div>
+                <div className={`text-black`}>{question}</div>
                 <Image
                     src={arrowDown}
                     alt=""
@@ -24,7 +23,7 @@ function FaqItem({ question, answer }) {
                 />
             </div>
             {expanded && (
-                <div className="w-full px-2 flex items-start mt-4 mb-2">
+                <div className="w-full px-2 flex items-start mt-4 mb-2 text-black">
                     {answer}
                 </div>
             )}
@@ -53,12 +52,12 @@ function HomeFAQs() {
 
     return (
         <div id="faqs" className="mx-28 sm:mx-4 mt-2">
-            <div className="w-full font-bold mb-10 sm:mb-2 text-4xl sm:text-2xl">
+            <div className="w-full font-bold mb-10 sm:mb-2 text-4xl sm:text-2xl text-black">
                 {t("FAQ")}
             </div>
             <div className="w-full h-full grid grid-cols-2 gap-4 lg:grid-cols-1">
                 {faqData.map((faq, index) => (
-                    <FaqItem key={index} question={faq.question} answer={faq.answer} />
+                    <FaqItem key={index} question={faq.question} answer={faq.answer}/>
                 ))}
             </div>
         </div>

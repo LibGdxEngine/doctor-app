@@ -215,7 +215,7 @@ const QuestionWindow = ({
                 </div>
 
                 <div className="w-full flex justify-between items-center mt-6 pe-4">
-                    <div>
+                    <div className={`w-full bg-red-400`}>
                         <button
                             onClick={() => {
                                 if (questionIndex <= 0) {
@@ -237,12 +237,12 @@ const QuestionWindow = ({
                     <div className={`sm:flex-col text-xs`}>
                         <button
                             onClick={() => {
-                                router.push(`/home`)
+                                router.push(`/`)
                             }}
                             className={`w-40 sm:w-full bg-gray-200 text-gray-700 rounded-lg py-2 px-4 mr-2 ${showResults ? "hidden" : ""}`}>{t("ResumeLater")}
                         </button>
                         {showResults ? <button onClick={() => {
-                                router.replace("/home");
+                                router.replace("/");
                             }}
                                                className="w-40 bg-blue-500 text-white rounded-lg py-2 px-4">Go to home
                             </button>

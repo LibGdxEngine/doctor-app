@@ -73,7 +73,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                         onClick={handleImageClick}
                     />
                     <div className="w-full">
-                        <h1 className="text-2xl font-bold">{profileData.first_name} {profileData.last_name}</h1>
+                        <h1 className="text-2xl font-bold text-black">{profileData.first_name} {profileData.last_name}</h1>
                         <p className="text-gray-600">{profileData.email}</p>
                     </div>
                     <input
@@ -235,14 +235,14 @@ const History = React.memo(({examObject: defaultExams}) => {
 
     return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
         <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
-            <h1 className="text-2xl font-bold mb-6">{t("History")}</h1>
+            <h1 className="text-2xl font-bold mb-6 text-black">{t("History")}</h1>
             <div className="space-y-4">
                 {examObject.map((item, index) => (
                     <div key={index} className="bg-gray-50 p-4 rounded-lg shadow">
                         <div className="flex justify-between items-center">
                             <div>
-                                <h1 className="text-xl font-semibold">{level} {language} {specificity} {t("Exam")}</h1>
-                                <h2 className="text-lg ">Type ({item.type} mood)</h2>
+                                <h1 className="text-xl font-semibold text-black">{level} {language} {specificity} {t("Exam")}</h1>
+                                <h2 className="text-lg text-black">Type ({item.type} mood)</h2>
                                 <div className={`flex `}>
                                     <p className="text-gray-500 me-2">{parseFloat((parseInt(item.current_question) / item.questions.length * 100).toFixed(1))}%
                                         Completed</p>
@@ -295,14 +295,14 @@ const Notes = React.memo(() => {
     }, [token]);
     return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
         <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
-            <h1 className="text-2xl font-bold mb-6">{t("Notes")}</h1>
+            <h1 className="text-2xl font-bold mb-6 text-black">{t("Notes")}</h1>
             <div className="space-y-4">
 
                 {notes && notes.map((note, index) => {
                     return <div key={note.id} className="bg-gray-50 p-4 rounded-lg shadow flex flex-col items-end">
                         <div className={`w-full `}>
-                            <div className={`w-full bg-blue-100 rounded-full px-4`}>{`Q- ${note.question.text}`}</div>
-                            <div className={`px-4 mt-2`}>
+                            <div className={`w-full bg-blue-100 rounded-full px-4 text-black`}>{`Q- ${note.question.text}`}</div>
+                            <div className={`px-4 mt-2 text-black`}>
                                 {note.note_text}
                             </div>
                         </div>
@@ -350,7 +350,7 @@ const Favourites = React.memo(({favourites: myFav}) => {
             </div>
             :
             <div className="w-full h-fit mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
-                {favourites.length === 0 ? <h1 className={`text-3xl mt-20`}>{t("NoFavourite")}</h1> : ""}
+                {favourites.length === 0 ? <h1 className={`text-3xl mt-20 text-black`}>{t("NoFavourite")}</h1> : ""}
                 {favourites.map((item, index) => {
                     return <FavCard key={index} title={item.name} numOfQuestions={item.questions.length}
                                     onDeleteClicked={() => {

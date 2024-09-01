@@ -9,7 +9,7 @@ function InputField({title, className = "", value, onChange, inputType = "text"}
                 placeholder={title}
                 value={value}
                 onChange={onChange}
-                className={`w-full mt-2 p-2 rounded-8 border border-lightDark text-black focus:border-dark outline-none`}
+                className={`w-full mt-2 p-2 rounded-8 border border-lightDark text-black focus:border-dark outline-none placeholder-black`}
             />
         </div>
     );

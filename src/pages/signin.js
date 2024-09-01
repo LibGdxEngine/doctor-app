@@ -111,7 +111,7 @@ const Signin = () => {
 
                             <form onSubmit={handleSignIn} className="w-[60%] mt-16 flex flex-col space-y-6">
                                 <div className="flex flex-col">
-                                    <label htmlFor="email" className="mb-2 text-sm font-medium">
+                                    <label htmlFor="email" className="mb-2 text-sm font-medium text-black">
                                         {t("Email")}
                                     </label>
                                     <input
@@ -119,12 +119,12 @@ const Signin = () => {
                                         id="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                        className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 placeholder-black focus:ring-indigo-500 w-full"
                                         placeholder="Enter your email"
                                     />
                                 </div>
                                 <div className="flex flex-col">
-                                    <label htmlFor="password" className="mb-2 text-sm font-medium">
+                                    <label htmlFor="password" className="mb-2 text-sm font-medium text-black">
                                         {t("Password")}
                                     </label>
                                     <input
@@ -132,19 +132,19 @@ const Signin = () => {
                                         id="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                                        className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 placeholder-black focus:ring-indigo-500 w-full"
                                         placeholder="Enter your password"
                                     />
                                 </div>
                                 <div className="flex items-center">
                                     <input type="checkbox" id="terms" className="mr-2"/>
-                                    <label htmlFor="terms" className="text-sm">
+                                    <label htmlFor="terms" className="text-sm text-black">
                                         {t("IAccept")}
                                     </label>
                                 </div>
                                 <button
                                     type={`submit`}
-                                    className="w-full bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    className="w-full bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 placeholder-black focus:ring-indigo-500">
                                     {t("SignIn")}
                                 </button>
                             </form>

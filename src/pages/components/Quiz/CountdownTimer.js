@@ -27,7 +27,7 @@ const CountdownTimer = ({initialSeconds, onTimeChange}) => {
     const remainingSeconds = seconds % 60;
 
     return (
-        <div>
+        <div className={`text-black`}>
             {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
         </div>
     );

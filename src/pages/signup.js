@@ -33,7 +33,7 @@ export default function SignUp() {
         return <SplashScreen/>
     }
     if (token) {
-        router.push('/home');
+        router.push('/');
     }
 
 
@@ -95,7 +95,7 @@ export default function SignUp() {
                                 <form onSubmit={handleSignup} className="w-[60%] flex flex-col space-y-2 mt-4">
                                     <div className="flex">
                                         <div className={`flex flex-col`}>
-                                            <label htmlFor="email" className="mb-2 text-sm font-medium">
+                                            <label htmlFor="email" className="mb-2 text-sm font-medium text-black">
                                                 {t("FirstName")}
                                             </label>
                                             <input
@@ -108,7 +108,7 @@ export default function SignUp() {
                                             />
                                         </div>
                                         <div className={`flex flex-col mx-2`}>
-                                            <label htmlFor="second_name" className="mb-2 text-sm font-medium">
+                                            <label htmlFor="second_name" className="mb-2 text-sm font-medium text-black">
                                                 {t("LastName")}
                                             </label>
                                             <input
@@ -122,7 +122,7 @@ export default function SignUp() {
                                         </div>
                                     </div>
                                     <div className="flex flex-col">
-                                        <label htmlFor="email" className="mb-2 text-sm font-medium">
+                                        <label htmlFor="email" className="mb-2 text-sm font-medium text-black">
                                             {t("Email")}
                                         </label>
                                         <input
@@ -135,7 +135,7 @@ export default function SignUp() {
                                         />
                                     </div>
                                     <div className="flex flex-col">
-                                        <label htmlFor="password" className="mb-2 text-sm font-medium">
+                                        <label htmlFor="password" className="mb-2 text-sm font-medium text-black">
                                             {t("Password")}
                                         </label>
                                         <input
@@ -148,7 +148,7 @@ export default function SignUp() {
                                         />
                                     </div>
                                     <div className="flex flex-col">
-                                        <label htmlFor="password2" className="mb-2 text-sm font-medium">
+                                        <label htmlFor="password2" className="mb-2 text-sm font-medium text-black">
                                             Re-{t("Password")}
                                         </label>
                                         <input
@@ -164,7 +164,7 @@ export default function SignUp() {
                                         <input value={isChecked} onChange={(e) => {
                                             setIsChecked(e.target.checked)
                                         }} type="checkbox" id="terms" className="mr-2"/>
-                                        <label htmlFor="terms" className="text-sm">
+                                        <label htmlFor="terms" className="text-sm text-black">
                                             {t("IAccept")}
                                         </label>
                                     </div>

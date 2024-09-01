@@ -20,7 +20,7 @@ function CheckButton({text, onClick = null, isSelected = false}) {
         <Image className={`me-1 sm:hidden`} src={state} width={20} height={20} alt={``}/>
         <Image className={`me-1 hidden sm:block`} src={state} width={16} height={16} alt={``}/>
 
-        <div className={`w-full text-center text-lg sm:text-xs`}>
+        <div className={`w-full text-center text-lg sm:text-xs text-black`}>
             {text}
         </div>
     </div>;

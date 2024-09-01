@@ -4,7 +4,7 @@ const FavCard = ({ title , numOfQuestions, onDeleteClicked=null, onShowQuestions
     return (
         <div className="h-40 bg-white border-2 border-dashed p-4 rounded-lg flex flex-col justify-between w-full max-w-sm">
             <div>
-                <h3 className="font-semibold text-lg">{title}</h3>
+                <h3 className="font-semibold text-lg text-black">{title}</h3>
                 <p className="text-gray-500">{numOfQuestions} {numOfQuestions === 1 ? "question" : "questions"}</p>
             </div>
             <div className="flex w-full justify-between mt-4">
