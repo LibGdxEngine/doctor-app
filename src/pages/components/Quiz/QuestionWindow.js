@@ -108,7 +108,7 @@ const QuestionWindow = ({
     };
     let actionBtnText = t("Check");
     if (numbers) {
-        actionBtnText = parseInt(questionIndex) === numbers.length - 1 ?  t("Submit") : t("Check");
+        actionBtnText = parseInt(questionIndex) === numbers.length - 1 ? t("Submit") : t("Check");
     }
 
     if (!questions) {
@@ -128,7 +128,9 @@ const QuestionWindow = ({
 
             </ReportsModal>
             <div className="w-full max-w-5xl bg-white p-6">
-                <div style={{cursor: "pointer"}} className="text-green-500 text-2xl hover:underline">
+                <div onClick={() => {
+                    router.push("/start")
+                }} style={{cursor: "pointer"}} className="text-green-500 text-2xl hover:underline">
                     {t("BackToGenerateQuizPage")}
                 </div>
                 <div className="w-full mt-4 flex justify-between items-center pe-4">
@@ -215,7 +217,7 @@ const QuestionWindow = ({
                 </div>
 
                 <div className="w-full flex justify-between items-center mt-6 pe-4">
-                    <div className={`w-full bg-red-400`}>
+                    <div className={`w-full`}>
                         <button
                             onClick={() => {
                                 if (questionIndex <= 0) {
@@ -231,10 +233,10 @@ const QuestionWindow = ({
                                 }
                                 router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) + 1}`);
                             }}
-                            className={`w-40 mx-2 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{">"}</button>
+                            className={`w-40 mx-2 sm:mx-0 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{">"}</button>
 
                     </div>
-                    <div className={`sm:flex-col text-xs`}>
+                    <div className={`flex sm:flex-col text-xs`}>
                         <button
                             onClick={() => {
                                 router.push(`/`)

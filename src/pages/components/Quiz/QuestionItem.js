@@ -16,7 +16,7 @@ const QuestionItem = ({question, index, isSelected, onAnswer}) => {
             className="w-full flex items-start rounded-2xl border border-white px-2 py-2 my-1"
         >
             <Image className="mx-2" src={isSelected ? checked : unchecked} alt="" width={25} height={25}/>
-            <div className="font-bold">{question}</div>
+            <div className="font-bold text-black">{question}</div>
         </div>
     );
 };

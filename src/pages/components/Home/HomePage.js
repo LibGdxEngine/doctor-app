@@ -117,13 +117,13 @@ function HomePage() {
                         <div className={`text-white font-base text-2xl mt-4`}>
                             “{t("EveryMorning")}.”
                         </div>
-                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-80 2xl:w-96 `}>
+                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-80 2xl:w-96 mt-4`}>
                             <Image src={actionBtn} alt={``} width={500} height={500}/>
                         </div>
                     </div>
                 </div>
                 <div className={`w-[60%] h-full`}>
-                    <Image className={`h-full w-full mb-20`} src={homeImg} alt={``} height={763} width={870}/>
+                    <Image className={`h-full w-full xl:mb-32`} src={homeImg} alt={``} height={763} width={870}/>
                 </div>
             </div>
 

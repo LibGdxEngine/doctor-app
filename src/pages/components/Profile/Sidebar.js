@@ -7,6 +7,7 @@ import {useAuth} from "@/context/AuthContext";
 import React from "react";
 import profilePlaceHolder from "../../../../public/profile.svg";
 import {useTranslation} from "react-i18next";
+
 const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
     const {t, i18n} = useTranslation("common");
     const router = useRouter();
@@ -23,7 +24,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
         userProfilePhoto = user.profile_photo.toString().length <= 50 ? profilePlaceHolder : user.profile_photo;
     }
 
-    if(!user) return <>
+    if (!user) return <>
         Loading...
     </>;
     return (
@@ -36,7 +37,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
                     height={150}
                     alt="Profile Picture"
                 />
-                <h2 className="mt-4 text-center text-xl font-semibold">{user.first_name} {user.last_name}</h2>
+                <h2 className="mt-4 text-center text-xl font-semibold text-black">{user.first_name} {user.last_name}</h2>
                 <p className="mt-2 text-center text-gray-600">{user.email}</p>
             </div>
             <nav style={{cursor: "pointer"}} className="mt-10 sm:grid sm:grid-cols-3">
@@ -57,7 +58,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
                         window.location.reload();
                     });
                 }}
-                     className={`h-28 flex items-center justify-center border border-gray-50 text-black`}>
+                     className={`h-28 flex items-center justify-center border border-gray-50 text-red-500`}>
                     {t("Logout")}
                 </div>
 

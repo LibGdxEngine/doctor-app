@@ -4,6 +4,7 @@ import app2 from "../../../public/Group 20.svg";
 import follow from "../../../public/follow.svg";
 import BGsvg from "../../../public/BG-svg (1).svg";
 import {useTranslation} from "react-i18next";
+import LanguageDropdown from "@/pages/components/utils/LanguageDropdown";
 
 function Footer() {
     const {t, i18n} = useTranslation("common");
@@ -13,6 +14,9 @@ function Footer() {
             <div className={`w-fit flex sm:flex-col items-center justify-center mx-2`}>
                 <Image className={`mx-10 sm:my-2`} src={app1} alt={``} width={150} height={150}/>
                 <Image src={app2} alt={``} width={130} height={130}/>
+            </div>
+            <div className={`w-fit bg-white rounded-xl items-end justify-end mx-10 hidden sm:flex mt-2`}>
+                <LanguageDropdown/>
             </div>
             <div className={`w-full flex sm:my-2 items-center justify-end`}>
 
@@ -28,7 +32,7 @@ function Footer() {
 
         </div>
         <div className={`w-full h-10 bg-darkBlue text-center text-white text-xs flex items-center justify-center`}>
-            {t("AllRights")} - KROK PLUS
+        {t("AllRights")} - KROK PLUS
         </div>
     </>;
 }

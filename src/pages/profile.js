@@ -94,7 +94,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                                 setProfileData({...profileData, first_name: e.target.value});
                             }}
                             placeholder="First Name"
-                            className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                            className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
                         />
                     </div>
                     <div className="w-full mt-6 ms-2">
@@ -106,7 +106,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                                 setProfileData({...profileData, last_name: e.target.value});
                             }}
                             placeholder="Last Name"
-                            className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                            className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
                         />
                     </div>
                 </div>
@@ -116,7 +116,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                         <select
                             value={profileData.university} // Use profileData here
                             onChange={(e) => setProfileData({...profileData, university: e.target.value})}
-                            className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                            className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
                         >
                             {universities.map((university) => (
                                 <option key={university.id} value={university.name}>
@@ -134,7 +134,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                                 setProfileData({...profileData, phone_number: e.target.value});
                             }}
                             placeholder="Phone Number"
-                            className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                            className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
                         />
                     </div>
                 </div>
@@ -146,7 +146,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                         onChange={(e) => {
                             setProfileData({...profileData, email: e.target.value});
                         }}
-                        className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 placeholder-black focus:ring-indigo-500 sm:text-sm"
                         placeholder="Email"
                     />
                 </div>
@@ -158,7 +158,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
                         onChange={(e) => {
                             setProfileData({...profileData, password: e.target.value});
                         }}
-                        className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 placeholder-black focus:ring-indigo-500 sm:text-sm"
                     />
                 </div>
 
