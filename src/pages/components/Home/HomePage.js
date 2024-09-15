@@ -72,8 +72,8 @@ function HomePage() {
                     </div>
                 </div>
                 <div>
-                    <Image width={20} height={20} src={notificationsIcon} alt={`profile`} objectFit={`cover`}
-                           className={`w-4 h-4 rounded-full m-2`}/>
+                    {/* <Image width={20} height={20} src={notificationsIcon} alt={`profile`} objectFit={`cover`}
+                           className={`w-4 h-4 rounded-full m-2`}/> */}
                 </div>
             </div>
             <SearchBar/>
@@ -86,6 +86,7 @@ function HomePage() {
             <br/>
             <HomeFAQs/>
         </div>
+ 
         <div className="w-full h-full block lg:hidden relative">
 
             <NavBar/>

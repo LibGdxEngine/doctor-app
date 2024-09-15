@@ -201,7 +201,7 @@ const QuestionWindow = ({
 
                             <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4">
 
-                                <p className="text-lg font-bold">
+                                <p className="text-lg font-bold text-black">
                                     {showHint ? highlightedText : questions.text}
                                 </p>
                                 <div className="w-full mt-4">

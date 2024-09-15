@@ -53,12 +53,7 @@ const QuestionsFilter = ({onChange = null}) => {
                         <span className="ml-2 text-blue-900">{t(text.replace(/ /g, ''))}</span>
                     </li>
                 ))}
-                <li className="mt-4">
-                    <label className="flex items-center text-gray-400">
-                        <input type="checkbox" className="form-checkbox text-gray-400" disabled/>
-                        <span className="ml-2">Generate questions you have wrongly answered</span>
-                    </label>
-                </li>
+               
             </ul>
         </div>
     );

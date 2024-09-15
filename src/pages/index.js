@@ -12,7 +12,7 @@ const Home = () => {
             <HomePage/>
             <br/>
             <br/>
-            <div className={`sm:hidden`}>
+            <div className={`lg:hidden`}>
 
                 <br/>
                 <br/>
@@ -22,7 +22,7 @@ const Home = () => {
                 <br/>
                 <br/>
             </div>
-            <div className={`w-full h-full block sm:hidden`}>
+            <div className={`w-full h-full block lg:hidden`}>
                 <VideoPlayer/>
             </div>
             <br/>

@@ -44,13 +44,13 @@ const System = () => {
         router.push("/filter");
     }
 
-    return <div className={`w-full h-fit flex flex-col items-start justify-start bg-white`}>
+    return <div className={`w-full h-screen flex flex-col items-start justify-start bg-white`}>
         <div className={`w-full hidden md:block`}>
             <SearchBar/>
             <SectionsHeader/>
         </div>
         <NavBar/>
-        <div className={`w-full flex flex-col items-start px-8`}>
+        <div className={`w-full h-full flex flex-col items-start px-8`}>
             <div className={`w-full h-full flex flex-col items-start justify-start  pt-20`}>
                 <StepBar stepNumber={3} onStepClicked={(step) => {
                     router.push(`/${step}`)

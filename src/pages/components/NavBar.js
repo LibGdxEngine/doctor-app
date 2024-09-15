@@ -35,20 +35,20 @@ const NavBar = () => {
             <Image style={{cursor: "pointer"}} onClick={() => {
                 router.push('/');
             }} src={logo} alt={``} width={50} height={50}/>
-
-            <div className="w-full flex flex-row items-center justify-between mx-4">
+       
+            <div className="w-full flex flex-row items-center justify-center  ">
                 <div
                     style={{cursor: "pointer"}}
                     onClick={() => {
                         router.replace("/");
                     }}
-                    className={`text-base ms-10 group relative ${isActive('/') ? 'text-gray-300' : 'text-white'}`}
+                    className={`text-base ms-10 mx-16 lg:mx-5 group relative ${isActive('/') ? 'text-gray-300' : 'text-white'}`}
                 >
                     {t("Home")}
                     <div
                         className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/') ? 'scale-x-100' : ''}`}></div>
                 </div>
-                <div
+                {/* <div
                     style={{cursor: "pointer"}}
                     onClick={() => {
                         router.replace("/material");
@@ -58,7 +58,7 @@ const NavBar = () => {
                     {t("Material")}
                     <div
                         className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/material') ? 'scale-x-100' : ''}`}></div>
-                </div>
+                </div> */}
                 <div
                     style={{cursor: "pointer"}}
                     onClick={() => {
@@ -102,18 +102,18 @@ const NavBar = () => {
             <div style={{cursor: "pointer"}} onClick={() => {
                 router.push('/profile');
             }} id={`profile-icon-container`}
-                 className={`w-full  flex items-center justify-end pe-10`}>
+                 className={`w-full lg:mx-2 flex items-center justify-end pe-10`}>
                 <Image width={35} height={35} src={userProfilePhoto} alt={`profile`} objectFit={`cover`}
-                       className={`w-10 h-10 rounded-full me-2`}/>
+                       className={`w-10 lg:w-32 h-10 rounded-full me-2`}/>
                 <div className={`flex flex-col`}>
-                    {token ? <>
+                    {token ? <div className="lg:w-32">
                         <div className={`text-xs text-black`}>
                             {t("Hello")}, {user?.first_name}
                         </div>
                         <div className={`text-sm text-black`}>
                             {t("Welcome")}
                         </div>
-                    </> : <div>
+                    </div> : <div>
                         <div className={`text-sm text-black`}>
                             {t("SignIn")}
                         </div>

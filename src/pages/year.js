@@ -45,19 +45,19 @@ const Year = () => {
         router.push("/filter");
     }
 
-    return <div className={`w-full h-fit flex flex-col items-start justify-start bg-white`}>
-        <div className={`w-full hidden md:block`}>
+    return <div className={`w-full h-screen flex flex-col items-start justify-between bg-white`}>
+        <div className={`w-full h-full hidden md:block`}>
             <SearchBar/>
             <SectionsHeader/>
         </div>
         <NavBar/>
 
-        <div className={`w-full flex flex-col items-start px-8`}>
-            <div className={`w-full h-full flex flex-col items-start justify-start pt-20`}>
+        <div className={`w-full h-full flex flex-col items-start px-8 my-10`}>
+            <div className={`w-full  h-fit flex flex-col items-start justify-start pt-20`}>
                 <StepBar stepNumber={1} onStepClicked={(step) => {
                     router.push(`/${step}`)
                 }}/>
-                <div className={`w-full grid grid-cols-6 sm:grid-cols-3 mt-10`}>
+                <div className={`w-full h-fit grid grid-cols-6 sm:grid-cols-3 mt-10`}>
                     {years.map((year, index) => {
                         return <div key={index}>
                             <CheckButton text={year.year} key={index}
@@ -73,7 +73,7 @@ const Year = () => {
                         </div>
                     })}
                 </div>
-                <div className={`flex flex-row w-2/3`}>
+                <div className={`h-fit  flex flex-row w-2/3`}>
                     <div style={{cursor: "pointer"}} onClick={() => {
                         router.replace("/start")
                     }} id={`next-btn`} className={`w-1/3 sm:w-full mt-10`}>
@@ -86,11 +86,7 @@ const Year = () => {
                 </div>
             </div>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+   
         <Footer/>
     </div>
 };

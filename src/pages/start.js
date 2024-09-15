@@ -94,17 +94,17 @@ const Start = () => {
     }
 
     return (
-        <div className="w-full h-fit flex flex-col items-start justify-start bg-white">
-            <div className="w-full hidden sm:block">
-                <div className={`w-full h-fit flex items-center justify-between px-4 mt-1`}>
+        <div className="w-full h-screen flex flex-col items-start justify-start bg-white">
+            <div className="w-full h-full hidden sm:block ">
+                <div className={`w-full  h-full flex items-center justify-between px-4 mt-1`}>
                     <div>
                         <div style={{cursor: "pointer"}} onClick={() => {
                             router.push('/profile');
                         }} id={`profile-icon-container`}
-                             className={`w-full  flex items-center justify-end pe-10`}>
+                             className={`w-full h-full flex items-center justify-end pe-10`}>
                             <Image width={35} height={35} src={userProfilePhoto} alt={`profile`} objectFit={`cover`}
                                    className={`w-10 h-10 rounded-full me-2`}/>
-                            <div className={`flex flex-col`}>
+                            <div className={`flex h-full flex-col`}>
                                 {token ? <>
                                     <div className={`text-xs text-black`}>
                                         {t("Hello")}, {user?.first_name}
@@ -130,16 +130,16 @@ const Start = () => {
                 <SectionsHeader/>
             </div>
             <NavBar/>
-            <div className="w-full h-full flex flex-col items-start justify-start pt-20 sm:pt-1 overflow-x-scroll">
-                <div className="w-full px-20 sm:px-2 flex flex-col items-start">
-                    <div className="font-bold text-5xl text-ldarkBlue sm:text-sm">{t("PleaseChoose")}
+            <div className="w-fit h-full flex flex-col items-start justify-start pt-20 sm:pt-1 sm:overflow-x-scroll">
+                <div className="w-fit h-fit px-20 sm:px-2 flex flex-col items-start">
+                    <div className="w-fit h-fit font-bold text-5xl text-ldarkBlue sm:text-sm">{t("PleaseChoose")}
                     </div>
                     <div id="lang"
                          className="sm:w-full flex sm:flex-col sm:items-start items-center justify-center my-10">
                         <div className="w-32 sm:mx-4 font-semibold text-2xl text-ldarkBlue">
                             {t("Language")}
                         </div>
-                        <div className="sm:w-full flex mx-4 sm:mx-0">
+                        <div className="sm:w-full grid grid-cols-3 lg:grid-cols-2 mx-4 sm:mx-0">
                             {languages.map((language, index) => {
                                 return <div key={index}>
                                     <CheckButton
@@ -164,7 +164,7 @@ const Start = () => {
                         <div className="w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue">
                             {t("Specialty")}
                         </div>
-                        <div className="sm:w-full flex mx-4 sm:mx-0">
+                        <div className="sm:w-full grid grid-cols-4 lg:grid-cols-2 mx-4 sm:mx-0">
                             {specificities.map((specific, index) => (
                                 <CheckButton
                                     key={index}
@@ -180,7 +180,7 @@ const Start = () => {
                         <div className="w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue">
                             {t("Level")}
                         </div>
-                        <div className="sm:w-full flex mx-4 sm:mx-0">
+                        <div className="sm:w-full grid grid-cols-4 lg:grid-cols-2 mx-4 sm:mx-0">
                             {levels.map((level, index) => (
                                 <CheckButton
                                     key={index}
@@ -191,12 +191,13 @@ const Start = () => {
                             ))}
                         </div>
                     </div>
-                    <div onClick={handleNext} id="next-btn" className="w-2/3 sm:w-full mt-10">
+                    <div onClick={handleNext} id="next-btn" className="w-2/3 sm:w-full my-10">
                         <ActionButton text={`${t("Next")}`}/>
                     </div>
+                        
                 </div>
             </div>
-            <br/><br/><br/><br/><br/>
+
             <Footer/>
         </div>
     );
