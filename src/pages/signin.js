@@ -14,13 +14,8 @@ import SplashScreen from "@/pages/components/SplashScreen";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import NavBar from "@/pages/components/NavBar";
-import loginBtn from "../../public/login_button.svg";
-import loginFace from "../../public/login_face.svg";
 import SocialLoginButton from "@/pages/components/utils/SocialLoginButton";
-import SearchBar from "@/pages/components/Home/SearchBar";
-import SectionsHeader from "@/pages/components/SectionsHeader";
 import {useTranslation} from "react-i18next";
-import {log} from "next/dist/server/typescript/utils";
 
 const Signin = () => {
     const {t, i18n} = useTranslation("common");
@@ -53,7 +48,7 @@ const Signin = () => {
         return <SplashScreen/>
     }
     if (token) {
-        router.push('/home');
+        router.push('/');
     }
 
     const handleSignIn = async (e) => {
