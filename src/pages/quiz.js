@@ -31,57 +31,71 @@ const Quiz = () => {
 
     }, [token, id]);
 
-    return <div className={`w-full flex flex-col items-start justify-center bg-white`}>
-        <div className={`w-full hidden md:block`}>
-            <SearchBar/>
-            <SectionsHeader/>
+    return (
+      <div
+        className={`w-full h-screen flex flex-col items-start justify-center bg-white`}
+      >
+        <div className={`w-full h-full hidden md:block`}>
+          <SearchBar />
+          <SectionsHeader />
         </div>
-        <NavBar/>
+        <NavBar />
 
-        <div className={`w-full h-full items-center justify-center`}>
-
-            {examObject &&
-                <QuestionWindow
-                    examJourneyId={id}
-                    questions={examObject.questions[q]}
-                    numbers={Array.from({length}, (v, i) => i + 1)}
-                    questionIndex={q}
-                    type={examObject.type}
-                    progress={examObject.progress}
-                    timeLeft={examObject.time_left}
-                    onCheck={(selectedAnswerAsText, selectedAnswerIndex, time_left) => {
-                        updateExamJourney(token, id, {
-                            time_left,
-                            progress: {
-                                ...examObject.progress, [q.toString()]: {
-                                    question_text: examObject.questions[q].text,
-                                    answer: selectedAnswerIndex,
-                                    is_correct: examObject.questions[q].correct_answer.answer.trim() === selectedAnswerAsText.trim()
-                                }
-                            },
-                            current_question: parseInt(q) + 1
-                        }).then((response) => {
-                            examObject.progress = {
-                                ...examObject.progress,
-                                [q.toString()]: {
-                                    question_text: examObject.questions[q].text,
-                                    answer: selectedAnswerIndex,
-                                    is_correct: examObject.questions[q].correct_answer.answer.trim() === selectedAnswerAsText.trim()
-                                }
-                            };
-                            if (q < length - 1) {
-                                router.push(`/quiz?id=${id}&q=${parseInt(q) + 1}`);
-                            }
-                        }).catch((error) => {
-                            console.error('Error updating exam:', error);
-                        });
-
-                    }}
-                />}
+        <div className={`w-full h-full  items-start justify-center`}>
+          {examObject && (
+            <QuestionWindow
+              examJourneyId={id}
+              questions={examObject.questions[q]}
+              numbers={Array.from({ length }, (v, i) => i + 1)}
+              questionIndex={q}
+              type={examObject.type}
+              progress={examObject.progress}
+              timeLeft={examObject.time_left}
+              onCheck={(
+                selectedAnswerAsText,
+                selectedAnswerIndex,
+                time_left
+              ) => {
+                updateExamJourney(token, id, {
+                  time_left,
+                  progress: {
+                    ...examObject.progress,
+                    [q.toString()]: {
+                      question_text: examObject.questions[q].text,
+                      answer: selectedAnswerIndex,
+                      is_correct:
+                        examObject.questions[q].correct_answer.answer.trim() ===
+                        selectedAnswerAsText.trim(),
+                    },
+                  },
+                  current_question: parseInt(q) + 1,
+                })
+                  .then((response) => {
+                    examObject.progress = {
+                      ...examObject.progress,
+                      [q.toString()]: {
+                        question_text: examObject.questions[q].text,
+                        answer: selectedAnswerIndex,
+                        is_correct:
+                          examObject.questions[
+                            q
+                          ].correct_answer.answer.trim() ===
+                          selectedAnswerAsText.trim(),
+                      },
+                    };
+                    if (q < length - 1) {
+                      router.push(`/quiz?id=${id}&q=${parseInt(q) + 1}`);
+                    }
+                  })
+                  .catch((error) => {
+                    console.error("Error updating exam:", error);
+                  });
+              }}
+            />
+          )}
         </div>
-
-        <br/>
-        <Footer/>
-    </div>
+        <Footer />
+      </div>
+    );
 }
 export default Quiz;

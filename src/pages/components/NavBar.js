@@ -29,101 +29,140 @@ const NavBar = () => {
         userProfilePhoto = user.profile_photo.toString().length <= 50 ? userIcon : user.profile_photo;
     }
 
-    return <div className={`w-full h-20 z-100`}>
-        <div id={`navbar`}
-             className={`w-full fixed h-20 flex md:hidden items-center justify-between navbar ps-20 py-2 z-40`}>
-            <Image style={{cursor: "pointer"}} onClick={() => {
-                router.push('/');
-            }} src={logo} alt={``} width={50} height={50}/>
-       
-            <div className="w-full flex flex-row items-center justify-center  ">
-                <div
-                    style={{cursor: "pointer"}}
-                    onClick={() => {
-                        router.replace("/");
-                    }}
-                    className={`text-base ms-10 mx-16 lg:mx-5 group relative ${isActive('/') ? 'text-gray-300' : 'text-white'}`}
-                >
-                    {t("Home")}
-                    <div
-                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/') ? 'scale-x-100' : ''}`}></div>
-                </div>
-                {/* <div
-                    style={{cursor: "pointer"}}
-                    onClick={() => {
-                        router.replace("/material");
-                    }}
-                    className={`text-base ms-1 group relative ${isActive('/material') ? 'text-gray-300' : 'text-white'}`}
-                >
-                    {t("Material")}
-                    <div
-                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/material') ? 'scale-x-100' : ''}`}></div>
-                </div> */}
-                <div
-                    style={{cursor: "pointer"}}
-                    onClick={() => {
-                        router.push('/start');
-                    }}
-                    className={`text-base ms-1 line-clamp-1 group relative ${isActive('/start') ? 'text-gray-300' : 'text-white'}`}
-                >
-                    {t("GenerateQuiz")}
-                    <div
-                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${isActive('/start') ? 'scale-x-100' : ''}`}></div>
-                </div>
+    return (
+      <div className={`w-full h-20 z-100`}>
+        <div
+          id={`navbar`}
+          className={`w-full fixed h-20 flex md:hidden items-center justify-between navbar ps-10 lg:ps-2 py-2 z-40`}
+        >
+          <Image
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              router.push("/");
+            }}
+            src={logo}
+            alt={``}
+            width={50}
+            height={50}
+          />
+
+          <div className="w-full flex flex-row items-center justify-between px-20 xl:px-4  ">
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                router.replace("/");
+              }}
+              className={`text-base  lg:text-xs lg group relative ${
+                isActive("/") ? "text-gray-300" : "text-white"
+              }`}
+            >
+              {t("Home")}
+              <div
+                className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
+                  isActive("/") ? "scale-x-100" : ""
+                }`}
+              ></div>
             </div>
-
-            <form onSubmit={handleSubmit} className="w-full h-[49px] relative px-5 mt-2">
-                <div id="search-bar" className="w-full h-full relative">
-                    <input
-                        type="text"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        className="w-full h-full bg-white py-2 focus:border-lightDark outline-none rounded-full px-2 ps-12"
-                        placeholder={`${t("Search")} ....`}
-                    />
-                    <FontAwesomeIcon
-                        className="absolute p-1 left-8 top-[28%] -translate-x-[50%]"
-                        icon={faSearch}
-                        style={{color: '#0073D1'}}
-                    />
-                </div>
-                {inputValue && (
-                    <button type="submit"
-                            className="absolute right-7 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white py-2 px-4 rounded-full">
-                        Search
-                    </button>
-                )}
-            </form>
-
-            <div className={`w-fit flex items-end justify-end mx-10 z-100`}>
-                <LanguageDropdown/>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                router.replace("/shop");
+              }}
+              className={`text-base lg:text-xs group relative ${
+                isActive("/shop") ? "text-gray-300" : "text-white"
+              }`}
+            >
+              shop
+              <div
+                className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
+                  isActive("/material") ? "scale-x-100" : ""
+                }`}
+              ></div>
             </div>
-
-            <div style={{cursor: "pointer"}} onClick={() => {
-                router.push('/profile');
-            }} id={`profile-icon-container`}
-                 className={`w-full lg:mx-2 flex items-center justify-end pe-10`}>
-                <Image width={35} height={35} src={userProfilePhoto} alt={`profile`} objectFit={`cover`}
-                       className={`w-10 lg:w-32 h-10 rounded-full me-2`}/>
-                <div className={`flex flex-col`}>
-                    {token ? <div className="lg:w-32">
-                        <div className={`text-xs text-black`}>
-                            {t("Hello")}, {user?.first_name}
-                        </div>
-                        <div className={`text-sm text-black`}>
-                            {t("Welcome")}
-                        </div>
-                    </div> : <div>
-                        <div className={`text-sm text-black`}>
-                            {t("SignIn")}
-                        </div>
-
-                    </div>}
-                </div>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                router.push("/start");
+              }}
+              className={`text-base lg:text-xs  line-clamp-1 group relative ${
+                isActive("/start") ? "text-gray-300" : "text-white"
+              }`}
+            >
+              {t("GenerateQuiz")}
+              <div
+                className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
+                  isActive("/start") ? "scale-x-100" : ""
+                }`}
+              ></div>
             </div>
+          </div>
 
+          <form
+            onSubmit={handleSubmit}
+            className="w-full h-[49px] relative px-5 mt-2"
+          >
+            <div id="search-bar" className="w-full h-full relative">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                className="w-full h-full bg-white py-2 focus:border-lightDark outline-none rounded-full lg:text-xs px-2 ps-12"
+                placeholder={`${t("Search")} ....`}
+              />
+              <FontAwesomeIcon
+                className="absolute p-1 left-8 top-[28%] -translate-x-[50%]"
+                icon={faSearch}
+                style={{ color: "#0073D1" }}
+              />
+            </div>
+            {inputValue && (
+              <button
+                type="submit"
+                className="absolute right-7 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white py-2 px-4 rounded-full"
+              >
+                Search
+              </button>
+            )}
+          </form>
+
+          <div className={`w-fit flex items-end justify-end mx-10 z-100`}>
+            <LanguageDropdown />
+          </div>
+
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              router.push("/profile");
+            }}
+            id={`profile-icon-container`}
+            className={`w-full lg:mx-2 flex items-center justify-end pe-10`}
+          >
+            <Image
+              width={35}
+              height={35}
+              src={userProfilePhoto}
+              alt={`profile`}
+              objectFit={`cover`}
+              className={`w-10 lg:w-32 h-10 rounded-full me-2`}
+            />
+            <div className={`flex flex-col`}>
+              {token ? (
+                <div className="lg:w-32">
+                  <div className={`text-xs text-black`}>
+                    {t("Hello")}, {user?.first_name}
+                  </div>
+                  <div className={`text-sm text-black`}>{t("Welcome")}</div>
+                </div>
+              ) : (
+                <div>
+                  <div className={`text-sm text-black`}>{t("SignIn")}</div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+    );
 }
 
 export default NavBar;

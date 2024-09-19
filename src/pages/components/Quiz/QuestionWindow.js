@@ -89,7 +89,10 @@ const QuestionWindow = ({
 
     const handleAnswerClicked = () => {
         if (selectedAnswer === null) {
-            toast.error(t("PleaseSelectAtLeastOne"));
+            if(toast.isActive){
+                toast.dismiss();
+                toast.error(t("PleaseSelectAtLeastOne"));
+            }
             return;
         }
         setProgress(prevProgress => ({
@@ -117,145 +120,290 @@ const QuestionWindow = ({
         </div>
     }
     return (
-        <div className="w-full h-full min-h-screen bg-white p-4 flex flex-col items-center">
-            <FavoritesModal isOpen={isModalOpen} onClose={closeModal} question={questions}>
-
-            </FavoritesModal>
-            <NotesModal isOpen={isNotesModalOpen} onClose={closeNotesModal} question={questions.id}>
-
-            </NotesModal>
-            <ReportsModal isOpen={isReportsModalOpen} onClose={closeReportsModal} question={questions.id}>
-
-            </ReportsModal>
-            <div className="w-full max-w-5xl bg-white p-6">
-                <div onClick={() => {
-                    router.push("/start")
-                }} style={{cursor: "pointer"}} className="text-green-500 text-2xl hover:underline">
-                    {t("BackToGenerateQuizPage")}
-                </div>
-                <div className="w-full mt-4 flex justify-between items-center pe-4">
-                    <div className="text-navyBlue text-3xl font-semibold">{t("Quiz")}: <span
-                        className="text-2xl text-gray-500">{type === "study" ? t("StudyMood") : t("ExamMood")}</span>
-                    </div>
-                    <div className={`w-full flex items-center justify-center`}>
-                        <Image style={{cursor: "pointer"}} onClick={() => {
-                            openReportsModal()
-                        }} className={`mx-2 sm:mx-0`} src={icon1} alt={``} width={35} height={35}/>
-                        {type === 'study' ? <><Image style={{cursor: "pointer"}} onClick={() => {
-                            setShowHint(!showHint);
-                            setShowVideoHint(false);
-                        }} className={`mx-2 sm:mx-0`} src={hint} alt={``} width={35} height={35}/>
-                            <Image style={{cursor: "pointer"}} onClick={() => {
-                                setShowHint(false);
-                                setShowVideoHint(!showVideoHint);
-                            }} className={`mx-2 sm:mx-0`} src={video_hint} alt={``} width={35} height={35}/></> : ""}
-
-
-                        <Image style={{cursor: "pointer"}} onClick={() => {
-                            //     add to favourites
-                            openModal()
-                        }} className={`mx-2 sm:mx-0`} src={icon2} alt={``} width={35} height={35}/>
-                        <Image style={{cursor: "pointer"}} onClick={() => {
-                            openNotesModal();
-                        }} className={`mx-2 sm:mx-0`} src={icon3} alt={``} width={35} height={35}/>
-                        {type === 'study' ? <Image style={{cursor: "pointer"}} onClick={() => {
-                            navigator.clipboard.writeText(questions.text).then(() => {
-                                toast.success(t("Copied"));
-                            }).catch(err => {
-                                console.error('Failed to copy text: ', err);
-                            });
-                        }} className={`mx-2 sm:mx-0`} src={copy} alt={``} width={35} height={35}/> : ""}
-                    </div>
-                    <div className={`sm:mt-20`}>
-                        {type === "study" ? <CountUpTimer max={10000} onTimeChange={(time_elapsed) => {
-                            setTimeLeft(time_elapsed);
-                        }}></CountUpTimer> : <CountdownTimer initialSeconds={timeLeft} onTimeChange={(time_left) => {
-                            if (time_left === 0) {
-                                setShowResults(true);
-                            }
-                            setTimeLeft(time_left);
-                        }}/>}
-                    </div>
-
-                </div>
-                {showHint ? <div
-                    className="w-full  rounded-xl p-4 mx-4 text-3xl text-center text-gray-500">{questions.hint === "" ? t("NoHintAvailable") : questions.hint}</div> : ""}
-                {showVideoHint ? <div
-                    className="w-full  rounded-xl p-4 mx-4 text-3xl text-center text-gray-500">{questions.video_hint === "" ? t("NoVideoAvailable") :
-                    <YouTubePlayer url={`${questions.video_hint}`}/>}</div> : ""}
-
-                <div className="w-full flex mt-4 max-h-screen">
-                    {showResults ? <>
-                            <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4 text-3xl text-center">
-                                {JSON.stringify(calculateTruePercentage(progress)) === "null" ? "Time finished" : `Your score is ${calculateTruePercentage(progress)}%`}
-
-                            </div>
-                        </>
-                        : <>
-                            <div className={`w-fit max-h-[416px] pt-2`}>
-                                <NumberScroll numbers={numbers} selected={parseInt(questionIndex)}
-                                              onNumberClicked={(questionNumber) => {
-                                                  router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionNumber) - 1}`)
-                                              }} answers={type === "study" ? progress : null}/>
-                            </div>
-
-                            <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4">
-
-                                <p className="text-lg font-bold text-black">
-                                    {showHint ? highlightedText : questions.text}
-                                </p>
-                                <div className="w-full mt-4">
-                                    {questions && questions.answers.map((option, index) => (
-                                        <QuestionItem question={option.answer} index={index}
-                                                      isSelected={index === selectedAnswer}
-                                                      key={index} onAnswer={handleAnswer}/>
-                                    ))}
-                                </div>
-                            </div>
-                        </>}
-
-                </div>
-
-                <div className="w-full flex justify-between items-center mt-6 pe-4">
-                    <div className={`w-full`}>
-                        <button
-                            onClick={() => {
-                                if (questionIndex <= 0) {
-                                    return;
-                                }
-                                router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) - 1}`);
-                            }}
-                            className={`w-40 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{"<"}</button>
-                        <button
-                            onClick={() => {
-                                if (questionIndex >= numbers.length - 1) {
-                                    return;
-                                }
-                                router.push(`/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) + 1}`);
-                            }}
-                            className={`w-40 mx-2 sm:mx-0 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${showResults ? "hidden" : ""}`}>{">"}</button>
-
-                    </div>
-                    <div className={`flex sm:flex-col text-xs`}>
-                        <button
-                            onClick={() => {
-                                router.push(`/`)
-                            }}
-                            className={`w-40 sm:w-full bg-gray-200 text-gray-700 rounded-lg py-2 px-4 mr-2 ${showResults ? "hidden" : ""}`}>{t("ResumeLater")}
-                        </button>
-                        {showResults ? <button onClick={() => {
-                                router.replace("/");
-                            }}
-                                               className="w-40 bg-blue-500 text-white rounded-lg py-2 px-4">Go to home
-                            </button>
-                            :
-                            <button onClick={handleAnswerClicked}
-                                    className="w-40 sm:w-full bg-blue-500 text-white rounded-lg py-2 px-4">{actionBtnText}
-                            </button>}
-                    </div>
-                </div>
+      <div className="w-full h-full  p-4 flex flex-col items-center justify-center">
+        <FavoritesModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          question={questions}
+        ></FavoritesModal>
+        <NotesModal
+          isOpen={isNotesModalOpen}
+          onClose={closeNotesModal}
+          question={questions.id}
+        ></NotesModal>
+        <ReportsModal
+          isOpen={isReportsModalOpen}
+          onClose={closeReportsModal}
+          question={questions.id}
+        ></ReportsModal>
+        <div className="w-full  max-w-5xl bg-white p-6">
+          <div
+            onClick={() => {
+              router.push("/start");
+            }}
+            style={{ cursor: "pointer" }}
+            className="text-green-500 text-2xl hover:underline"
+          >
+            {t("BackToGenerateQuizPage")}
+          </div>
+          <div className="w-full mt-4 flex justify-between items-center pe-4">
+            <div className="text-navyBlue text-3xl font-semibold">
+              {t("Quiz")}:{" "}
+              <span className="text-2xl text-gray-500">
+                {type === "study" ? t("StudyMood") : t("ExamMood")}
+              </span>
             </div>
+            {showResults ? (
+              ""
+            ) : (
+              <div className={`w-full flex items-center justify-center`}>
+                <Image
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    openReportsModal();
+                  }}
+                  className={`mx-2 sm:mx-0`}
+                  src={icon1}
+                  alt={``}
+                  width={35}
+                  height={35}
+                />
+                {type === "study" ? (
+                  <>
+                    <Image
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setShowHint(!showHint);
+                        setShowVideoHint(false);
+                      }}
+                      className={`mx-2 sm:mx-0`}
+                      src={hint}
+                      alt={``}
+                      width={35}
+                      height={35}
+                    />
+                    <Image
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setShowHint(false);
+                        setShowVideoHint(!showVideoHint);
+                      }}
+                      className={`mx-2 sm:mx-0`}
+                      src={video_hint}
+                      alt={``}
+                      width={35}
+                      height={35}
+                    />
+                  </>
+                ) : (
+                  ""
+                )}
+
+                <Image
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    //     add to favourites
+                    openModal();
+                  }}
+                  className={`mx-2 sm:mx-0`}
+                  src={icon2}
+                  alt={``}
+                  width={35}
+                  height={35}
+                />
+                <Image
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    openNotesModal();
+                  }}
+                  className={`mx-2 sm:mx-0`}
+                  src={icon3}
+                  alt={``}
+                  width={35}
+                  height={35}
+                />
+                {type === "study" ? (
+                  <Image
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      navigator.clipboard
+                        .writeText(questions.text)
+                        .then(() => {
+                          toast.success(t("Copied"));
+                        })
+                        .catch((err) => {
+                          console.error("Failed to copy text: ", err);
+                        });
+                    }}
+                    className={`mx-2 sm:mx-0`}
+                    src={copy}
+                    alt={``}
+                    width={35}
+                    height={35}
+                  />
+                ) : (
+                  ""
+                )}
+              </div>
+            )}
+            {showResults ? (
+              ""
+            ) : (
+              <div className={`sm:mt-20`}>
+                {type === "study" ? (
+                  <CountUpTimer
+                    max={10000}
+                    onTimeChange={(time_elapsed) => {
+                      setTimeLeft(time_elapsed);
+                    }}
+                  ></CountUpTimer>
+                ) : (
+                  <CountdownTimer
+                    initialSeconds={timeLeft}
+                    onTimeChange={(time_left) => {
+                      if (time_left === 0) {
+                        setShowResults(true);
+                      }
+                      setTimeLeft(time_left);
+                    }}
+                  />
+                )}
+              </div>
+            )}
+          </div>
+          {showHint ? (
+            <div className="w-full  rounded-xl p-4 mx-4 text-3xl text-center text-gray-500">
+              {questions.hint === "" ? t("NoHintAvailable") : questions.hint}
+            </div>
+          ) : (
+            ""
+          )}
+          {showVideoHint ? (
+            <div className="w-full  rounded-xl p-4 mx-4 text-3xl text-center text-gray-500">
+              {questions.video_hint === "" ? (
+                t("NoVideoAvailable")
+              ) : (
+                <YouTubePlayer url={`${questions.video_hint}`} />
+              )}
+            </div>
+          ) : (
+            ""
+          )}
+
+          <div className="w-full flex mt-4 max-h-screen">
+            {showResults ? (
+              <>
+                <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4 text-3xl text-center">
+                  {JSON.stringify(calculateTruePercentage(progress)) === "null"
+                    ? "Time finished"
+                    : `Your score is ${calculateTruePercentage(progress)}%`}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={`w-fit max-h-[416px] pt-2`}>
+                  <NumberScroll
+                    numbers={numbers}
+                    selected={parseInt(questionIndex)}
+                    onNumberClicked={(questionNumber) => {
+                      router.push(
+                        `/quiz?id=${examJourneyId}&q=${
+                          parseInt(questionNumber) - 1
+                        }`
+                      );
+                    }}
+                    answers={type === "study" ? progress : null}
+                  />
+                </div>
+
+                <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4">
+                  <p className="text-lg font-bold text-black">
+                    {showHint ? highlightedText : questions.text}
+                  </p>
+                  <div className="w-full mt-4">
+                    {questions &&
+                      questions.answers.map((option, index) => (
+                        <QuestionItem
+                          question={option.answer}
+                          index={index}
+                          isSelected={index === selectedAnswer}
+                          key={index}
+                          onAnswer={handleAnswer}
+                        />
+                      ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="w-full flex justify-between items-center mt-6 pe-4">
+            <div
+              className={`w-full flex items-center justify-center md:flex-col sm:space-y-2 `}
+            >
+              <button
+                onClick={() => {
+                  if (questionIndex <= 0) {
+                    return;
+                  }
+                  router.push(
+                    `/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) - 1}`
+                  );
+                }}
+                className={`w-40 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${
+                  showResults ? "hidden" : ""
+                }`}
+              >
+                {"<"}
+              </button>
+              <button
+                onClick={() => {
+                  if (questionIndex >= numbers.length - 1) {
+                    return;
+                  }
+                  router.push(
+                    `/quiz?id=${examJourneyId}&q=${parseInt(questionIndex) + 1}`
+                  );
+                }}
+                className={`w-40 mx-2 sm:mx-0 bg-blue-100 text-blue-500 rounded-lg py-2 px-4 ${
+                  showResults ? "hidden" : ""
+                }`}
+              >
+                {">"}
+              </button>
+            </div>
+            <div className={`flex md:flex-col sm:space-y-2 text-xs`}>
+              <button
+                onClick={() => {
+                  router.push(`/`);
+                }}
+                className={`w-40 sm:w-full bg-gray-200 text-gray-700 rounded-lg py-2 px-4 mr-2 ${
+                  showResults ? "hidden" : ""
+                }`}
+              >
+                {t("ResumeLater")}
+              </button>
+              {showResults ? (
+                <button
+                  onClick={() => {
+                    router.replace("/");
+                  }}
+                  className="w-40 sm:w-full bg-blue-500 text-white rounded-lg py-2 px-4"
+                >
+                  Go to home
+                </button>
+              ) : (
+                <button
+                  onClick={handleAnswerClicked}
+                  className="w-40 sm:w-full bg-blue-500 text-white rounded-lg py-2 px-4"
+                >
+                  {actionBtnText}
+                </button>
+              )}
+            </div>
+          </div>
         </div>
+      </div>
     );
 };
 

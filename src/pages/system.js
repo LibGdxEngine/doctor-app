@@ -37,50 +37,73 @@ const System = () => {
 
     function handleNext() {
         if (selectedSystems.length === 0) {
-            toast.error("Please select at least one system");
+              if (toast.isActive) {
+                toast.dismiss();
+                toast.error("Please select at least one system");
+              }
+            
             return;
         }
         localStorage.setItem("state", JSON.stringify({...state, "systems": selectedSystems}));
         router.push("/filter");
     }
 
-    return <div className={`w-full h-screen flex flex-col items-start justify-start bg-white`}>
-        <div className={`w-full hidden md:block`}>
-            <SearchBar/>
-            <SectionsHeader/>
+    return (
+      <div
+        className={`w-full h-screen flex flex-col items-start justify-start bg-white`}
+      >
+        <div className={`w-full h-fit hidden md:block`}>
+          <SearchBar />
+          <SectionsHeader />
         </div>
-        <NavBar/>
+        <NavBar />
         <div className={`w-full h-full flex flex-col items-start px-8`}>
-            <div className={`w-full h-full flex flex-col items-start justify-start  pt-20`}>
-                <StepBar stepNumber={3} onStepClicked={(step) => {
-                    router.push(`/${step}`)
-                }}/>
-                <div className={`w-full grid grid-cols-6 sm:grid-cols-3 mt-10`}>
-                    {systems.map((system, index) => {
-                        return <CheckButton text={system.name} key={index}
-                                            isSelected={selectedSystems.includes(system.id)}
-                                            onClick={() => {
-                                                if (selectedSystems.includes(system.id)) {
-                                                    setSelectedSystems(selectedSystems.filter(item => item !== system.id));
-                                                } else {
-                                                    setSelectedSystems([...selectedSystems, system.id]);
-                                                }
-                                            }}
-                        />
-                    })}
-                </div>
-                <div onClick={handleNext} id={`next-btn`} className={`w-1/2 sm:w-full mt-10`}>
-                    <ActionButton text={`Next`}/>
-                </div>
+          <div
+            className={`w-full h-full flex flex-col items-start justify-center md:pt-0`}
+          >
+            <StepBar
+              stepNumber={3}
+              onStepClicked={(step) => {
+                router.push(`/${step}`);
+              }}
+            />
+            <div className={`w-full grid grid-cols-4 lg:grid-cols-2 mt-10`}>
+              {systems.map((system, index) => {
+                return (
+                  <CheckButton
+                    text={system.name}
+                    key={index}
+                    isSelected={selectedSystems.includes(system.id)}
+                    onClick={() => {
+                      if (selectedSystems.includes(system.id)) {
+                        setSelectedSystems(
+                          selectedSystems.filter((item) => item !== system.id)
+                        );
+                      } else {
+                        setSelectedSystems([...selectedSystems, system.id]);
+                      }
+                    }}
+                  />
+                );
+              })}
             </div>
+            <div
+              onClick={handleNext}
+              id={`next-btn`}
+              className={`w-1/2 sm:w-full mt-10`}
+            >
+              <ActionButton text={`Next`} />
+            </div>
+          </div>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <Footer/>
-    </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Footer />
+      </div>
+    );
 };
 
 export default System;

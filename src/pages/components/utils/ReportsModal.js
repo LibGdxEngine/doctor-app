@@ -15,6 +15,7 @@ const ReportsModal = ({isOpen, onClose, question}) => {
             createNewReport(token, report, question).then((response) => {
                 toast.success('Report sent successfully');
             }).catch((error) => {
+                toast.error(`${error.response.data.non_field_errors[0]}`);
                 console.error('Error adding question to list:', error);
             });
         };

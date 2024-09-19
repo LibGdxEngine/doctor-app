@@ -37,7 +37,9 @@ const FavoritesModal = ({ isOpen, onClose, question}) => {
                     >
                         &times;
                     </button>
-                    <FavoriteList question={question} />
+                    <FavoriteList question={question} onItemAdded={()=>{
+                        onClose();
+                    }} />
                 </div>
             </div>
         </div>

@@ -36,51 +36,74 @@ const Topic = () => {
 
     function handleNext() {
         if (selectedTopics.length === 0) {
-            toast.error("Please select at least one topic");
+              if (toast.isActive) {
+                toast.dismiss();
+                toast.error("Please select at least one topic");
+              }
+            
             return;
         }
         localStorage.setItem("state", JSON.stringify({...state, "topics": selectedTopics}));
         router.push("/filter");
     }
 
-    return <div className={`w-full h-screen flex flex-col items-start justify-start bg-white`}>
-        <div className={`w-full hidden md:block`}>
-            <SearchBar/>
-            <SectionsHeader/>
+    return (
+      <div
+        className={`w-full h-screen  flex flex-col items-start justify-start `}
+      >
+        <div className={`w-full h-fit hidden md:block `}>
+          <SearchBar />
+          <SectionsHeader />
         </div>
-        <NavBar/>
+        <NavBar />
 
         <div className={`w-full h-full flex flex-col items-start px-8`}>
-            <div className={`w-full h-full flex flex-col items-start justify-start pt-20`}>
-                <StepBar stepNumber={4} onStepClicked={(step) => {
-                    router.push(`/${step}`)
-                }}/>
-                <div className={`w-full grid grid-cols-6 sm:grid-cols-3 mt-10`}>
-                    {topics.map((topic, index) => {
-                        return <CheckButton text={topic.name} key={index}
-                                            isSelected={selectedTopics.includes(topic.id)}
-                                            onClick={() => {
-                                                if (selectedTopics.includes(topic.id)) {
-                                                    setSelectedTopics(selectedTopics.filter(item => item !== topic.id));
-                                                } else {
-                                                    setSelectedTopics([...selectedTopics, topic.id]);
-                                                }
-                                            }}
-                        />
-                    })}
-                </div>
-                <div onClick={handleNext} id={`next-btn`} className={`w-1/2 sm:w-full mt-10`}>
-                    <ActionButton text={`Next`}/>
-                </div>
+          <div
+            className={`w-full h-full flex flex-col items-start justify-center md:pt-0`}
+          >
+            <StepBar
+              stepNumber={4}
+              onStepClicked={(step) => {
+                router.push(`/${step}`);
+              }}
+            />
+            <div className={`w-full grid grid-cols-4 lg:grid-cols-2 mt-10`}>
+              {topics.map((topic, index) => {
+                return (
+                  <CheckButton
+                    text={topic.name}
+                    key={index}
+                    isSelected={selectedTopics.includes(topic.id)}
+                    onClick={() => {
+                      if (selectedTopics.includes(topic.id)) {
+                        setSelectedTopics(
+                          selectedTopics.filter((item) => item !== topic.id)
+                        );
+                      } else {
+                        setSelectedTopics([...selectedTopics, topic.id]);
+                      }
+                    }}
+                  />
+                );
+              })}
             </div>
+            <div
+              onClick={handleNext}
+              id={`next-btn`}
+              className={`w-1/2 sm:w-full mt-10`}
+            >
+              <ActionButton text={`Next`} />
+            </div>
+          </div>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <Footer/>
-    </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Footer />
+      </div>
+    );
 };
 
 export default Topic;

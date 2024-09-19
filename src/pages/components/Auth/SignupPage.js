@@ -30,7 +30,7 @@ function SignupPage() {
         return <SplashScreen/>
     }
     if (token) {
-        router.push('/home');
+        router.push('/');
     }
 
 

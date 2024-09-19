@@ -86,18 +86,14 @@ function HomePage() {
             <br/>
             <HomeFAQs/>
         </div>
- 
-        <div className="w-full h-full block lg:hidden relative">
+        <div className="w-full h-fit flex flex-col items-center justify-center bg-[url('/home_background.svg')] bg-cover">
+            <div className="w-full h-fit block lg:hidden relative">
 
             <NavBar/>
 
-            <Image className={`absolute bg-cover`} src={homeBackground} alt={``} width={1500} height={1500}/>
-
-            <div className="w-full h-full flex items-end justify-center relative">
-                <div style={{zIndex: "-100"}} className={`w-full min-h-screen absolute z-[-1] mt-20`}>
-                    <FlowingIcons/>
-                </div>
-                <div className="h-full  flex flex-col items-center justify-center w-full">
+            <div className="w-full h-full flex items-end justify-center">
+            
+                <div className="h-full flex flex-col items-center justify-center w-full z-2">
 
                     <div className={`w-full px-28 h-full flex flex-col justify-between pb-28 pt-6`}>
                         <div style={{fontWeight: "700", fontFamily: "Calibri"}}
@@ -123,12 +119,55 @@ function HomePage() {
                         </div>
                     </div>
                 </div>
-                <div className={`w-[60%] h-full`}>
-                    <Image className={`h-full w-full xl:mb-32`} src={homeImg} alt={``} height={763} width={870}/>
+                <div className={`w-[60%] h-fit  `}>
+                    <Image className={`h-full w-full`} src={homeImg} alt={``} height={763} width={870}/>
                 </div>
             </div>
 
         </div>
+        </div>
+        {/* <div className="w-full h-screen block lg:hidden relative">
+
+            <NavBar/>
+
+            <Image className={`absolute bg-cover`} src={homeBackground} alt={``} width={1500} height={1500}/>
+
+            <div className="w-full  h-full flex items-end justify-center relative">
+                <div style={{zIndex: "-100"}} className={`w-full min-h-screen absolute z-[-1] mt-20`}>
+                    <FlowingIcons/>
+                </div>
+                <div className="h-full bg-red-  flex flex-col items-center justify-center w-full relative z-2">
+
+                    <div className={`w-full px-28 h-full flex flex-col justify-between pb-28 pt-6`}>
+                        <div style={{fontWeight: "700", fontFamily: "Calibri"}}
+                             className={`responsive-font text-white text-opacity-40 font-extrabold`}>
+                            KROK PLUS
+                            <div className="border-t border-2 border-white border-opacity-25 mb-8"></div>
+                        </div>
+
+
+                        <div style={{fontFamily: "Calibri"}}
+                             className={`sm-responsive-font text-white font-bold text-5xl`}>
+                            {t("GetMotivatedInMinutes")}
+                        </div>
+                        <div style={{fontFamily: "Calibri", lineHeight: "50px"}}
+                             className={`xs-responsive-font text-white mt-4 font-semibold text-4xl`}>
+                            “{t("TheEarlier")}.”
+                        </div>
+                        <div className={`text-white font-base text-2xl mt-4`}>
+                            “{t("EveryMorning")}.”
+                        </div>
+                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-80 2xl:w-96 mt-4`}>
+                            <Image src={actionBtn} alt={``} width={500} height={500}/>
+                        </div>
+                    </div>
+                </div>
+                <div className={`w-[60%] h-fit `}>
+                    <Image className={`h-full w-full xl:mb-32`} src={homeImg} alt={``} height={763} width={870}/>
+                </div>
+            </div>
+
+        </div> */}
 
     </div>;
 }

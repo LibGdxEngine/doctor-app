@@ -6,35 +6,32 @@ import { useTranslation } from 'react-i18next';
 const Home = () => {
 
 
-    return <>
-        <div id={`main-container`} className={`w-full bg-light h-full flex flex-col items-center justify-start`}>
+    return (
+      <>
+        <div
+          id={`main-container`}
+          className={`w-full bg-light h-full flex flex-col items-center justify-start`}
+        >
+          <HomePage />
+          <br />
+          <br />
+          <div className={`lg:hidden`}>
+            <br />
+          </div>
+          <div className={`w-full h-full block lg:hidden`}>
+            <VideoPlayer />
+          </div>
 
-            <HomePage/>
-            <br/>
-            <br/>
-            <div className={`lg:hidden`}>
+          <div className={`block lg:hidden bg-white w-full h-full z-20`}>
+            <HomeFAQs />
+          </div>
 
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-            </div>
-            <div className={`w-full h-full block lg:hidden`}>
-                <VideoPlayer/>
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <div className={`block lg:hidden bg-white w-full h-full z-20 py-10`}>
-
-                <HomeFAQs/>
-            </div>
-            <Footer/>
+          <div className="w-full mt-14">
+            <Footer />
+          </div>
         </div>
-    </>
+      </>
+    );
 }
 
 export default Home;

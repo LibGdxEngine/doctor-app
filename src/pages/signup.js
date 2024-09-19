@@ -60,138 +60,193 @@ export default function SignUp() {
     };
 
     return (
-        <div className={`w-full flex flex-col`}>
-
-            <div className={`hidden sm:block `}>
-                <SignupPage />
-            </div>
-            <div className={`sm:hidden`}>
-                <NavBar/>
-                <div className="relative min-h-screen bg-contain bg-no-repeat  "
-                     style={{backgroundImage: 'url(/login_bg.svg)'}}>
-
-                    <div className={`w-full flex items-center justify-center`}>
-                        <div className={`w-full h-screen flex flex-col items-center justify-center`}>
-                            <div className={`w-32 mt-0`}>
-                                <Image src={loginLogo} alt={``} width={200} height={200}/>
-                            </div>
-                            <div className={`w-full text-center font-light mt-5 px-20`}>
-                                <h1 style={{fontSize: "60px"}} className={`w-full text-white text-start`}>{t("CreateYourAccount")}</h1>
-                                <h6 style={{letterSpacing: "15px"}} className={`text-white text-4xl w-full text-start`}>
-                                    {t("Fill")}
-                                </h6>
-                            </div>
-                        </div>
-                        <div className={`w-full h-screen `}>
-                            <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
-                                <h1 className="text-5xl font-thin mb-8">{t("SignUp")}</h1>
-                                <div className={`w-fit flex flex-col items-center justify-center`}>
-                                    <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={400} height={40}/>
-                                     <Image style={{cursor: "pointer"}} className={`my-4`}
-                                           src={loginFace} alt={``} width={400} height={40}/>
-                                    <Image style={{cursor: "pointer"}} className={`my-0 mb-2`} src={loginApple} alt={``} width={400} height={40}/>
-
-                                </div>
-                                <form onSubmit={handleSignup} className="w-[60%] flex flex-col space-y-2 mt-4">
-                                    <div className="flex">
-                                        <div className={`flex flex-col`}>
-                                            <label htmlFor="email" className="mb-2 text-sm font-medium text-black">
-                                                {t("FirstName")}
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="first_name"
-                                                value={firstName}
-                                                onChange={(e) => setFirstname(e.target.value)}
-                                                className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                                placeholder={`${t("EnterFirstName")}`}
-                                            />
-                                        </div>
-                                        <div className={`flex flex-col mx-2`}>
-                                            <label htmlFor="second_name" className="mb-2 text-sm font-medium text-black">
-                                                {t("LastName")}
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="second_name"
-                                                value={lastName}
-                                                onChange={(e) => setLastname(e.target.value)}
-                                                className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                                placeholder={`${t("EnterLastName")}`}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <label htmlFor="email" className="mb-2 text-sm font-medium text-black">
-                                            {t("Email")}
-                                        </label>
-                                        <input
-                                            type="email"
-                                            id="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                            placeholder={`${t("EnterEmail")}`}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <label htmlFor="password" className="mb-2 text-sm font-medium text-black">
-                                            {t("Password")}
-                                        </label>
-                                        <input
-                                            type="password"
-                                            id="password"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                            placeholder={`${t("EnterPassword")}`}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <label htmlFor="password2" className="mb-2 text-sm font-medium text-black">
-                                            Re-{t("Password")}
-                                        </label>
-                                        <input
-                                            type="password"
-                                            id="password2"
-                                            value={confirmPassword}
-                                            onChange={(e) => setConfirmPassword(e.target.value)}
-                                            className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                                            placeholder={`${t("EnterPassword")}`}
-                                        />
-                                    </div>
-                                    <div className="flex items-center">
-                                        <input value={isChecked} onChange={(e) => {
-                                            setIsChecked(e.target.checked)
-                                        }} type="checkbox" id="terms" className="mr-2"/>
-                                        <label htmlFor="terms" className="text-sm text-black">
-                                            {t("IAccept")}
-                                        </label>
-                                    </div>
-                                    <button
-                                        type={`submit`}
-                                        className="w-full bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        {t("SignUp")}
-                                    </button>
-                                </form>
-                                <p className="text-sm mt-3 text-center">
-                                    {t("DoNotHaveAccount")}{' '}
-                                    <Link href="/signin" className="text-indigo-600 hover:underline">
-                                        {t('SignIn')}
-                                    </Link>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <Footer/>
-
-
-                </div>
-            </div>
+      <div className={`w-full flex flex-col`}>
+        <div className={`hidden lg:block `}>
+          <SignupPage />
+          <Footer />
         </div>
+        <div className={`lg:hidden`}>
+          <NavBar />
+          <div
+            className="relative min-h-screen bg-cover bg-no-repeat  "
+            style={{ backgroundImage: "url(/login_bg.svg)" }}
+          >
+            <div className={`w-full flex items-center justify-center`}>
+              <div
+                className={`w-full h-screen flex flex-col items-center justify-center`}
+              >
+                <div className={`w-32 mt-0`}>
+                  <Image src={loginLogo} alt={``} width={200} height={200} />
+                </div>
+                <div className={`w-full text-center font-light mt-5 px-20`}>
+                  <h1
+                    style={{ fontSize: "60px" }}
+                    className={`w-full text-white text-start`}
+                  >
+                    {t("CreateYourAccount")}
+                  </h1>
+                  <h6
+                    style={{ letterSpacing: "15px" }}
+                    className={`text-white text-4xl w-full text-start`}
+                  >
+                    {t("Fill")}
+                  </h6>
+                </div>
+              </div>
+              <div className={`w-full h-screen `}>
+                <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
+                  <h1 className="text-5xl font-thin mb-8">{t("SignUp")}</h1>
+                  <div
+                    className={`w-full flex flex-col items-center justify-center`}
+                  >
+                    <Image
+                      style={{ cursor: "pointer" }}
+                      src={loginBtn}
+                      className="w-[60%]"
+                      alt={``}
+                      width={400}
+                      height={40}
+                    />
+                    <Image
+                      style={{ cursor: "pointer" }}
+                      className={`my-4 w-[60%]`}
+                      src={loginFace}
+                      alt={``}
+                      width={400}
+                      height={40}
+                    />
+                    <Image
+                      style={{ cursor: "pointer" }}
+                      className={`my-0 mb-2 w-[60%]`}
+                      src={loginApple}
+                      alt={``}
+                      width={400}
+                      height={40}
+                    />
+                  </div>
+                  <form
+                    onSubmit={handleSignup}
+                    className="w-[60%] flex flex-col space-y-2 mt-4"
+                  >
+                    <div className="flex">
+                      <div className={`flex flex-col`}>
+                        <label
+                          htmlFor="email"
+                          className="mb-2 text-sm font-medium text-black"
+                        >
+                          {t("FirstName")}
+                        </label>
+                        <input
+                          type="text"
+                          id="first_name"
+                          value={firstName}
+                          onChange={(e) => setFirstname(e.target.value)}
+                          className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                          placeholder={`${t("EnterFirstName")}`}
+                        />
+                      </div>
+                      <div className={`flex flex-col mx-2`}>
+                        <label
+                          htmlFor="second_name"
+                          className="mb-2 text-sm font-medium text-black"
+                        >
+                          {t("LastName")}
+                        </label>
+                        <input
+                          type="text"
+                          id="second_name"
+                          value={lastName}
+                          onChange={(e) => setLastname(e.target.value)}
+                          className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                          placeholder={`${t("EnterLastName")}`}
+                        />
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <label
+                        htmlFor="email"
+                        className="mb-2 text-sm font-medium text-black"
+                      >
+                        {t("Email")}
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                        placeholder={`${t("EnterEmail")}`}
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <label
+                        htmlFor="password"
+                        className="mb-2 text-sm font-medium text-black"
+                      >
+                        {t("Password")}
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                        placeholder={`${t("EnterPassword")}`}
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <label
+                        htmlFor="password2"
+                        className="mb-2 text-sm font-medium text-black"
+                      >
+                        Re-{t("Password")}
+                      </label>
+                      <input
+                        type="password"
+                        id="password2"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                        placeholder={`${t("EnterPassword")}`}
+                      />
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        value={isChecked}
+                        onChange={(e) => {
+                          setIsChecked(e.target.checked);
+                        }}
+                        type="checkbox"
+                        id="terms"
+                        className="mr-2"
+                      />
+                      <label htmlFor="terms" className="text-sm text-black">
+                        {t("IAccept")}
+                      </label>
+                    </div>
+                    <button
+                      type={`submit`}
+                      className="w-full bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                      {t("SignUp")}
+                    </button>
+                  </form>
+                  <p className="text-sm mt-3 text-center">
+                    {t("DoNotHaveAccount")}{" "}
+                    <Link
+                      href="/signin"
+                      className="text-indigo-600 hover:underline"
+                    >
+                      {t("SignIn")}
+                    </Link>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Footer />
+          </div>
+        </div>
+      </div>
     );
 };

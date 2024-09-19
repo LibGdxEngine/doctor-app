@@ -32,6 +32,8 @@
   "ResumeStudy": "Resume Studying",
   "Delete": "Delete",
   "NoFavourite": "No Favourites Found",
+  "NoHistory": "No History yet",
+  "NoNotes": "No Notes yet",
   "Notes": "Notes",
   "Logout": "Logout",
   "PleaseChoose": "Please Choose your Krok specifics",
@@ -76,14 +78,16 @@
   "PleaseSelectAtLeastOne": "Please select at least one",
   "SignIn": "Sign In",
   "SignUp": "Sign Up",
+  "Remember": "Remember me",
   "IAccept": "I accept the terms of use and privacy policy",
-  "DoNotHaveAccount": "Do not have any account?",
-  "AlreadyHaveAccount": "Already have  account?",
+  "DoNotHaveAccount": "Do not have any account",
+  "AlreadyHaveAccount": "Already have  account",
   "Fill": "Fill in the form to create an account and start taking the test",
   "CreateYourAccount": "Create Your Account",
   "EnterFirstName":  "Enter your first name",
   "EnterLastName":  "Enter your last name",
   "EnterEmail":  "Enter your email",
   "EnterPassword":  "Enter your password",
-  "OrContinue": "or continue with"
+  "OrContinue": "or continue with",
+  "AreYouSureLogout": "Are You Sure Logout"
 }

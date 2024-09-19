@@ -60,7 +60,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
     };
 
     return (
-        <div className="w-full min-h-screen flex-1 flex flex-col items-center">
+        <div className="w-full  mb-10 flex-1 flex flex-col items-center">
             <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
                 <div className="w-full flex items-center justify-start">
                     <Image
@@ -233,48 +233,100 @@ const History = React.memo(({examObject: defaultExams}) => {
         return formattedPercentage;
     };
 
-    return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
-        <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
-            <h1 className="text-2xl font-bold mb-6 text-black">{t("History")}</h1>
+    return (
+      <div className="w-full min-h-screen flex-1 flex flex-col items-center">
+        {examObject.length === 0 ? (
+          <h1 className={`text-3xl mt-20 text-black`}>{t("NoHistory")}</h1>
+        ) : (
+          <div
+            className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}
+          >
+            <h1 className="text-2xl font-bold mb-6 text-black">
+              {t("History")}
+            </h1>
             <div className="space-y-4">
-                {examObject.map((item, index) => (
-                    <div key={index} className="bg-gray-50 p-4 rounded-lg shadow">
-                        <div className="flex justify-between items-center">
-                            <div>
-                                <h1 className="text-xl font-semibold text-black">{level} {language} {specificity} {t("Exam")}</h1>
-                                <h2 className="text-lg text-black">Type ({item.type} mood)</h2>
-                                <div className={`flex `}>
-                                    <p className="text-gray-500 me-2">{parseFloat((parseInt(item.current_question) / item.questions.length * 100).toFixed(1))}%
-                                        Completed</p>
-                                    -
-                                    <p className="text-gray-500 mx-2"> Score {calculateScorePercentage(item.progress) + "%"} </p>
-                                </div>
-
-                            </div>
-                            <div className="flex space-x-2">
-                                <button onClick={() => {
-                                    router.push(`/quiz?id=${item.id}&q=${parseInt(item.current_question)}`);
-                                }}
-                                        className={`bg-blue-500 text-white px-3 py-1 rounded-md ${parseInt(item.current_question) / item.questions.length * 100 === 100 ? "hidden" : ""}`}>
-                                    {t("ResumeStudy")}
-                                </button>
-                                <button onClick={() => {
-                                    deleteExamJourney(token, item.id).then((response) => {
-                                        setExamObject(examObject.filter((exam) => exam.id !== item.id));
-                                    });
-                                }} className="bg-red-500 text-white px-3 py-1 rounded-md">{t("Delete")}
-                                </button>
-                            </div>
-                        </div>
-                        <div className="mt-2 w-full bg-gray-200 rounded-full h-2.5">
-                            <div className="bg-blue-600 h-2.5 rounded-full"
-                                 style={{width: `${parseInt(item.current_question) / item.questions.length * 100}%`}}></div>
-                        </div>
+              {examObject.map((item, index) => (
+                <div key={index} className="bg-gray-50 p-4 rounded-lg shadow">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h1 className="text-xl font-semibold text-black">
+                        {level} {language} {specificity} {t("Exam")}
+                      </h1>
+                      <h2 className="text-lg text-black">
+                        Type ({item.type} mood)
+                      </h2>
+                      <div className={`flex `}>
+                        <p className="text-gray-500 me-2">
+                          {parseFloat(
+                            (
+                              (parseInt(item.current_question) /
+                                item.questions.length) *
+                              100
+                            ).toFixed(1)
+                          )}
+                          % Completed
+                        </p>
+                        -
+                        <p className="text-gray-500 mx-2">
+                          {" "}
+                          Score {calculateScorePercentage(item.progress) +
+                            "%"}{" "}
+                        </p>
+                      </div>
                     </div>
-                ))}
+                    <div className="flex space-x-2">
+                      <button
+                        onClick={() => {
+                          router.push(
+                            `/quiz?id=${item.id}&q=${parseInt(
+                              item.current_question
+                            )}`
+                          );
+                        }}
+                        className={`bg-blue-500 text-white px-3 py-1 rounded-md ${
+                          (parseInt(item.current_question) /
+                            item.questions.length) *
+                            100 ===
+                          100
+                            ? "hidden"
+                            : ""
+                        }`}
+                      >
+                        {t("ResumeStudy")}
+                      </button>
+                      <button
+                        onClick={() => {
+                          deleteExamJourney(token, item.id).then((response) => {
+                            setExamObject(
+                              examObject.filter((exam) => exam.id !== item.id)
+                            );
+                          });
+                        }}
+                        className="bg-red-500 text-white px-3 py-1 rounded-md"
+                      >
+                        {t("Delete")}
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mt-2 w-full bg-gray-200 rounded-full h-2.5">
+                    <div
+                      className="bg-blue-600 h-2.5 rounded-full"
+                      style={{
+                        width: `${
+                          (parseInt(item.current_question) /
+                            item.questions.length) *
+                          100
+                        }%`,
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
             </div>
-        </div>
-    </div>;
+          </div>
+        )}
+      </div>
+    );
     History.displayName = "History";
 });
 
@@ -293,31 +345,52 @@ const Notes = React.memo(() => {
             });
         }
     }, [token]);
-    return <div className="w-full min-h-screen flex-1 flex flex-col items-center">
-        <div className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}>
+    return (
+      <div className="w-full min-h-screen flex-1 flex flex-col items-center">
+        {notes && notes.length === 0 ? (
+          <h1 className={`text-3xl mt-20 text-black`}>{t("NoNotes")}</h1>
+        ) : (
+          <div
+            className={`w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8`}
+          >
             <h1 className="text-2xl font-bold mb-6 text-black">{t("Notes")}</h1>
             <div className="space-y-4">
-
-                {notes && notes.map((note, index) => {
-                    return <div key={note.id} className="bg-gray-50 p-4 rounded-lg shadow flex flex-col items-end">
-                        <div className={`w-full `}>
-                            <div className={`w-full bg-blue-100 rounded-full px-4 text-black`}>{`Q- ${note.question.text}`}</div>
-                            <div className={`px-4 mt-2 text-black`}>
-                                {note.note_text}
-                            </div>
+              {notes &&
+                notes.map((note, index) => {
+                  return (
+                    <div
+                      key={note.id}
+                      className="bg-gray-50 p-4 rounded-lg shadow flex flex-col items-end"
+                    >
+                      <div className={`w-full `}>
+                        <div
+                          className={`w-full bg-blue-100 rounded-full px-4 text-black`}
+                        >{`Q- ${note.question.text}`}</div>
+                        <div className={`px-4 mt-2 text-black`}>
+                          {note.note_text}
                         </div>
-                        <button onClick={() => {
-                            deleteNote(token, note.id).then((response) => {
-                                setNotes(notes.filter((note) => note.id !== note.id));
-                                toast.success('Note deleted successfully');
-                            });
-                        }} className="bg-red-500 text-white py-1 rounded-md mt-2 px-4">Delete
-                        </button>
+                      </div>
+                      <button
+                        onClick={() => {
+                          deleteNote(token, note.id).then((response) => {
+                            setNotes(
+                              notes.filter((note) => note.id !== note.id)
+                            );
+                            toast.success("Note deleted successfully");
+                          });
+                        }}
+                        className="bg-red-500 text-white py-1 rounded-md mt-2 px-4"
+                      >
+                        Delete
+                      </button>
                     </div>
+                  );
                 })}
             </div>
-        </div>
-    </div>;
+          </div>
+        )}
+      </div>
+    );
     Notes.displayName = "Notes";
 
 });
@@ -333,42 +406,66 @@ const Favourites = React.memo(({favourites: myFav}) => {
     if (loading || !favourites) {
         return <SplashScreen/>
     }
-    return <>
-        {showQuestions ?
-            <div className="w-full h-fit mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
-                <div className={`w-full `}>
-                    <button onClick={() => {
-                        setShowQuestions(false);
-                    }} className={`w-fit px-2 mx-20 text-start text-red-700 rounded-full border-2 border-red-700`}>
-                        X
-                    </button>
-                </div>
-                {selectedFavourite.questions.map((question, index) => {
-                    return <QuestionCard key={index} number={index + 1} question={question.text}
-                                         answers={question.answers} correctAnswer={question.correct_answer.answer}/>
-                })}
+    return (
+      <>
+        {showQuestions ? (
+          <div className="w-full h-fit   mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
+            <div className={`w-full `}>
+              <button
+                onClick={() => {
+                  setShowQuestions(false);
+                }}
+                className={`w-fit px-2 mx-20 text-start text-red-700 rounded-full border-2 border-red-700`}
+              >
+                X
+              </button>
             </div>
-            :
-            <div className="w-full h-fit mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
-                {favourites.length === 0 ? <h1 className={`text-3xl mt-20 text-black`}>{t("NoFavourite")}</h1> : ""}
-                {favourites.map((item, index) => {
-                    return <FavCard key={index} title={item.name} numOfQuestions={item.questions.length}
-                                    onDeleteClicked={() => {
-                                        deleteFavouritesList(token, item.pkid).then((response) => {
-                                            toast.success('Favourite deleted successfully');
-                                            setFavourites(favourites.filter((fav) => fav.id !== item.id));
-                                        });
-                                    }}
-                                    onShowQuestionsClicked={() => {
-                                        setShowQuestions(!showQuestions);
-                                        setSelectedFavourite(item);
-                                    }}
-                    />
-                })}
-
-            </div>
-        }
-    </>
+            {selectedFavourite.questions.map((question, index) => {
+              return (
+                <QuestionCard
+                  key={index}
+                  number={index + 1}
+                  question={question.text}
+                  answers={question.answers}
+                  correctAnswer={question.correct_answer.answer}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div className="w-full h-fit min-h-screen mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-start">
+            {favourites.length === 0 ? (
+              <h1 className={`text-3xl mt-20 text-black`}>
+                {t("NoFavourite")}
+              </h1>
+            ) : (
+              ""
+            )}
+            {favourites.map((item, index) => {
+              return (
+                <FavCard
+                  key={index}
+                  title={item.name}
+                  numOfQuestions={item.questions.length}
+                  onDeleteClicked={() => {
+                    deleteFavouritesList(token, item.pkid).then((response) => {
+                      toast.success("Favourite deleted successfully");
+                      setFavourites(
+                        favourites.filter((fav) => fav.id !== item.id)
+                      );
+                    });
+                  }}
+                  onShowQuestionsClicked={() => {
+                    setShowQuestions(!showQuestions);
+                    setSelectedFavourite(item);
+                  }}
+                />
+              );
+            })}
+          </div>
+        )}
+      </>
+    );
     Favourites.displayName = "Favourites";
 });
 
@@ -434,7 +531,7 @@ const Profile = React.memo(() => {
                 <SectionsHeader/>
             </div>
             <NavBar/>
-            <div className={`w-full flex sm:flex-col`}>
+            <div className={`w-full flex md:flex-col`}>
                 <Sidebar user={user} onTapClicked={(tap) => {
                     setSelectedTap(tap);
                 }} currentTap={selectedTap}/>
@@ -454,11 +551,6 @@ const Profile = React.memo(() => {
                     </div>
                 </div>
             </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
             <Footer/>
         </div>
     );

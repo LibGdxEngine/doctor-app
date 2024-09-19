@@ -46,7 +46,7 @@ function SignInPage() {
         try {
             const response = await getToken({ email, password });
             login(response.token);
-            router.replace("/home");
+            router.replace("/");
         } catch (error) {
             toast.error("Invalid credentials", error.toString());
             console.error('Error during signup:', error);
@@ -57,7 +57,7 @@ function SignInPage() {
         return <SplashScreen />
     }
     if (token) {
-        router.push('/home');
+        router.push('/');
     }
 
     return (

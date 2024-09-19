@@ -7,7 +7,7 @@ import {toast} from "react-toastify";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 
-const FavoriteList = ({question}) => {
+const FavoriteList = ({question, onItemAdded}) => {
     const {t, i18n} = useTranslation("common");
     const [selectedItem, setSelectedItem] = useState(null);
     const [items, setItems] = useState([]);
@@ -32,6 +32,7 @@ const FavoriteList = ({question}) => {
                 toast.error('Error adding question to favorite list');
                 console.error('Error adding question to favorite list:', error);
             });
+            onItemAdded();
         } else {
             toast.error(t("PleaseEnterFavList"));
         }

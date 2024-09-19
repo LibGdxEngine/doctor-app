@@ -28,14 +28,38 @@ const SocialLoginButton = ({provider, clientId, redirectUri}) => {
     };
 
     return (
-        <div className={`mt-4`} onClick={handleSocialLogin}>
-            {provider === "google" ?
-                <Image style={{cursor: "pointer"}} src={loginBtn} alt={``} width={400} height={40}/> : null}
-            {provider === "facebook" ?
-                <Image style={{cursor: "pointer"}} src={loginFace} alt={``} width={400} height={40}/> : null}
-            {provider === "apple" ?
-                <Image style={{cursor: "pointer"}} src={loginApple} alt={``} width={400} height={40}/> : null}
-        </div>
+      <div className={`w-[60%] h-12 mt-4`} onClick={handleSocialLogin}>
+        {provider === "google" ? (
+          <Image
+            style={{ cursor: "pointer" }}
+            src={loginBtn}
+            className="w-full"
+            alt={``}
+            width={400}
+            height={40}
+          />
+        ) : null}
+        {provider === "facebook" ? (
+          <Image
+            style={{ cursor: "pointer" }}
+            src={loginFace}
+            className="w-full"
+            alt={``}
+            width={400}
+            height={40}
+          />
+        ) : null}
+        {provider === "apple" ? (
+          <Image
+            style={{ cursor: "pointer" }}
+            className="w-full"
+            src={loginApple}
+            alt={``}
+            width={400}
+            height={40}
+          />
+        ) : null}
+      </div>
     );
 };
 
