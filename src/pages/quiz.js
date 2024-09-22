@@ -10,92 +10,104 @@ import SectionsHeader from "@/pages/components/SectionsHeader";
 import {useTranslation} from "react-i18next";
 
 const Quiz = () => {
-    const {t, i18n} = useTranslation("common");
-    const router = useRouter();
-    let {id, q} = router.query;
-    if (!q) {
-        q = 0;
+  const { t, i18n } = useTranslation("common");
+  const router = useRouter();
+  let { id, q } = router.query;
+  if (!q) {
+    q = 0;
+  }
+
+  const { token, loading } = useAuth();
+  const [examObject, setExamObject] = useState(null);
+  const [progress, setProgress] = useState(examObject?.progress);
+  let length = examObject ? examObject.questions.length : 1;
+  useEffect(() => {
+    if (token && id) {
+      getExamJourney(token, id)
+        .then((response) => {
+          setExamObject(response);
+        })
+        .catch((error) => {
+          console.error("Error fetching exam:", error);
+        });
     }
+  }, [token, id]);
+  
+  // Function to update the exam object with new progress
+  const handleProgressUpdate = (questionIndex, updatedProgress) => {
+    console.log("Updating progress for question", updatedProgress);
+    setProgress((prev) => ({
+      ...prev,
+      [questionIndex]: updatedProgress,
+    }));
+    setExamObject((prev) => ({
+      ...prev,
+      progress: {
+        ...prev.progress,
+        [questionIndex]: updatedProgress,
+      },
+    }));
+  };
 
-    const {token, loading} = useAuth();
-    const [examObject, setExamObject] = useState(null);
-    let length = examObject ? examObject.questions.length : 1;
-    useEffect(() => {
-        if (token && id) {
-            getExamJourney(token, id).then((response) => {
-                setExamObject(response);
-            }).catch((error) => {
-                console.error('Error fetching exam:', error);
-            });
-        }
-
-    }, [token, id]);
-
-    return (
-      <div
-        className={`w-full h-screen flex flex-col items-start justify-center bg-white`}
-      >
-        <div className={`w-full h-full hidden md:block`}>
-          <SearchBar />
-          <SectionsHeader />
-        </div>
-        <NavBar />
-
-        <div className={`w-full h-full  items-start justify-center`}>
-          {examObject && (
-            <QuestionWindow
-              examJourneyId={id}
-              questions={examObject.questions[q]}
-              numbers={Array.from({ length }, (v, i) => i + 1)}
-              questionIndex={q}
-              type={examObject.type}
-              progress={examObject.progress}
-              timeLeft={examObject.time_left}
-              onCheck={(
-                selectedAnswerAsText,
-                selectedAnswerIndex,
-                time_left
-              ) => {
-                updateExamJourney(token, id, {
-                  time_left,
-                  progress: {
-                    ...examObject.progress,
-                    [q.toString()]: {
-                      question_text: examObject.questions[q].text,
-                      answer: selectedAnswerIndex,
-                      is_correct:
-                        examObject.questions[q].correct_answer.answer.trim() ===
-                        selectedAnswerAsText.trim(),
-                    },
-                  },
-                  current_question: parseInt(q) + 1,
-                })
-                  .then((response) => {
-                    examObject.progress = {
-                      ...examObject.progress,
-                      [q.toString()]: {
-                        question_text: examObject.questions[q].text,
-                        answer: selectedAnswerIndex,
-                        is_correct:
-                          examObject.questions[
-                            q
-                          ].correct_answer.answer.trim() ===
-                          selectedAnswerAsText.trim(),
-                      },
-                    };
-                    if (q < length - 1) {
-                      router.push(`/quiz?id=${id}&q=${parseInt(q) + 1}`);
-                    }
-                  })
-                  .catch((error) => {
-                    console.error("Error updating exam:", error);
-                  });
-              }}
-            />
-          )}
-        </div>
-        <Footer />
+  return (
+    <div
+      className={`w-full h-screen flex flex-col items-start justify-center bg-white`}
+    >
+      <div className={`w-full h-full hidden md:block`}>
+        <SearchBar />
+        <SectionsHeader />
       </div>
-    );
+      <NavBar />
+
+      <div className={`w-full h-full  items-start justify-center`}>
+        {examObject && (
+          <QuestionWindow
+            examJourneyId={id}
+            questions={examObject.questions[q]}
+            numbers={Array.from({ length }, (v, i) => i + 1)}
+            questionIndex={q}
+            type={examObject.type}
+            progress={progress}
+            timeLeft={examObject.time_left}
+            onCheck={(selectedAnswerAsText, selectedAnswerIndex, time_left) => {
+              updateExamJourney(token, id, {
+                time_left,
+                progress: {
+                  ...examObject.progress,
+                  [q.toString()]: {
+                    question_text: examObject.questions[q].text,
+                    answer: selectedAnswerIndex,
+                  },
+                },
+                current_question: parseInt(q) + 1,
+              })
+                .then((response) => {
+                  console.log(q);
+                  console.log({
+                    question_text: examObject.questions[q].text,
+                    answer: selectedAnswerIndex,
+                    is_correct: response.is_correct,
+                  });
+
+                  handleProgressUpdate(q.toString(), {
+                    question_text: examObject.questions[q].text,
+                    answer: selectedAnswerIndex,
+                    is_correct: response.is_correct,
+                  });
+
+                  if (q < length - 1) {
+                    router.push(`/quiz?id=${id}&q=${parseInt(q) + 1}`);
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error updating exam:", error);
+                });
+            }}
+          />
+        )}
+      </div>
+      <Footer />
+    </div>
+  );
 }
 export default Quiz;
