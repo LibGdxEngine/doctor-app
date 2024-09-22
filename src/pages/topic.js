@@ -67,7 +67,9 @@ const Topic = () => {
                 router.push(`/${step}`);
               }}
             />
-            <div className={`w-full grid grid-cols-4 lg:grid-cols-2 mt-10`}>
+            <div
+              className={`sm:w-full grid grid-cols-6 lg:grid-cols-2 md:grid-cols-2 mt-10`}
+            >
               {topics.map((topic, index) => {
                 return (
                   <CheckButton

@@ -60,129 +60,156 @@ const PersonalInfo = React.memo(({user, universities}) => {
     };
 
     return (
-        <div className="w-full  mb-10 flex-1 flex flex-col items-center">
-            <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
-                <div className="w-full flex items-center justify-start">
-                    <Image
-                        style={{cursor: "pointer"}}
-                        className="w-24 h-24 rounded-full mx-2"
-                        src={photo}
-                        width={150}
-                        height={150}
-                        alt="Profile Picture"
-                        onClick={handleImageClick}
-                    />
-                    <div className="w-full">
-                        <h1 className="text-2xl font-bold text-black">{profileData.first_name} {profileData.last_name}</h1>
-                        <p className="text-gray-600">{profileData.email}</p>
-                    </div>
-                    <input
-                        id="profileImageInput"
-                        type="file"
-                        accept="image/*"
-                        style={{display: 'none'}} // Hide the file input
-                        onChange={handleFileChange}
-                    />
-                </div>
-                <div className="w-full flex items-center justify-center">
-                    <div className="w-full mt-6 me-2">
-                        <label className="block text-sm font-medium text-gray-700">{t("FirstName")}</label>
-                        <input
-                            type="text"
-                            value={profileData.first_name} // Use profileData here
-                            onChange={(e) => {
-                                setProfileData({...profileData, first_name: e.target.value});
-                            }}
-                            placeholder="First Name"
-                            className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
-                        />
-                    </div>
-                    <div className="w-full mt-6 ms-2">
-                        <label className="block text-sm font-medium text-gray-700">{t("LastName")}</label>
-                        <input
-                            type="text"
-                            value={profileData.last_name} // Use profileData here
-                            onChange={(e) => {
-                                setProfileData({...profileData, last_name: e.target.value});
-                            }}
-                            placeholder="Last Name"
-                            className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
-                        />
-                    </div>
-                </div>
-                <div className="w-full flex items-center justify-center">
-                    <div className="w-full mt-6 me-2">
-                        <label className="block text-sm font-medium text-gray-700">{t("University")}</label>
-                        <select
-                            value={profileData.university} // Use profileData here
-                            onChange={(e) => setProfileData({...profileData, university: e.target.value})}
-                            className="mt-1 me-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
-                        >
-                            {universities.map((university) => (
-                                <option key={university.id} value={university.name}>
-                                    {university.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="w-full mt-6 ms-2">
-                        <label className="block text-sm font-medium text-gray-700">{t("PhoneNumber")}</label>
-                        <input
-                            type="phone"
-                            value={profileData.phone_number} // Use profileData here
-                            onChange={(e) => {
-                                setProfileData({...profileData, phone_number: e.target.value});
-                            }}
-                            placeholder="Phone Number"
-                            className="mt-1 ps-2 py-2 px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
-                        />
-                    </div>
-                </div>
-                <div className="mt-4">
-                    <label className="block text-sm font-medium text-gray-700">{t("Email")}</label>
-                    <input
-                        type="email"
-                        value={profileData.email} // Use profileData here
-                        onChange={(e) => {
-                            setProfileData({...profileData, email: e.target.value});
-                        }}
-                        className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 placeholder-black focus:ring-indigo-500 sm:text-sm"
-                        placeholder="Email"
-                    />
-                </div>
-                <div className="mt-4">
-                    <label className="block text-sm font-medium text-gray-700">{t("NewPassword")}</label>
-                    <input
-                        type="password"
-                        placeholder="New Password"
-                        onChange={(e) => {
-                            setProfileData({...profileData, password: e.target.value});
-                        }}
-                        className="mt-1 ps-2 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 placeholder-black focus:ring-indigo-500 sm:text-sm"
-                    />
-                </div>
-
-                <div className="mt-6">
-                    {isLoading ? <LoadingSpinner/> : <button
-                        onClick={() => {
-                            setIsLoading(true);
-                            updateProfile(token, profileData).then((response) => {
-                                toast.success('Profile updated successfully');
-                                setIsLoading(false);
-                            }).catch((error) => {
-                                toast.error('Error updating profile');
-                                setIsLoading(false);
-                            });
-                        }}
-                        type="submit"
-                        className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navyBlue hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navyBlue"
-                    >
-                        {t("Save")}
-                    </button>}
-
-                </div>
+      <div className="w-full  mb-10 flex-1 flex flex-col items-center">
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
+          <div className="w-full sm:w-fit flex items-center justify-start">
+            <Image
+              style={{ cursor: "pointer" }}
+              className="w-24  h-24  rounded-full mx-2 sm:w-16 sm:h-16"
+              src={photo}
+              width={150}
+              height={150}
+              alt="Profile Picture"
+              onClick={handleImageClick}
+            />
+            <div className="w-full">
+              <h1 className="text-2xl font-bold text-black">
+                {profileData.first_name} {profileData.last_name}
+              </h1>
+              <p className="text-gray-600">{profileData.email}</p>
             </div>
+            <input
+              id="profileImageInput"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }} // Hide the file input
+              onChange={handleFileChange}
+            />
+          </div>
+          <div className="w-full flex items-center justify-center">
+            <div className="w-full mt-6 me-2">
+              <label className="block text-sm font-medium text-gray-700">
+                {t("FirstName")}
+              </label>
+              <input
+                type="text"
+                value={profileData.first_name} // Use profileData here
+                onChange={(e) => {
+                  setProfileData({
+                    ...profileData,
+                    first_name: e.target.value,
+                  });
+                }}
+                placeholder="First Name"
+                className="mt-1 me-2 py-2 text-black px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
+              />
+            </div>
+            <div className="w-full mt-6 ms-2">
+              <label className="block text-sm font-medium text-gray-700">
+                {t("LastName")}
+              </label>
+              <input
+                type="text"
+                value={profileData.last_name} // Use profileData here
+                onChange={(e) => {
+                  setProfileData({ ...profileData, last_name: e.target.value });
+                }}
+                placeholder="Last Name"
+                className="mt-1 ps-2 py-2 text-black px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
+              />
+            </div>
+          </div>
+          <div className="w-full flex items-center justify-center">
+            <div className="w-full mt-6 me-2">
+              <label className="block text-sm font-medium text-gray-700">
+                {t("University")}
+              </label>
+              <select
+                value={profileData.university} // Use profileData here
+                onChange={(e) =>
+                  setProfileData({ ...profileData, university: e.target.value })
+                }
+                className="mt-1 me-2 py-2 px-4 text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
+              >
+                {universities.map((university) => (
+                  <option key={university.id} value={university.name}>
+                    {university.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="w-full mt-6 ms-2">
+              <label className="block text-sm font-medium text-gray-700">
+                {t("PhoneNumber")}
+              </label>
+              <input
+                type="phone"
+                value={profileData.phone_number} // Use profileData here
+                onChange={(e) => {
+                  setProfileData({
+                    ...profileData,
+                    phone_number: e.target.value,
+                  });
+                }}
+                placeholder="Phone Number"
+                className="mt-1 ps-2 py-2 text-black px-4 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-500 placeholder-black focus:ring-gray-500 sm:text-sm"
+              />
+            </div>
+          </div>
+          <div className="mt-4">
+            <label className="block text-sm font-medium text-gray-700">
+              {t("Email")}
+            </label>
+            <input
+              type="email"
+              value={profileData.email} // Use profileData here
+              onChange={(e) => {
+                setProfileData({ ...profileData, email: e.target.value });
+              }}
+              className="mt-1 ps-2 py-2 text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 placeholder-black focus:ring-indigo-500 sm:text-sm"
+              placeholder="Email"
+            />
+          </div>
+          <div className="mt-4">
+            <label className="block text-sm font-medium text-gray-700">
+              {t("NewPassword")}
+            </label>
+            <input
+              type="password"
+              placeholder="New Password"
+              onChange={(e) => {
+                setProfileData({ ...profileData, password: e.target.value });
+              }}
+              className="mt-1 ps-2 py-2 text-black block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 placeholder-black focus:ring-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <div className="mt-6">
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <button
+                onClick={() => {
+                  setIsLoading(true);
+                  updateProfile(token, profileData)
+                    .then((response) => {
+                      toast.success("Profile updated successfully");
+                      setIsLoading(false);
+                    })
+                    .catch((error) => {
+                      toast.error("Error updating profile");
+                      setIsLoading(false);
+                    });
+                }}
+                type="submit"
+                className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-navyBlue hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-navyBlue"
+              >
+                {t("Save")}
+              </button>
+            )}
+          </div>
         </div>
+      </div>
     );
     PersonalInfo.displayName = "PersonalInfo";
 });

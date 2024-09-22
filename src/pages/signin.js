@@ -67,7 +67,7 @@ const Signin = () => {
       <div className={`w-full  flex flex-col`}>
         <div className={`hidden lg:block`}>
           <SignInPage />
-          <Footer/>
+          <Footer />
         </div>
         <div className={`w-full  lg:hidden`}>
           <NavBar />
@@ -111,7 +111,9 @@ const Signin = () => {
             </div>
 
             <div className="w-full h-screen flex flex-col justify-center items-center min-h-screen py-12 px-4">
-              <h1 className="text-5xl font-thin mb-8">{t("SignIn")}</h1>
+              <h1 className="text-5xl font-thin mb-8 text-black">
+                {t("SignIn")}
+              </h1>
               <div
                 className={`w-full flex flex-col items-center justify-center`}
               >
@@ -149,7 +151,7 @@ const Signin = () => {
                     id="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 placeholder-black focus:ring-indigo-500 w-full"
+                    className="shadow-sm rounded-xl px-4 py-3 text-black focus:outline-none focus:ring-1 placeholder-black focus:ring-indigo-500 w-full"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -165,7 +167,7 @@ const Signin = () => {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="shadow-sm rounded-xl px-4 py-3 focus:outline-none focus:ring-1 placeholder-black focus:ring-indigo-500 w-full"
+                    className="shadow-sm rounded-xl px-4 py-3 text-black  focus:outline-none focus:ring-1 placeholder-black focus:ring-indigo-500 w-full"
                     placeholder="Enter your password"
                   />
                 </div>
@@ -182,7 +184,7 @@ const Signin = () => {
                   {t("SignIn")}
                 </button>
               </form>
-              <p className="text-sm mt-6 text-center">
+              <p className="text-sm mt-6 text-center text-black">
                 {t("DoNotHaveAccount")}{" "}
                 <Link
                   href="/signup"

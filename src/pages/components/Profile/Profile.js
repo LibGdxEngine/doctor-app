@@ -9,7 +9,7 @@ const Profile = () => {
             <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
                 <div className="flex items-center space-x-4">
                     <Image
-                        className="w-24 h-24 rounded-full"
+                        className="w-24 h-24 rounded-full "
                         src={profileImage}
                         width={150}
                         height={150}

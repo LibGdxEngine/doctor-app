@@ -42,7 +42,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
         }} />
         <div className=" sm:hidden">
           <Image
-            className="w-24 h-24 rounded-full mx-auto mt-10"
+            className="w-24 h-24 rounded-full mx-auto mt-10 sm:mt-0"
             src={userProfilePhoto}
             width={150}
             height={150}
@@ -63,7 +63,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
                 onTapClicked(item.href);
               }}
               key={item.name}
-              className={`h-28 sm:h-20 ${
+              className={`h-28 sm:h-12 ${
                 currentTap === item.href.toLowerCase().trim()
                   ? "bg-searchColor"
                   : ""
@@ -87,7 +87,7 @@ const Sidebar = React.memo(({user, onTapClicked, currentTap}) => {
               //   window.location.reload();
               // });
             }}
-            className={`h-28 sm:h-20 flex items-center justify-center border border-gray-50 text-red-500`}
+            className={`h-28 sm:h-12 flex items-center justify-center border border-gray-50 text-red-500`}
           >
             {t("Logout")}
           </div>

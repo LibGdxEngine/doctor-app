@@ -67,7 +67,9 @@ const System = () => {
                 router.push(`/${step}`);
               }}
             />
-            <div className={`w-full grid grid-cols-4 lg:grid-cols-2 mt-10`}>
+            <div
+              className={`sm:w-full grid grid-cols-6 lg:grid-cols-2 md:grid-cols-2 mt-10`}
+            >
               {systems.map((system, index) => {
                 return (
                   <CheckButton

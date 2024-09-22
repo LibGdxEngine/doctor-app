@@ -24,7 +24,7 @@ const Search = () => {
             toast.error("You need to login to search for questions");
             return;
         }
-        if (query.length < 3) {
+        if (query.length < 3 && query.length > 0) {
             toast.error("Search query must be at least 3 characters long");
             return;
         }

@@ -55,7 +55,7 @@ export default function SignUp() {
             router.replace("/signin");
         } catch (error) {
             console.error('Error during signup:', error);
-            toast.error(JSON.stringify(error.response));
+            toast.error(JSON.stringify(error.response.data.email[0].replace(/^"|"$/g, '')));
         }
     };
 
@@ -95,18 +95,10 @@ export default function SignUp() {
               </div>
               <div className={`w-full h-screen `}>
                 <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
-                  <h1 className="text-5xl font-thin mb-8">{t("SignUp")}</h1>
+                  <h1 className="text-5xl font-thin mb-8 text-black">{t("SignUp")}</h1>
                   <div
                     className={`w-full flex flex-col items-center justify-center`}
                   >
-                    <Image
-                      style={{ cursor: "pointer" }}
-                      src={loginBtn}
-                      className="w-[60%]"
-                      alt={``}
-                      width={400}
-                      height={40}
-                    />
                     <Image
                       style={{ cursor: "pointer" }}
                       className={`my-4 w-[60%]`}
@@ -115,6 +107,15 @@ export default function SignUp() {
                       width={400}
                       height={40}
                     />
+                    <Image
+                      style={{ cursor: "pointer" }}
+                      src={loginBtn}
+                      className="w-[60%]"
+                      alt={``}
+                      width={400}
+                      height={40}
+                    />
+
                     <Image
                       style={{ cursor: "pointer" }}
                       className={`my-0 mb-2 w-[60%]`}
@@ -141,7 +142,7 @@ export default function SignUp() {
                           id="first_name"
                           value={firstName}
                           onChange={(e) => setFirstname(e.target.value)}
-                          className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                          className="shadow-sm rounded-xl px-4 py-2 text-black  focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                           placeholder={`${t("EnterFirstName")}`}
                         />
                       </div>
@@ -157,7 +158,7 @@ export default function SignUp() {
                           id="second_name"
                           value={lastName}
                           onChange={(e) => setLastname(e.target.value)}
-                          className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                          className="shadow-sm rounded-xl px-4 py-2 text-black  focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                           placeholder={`${t("EnterLastName")}`}
                         />
                       </div>
@@ -174,7 +175,7 @@ export default function SignUp() {
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                        className="shadow-sm rounded-xl px-4 py-2 text-black  focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                         placeholder={`${t("EnterEmail")}`}
                       />
                     </div>
@@ -190,7 +191,7 @@ export default function SignUp() {
                         id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                        className="shadow-sm rounded-xl px-4 py-2 text-black  focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                         placeholder={`${t("EnterPassword")}`}
                       />
                     </div>
@@ -206,7 +207,7 @@ export default function SignUp() {
                         id="password2"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="shadow-sm rounded-xl px-4 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                        className="shadow-sm rounded-xl px-4 py-2 text-black focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
                         placeholder={`${t("EnterPassword")}`}
                       />
                     </div>
@@ -231,7 +232,7 @@ export default function SignUp() {
                       {t("SignUp")}
                     </button>
                   </form>
-                  <p className="text-sm mt-3 text-center">
+                  <p className="text-sm mt-3 text-center text-black">
                     {t("DoNotHaveAccount")}{" "}
                     <Link
                       href="/signin"

@@ -58,9 +58,7 @@ const Year = () => {
         </div>
         <NavBar />
 
-        <div
-          className={`w-full h-full flex flex-col items-start px-8`}
-        >
+        <div className={`w-full h-full flex flex-col items-start px-8`}>
           <div
             className={`w-full h-full flex flex-col items-start justify-center md:pt-0`}
           >
@@ -71,7 +69,7 @@ const Year = () => {
               }}
             />
             <div
-              className={`w-full h-fit mt-10 grid grid-cols-4 lg:grid-cols-2 `}
+              className={`sm:w-full h-fit mt-10 grid grid-cols-6 lg:grid-cols-2 md:grid-cols-2`}
             >
               {years.map((year, index) => {
                 return (

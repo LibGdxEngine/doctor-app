@@ -30,7 +30,7 @@ const NavBar = () => {
     }
 
     return (
-      <div className={`w-full h-20 z-100`}>
+      <div className={`w-full h-20 sm:h-4 z-100`}>
         <div
           id={`navbar`}
           className={`w-full fixed h-20 flex md:hidden items-center justify-between navbar ps-10 lg:ps-2 py-2 z-40`}
@@ -106,7 +106,7 @@ const NavBar = () => {
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                className="w-full h-full bg-white py-2 focus:border-lightDark outline-none rounded-full lg:text-xs px-2 ps-12"
+                className="w-full h-full bg-white text-black py-2 focus:border-lightDark outline-none rounded-full lg:text-xs px-2 ps-12"
                 placeholder={`${t("Search")} ....`}
               />
               <FontAwesomeIcon
@@ -151,7 +151,7 @@ const NavBar = () => {
                   <div className={`text-xs text-black`}>
                     {t("Hello")}, {user?.first_name}
                   </div>
-                  <div className={`text-sm text-black`}>{t("Welcome")}</div>
+                  {/* <div className={`text-sm text-black`}>{t("Welcome")}</div> */}
                 </div>
               ) : (
                 <div>

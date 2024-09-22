@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import {toast} from "react-toastify";
 import {useRouter} from "next/router";
 import Image from "next/image";
-import loginBtn from "../../../../public/login_button.svg";
+import loginBtn from "../../../../public/Group 26086666.svg";
 import loginFace from "../../../../public/login_face.svg";
 import loginApple from "../../../../public/Group 48095648.svg";
 
@@ -33,7 +33,7 @@ const SocialLoginButton = ({provider, clientId, redirectUri}) => {
           <Image
             style={{ cursor: "pointer" }}
             src={loginBtn}
-            className="w-full"
+            className="w-full my-2"
             alt={``}
             width={400}
             height={40}
@@ -43,7 +43,7 @@ const SocialLoginButton = ({provider, clientId, redirectUri}) => {
           <Image
             style={{ cursor: "pointer" }}
             src={loginFace}
-            className="w-full"
+            className="w-full my-2"
             alt={``}
             width={400}
             height={40}
@@ -52,7 +52,7 @@ const SocialLoginButton = ({provider, clientId, redirectUri}) => {
         {provider === "apple" ? (
           <Image
             style={{ cursor: "pointer" }}
-            className="w-full"
+            className="w-full my-2"
             src={loginApple}
             alt={``}
             width={400}

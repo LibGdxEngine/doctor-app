@@ -141,8 +141,8 @@ const Start = () => {
         </div>
         <NavBar />
         <div
-          className="w-full h-full  flex flex-col 
-        items-center justify-center sm:px-10 overflow-x-hidden sm:overflow-y-scroll"
+          className="w-full h-screen  flex flex-col 
+        items-center justify-center sm:px-10 sm:py-10"
         >
           <div className="w-full h-full  px-20 sm:px-2 flex flex-col items-start justify-center">
             <div
