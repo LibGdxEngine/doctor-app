@@ -32,7 +32,7 @@ const NewFavoriteList = ({ onClose, onSave }) => {
                     <label className="block text-gray-700 mb-2">{t("Name")}</label>
                     <input
                         type="text"
-                        className="w-full p-2 border border-gray-300 rounded-lg"
+                        className="w-full p-2 border text-black border-gray-300 rounded-lg"
                         placeholder={t("PleaseEnterFavList")}
                         value={listName}
                         onChange={(e) => setListName(e.target.value)}

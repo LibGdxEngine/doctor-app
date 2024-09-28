@@ -19,7 +19,6 @@ import {
 import FavCard from "@/pages/components/Favourites/FavCard";
 import {toast} from "react-toastify";
 import QuestionCard from "@/pages/components/Favourites/QuestionCard";
-import {log} from "next/dist/server/typescript/utils";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
 import userIcon from "../../public/profile.svg";
@@ -241,14 +240,17 @@ const History = React.memo(({examObject: defaultExams}) => {
     const calculateScorePercentage = (questions) => {
         const values = Object.values(questions); // Extract object values
         const totalQuestions = values.length; // Total number of questions
-
+        
         // If there are no questions, return 0.0 to avoid division by zero.
         if (totalQuestions === 0) {
             return 0.0;
         }
 
         const correctAnswers = values.filter(item => item.is_correct === true).length; // Count correct answers
+    
         const percentage = (correctAnswers / totalQuestions) * 100; // Calculate percentage
+
+        
         const formattedPercentage = parseFloat(percentage.toFixed(1)); // Format to one decimal place
 
         // Check if the formattedPercentage is a real number or NaN
@@ -286,7 +288,7 @@ const History = React.memo(({examObject: defaultExams}) => {
                         <p className="text-gray-500 me-2">
                           {parseFloat(
                             (
-                              (parseInt(item.current_question) /
+                              (parseInt(Object.keys(item.progress).length) /
                                 item.questions.length) *
                               100
                             ).toFixed(1)
@@ -454,7 +456,7 @@ const Favourites = React.memo(({favourites: myFav}) => {
                   number={index + 1}
                   question={question.text}
                   answers={question.answers}
-                  correctAnswer={question.correct_answer.answer}
+                  // correctAnswer={question.correct_answer.answer}
                 />
               );
             })}
@@ -526,6 +528,7 @@ const Profile = React.memo(() => {
         }
 
     }, [token]);
+
     useEffect(() => {
         if (!loading && !token) {
             router.push('/signin');

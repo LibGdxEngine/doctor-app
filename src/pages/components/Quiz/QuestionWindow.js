@@ -306,7 +306,7 @@ const QuestionWindow = ({
         <div className="w-full flex mt-4 max-h-screen">
           {showResults ? (
             <>
-              <div className="w-full mt-2 bg-blue-50 rounded-xl p-4 mx-4 text-3xl text-center">
+              <div className="w-full mt-2  rounded-xl text-black p-4 mx-4 text-3xl text-center">
                 {JSON.stringify(calculateTruePercentage(progress)) === "null"
                   ? "Time finished"
                   : `Your score is ${calculateTruePercentage(progress)}%`}

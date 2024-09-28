@@ -12,9 +12,11 @@ function SearchBar() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim()) {
+            console.log(inputValue.trim());
+            
             router.push({
                 pathname: '/search',
-                query: { token: inputValue.trim() }
+                query: { query: inputValue.trim() }
             });
         }
     };

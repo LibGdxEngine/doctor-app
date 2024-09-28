@@ -55,7 +55,7 @@ const ReportsModal = ({isOpen, onClose, question}) => {
                             <h1 className={`font-bold`}>{t("WriteYourReport")}</h1>
                             <input value={report} onChange={(e) => {
                                 setReport(e.target.value);
-                            }} type="text" className={`h-60 mt-4 px-2 rounded-3xl bg-indigo-50 w-full`}/>
+                            }} type="text" className={`h-60 mt-4 px-2 text-black rounded-3xl bg-indigo-50 w-full`}/>
                             <button onClick={() => {
                                 handleSaveNote();
                                 setReport('');

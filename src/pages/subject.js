@@ -11,8 +11,9 @@ import {useAuth} from "@/context/AuthContext";
 import {toast} from "react-toastify";
 import SearchBar from "@/pages/components/Home/SearchBar";
 import SectionsHeader from "@/pages/components/SectionsHeader";
-
+import { useTranslation } from "react-i18next";
 const Subject = () => {
+    const { t, i18n } = useTranslation("common");
     const router = useRouter();
     const {token, loading} = useAuth();
     const [selectedSubjects, setSelectedSubjects] = useState([]);
@@ -69,7 +70,7 @@ const Subject = () => {
               }}
             />
             <div
-              className={`sm:w-full grid grid-cols-6 lg:grid-cols-2 md:grid-cols-2 mt-10`}
+              className={`sm:w-full h-fit mt-10 grid grid-cols-6 lg:grid-cols-2 md:grid-cols-2 `}
             >
               {subjects.map((subject, index) => {
                 return (
@@ -90,12 +91,28 @@ const Subject = () => {
                 );
               })}
             </div>
-            <div
-              onClick={handleNext}
-              id={`next-btn`}
-              className={`w-1/2 sm:w-full mt-10`}
-            >
-              <ActionButton text={`Next`} />
+            <div className={`h-fit  flex flex-row w-2/3`}>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  router.replace("/start");
+                }}
+                id={`next-btn`}
+                className={`w-1/3 sm:w-full mt-10`}
+              >
+                <ActionButton
+                  text={`${t("Back")}`}
+                  className={`!bg-gray-400`}
+                />
+              </div>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={handleNext}
+                id={`next-btn`}
+                className={`w-2/3 sm:w-full mt-10 mx-2`}
+              >
+                <ActionButton text={`${t("Next")}`} />
+              </div>
             </div>
           </div>
         </div>

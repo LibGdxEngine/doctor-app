@@ -26,6 +26,7 @@ const Quiz = () => {
       getExamJourney(token, id)
         .then((response) => {
           setExamObject(response);
+          setProgress(response.progress);
         })
         .catch((error) => {
           console.error("Error fetching exam:", error);

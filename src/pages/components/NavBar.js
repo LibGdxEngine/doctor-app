@@ -20,7 +20,7 @@ const NavBar = () => {
         if (inputValue.trim()) {
             router.push({
                 pathname: '/search',
-                query: {token: inputValue.trim()}
+                query: {query: inputValue.trim()}
             });
         }
     };
@@ -72,7 +72,7 @@ const NavBar = () => {
                 isActive("/shop") ? "text-gray-300" : "text-white"
               }`}
             >
-              shop
+              {t("shop")}
               <div
                 className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left ${
                   isActive("/material") ? "scale-x-100" : ""
@@ -120,7 +120,7 @@ const NavBar = () => {
                 type="submit"
                 className="absolute right-7 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white py-2 px-4 rounded-full"
               >
-                Search
+                {t("Search")}
               </button>
             )}
           </form>
