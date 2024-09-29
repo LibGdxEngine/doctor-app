@@ -158,7 +158,7 @@ const Start = () => {
               <div className="w-32 sm:mx-4 font-semibold text-2xl text-ldarkBlue">
                 {t("Language")}
               </div>
-              <div className="sm:w-full grid grid-cols-3 lg:grid-cols-2 mx-4 sm:mx-0">
+              <div className="sm:w-full grid grid-cols-3 lg:grid-cols-2 mx-10 sm:mx-0">
                 {languages.map((language, index) => {
                   return (
                     <div key={index}>
@@ -186,7 +186,7 @@ const Start = () => {
               <div className="w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue">
                 {t("Specialty")}
               </div>
-              <div className="sm:w-full grid grid-cols-4 lg:grid-cols-2 mx-4 sm:mx-0">
+              <div className="sm:w-full grid grid-cols-4 lg:grid-cols-2 mx-10 sm:mx-0">
                 {specificities.map((specific, index) => (
                   <CheckButton
                     key={index}
@@ -204,7 +204,7 @@ const Start = () => {
               <div className="w-32 sm:w-full sm:mx-4 font-semibold text-2xl text-ldarkBlue">
                 {t("Level")}
               </div>
-              <div className="sm:w-full  grid grid-cols-4 lg:grid-cols-2 mx-4 sm:mx-0">
+              <div className="sm:w-full  grid grid-cols-4 lg:grid-cols-2 mx-10 sm:mx-0">
                 {levels.map((level, index) => (
                   <CheckButton
                     key={index}

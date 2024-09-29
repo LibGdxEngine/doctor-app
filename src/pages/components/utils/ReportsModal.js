@@ -36,36 +36,47 @@ const ReportsModal = ({isOpen, onClose, question}) => {
         if (!isOpen) return null;
 
         return (
+          <div
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+            onClick={onClose}
+          >
             <div
-                className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-                onClick={onClose}
+              className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-lg"
+              onClick={(e) => e.stopPropagation()}
             >
-                <div
-                    className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-lg"
-                    onClick={(e) => e.stopPropagation()}
+              <div className="p-4">
+                <button
+                  onClick={onClose}
+                  className="absolute top-0 right-0 mt-4 mr-4 text-gray-600 hover:text-gray-900"
                 >
-                    <div className="p-4">
-                        <button
-                            onClick={onClose}
-                            className="absolute top-0 right-0 mt-4 mr-4 text-gray-600 hover:text-gray-900"
-                        >
-                            &times;
-                        </button>
-                        <div className={`flex flex-col w-96 h-60 pb-10`}>
-                            <h1 className={`font-bold`}>{t("WriteYourReport")}</h1>
-                            <input value={report} onChange={(e) => {
-                                setReport(e.target.value);
-                            }} type="text" className={`h-60 mt-4 px-2 text-black rounded-3xl bg-indigo-50 w-full`}/>
-                            <button onClick={() => {
-                                handleSaveNote();
-                                setReport('');
-                                onClose();
-                            }} className={`bg-indigo-500 text-white rounded-lg py-2 px-4 mt-4`}>{t("Report")}
-                            </button>
-                        </div>
-                    </div>
+                  &times;
+                </button>
+                <div className={`flex flex-col w-96 h-60 pb-10`}>
+                  <h1 className={`font-bold text-black`}>
+                    {t("WriteYourReport")}
+                  </h1>
+                  <input
+                    value={report}
+                    onChange={(e) => {
+                      setReport(e.target.value);
+                    }}
+                    type="text"
+                    className={`h-60 mt-4 px-2 text-black rounded-3xl bg-indigo-50 w-full`}
+                  />
+                  <button
+                    onClick={() => {
+                      handleSaveNote();
+                      setReport("");
+                      onClose();
+                    }}
+                    className={`bg-indigo-500 text-white rounded-lg py-2 px-4 mt-4`}
+                  >
+                    {t("Report")}
+                  </button>
                 </div>
+              </div>
             </div>
+          </div>
         );
     }
 ;

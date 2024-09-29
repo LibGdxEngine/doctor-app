@@ -59,7 +59,7 @@ const PersonalInfo = React.memo(({user, universities}) => {
     };
 
     return (
-      <div className="w-full  mb-10 flex-1 flex flex-col items-center">
+      <div className="w-full mb-10 flex-1 flex flex-col items-center">
         <div className="w-full max-w-4xl bg-white shadow-md rounded-lg mt-10 p-8">
           <div className="w-full sm:w-fit flex items-center justify-start">
             <Image
@@ -263,7 +263,7 @@ const History = React.memo(({examObject: defaultExams}) => {
     };
 
     return (
-      <div className="w-full min-h-screen flex-1 flex flex-col items-center">
+      <div className="w-full h-full sm:h-screen bg-white flex-1 flex flex-col items-center">
         {examObject.length === 0 ? (
           <h1 className={`text-3xl mt-20 text-black`}>{t("NoHistory")}</h1>
         ) : (
@@ -303,7 +303,7 @@ const History = React.memo(({examObject: defaultExams}) => {
                         </p>
                       </div>
                     </div>
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-2 sm:flex-col space-y-2 sm:items-center sm:justify-center">
                       <button
                         onClick={() => {
                           router.push(
@@ -312,8 +312,8 @@ const History = React.memo(({examObject: defaultExams}) => {
                             )}`
                           );
                         }}
-                        className={`bg-blue-500 text-white px-3 py-1 rounded-md ${
-                          (parseInt(item.current_question) /
+                        className={`bg-blue-500 text-white px-3 py-1 rounded-md sm:text-xs ${
+                          (parseInt(Object.keys(item.progress).length) /
                             item.questions.length) *
                             100 ===
                           100
@@ -331,7 +331,7 @@ const History = React.memo(({examObject: defaultExams}) => {
                             );
                           });
                         }}
-                        className="bg-red-500 text-white px-3 py-1 rounded-md"
+                        className="w-full bg-red-500 sm:text-xs text-white px-3 py-1 rounded-md"
                       >
                         {t("Delete")}
                       </button>
@@ -342,7 +342,7 @@ const History = React.memo(({examObject: defaultExams}) => {
                       className="bg-blue-600 h-2.5 rounded-full"
                       style={{
                         width: `${
-                          (parseInt(item.current_question) /
+                          (parseInt(Object.keys(item.progress).length) /
                             item.questions.length) *
                           100
                         }%`,
@@ -375,7 +375,7 @@ const Notes = React.memo(() => {
         }
     }, [token]);
     return (
-      <div className="w-full min-h-screen flex-1 flex flex-col items-center">
+      <div className="w-full bg-white min-h-screen flex-1 flex flex-col items-center">
         {notes && notes.length === 0 ? (
           <h1 className={`text-3xl mt-20 text-black`}>{t("NoNotes")}</h1>
         ) : (
@@ -438,7 +438,7 @@ const Favourites = React.memo(({favourites: myFav}) => {
     return (
       <>
         {showQuestions ? (
-          <div className="w-full h-fit   mt-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
+          <div className="w-full h-fit  bg-white my-10 flex-1 flex flex-row flex-wrap justify-center gap-6 items-center">
             <div className={`w-full `}>
               <button
                 onClick={() => {
@@ -555,34 +555,63 @@ const Profile = React.memo(() => {
     }
 
     return (
-        <div className="w-full flex flex-col items-center justify-center">
-            <div className={`w-full hidden md:block`}>
-                <SearchBar/>
-                <SectionsHeader/>
-            </div>
-            <NavBar/>
-            <div className={`w-full flex md:flex-col`}>
-                <Sidebar user={user} onTapClicked={(tap) => {
-                    setSelectedTap(tap);
-                }} currentTap={selectedTap}/>
-                <div className={`w-full`}>
-                    <div className={`transition-container ${selectedTap === 'profile' ? 'show' : ''}`}>
-                        {selectedTap === 'profile' &&
-                            <PersonalInfo key="profile" user={user} universities={universities}/>}
-                    </div>
-                    <div className={`transition-container ${selectedTap === 'history' ? 'show' : ''}`}>
-                        {selectedTap === 'history' && <History key="history" examObject={examObject}/>}
-                    </div>
-                    <div className={`transition-container ${selectedTap === 'favorite' ? 'show' : ''}`}>
-                        {selectedTap === 'favorite' && <Favourites key="favorite" favourites={favourites}/>}
-                    </div>
-                    <div className={`transition-container ${selectedTap === 'notes' ? 'show' : ''}`}>
-                        {selectedTap === 'notes' && <Notes key="notes"/>}
-                    </div>
-                </div>
-            </div>
-            <Footer/>
+      <div className="w-full  bg-white flex flex-col items-center justify-center">
+        <div className={`w-full hidden md:block`}>
+          <SearchBar />
+          <SectionsHeader />
         </div>
+        <NavBar />
+        <div className={`w-full flex md:flex-col`}>
+          <Sidebar
+            user={user}
+            onTapClicked={(tap) => {
+              setSelectedTap(tap);
+            }}
+            currentTap={selectedTap}
+          />
+          <div className={`w-full`}>
+            <div
+              className={`transition-container ${
+                selectedTap === "profile" ? "show" : ""
+              }`}
+            >
+              {selectedTap === "profile" && (
+                <PersonalInfo
+                  key="profile"
+                  user={user}
+                  universities={universities}
+                />
+              )}
+            </div>
+            <div
+              className={`transition-container ${
+                selectedTap === "history" ? "show" : ""
+              }`}
+            >
+              {selectedTap === "history" && (
+                <History key="history" examObject={examObject} />
+              )}
+            </div>
+            <div
+              className={`transition-container ${
+                selectedTap === "favorite" ? "show" : ""
+              }`}
+            >
+              {selectedTap === "favorite" && (
+                <Favourites key="favorite" favourites={favourites} />
+              )}
+            </div>
+            <div
+              className={`transition-container ${
+                selectedTap === "notes" ? "show" : ""
+              }`}
+            >
+              {selectedTap === "notes" && <Notes key="notes" />}
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
     );
 
 });

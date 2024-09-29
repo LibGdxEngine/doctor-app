@@ -50,7 +50,7 @@ const FavoriteList = ({question, onItemAdded}) => {
 
     return (
         <div className="w-96 p-6 bg-white">
-            <h2 className="text-2xl font-semibold text-center mb-6">{t("AddToFavorite")}</h2>
+            <h2 className="text-2xl font-semibold text-black text-center mb-6">{t("AddToFavorite")}</h2>
             <div
                 className="mb-4 p-4 bg-gray-100 rounded-lg flex items-center cursor-pointer"
                 onClick={() => setCreatingNewList(true)}
