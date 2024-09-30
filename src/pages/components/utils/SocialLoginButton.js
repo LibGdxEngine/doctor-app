@@ -28,7 +28,7 @@ const SocialLoginButton = ({provider, clientId, redirectUri}) => {
     };
 
     return (
-      <div className={`w-[60%] h-12 mt-4`} onClick={handleSocialLogin}>
+      <div className={`w-96 h-12 mt-4`} onClick={handleSocialLogin}>
         {provider === "google" ? (
           <Image
             style={{ cursor: "pointer" }}

@@ -95,13 +95,15 @@ export default function SignUp() {
               </div>
               <div className={`w-full h-screen `}>
                 <div className="w-full  flex flex-col justify-center items-center min-h-screen py-12 px-4">
-                  <h1 className="text-5xl font-thin mb-8 text-black">{t("SignUp")}</h1>
+                  <h1 className="text-5xl font-thin mb-8 text-black">
+                    {t("SignUp")}
+                  </h1>
                   <div
                     className={`w-full flex flex-col items-center justify-center`}
                   >
                     <Image
                       style={{ cursor: "pointer" }}
-                      className={`my-4 w-[60%]`}
+                      className={`my-4 w-96`}
                       src={loginFace}
                       alt={``}
                       width={400}
@@ -110,7 +112,7 @@ export default function SignUp() {
                     <Image
                       style={{ cursor: "pointer" }}
                       src={loginBtn}
-                      className="w-[60%]"
+                      className="w-96"
                       alt={``}
                       width={400}
                       height={40}
@@ -118,7 +120,7 @@ export default function SignUp() {
 
                     <Image
                       style={{ cursor: "pointer" }}
-                      className={`my-0 mb-2 w-[60%]`}
+                      className={`my-4 mb-2 w-96`}
                       src={loginApple}
                       alt={``}
                       width={400}

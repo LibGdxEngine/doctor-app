@@ -36,7 +36,7 @@ const LogoutModal = ({ isOpen, onClose, onConfirm }) => {
             &times;
           </button>
           <div className="flex flex-col w-96 h-40 justify-center items-center">
-            <h1 className="font-bold text-lg mb-4">{t("AreYouSureLogout")}</h1>
+            <h1 className="font-bold text-black text-lg mb-4">{t("AreYouSureLogout")}</h1>
             <div className="flex space-x-4">
               <button
                 onClick={onConfirm}

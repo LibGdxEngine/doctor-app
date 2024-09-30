@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from "../../../../src/components/axiosInstance";
 const QuestionCard = ({ number, question, answers, correctAnswer }) => {
-        console.log(question);
-        console.log('Hello');
+ 
         
         const [searchQuery, setSearchQuery] = useState(question);
         const [questionData, setQuestionData] = useState(null);

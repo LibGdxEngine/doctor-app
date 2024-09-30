@@ -70,7 +70,7 @@ const FavoriteList = ({question, onItemAdded}) => {
                         onChange={() => handleSelect(item.pkid)}
                         className="form-radio text-blue-600"
                     />
-                    <span className="ml-2">{item.name}</span>
+                    <span className="ml-2 text-black">{item.name}</span>
                 </div>
             ))}
             <button onClick={handleAddToFavorites}
