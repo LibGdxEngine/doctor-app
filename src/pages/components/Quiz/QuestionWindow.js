@@ -125,6 +125,7 @@ const QuestionWindow = ({
       parseInt(questionIndex) === numbers.length - 1 ? t("Submit") : t("Check");
   }
 
+
   if (!questions) {
     return (
       <div>

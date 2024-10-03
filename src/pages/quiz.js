@@ -61,6 +61,7 @@ const Quiz = () => {
       <NavBar />
 
       <div className={`w-full h-full  items-start justify-center`}>
+      
         {examObject && (
           <QuestionWindow
             examJourneyId={id}

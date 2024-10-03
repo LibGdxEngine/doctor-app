@@ -303,7 +303,7 @@ const History = React.memo(({examObject: defaultExams}) => {
                         </p>
                       </div>
                     </div>
-                    <div className="flex space-x-2 sm:flex-col space-y-2 sm:items-center sm:justify-center">
+                    <div className="flex  space-x-2 sm:flex-col sm:space-y-2 items-center sm:items-center sm:justify-center">
                       <button
                         onClick={() => {
                           router.push(
@@ -312,7 +312,7 @@ const History = React.memo(({examObject: defaultExams}) => {
                             )}`
                           );
                         }}
-                        className={`bg-blue-500 text-white px-3 py-1 rounded-md sm:text-xs ${
+                        className={`h-fit bg-blue-500 text-white px-3 py-1 rounded-md sm:text-xs ${
                           (parseInt(Object.keys(item.progress).length) /
                             item.questions.length) *
                             100 ===
