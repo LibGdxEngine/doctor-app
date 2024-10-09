@@ -45,7 +45,7 @@ const QuestionWindow = ({
   const closeReportsModal = () => setReportsModalOpen(false);
 
   if (!time) {
-    time = 60 * numbers.length;
+    if (numbers){ time = 60 * numbers.length;}else{time = 500;}
   }
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResults, setShowResults] = useState(false);
