@@ -36,7 +36,6 @@ const Quiz = () => {
   
   // Function to update the exam object with new progress
   const handleProgressUpdate = (questionIndex, updatedProgress) => {
-    console.log("Updating progress for question", updatedProgress);
     setProgress((prev) => ({
       ...prev,
       [questionIndex]: updatedProgress,
@@ -84,17 +83,12 @@ const Quiz = () => {
                 current_question: parseInt(q) + 1,
               })
                 .then((response) => {
-                  console.log(q);
-                  console.log({
-                    question_text: examObject.questions[q].text,
-                    answer: selectedAnswerIndex,
-                    is_correct: response.is_correct,
-                  });
-
+                  
                   handleProgressUpdate(q.toString(), {
                     question_text: examObject.questions[q].text,
                     answer: selectedAnswerIndex,
                     is_correct: response.is_correct,
+                    correct_answer: response.progress[q]['correct_answer'],
                   });
 
                   if (q < length - 1) {

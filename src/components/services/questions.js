@@ -3,7 +3,7 @@ import queryString from 'query-string';
 
 export const getLanguages = async (token) => {
     try {
-        const response = await axiosInstance.get('/questions/languages/', {
+        const response = await axiosInstance.get('/v1/questions/languages/', {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -17,7 +17,7 @@ export const getLanguages = async (token) => {
 
 export const getSpecificities = async (token) => {
     try {
-        const response = await axiosInstance.get('/questions/specificities/', {
+        const response = await axiosInstance.get('/v1/questions/specificities/', {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -31,7 +31,7 @@ export const getSpecificities = async (token) => {
 
 export const getLevels = async (token) => {
     try {
-        const response = await axiosInstance.get('/questions/levels/', {
+        const response = await axiosInstance.get('/v1/questions/levels/', {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -45,7 +45,7 @@ export const getLevels = async (token) => {
 
 export const getYears = async (token, state) => {
     try {
-        const response = await axiosInstance.get(`questions/years/?language=${state.language}&specificity=${state.specificity}&level=${state.level}`, {
+        const response = await axiosInstance.get(`/v1/questions/years/?language=${state.language}&specificity=${state.specificity}&level=${state.level}`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -59,7 +59,7 @@ export const getYears = async (token, state) => {
 
 export const getSubjects = async (token, state) => {
     try {
-        const response = await axiosInstance.get(`questions/subjects/?language=${state.language}&specificity=${state.specificity}&level=${state.level}`, {
+        const response = await axiosInstance.get(`/v1/questions/subjects/?language=${state.language}&specificity=${state.specificity}&level=${state.level}`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -73,7 +73,7 @@ export const getSubjects = async (token, state) => {
 
 export const getSystems = async (token, state) => {
     try {
-        const response = await axiosInstance.get(`questions/systems/?language=${state.language}&specificity=${state.specificity}&level=${state.level}`, {
+        const response = await axiosInstance.get(`/v1/questions/systems/?language=${state.language}&specificity=${state.specificity}&level=${state.level}`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -88,7 +88,7 @@ export const getSystems = async (token, state) => {
 
 export const getTopics = async (token, state) => {
     try {
-        const response = await axiosInstance.get(`questions/topics/?language=${state.language}&specificity=${state.specificity}&level=${state.level}`, {
+        const response = await axiosInstance.get(`/v1/questions/topics/?language=${state.language}&specificity=${state.specificity}&level=${state.level}`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -102,7 +102,7 @@ export const getTopics = async (token, state) => {
 
 export const createExamJourney = async (token, examData) => {
     try {
-        const response = await axiosInstance.post('questions/create-exam-journey/',
+        const response = await axiosInstance.post('/v1/questions/create-exam-journey/',
             examData, {
                 headers: {
                     Authorization: `Token ${token}`
@@ -117,7 +117,7 @@ export const createExamJourney = async (token, examData) => {
 
 export const updateExamJourney = async (token, examId, examData) => {
     try {
-        const response = await axiosInstance.patch(`questions/update-exam-journey/${examId}/`, examData, {
+        const response = await axiosInstance.patch(`/v1/questions/update-exam-journey/${examId}/`, examData, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -131,7 +131,7 @@ export const updateExamJourney = async (token, examId, examData) => {
 
 export const getExamJourney = async (token, examId) => {
     try {
-        const response = await axiosInstance.get(`questions/exam-journeys/${examId}/`, {
+        const response = await axiosInstance.get(`/v1/questions/exam-journeys/${examId}/`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -145,7 +145,7 @@ export const getExamJourney = async (token, examId) => {
 
 export const getUserHistoryExams = async (token) => {
     try {
-        const response = await axiosInstance.get(`questions/exam-journeys/`, {
+        const response = await axiosInstance.get(`/v1/questions/exam-journeys/`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -159,7 +159,7 @@ export const getUserHistoryExams = async (token) => {
 
 export const deleteExamJourney = async (token, examId) => {
     try {
-        const response = await axiosInstance.delete(`questions/exam-journeys/${examId}/`, {
+        const response = await axiosInstance.delete(`/v1/questions/exam-journeys/${examId}/`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -173,7 +173,7 @@ export const deleteExamJourney = async (token, examId) => {
 
 export const getFavouritesLists = async (token) => {
     try {
-        const response = await axiosInstance.get('questions/favorites/', {
+        const response = await axiosInstance.get('/v1/questions/favorites/', {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -187,7 +187,7 @@ export const getFavouritesLists = async (token) => {
 
 export const deleteFavouritesList = async (token, listId) => {
     try {
-        const response = await axiosInstance.delete(`questions/favorites/${listId}/`, {
+        const response = await axiosInstance.delete(`/v1/questions/favorites/${listId}/`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -201,7 +201,7 @@ export const deleteFavouritesList = async (token, listId) => {
 
 export const getSingleFavouritesListDetails = async (token, listId) => {
     try {
-        const response = await axiosInstance.get(`questions/favorites/${listId}/`, {
+        const response = await axiosInstance.get(`/v1/questions/favorites/${listId}/`, {
             headers: {
                 Authorization: `Token ${token}`
             }
@@ -216,7 +216,7 @@ export const getSingleFavouritesListDetails = async (token, listId) => {
 
 export const createFavoriteList = async (token, listData) => {
     try {
-        const response = await axiosInstance.post('questions/favorites/',
+        const response = await axiosInstance.post('/v1/questions/favorites/',
             listData, {
                 headers: {
                     Authorization: `Token ${token}`
@@ -232,7 +232,7 @@ export const createFavoriteList = async (token, listData) => {
 
 export const addQuestionToFavoritesList = async (token, listId, questionId) => {
     try {
-        const response = await axiosInstance.post(`questions/favorites/${listId}/add_question/`,
+        const response = await axiosInstance.post(`/v1/questions/favorites/${listId}/add_question/`,
             {question_id: questionId}, {
                 headers: {
                     "Authorization": `Token ${token}`
@@ -247,7 +247,7 @@ export const addQuestionToFavoritesList = async (token, listId, questionId) => {
 
 export const getNotes = async (token) => {
     try {
-        const response = await axiosInstance.get(`questions/notes/`, {
+        const response = await axiosInstance.get(`/v1/questions/notes/`, {
             headers: {
                 "Authorization": `Token ${token}`
             }
@@ -261,7 +261,7 @@ export const getNotes = async (token) => {
 
 export const getUniversities = async (token) => {
     try {
-        const response = await axiosInstance.get(`questions/university/`, {
+        const response = await axiosInstance.get(`/v1/questions/university/`, {
             headers: {
                 "Authorization": `Token ${token}`
             }
@@ -275,7 +275,7 @@ export const getUniversities = async (token) => {
 
 export const deleteNote = async (token, noteId) => {
     try {
-        const response = await axiosInstance.delete(`questions/notes/${noteId}/`, {
+        const response = await axiosInstance.delete(`/v1/questions/notes/${noteId}/`, {
             headers: {
                 "Authorization": `Token ${token}`
             }
@@ -289,7 +289,7 @@ export const deleteNote = async (token, noteId) => {
 
 export const createNewNote = async (token, note, question) => {
     try {
-        const response = await axiosInstance.post(`questions/notes/`,
+        const response = await axiosInstance.post(`/v1/questions/notes/`,
             {question, note_text: note}, {
                 headers: {
                     "Authorization": `Token ${token}`
@@ -304,7 +304,7 @@ export const createNewNote = async (token, note, question) => {
 
 export const createNewReport = async (token, report, question) => {
     try {
-        const response = await axiosInstance.post(`questions/reports/`,
+        const response = await axiosInstance.post(`/v1/questions/reports/`,
             {question, reason: report}, {
                 headers: {
                     "Authorization": `Token ${token}`
@@ -320,7 +320,7 @@ export const createNewReport = async (token, report, question) => {
 
 export const updateProfile = async (token, profileData) => {
     try {
-        const response = await axiosInstance.patch(`/profiles/me/update/`,
+        const response = await axiosInstance.patch(`/v1/profiles/me/update/`,
             profileData, {
                 headers: {
                     "Authorization": `Token ${token}`
@@ -336,7 +336,7 @@ export const updateProfile = async (token, profileData) => {
 export const getQuestionsCount = async (token, questionData) => {
     try {
         const queryString = new URLSearchParams(questionData).toString();
-        const response = await axiosInstance.get(`/questions/count/?${queryString}`,
+        const response = await axiosInstance.get(`/v1/questions/count/?${queryString}`,
             {
                 headers: {
                     "Authorization": `Token ${token}`
@@ -350,14 +350,16 @@ export const getQuestionsCount = async (token, questionData) => {
 };
 
 
-export const searchForQuestions = async (token, query) => {
+export const searchForquestions = async (token, query) => {
     try {
-        const response = await axiosInstance.get(`/questions/search/?q=${query}`,
-            {
-                headers: {
-                    "Authorization": `Token ${token}`
-                }
-            });
+        const response = await axiosInstance.get(
+          `/v1/questions/search/?q=${query}`,
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
         return response.data;
     } catch (error) {
         console.error('Error adding question to list:', error);

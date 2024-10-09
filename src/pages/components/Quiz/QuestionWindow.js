@@ -45,7 +45,7 @@ const QuestionWindow = ({
   const closeReportsModal = () => setReportsModalOpen(false);
 
   if (!time) {
-    time = 500;
+    time = 60 * numbers.length;
   }
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResults, setShowResults] = useState(false);
@@ -54,6 +54,7 @@ const QuestionWindow = ({
     historyProgress = {};
   }
 
+  
   const mappedProgress = Object.entries(historyProgress).reduce(
     (acc, [key, value]) => {
       acc[key] = value.is_correct;
@@ -336,15 +337,47 @@ const QuestionWindow = ({
                 </p>
                 <div className="w-full mt-4">
                   {questions &&
-                    questions.answers.map((option, index) => (
-                      <QuestionItem
-                        question={option.answer}
-                        index={index}
-                        isSelected={index === selectedAnswer}
-                        key={index}
-                        onAnswer={handleAnswer}
-                      />
-                    ))}
+                    historyProgress &&
+                    questions.answers.map((option, index) => {
+                      const indexAsString = index.toString();
+                        
+                      
+                      var answerState = "idle";
+                      var is_selected = selectedAnswer === index;
+                      var is_answered = false;
+                      if (historyProgress[questionIndex]) {
+                        is_answered =
+                          questions.text ===
+                            historyProgress[questionIndex]["question_text"] &&
+                          historyProgress[questionIndex]["answer"] === index;
+                        // Determine if the selected answer is correct or wrong
+                        if (
+                          historyProgress[questionIndex]["correct_answer"] ===
+                          option.answer
+                        ) {
+                          answerState = "correct";
+                        }
+                      }
+                      if (is_answered) {
+                        is_selected = false;
+                        if(historyProgress[questionIndex]["correct_answer"] === option.answer){
+                          answerState = "correct";
+                        }else{
+                          answerState = "wrong";
+                        }
+                      }
+                      
+                      return (
+                        <QuestionItem
+                          question={option.answer}
+                          index={index}
+                          answerState={type === "study" ? answerState : "idle"}
+                          isSelected={is_selected || is_answered}
+                          key={index}
+                          onAnswer={handleAnswer}
+                        />
+                      );
+                    })}
                 </div>
               </div>
             </>

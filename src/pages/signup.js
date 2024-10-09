@@ -55,7 +55,8 @@ export default function SignUp() {
             router.replace("/signin");
         } catch (error) {
             console.error('Error during signup:', error);
-            toast.error(JSON.stringify(error.response.data.email[0].replace(/^"|"$/g, '')));
+            
+            toast.error(JSON.stringify(error.response.data.errors.email[0].replace(/^"|"$/g, '')));
         }
     };
 

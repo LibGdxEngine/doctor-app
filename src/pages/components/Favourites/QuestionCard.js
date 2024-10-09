@@ -14,9 +14,8 @@ const QuestionCard = ({ number, question, answers, correctAnswer }) => {
               setError(null);
               try {
                 const response = await axiosInstance.get(
-                  `/questions/search/?q=${searchQuery}`
+                  `v1/questions/search/?q=${searchQuery}`
                 );
-                console.log(response.data.results[0]);
                 
                 const data = response.data.results;
                 

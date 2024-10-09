@@ -303,7 +303,7 @@ const History = React.memo(({examObject: defaultExams}) => {
                         </p>
                       </div>
                     </div>
-                    <div className="flex  space-x-2 sm:flex-col sm:space-y-2 items-center sm:items-center sm:justify-center">
+                    <div className="flex  space-x-2 md:space-x-0 sm:flex-col sm:space-y-2 items-center sm:items-center sm:justify-center">
                       <button
                         onClick={() => {
                           router.push(
