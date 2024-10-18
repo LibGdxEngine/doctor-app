@@ -25,7 +25,8 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isChecked, setIsChecked] = useState(false);
-
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const {token, loading} = useAuth();
 
 
@@ -189,14 +190,25 @@ export default function SignUp() {
                       >
                         {t("Password")}
                       </label>
-                      <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="shadow-sm rounded-xl px-4 py-2 text-black  focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                        placeholder={`${t("EnterPassword")}`}
-                      />
+                      <div className="relative">
+                        <input
+                          type={showPassword ? "text" : "password"} // Toggle between "text" and "password"
+                          id="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          className="shadow-sm rounded-xl px-4 py-2 text-black focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                          placeholder="Enter your password"
+                        />
+                        {/* Toggle Button */}
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-4 top-3 text-sm font-medium text-indigo-500"
+                        >
+                          {showPassword ? "Hide" : "Show"}{" "}
+                          {/* Toggle button text */}
+                        </button>
+                      </div>
                     </div>
                     <div className="flex flex-col">
                       <label
@@ -205,14 +217,27 @@ export default function SignUp() {
                       >
                         Re-{t("Password")}
                       </label>
-                      <input
-                        type="password"
-                        id="password2"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="shadow-sm rounded-xl px-4 py-2 text-black focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
-                        placeholder={`${t("EnterPassword")}`}
-                      />
+                      <div className="relative">
+                        <input
+                          type={showConfirmPassword ? "text" : "password"} // Toggle between "text" and "password"
+                          id="password2"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          className="shadow-sm rounded-xl px-4 py-2 text-black focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                          placeholder="Confirm your password"
+                        />
+                        {/* Toggle Button */}
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setShowConfirmPassword(!showConfirmPassword)
+                          }
+                          className="absolute right-4 top-3 text-sm font-medium text-indigo-500"
+                        >
+                          {showConfirmPassword ? "Hide" : "Show"}{" "}
+                          {/* Toggle button text */}
+                        </button>
+                      </div>
                     </div>
                     <div className="flex items-center">
                       <input

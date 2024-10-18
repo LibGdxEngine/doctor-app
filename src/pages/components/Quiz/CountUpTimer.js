@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const CountUpTimer = ({ max, onTimeChange }) => {
-    const [seconds, setSeconds] = useState(0);
+const CountUpTimer = ({ max, onTimeChange ,start=0}) => {
+    const [seconds, setSeconds] = useState(start);
 
     useEffect(() => {
         // Function to update the timer

@@ -33,7 +33,7 @@ const Quiz = () => {
         });
     }
   }, [token, id]);
-  
+
   // Function to update the exam object with new progress
   const handleProgressUpdate = (questionIndex, updatedProgress) => {
     setProgress((prev) => ({
@@ -60,7 +60,6 @@ const Quiz = () => {
       <NavBar />
 
       <div className={`w-full h-full  items-start justify-center`}>
-      
         {examObject && (
           <QuestionWindow
             examJourneyId={id}
@@ -69,7 +68,7 @@ const Quiz = () => {
             questionIndex={q}
             type={examObject.type}
             progress={progress}
-            timeLeft={examObject.time_left}
+            time={examObject.time_left ? examObject.time_left.toString() : null}
             onCheck={(selectedAnswerAsText, selectedAnswerIndex, time_left) => {
               updateExamJourney(token, id, {
                 time_left,
@@ -83,12 +82,11 @@ const Quiz = () => {
                 current_question: parseInt(q) + 1,
               })
                 .then((response) => {
-                  
                   handleProgressUpdate(q.toString(), {
                     question_text: examObject.questions[q].text,
                     answer: selectedAnswerIndex,
                     is_correct: response.is_correct,
-                    correct_answer: response.progress[q]['correct_answer'],
+                    correct_answer: response.progress[q]["correct_answer"],
                   });
 
                   if (q < length - 1) {

@@ -36,7 +36,9 @@ const QuestionWindow = ({
   const [isNotesModalOpen, setNotesModalOpen] = useState(false);
   const [isReportsModalOpen, setReportsModalOpen] = useState(false);
   const [showHint, setShowHint] = useState(false);
+  const [isLastQuestion, setIsLastQuestion] = useState(false);
   const [showVideoHint, setShowVideoHint] = useState(false);
+  const skipped = [];
   const openModal = () => setModalOpen(true);
   const openNotesModal = () => setNotesModalOpen(true);
   const openReportsModal = () => setReportsModalOpen(true);
@@ -44,9 +46,25 @@ const QuestionWindow = ({
   const closeNotesModal = () => setNotesModalOpen(false);
   const closeReportsModal = () => setReportsModalOpen(false);
 
-  if (!time) {
-    if (numbers){ time = 60 * numbers.length;}else{time = 500;}
+  
+  
+  if (numbers) {
+      if (time) {
+        // Split the time string into hours, minutes, and seconds
+        const [hours, minutes, seconds] = time.split(":").map(Number);
+        // Convert the time to total seconds
+        const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+        time = totalSeconds;
+    } else {
+      if (type === "study") {
+        time = 0;
+      }else{
+      time = 60 * numbers.length;
+      }
+    }
   }
+
+  
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [timeLeft, setTimeLeft] = useState(time);
@@ -54,7 +72,6 @@ const QuestionWindow = ({
     historyProgress = {};
   }
 
-  
   const mappedProgress = Object.entries(historyProgress).reduce(
     (acc, [key, value]) => {
       acc[key] = value.is_correct;
@@ -63,13 +80,22 @@ const QuestionWindow = ({
     {}
   );
 
+  // Create a list of keys
+  const numbersOfAnsweredQuestions = Object.keys(mappedProgress);
+
+  if (!numbersOfAnsweredQuestions.includes(parseInt(questionIndex - 1).toString())) {
+    for (let i = 0; i < questionIndex; i++) {
+      if (!numbersOfAnsweredQuestions.includes(i.toString())) {
+        skipped.push(i);
+      }
+    }
+  }
+
   const progress = Object.keys(mappedProgress)
     .sort((a, b) => a - b) // Sort keys to ensure the correct order
     .map((key) => mappedProgress[key]);
-  
-  const [answers, setAnswers] = useState(mappedProgress['0']);
 
-
+  const [answers, setAnswers] = useState(mappedProgress["0"]);
 
   const calculateTruePercentage = (progress) => {
     const values = Object.values(progress);
@@ -102,7 +128,12 @@ const QuestionWindow = ({
   });
 
   const handleAnswerClicked = () => {
-    if (selectedAnswer === null) {
+    if (parseInt(questionIndex) === numbers.length - 1 && isLastQuestion) {
+      setShowResults(true);
+      return;
+    }
+
+    if (selectedAnswer === null && !isLastQuestion) {
       if (toast.isActive) {
         toast.dismiss();
         toast.error(t("PleaseSelectAtLeastOne"));
@@ -112,20 +143,22 @@ const QuestionWindow = ({
 
     onCheck(questions.answers[selectedAnswer].answer, selectedAnswer, timeLeft);
     setSelectedAnswer(null);
-    if (parseInt(questionIndex) === numbers.length - 1) {
-      setShowResults(true);
+    if (parseInt(questionIndex) === numbers.length - 1 && !isLastQuestion) {
+       setIsLastQuestion(true);
+       actionBtnText = t("Submit");
+       return;
     }
+    
   };
 
   const handleAnswer = (index) => {
     setSelectedAnswer(index);
   };
   let actionBtnText = t("Check");
-  if (numbers) {
-    actionBtnText =
-      parseInt(questionIndex) === numbers.length - 1 ? t("Submit") : t("Check");
-  }
-
+  // if (numbers) {
+  //   actionBtnText =
+  //     parseInt(questionIndex) === numbers.length - 1 ? t("Check") : t("Check");
+  // }
 
   if (!questions) {
     return (
@@ -267,7 +300,8 @@ const QuestionWindow = ({
             <div className={`sm:mt-20`}>
               {type === "study" ? (
                 <CountUpTimer
-                  max={10000}
+                  max={100000}
+                  start={time}
                   onTimeChange={(time_elapsed) => {
                     setTimeLeft(time_elapsed);
                   }}
@@ -308,18 +342,27 @@ const QuestionWindow = ({
         <div className="w-full flex mt-4 max-h-screen">
           {showResults ? (
             <>
-              <div className="w-full mt-2  rounded-xl text-black p-4 mx-4 text-3xl text-center">
-                {JSON.stringify(calculateTruePercentage(progress)) === "null"
-                  ? "Time finished"
-                  : `Your score is ${calculateTruePercentage(progress)}%`}
+              <div className="w-full mt-2 flex flex-col rounded-xl text-black p-4 mx-4 text-3xl text-center">
+                <div>
+                  {JSON.stringify(calculateTruePercentage(progress)) === "null"
+                    ? "Time finished"
+                    : `Your score is ${calculateTruePercentage(progress)}%`}
+                </div>
+                <div>
+                  {`${
+                    progress.filter((value) => value === true).length
+                  } correct answers out of ${numbers.length} questions`}
+                </div>
               </div>
             </>
           ) : (
             <>
               <div className={`w-fit max-h-[416px] pt-2`}>
+                {/* TODO :: check the skipped items before the clicked number */}
                 <NumberScroll
                   numbers={numbers}
                   selected={parseInt(questionIndex)}
+                  skipped={skipped}
                   onNumberClicked={(questionNumber) => {
                     router.push(
                       `/quiz?id=${examJourneyId}&q=${
@@ -340,8 +383,7 @@ const QuestionWindow = ({
                     historyProgress &&
                     questions.answers.map((option, index) => {
                       const indexAsString = index.toString();
-                        
-                      
+
                       var answerState = "idle";
                       var is_selected = selectedAnswer === index;
                       var is_answered = false;
@@ -360,13 +402,16 @@ const QuestionWindow = ({
                       }
                       if (is_answered) {
                         is_selected = false;
-                        if(historyProgress[questionIndex]["correct_answer"] === option.answer){
+                        if (
+                          historyProgress[questionIndex]["correct_answer"] ===
+                          option.answer
+                        ) {
                           answerState = "correct";
-                        }else{
+                        } else {
                           answerState = "wrong";
                         }
                       }
-                      
+
                       return (
                         <QuestionItem
                           question={option.answer}

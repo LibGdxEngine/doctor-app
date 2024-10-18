@@ -402,9 +402,7 @@ const Notes = React.memo(() => {
                       <button
                         onClick={() => {
                           deleteNote(token, note.id).then((response) => {
-                            setNotes(
-                              notes.filter((note) => note.id !== note.id)
-                            );
+                            setNotes(notes.filter((n) => n.id !== note.id));
                             toast.success("Note deleted successfully");
                           });
                         }}
