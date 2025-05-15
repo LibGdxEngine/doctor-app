@@ -3,32 +3,51 @@ import HomeFAQs from "@/pages/components/Home/HomeFAQs";
 import Footer from "@/pages/components/Footer";
 import VideoPlayer from "@/pages/components/utils/VideoPlayer";
 import { useTranslation } from 'react-i18next';
+import Second from "./components/Home/Second";
+import Third from "./components/Home/Third";
+import JobRecruitment from "./components/Home/JobRecruitment";
+import Fourth from "./components/Home/Fourth";
+import Fifth from "./components/Home/Fifth";
+import Sixth from "./components/Home/Sixth";
+import Eighth from "./components/Home/Eighth";
+import Ningth from "./components/Home/Ningth";
+import Tenth from "./components/Home/Tenth";
 const Home = () => {
 
 
     return (
       <>
         <div
-          id={`main-container`}
-          className={`w-full bg-light h-full flex flex-col items-center justify-start`}
+          id={``}
+          className={`w-full bg-white h-full flex flex-col items-center justify-start`}
         >
           <HomePage />
+          <Second/>
+          <Third />
+          <Fourth />
+          <Fifth />
+          <Sixth />
+          <JobRecruitment />
+          <Eighth />
+          <Ningth />
           <br />
           <br />
-          <div className={`lg:hidden`}>
-            <br />
-          </div>
-          <div className={`w-full h-full block lg:hidden`}>
-            <VideoPlayer />
-          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />  
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />  
+          <Tenth />
 
-          <div className={`block lg:hidden bg-white w-full h-full z-20`}>
-            <HomeFAQs />
-          </div>
-
-          <div className="w-full mt-14">
-            <Footer />
-          </div>
         </div>
       </>
     );

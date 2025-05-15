@@ -1,206 +1,120 @@
-import Image from "next/image";
-import sliderImage from "../../../../public/sliderImage.svg";
-import arrowDown from "../../../../public/arrowdown2.svg";
-import homeBackground from "../../../../public/home_background.svg";
-import actionButton from "../../../../public/Button Primary Color.svg";
-import actionButton2 from "../../../../public/Button Primary Color2.svg";
-import homeImg from "../../../../public/home_img.svg";
-import logo from "../../../../public/logo.svg";
-import TopBar from "@/pages/components/Home/TopBar";
-import SearchBar from "@/pages/components/Home/SearchBar";
-import {useState} from "react";
-import notificationsIcon from "../../../../public/🦆 icon _bell notification_.svg";
+import Image from "next/image"
+import Link from "next/link"
+import { Phone, MessageCircle } from "lucide-react"
+import useScrollPosition from "../utils/useScrollPosition";
 
-import HomeFAQs from "@/pages/components/Home/HomeFAQs";
-import {useRouter} from "next/router";
-import NavBar from "@/pages/components/NavBar";
-import FlowingIcons from "@/pages/components/utils/FlowingIcons";
-import SectionsHeader from "@/pages/components/SectionsHeader";
-import VideoPlayer from "@/pages/components/utils/VideoPlayer";
-import {useTranslation} from 'react-i18next';
-import userIcon from "../../../../public/profile.svg";
-import {useAuth} from "@/context/AuthContext";
-
-function HomeSlider({onClick}) {
-    return <div onClick={onClick} id={`home-slider`} className={`w-full h-fit px-4 mt-4`}>
-        <Image src={sliderImage} width={750} height={650} alt={``}/>
-    </div>;
-}
-
-
-function HomePage() {
-    const router = useRouter();
-    const {t, i18n} = useTranslation("common");
-
-    function handleStart() {
-        router.push('/start')
-    }
-
-    const actionBtn = i18n.language === "en" ? actionButton : actionButton2;
-    const {token, user} = useAuth();
-    let userProfilePhoto = userIcon;
-    if (user) {
-        userProfilePhoto = user.profile_photo.toString().length <= 50 ? userIcon : user.profile_photo;
-    }
-    return (
-      <div id={`home-container`} className={`w-full h-full`}>
-        <div className="hidden lg:block">
-          <div
-            className={`w-full h-full flex items-center justify-between px-4 mt-1`}
-          >
-            <div>
-              <div
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  router.push("/profile");
-                }}
-                id={`profile-icon-container`}
-                className={`w-full  flex items-center justify-end pe-10`}
-              >
-                <Image
-                  width={35}
-                  height={35}
-                  src={userProfilePhoto}
-                  alt={`profile`}
-                  objectFit={`cover`}
-                  className={`w-10 h-10 rounded-full me-2`}
-                />
-                <div className={`flex flex-col`}>
-                  {token ? (
-                    <>
-                      <div className={`text-xs text-black`}>
-                        {t("Hello")}, {user?.first_name}
-                      </div>
-                      <div className={`text-sm text-black`}>{t("Welcome")}</div>
-                    </>
-                  ) : (
-                    <div>
-                      <div className={`text-sm text-black`}>{t("SignIn")}</div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div>
-              {/* <Image width={20} height={20} src={notificationsIcon} alt={`profile`} objectFit={`cover`}
-                           className={`w-4 h-4 rounded-full m-2`}/> */}
-            </div>
-          </div>
-          <SearchBar />
-          <SectionsHeader />
-          <HomeSlider
-            onClick={() => {
-              router.push("/start");
-            }}
-          />
-          <br />
-          <VideoPlayer />
-          <br />
-          <HomeFAQs />
-        </div>
-        <div className="w-full h-fit flex flex-col items-center justify-center bg-[url('/home_background.svg')] bg-cover">
-          <div className="w-full h-fit block lg:hidden relative">
-            <NavBar />
-
-            <div className="w-full h-full flex items-end justify-center">
-              <div className="h-full flex flex-col items-center justify-center w-full z-2">
-                <div
-                  className={`w-full px-28 h-full flex flex-col justify-between pb-28 pt-6`}
-                >
-                  <div
-                    style={{ fontWeight: "700", fontFamily: "Calibri" }}
-                    className={`responsive-font text-white text-opacity-40 font-extrabold`}
-                  >
-                    KROK PLUS
-                    <div className="border-t border-2 border-white border-opacity-25 mb-8"></div>
-                  </div>
-
-                  <div
-                    style={{ fontFamily: "Calibri" }}
-                    className={`sm-responsive-font text-white font-bold text-5xl`}
-                  >
-                    {t("GetMotivatedInMinutes")}
-                  </div>
-                  <div
-                    style={{ fontFamily: "Calibri", lineHeight: "50px" }}
-                    className={`xs-responsive-font text-white mt-4 font-semibold text-4xl`}
-                  >
-                    “{t("TheEarlier")}.”
-                  </div>
-                  <div className={`text-white font-base text-2xl mt-4`}>
-                    “{t("EveryMorning")}.”
-                  </div>
-                  <div
-                    style={{ cursor: "pointer" }}
-                    onClick={handleStart}
-                    className={`w-80 2xl:w-96 mt-4`}
-                  >
-                    <Image
-                      src={actionBtn}
-                      alt={``}
-                      width={500}
-                      height={500}
-                      className="transform transition-transform duration-300 hover:scale-110 hover:opacity-80"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className={`w-[60%] h-fit  `}>
-                <Image
-                  className={`h-full w-full`}
-                  src={homeImg}
-                  alt={``}
-                  height={763}
-                  width={870}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* <div className="w-full h-screen block lg:hidden relative">
-
-            <NavBar/>
-
-            <Image className={`absolute bg-cover`} src={homeBackground} alt={``} width={1500} height={1500}/>
-
-            <div className="w-full  h-full flex items-end justify-center relative">
-                <div style={{zIndex: "-100"}} className={`w-full min-h-screen absolute z-[-1] mt-20`}>
-                    <FlowingIcons/>
-                </div>
-                <div className="h-full bg-red-  flex flex-col items-center justify-center w-full relative z-2">
-
-                    <div className={`w-full px-28 h-full flex flex-col justify-between pb-28 pt-6`}>
-                        <div style={{fontWeight: "700", fontFamily: "Calibri"}}
-                             className={`responsive-font text-white text-opacity-40 font-extrabold`}>
-                            KROK PLUS
-                            <div className="border-t border-2 border-white border-opacity-25 mb-8"></div>
-                        </div>
-
-
-                        <div style={{fontFamily: "Calibri"}}
-                             className={`sm-responsive-font text-white font-bold text-5xl`}>
-                            {t("GetMotivatedInMinutes")}
-                        </div>
-                        <div style={{fontFamily: "Calibri", lineHeight: "50px"}}
-                             className={`xs-responsive-font text-white mt-4 font-semibold text-4xl`}>
-                            “{t("TheEarlier")}.”
-                        </div>
-                        <div className={`text-white font-base text-2xl mt-4`}>
-                            “{t("EveryMorning")}.”
-                        </div>
-                        <div style={{cursor: "pointer"}} onClick={handleStart} className={`w-80 2xl:w-96 mt-4`}>
-                            <Image src={actionBtn} alt={``} width={500} height={500}/>
-                        </div>
-                    </div>
-                </div>
-                <div className={`w-[60%] h-fit `}>
-                    <Image className={`h-full w-full xl:mb-32`} src={homeImg} alt={``} height={763} width={870}/>
-                </div>
-            </div>
-
-        </div> */}
+export default function HomePage() {
+  const isScrolled = useScrollPosition({ threshold: 10 });
+  return (
+    <div className="w-full relative min-h-screen">
+      {/* Hero background image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/hero-background.jpg"
+          alt="Background image showing hands working with assistance equipment"
+          fill
+          priority
+          className="object-cover"
+        />
       </div>
-    );
-}
 
-export default HomePage;
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/30 z-10"></div>
+
+      {/* Main content */}
+      <div className="relative z-20">
+        {/* Header/Navigation */}
+        <header className={`fixed top-0 left-0 right-0 z-50
+          flex items-center justify-between px-8 md:px-16
+          py-4
+          transition-transform duration-800 ease-in-out
+          ${isScrolled
+            ? 'bg-white shadow-lg' // White background and shadow when scrolled
+            : 'bg-transparent shadow-none' // Transparent background and no shadow at the top
+          }
+          `}>
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center">
+              <div className="text-orange-500 font-bold text-2xl">
+                <Image
+                  src="/infinity_plus.png"
+                  alt="Logo"
+                  width={50}
+                  height={50}
+                  className="h-12 w-auto mr-2" />
+              </div>
+              <div className="ml-2 flex flex-col">
+                <span className={`${isScrolled ? "text-gray-900": "text-white"}  font-bold uppercase text-lg tracking-wider`}>SEILER ASSISTENZ</span>
+                <span className="text-orange-400 text-xs italic">gemeinsam geht es leichter</span>
+              </div>
+            </Link>
+          </div>
+
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            <Link href="#" className={`${isScrolled ? 'text-gray-900' : 'text-white'} hover:text-orange-400 transition-colors `}>
+              Assistenznehmer*in
+            </Link>
+            <Link href="#" className={`${isScrolled ? 'text-gray-900' : 'text-white'} hover:text-orange-400 transition-colors `}>
+              Assistent*in werden
+            </Link>
+            <Link href="#" className={`${isScrolled ? 'text-gray-900' : 'text-white'} hover:text-orange-400 transition-colors `}>
+              Persönliches Budget
+            </Link>
+            <Link href="#" className={`${isScrolled ? 'text-gray-900' : 'text-white'} hover:text-orange-400 transition-colors `}>
+              Leistungsträger
+            </Link>
+            <Link href="#" className={`${isScrolled ? 'text-gray-900' : 'text-white'} hover:text-orange-400 transition-colors `}>
+              Über uns
+            </Link>
+            <Link
+              href="#"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md transition-colors"
+            >
+              Assistenz Anfragen
+            </Link>
+          </nav>
+        </header>
+
+        {/* Hero Content */}
+        <main className="px-8 py-16 md:px-16 md:py-24 max-w-4xl">
+          <p className="text-orange-400 mb-4">
+            Egal ob im Privat- oder Berufsalltag - mit uns an Ihrer Seite meistern Sie jede Herausforderung.
+          </p>
+
+          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+            Mit Seiler Assistenz an Ihrer Seite genießen Sie ein Leben voller Freiheit und Unabhängigkeit.
+          </h1>
+
+          <p className="text-white text-lg mb-8 max-w-2xl">
+            Mit Seiler Assistenz an Ihrer Seite, ein Leben voller Freiheit und Unabhängigkeit genießen: Egal ob im
+            Privat- oder Berufsalltag - mit uns an Ihrer Seite meistern Sie jede Herausforderung.
+          </p>
+
+          <Link
+            href="#"
+            className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-md font-medium transition-colors"
+          >
+            Jetzt Assistent*in Anfragen
+          </Link>
+
+          {/* Contact options */}
+          <div className="mt-16 flex items-center space-x-8">
+            <Link href="#" className="flex items-center text-white hover:text-orange-400 transition-colors">
+              <MessageCircle className="mr-2" />
+              <span>WhatsApp</span>
+            </Link>
+            <Link
+              href="tel:02273 9515274"
+              className="flex items-center text-white hover:text-orange-400 transition-colors"
+            >
+              <Phone className="mr-2" />
+              <span>02273 9515274</span>
+            </Link>
+          </div>
+        </main>
+      </div>
+    </div>
+  )
+}
