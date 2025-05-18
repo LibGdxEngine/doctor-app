@@ -41,11 +41,11 @@ const LanguageDropdown = () => {
                 >
                     <Image
                         src={i18n.language === 'en' ? usaFlag : flag2}
-                        alt={i18n.language === 'en' ? 'USA Flag' : 'Ukrainian Flag'}
+                        alt={i18n.language === 'en' ? 'USA Flag' : 'Jerman Flag'}
                         width={24}
                         height={24}
                     />
-                    <span className="ml-2">{i18n.language === 'en' ? 'English' : 'Ukrainian'}</span>
+                    {/* <span className="ml-2">{i18n.language === 'en' ? 'English' : 'Ukrainian'}</span> */}
                     <Image src={dropdownIcon} alt={''} width={30} height={30} />
                 </button>
             </div>
@@ -72,7 +72,7 @@ const LanguageDropdown = () => {
                             onClick={() => handleLanguageChange('uk')}
                         >
                             <Image src={flag2} alt="Ukrainian Flag" width={24} height={24} className="inline mr-2" />
-                            Ukrainian
+                            Jerman
                         </button>
                     </div>
                 </div>

@@ -1,85 +1,85 @@
-import Image from "next/image";
-import app1 from "../../../public/GetItOnGooglePlay_Badge_Web_color_English.png";
-import app2 from "../../../public/Download_on_the_App_Store_Badge_US-UK_RGB_wht_092917.svg";
-import facebook from "../../../public/FB.svg";
-import insta from "../../../public/Insta.svg";
-import YT from "../../../public/YT.svg";
-import telegram from "../../../public/BG-svg (1).svg";
-import {useTranslation} from "react-i18next";
-import LanguageDropdown from "@/pages/components/utils/LanguageDropdown";
+// components/Footer.jsx
+import React from 'react';
+import { Clock, Send, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react';
 
-function Footer() {
-    const {t, i18n} = useTranslation("common");
-    return (
-      <>
-        <div
-          id={`footer `}
-          className={`bg-navyBlue w-full h-fit py-4  z-20 flex sm:flex-col sm:justify-center items-center justify-between`}
-        >
-          <div className="w-full flex flex-col  justify-center items-start sm:items-center ">
-            <div className=" text-white font-bold ps-10 sm:ps-0 mb-2 sm:mb-0">
-              {t("GETAPP")}
-            </div>
-            <div className={`w-full flex sm:mt-2 items-center justify-start md:justify-center`}>
-              <Image
-                className={`me-8 sm:me-4 ms-10 sm:ms-0`}
-                src={app1}
-                alt={``}
-                width={135}
-                height={135}
+const Footer = () => {
+  const currentYear = new Date().getFullYear(); // For dynamic year in copyright
+
+  return (
+    <footer className="w-full bg-white text-orange-600 pt-12 pb-6 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Top Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8 pb-8 border-b border-orange-600">
+          <h2 className="text-2xl lg:text-3xl font-semibold text-orange-600 mb-6 md:mb-0 text-center md:text-left">
+            Lorem Ipsum Dolor Sit Amet, Conse
+          </h2>
+          <button className="flex items-center bg-orange-600 hover:bg-orange-400 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300">
+            <Clock size={20} className="mr-2" />
+            Consecteture
+          </button>
+        </div>
+
+        {/* Middle Section */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
+          {/* Left Part: Links and Newsletter */}
+          <div className="md:col-span-7 lg:col-span-8">
+            <nav className="flex flex-wrap gap-x-6 gap-y-2 mb-8">
+              <a href="#" className="text-orange-400 hover:text-orange-600 transition-colors">Many</a>
+              <a href="#" className="text-orange-400 hover:text-orange-600 transition-colors">Popular Belief, Lorem</a>
+              <a href="#" className="text-orange-400 hover:text-orange-600 transition-colors">USES</a>
+              <a href="#" className="text-orange-400 hover:text-orange-600 transition-colors">Commod</a>
+            </nav>
+            <form className="flex items-center max-w-md">
+              <input
+                type="email"
+                placeholder="Keep me updated"
+                className="w-full px-4 py-3 text-orange-600  border border-gray-300 rounded-l-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600"
               />
-              <Image src={app2} alt={``} width={135} height={135} />
-            </div>
+              <button
+                type="submit"
+                aria-label="Subscribe"
+                className="bg-orange-600 hover:bg-orange-400 text-white p-4 rounded-r-lg transition-colors duration-300 focus:outline-none"
+              >
+                <Send size={24} />
+              </button>
+            </form>
           </div>
-          <div
-            className={`w-fit  bg-white rounded-xl items-end justify-end mx-10 hidden sm:flex mt-2`}
-          >
-            <LanguageDropdown />
-          </div>
-          <div className="w-56 flex flex-col items-center justify-center mx-20 sm:mx-0">
-            <div className="w-56 sm:text-center text-white  font-base mb-2 px-4">{t("FOLLOWUS")}</div>
-            <div
-              className={`w-fit  h-full flex items-center justify-center `}
-            >
-              <Image
-                src={telegram}
-                alt="Telegram Icon"
-                width={49}
-                height={49}
-                className="object-contain mx-1"
-              />
-              <Image
-                className={`mx-1`}
-                src={facebook}
-                alt={``}
-                width={49}
-                height={49}
-              />
-              <Image
-                className={`mx-1`}
-                src={insta}
-                alt={``}
-                width={49}
-                height={49}
-              />
-              <Image
-                className={`mx-1`}
-                src={YT}
-                alt={``}
-                width={49}
-                height={49}
-              />
+
+          {/* Right Part: Contact Info and Socials */}
+          <div className="md:col-span-5 lg:col-span-4">
+            <div className="space-y-4">
+              <a href="tel:1234567890" className="flex items-center text-orange-600 hover:text-orange-600 transition-colors">
+                <Phone size={20} className="mr-3 text-orange-600" />
+                123.456.7890
+              </a>
+              <a href="mailto:info@loremipsum.com" className="flex items-center text-orange-600 hover:text-orange-600 transition-colors">
+                <Mail size={20} className="mr-3 text-orange-600" />
+                info@loremipsum.com
+              </a>
+            </div>
+            <div className="flex space-x-4 mt-6">
+              <a href="#" aria-label="Facebook" className="bg-orange-600 hover:bg-orange-400 text-white p-2 rounded-full transition-colors duration-300">
+                <Facebook size={20} />
+              </a>
+              <a href="#" aria-label="Twitter" className="bg-orange-600 hover:bg-orange-400 text-white p-2 rounded-full transition-colors duration-300">
+                <Twitter size={20} />
+              </a>
+              <a href="#" aria-label="LinkedIn" className="bg-orange-600 hover:bg-orange-400 text-white p-2 rounded-full transition-colors duration-300">
+                <Linkedin size={20} />
+              </a>
             </div>
           </div>
         </div>
-        <div
-          className={`w-full h-10 bg-darkBlue text-center
-             text-white text-xs flex items-center justify-center`}
-        >
-          {t("AllRights")} - KROK PLUS
+
+        {/* Bottom Section - Copyright */}
+        <div className="text-center text-sm text-orange-500 pt-6 border-t border-orange-600">
+          <p>
+            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Temp &copy; {currentYear}
+          </p>
         </div>
-      </>
-    );
-}
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

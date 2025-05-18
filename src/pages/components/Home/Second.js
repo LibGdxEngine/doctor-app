@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react"
 
 export default function Second() {
   return (
-    <div className="container mx-auto px-12 py-36 md:py-24">
+    <div className="w-full min-w-screen container mx-auto px-12 py-36 md:py-24">
       <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
         {/* Left side - Illustration */}
         <div className="w-full md:w-1/2">

@@ -19,18 +19,18 @@ const Home = () => {
       <>
         <div
           id={``}
-          className={`w-full bg-white h-full flex flex-col items-center justify-start`}
+          className={`w-screen bg-white h-full flex flex-col items-center justify-start`}
         >
           <HomePage />
-          <Second/>
-          <Third />
-          <Fourth />
-          <Fifth />
+          {/* <Second/> */}
+          {/* <Third /> */}
+          {/* <Fourth /> */}
+          {/* <Fifth /> */}
           <Sixth />
-          <JobRecruitment />
+          {/* <JobRecruitment /> */}
           <Eighth />
           <Ningth />
-          <br />
+          {/* <br />
           <br />
           <br />
           <br />
@@ -46,7 +46,8 @@ const Home = () => {
           <br />
           <br />
           <br />  
-          <Tenth />
+          <Tenth /> */}
+          <Footer />
 
         </div>
       </>
