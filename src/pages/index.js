@@ -12,6 +12,11 @@ import Sixth from "./components/Home/Sixth";
 import Eighth from "./components/Home/Eighth";
 import Ningth from "./components/Home/Ningth";
 import Tenth from "./components/Home/Tenth";
+import FAQItem from "./components/comps/FAQItem";
+import HeroImageSection from "./components/Home/video";
+
+
+
 const Home = () => {
 
 
@@ -22,15 +27,16 @@ const Home = () => {
           className={`w-screen bg-white h-full flex flex-col items-center justify-start`}
         >
           <HomePage />
-          {/* <Second/> */}
-          {/* <Third /> */}
-          {/* <Fourth /> */}
-          {/* <Fifth /> */}
-          <Sixth />
-          {/* <JobRecruitment /> */}
+          <HeroImageSection />
+          <Second/>
+          <Third />
+          <Fourth />
+          <Fifth />
+          <FAQItem />
+          {/* <Sixth /> */}
+          <JobRecruitment />
           <Eighth />
           <Ningth />
-          {/* <br />
           <br />
           <br />
           <br />
@@ -46,7 +52,7 @@ const Home = () => {
           <br />
           <br />
           <br />  
-          <Tenth /> */}
+          <Tenth /> 
           <Footer />
 
         </div>

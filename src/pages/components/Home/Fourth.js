@@ -4,8 +4,8 @@ import { ArrowRight } from "lucide-react"
 
 export default function Fourth() {
   return (
-    <div className="container mx-auto px-12 py-36 md:py-24  bg-[#FDF8F3]">
-      <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+    <div className="w-full  px-12 py-36 md:py-24 bg-[#FDF8F3]">
+      <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-16">               
         {/* Left side - Illustration */}
         <div className="w-full md:w-1/2 space-y-6">
           <h2 className="text-orange-500 font-medium">

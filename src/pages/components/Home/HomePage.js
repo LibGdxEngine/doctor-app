@@ -43,20 +43,21 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="w-full relative min-h-screen">
+    <div className="w-full h-full relative mt-20">
       {/* Hero background image */}
+      
       <div className="absolute inset-0 z-0">
         <Image
-          src="/young-handsome-physician-medical-robe-with-stethoscope.jpg" // Ensure this image is in your /public folder
+          src="/girl-helping-disabled-man-traveling-city.jpg" // Ensure this image is in your /public folder
           alt="Background image showing hands working with assistance equipment"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-top scale-x-[-1]"
         />
       </div>
 
       {/* Overlay for better text readability on background */}
-      <div className="absolute inset-0 bg-black/40 z-10"></div> {/* Slightly darker overlay */}
+      <div className=" absolute inset-0 bg-black/60 z-10 "></div> {/* Slightly darker overlay */}
 
       {/* Main content container */}
       <div className="relative z-20">
@@ -225,26 +226,21 @@ export default function HomePage() {
 
 
         {/* Hero Content */}
-        <main className="px-6 sm:px-8 py-16 md:px-16 md:py-24 max-w-4xl  flex flex-col items-center md:items-start justify-center min-h-screen pt-32 sm:pt-36 md:pt-40"> {/* Increased padding top */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 text-center md:text-left">
-            Infinity Plus
+        <main className="bg--500 h-fit px-6 sm:px-8 py-16 md:px-16 md:py-16 flex flex-col items-center md:items-start justify-center  pt-32 sm:pt-36 md:pt-40"> {/* Increased padding top */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-20 text-center md:text-left">
+            Assistenznehmer*in
           </h1>
 
-          <p className="text-white text-lg sm:text-xl mb-8 max-w-xl text-center md:text-left">
-            Mit Infinity Plus an Ihrer Seite, ein Leben voller Freiheit und
-            Unabhängigkeit genießen: Egal ob im Privat- oder Berufsalltag - mit
-            uns an Ihrer Seite meistern Sie jede Herausforderung.
-          </p>
 
           <Link
             href="#request-hero"
-            className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-md text-lg font-semibold transition-colors shadow-md hover:shadow-lg"
+            className="inline-block hidden md:block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-md text-lg font-semibold transition-colors shadow-md hover:shadow-lg"
           >
             Jetzt Assistent*in Anfragen
           </Link>
 
           {/* Contact options */}
-          <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-10">
+          <div className="mt-12 hidden md:flex sm:mt-16  flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-10">
             <Link
               href="#" // Replace with your actual WhatsApp link e.g., https://wa.me/yourphonenumber
               target="_blank"

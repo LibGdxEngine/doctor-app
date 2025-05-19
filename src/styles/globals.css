@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer utilities {
     @keyframes flow-0 {
         0%, 100% { transform: translateY(0); }
@@ -49,6 +50,7 @@
 }
 
 body {
+     font-family: 'Open Sans', sans-serif;
     color: rgb(var(--foreground-rgb));
     background: linear-gradient(
             to bottom,

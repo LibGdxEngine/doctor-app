@@ -1,83 +1,148 @@
-// components/Footer.jsx
-import React from 'react';
-import { Clock, Send, Phone, Mail, Facebook, Twitter, Linkedin } from 'lucide-react';
+// components/Footer.js
+import React, { useState, useEffect } from 'react';
+import { ChevronUp, Phone, Mail, MessageSquare, MapPin, Instagram, Youtube, Linkedin } from 'lucide-react'; // Using lucide-react for icons
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear(); // For dynamic year in copyright
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Show button when page is scrolled up to a certain amount
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  // Set up event listener for scroll
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility);
+    };
+  }, []);
+
+  // Scroll to top smoothly
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  // Placeholder social icons (replace with actual icons or SVGs if needed)
+  const TikTokIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-400 hover:text-white transition-colors">
+      <path d="M16.74 8.32a5.74 5.74 0 0 0-5.74-5.74V13.5a5.74 5.74 0 1 0 5.74-5.74Z"></path>
+      <path d="M11 2H8.5a6.5 6.5 0 0 0 0 13V9.5"></path>
+    </svg>
+  );
+
+  const GoogleIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-400 hover:text-white transition-colors">
+      <path d="M15.545 6.558C15.545 6.558 14.207 3.552 12 3.552c-4.011 0-6.809 2.785-6.809 6.448s2.798 6.448 6.809 6.448c2.205 0 3.545-3 3.545-3"/>
+      <path d="M12 10.001h6.809"/>
+    </svg>
+  );
+
 
   return (
-    <footer className="w-full bg-white text-orange-600 pt-12 pb-6 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Top Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-8 pb-8 border-b border-orange-600">
-          <h2 className="text-2xl lg:text-3xl font-semibold text-orange-600 mb-6 md:mb-0 text-center md:text-left">
-            Lorem Ipsum Dolor Sit Amet, Conse
-          </h2>
-          <button className="flex items-center bg-orange-600 hover:bg-orange-400 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300">
-            <Clock size={20} className="mr-2" />
-            Consecteture
-          </button>
-        </div>
-
-        {/* Middle Section */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
-          {/* Left Part: Links and Newsletter */}
-          <div className="md:col-span-7 lg:col-span-8">
-            <nav className="flex flex-wrap gap-x-6 gap-y-2 mb-8">
-              <a href="#" className="text-orange-400 hover:text-orange-600 transition-colors">Many</a>
-              <a href="#" className="text-orange-400 hover:text-orange-600 transition-colors">Popular Belief, Lorem</a>
-              <a href="#" className="text-orange-400 hover:text-orange-600 transition-colors">USES</a>
-              <a href="#" className="text-orange-400 hover:text-orange-600 transition-colors">Commod</a>
-            </nav>
-            <form className="flex items-center max-w-md">
-              <input
-                type="email"
-                placeholder="Keep me updated"
-                className="w-full px-4 py-3 text-orange-600  border border-gray-300 rounded-l-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600"
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe"
-                className="bg-orange-600 hover:bg-orange-400 text-white p-4 rounded-r-lg transition-colors duration-300 focus:outline-none"
-              >
-                <Send size={24} />
-              </button>
-            </form>
+    <footer className="w-full bg-gray-900 text-gray-300 font-sans pt-96">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Contact Section */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center">
+                <Phone className="h-5 w-5 mr-3 text-orange-500" />
+                <a href="tel:022739515274" className="hover:text-orange-400 transition-colors">02273 9515 274</a>
+              </li>
+              <li className="flex items-center">
+                <Mail className="h-5 w-5 mr-3 text-orange-500" />
+                <a href="mailto:info@seilerassistenz.de" className="hover:text-orange-400 transition-colors">info@seilerassistenz.de</a>
+              </li>
+              <li className="flex items-center">
+                <MessageSquare className="h-5 w-5 mr-3 text-orange-500" />
+                <a href="#" className="hover:text-orange-400 transition-colors">WhatsApp Service</a>
+              </li>
+              <li className="flex items-start mt-2">
+                <MapPin className="h-5 w-5 mr-3 text-orange-500 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="font-semibold">Seiler Assistenz</p>
+                  <p>Richard-Byrd-Straße 18</p>
+                  <p>50829 Cologne</p>
+                </div>
+              </li>
+              <li className="flex items-center space-x-4 mt-4">
+                <a href="#" aria-label="Instagram" className="text-gray-400 hover:text-white transition-colors">
+                  <Instagram className="h-6 w-6" />
+                </a>
+                <a href="#" aria-label="TikTok" className="text-gray-400 hover:text-white transition-colors">
+                  <TikTokIcon />
+                </a>
+                <a href="#" aria-label="Google" className="text-gray-400 hover:text-white transition-colors">
+                  <GoogleIcon />
+                </a>
+              </li>
+            </ul>
           </div>
 
-          {/* Right Part: Contact Info and Socials */}
-          <div className="md:col-span-5 lg:col-span-4">
-            <div className="space-y-4">
-              <a href="tel:1234567890" className="flex items-center text-orange-600 hover:text-orange-600 transition-colors">
-                <Phone size={20} className="mr-3 text-orange-600" />
-                123.456.7890
-              </a>
-              <a href="mailto:info@loremipsum.com" className="flex items-center text-orange-600 hover:text-orange-600 transition-colors">
-                <Mail size={20} className="mr-3 text-orange-600" />
-                info@loremipsum.com
-              </a>
-            </div>
-            <div className="flex space-x-4 mt-6">
-              <a href="#" aria-label="Facebook" className="bg-orange-600 hover:bg-orange-400 text-white p-2 rounded-full transition-colors duration-300">
-                <Facebook size={20} />
-              </a>
-              <a href="#" aria-label="Twitter" className="bg-orange-600 hover:bg-orange-400 text-white p-2 rounded-full transition-colors duration-300">
-                <Twitter size={20} />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="bg-orange-600 hover:bg-orange-400 text-white p-2 rounded-full transition-colors duration-300">
-                <Linkedin size={20} />
-              </a>
+          {/* Assistance Service Section (2 columns) */}
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-semibold text-white mb-4">Assistance service</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+              {[
+                "Assistance Service Aachen", "Assistance Service Essen",
+                "Assistance Service Bergheim", "Euskirchen Assistance Service",
+                "Assistance Service Bonn", "Assistance Service Cologne",
+                "Assistance Service Bochum", "Assistance Service Leverkusen",
+                "Assistance Service Dortmund", "Assistance Service Rheine",
+                "Assistance Service Duisburg", "Assistance Service Siegen",
+                "Assistance Service Düren", "Wuppertal Assistance Service",
+                "Assistance Service Düsseldorf"
+              ].map((service) => (
+                <a key={service} href="#" className="hover:text-orange-400 transition-colors block">{service}</a>
+              ))}
             </div>
           </div>
-        </div>
 
-        {/* Bottom Section - Copyright */}
-        <div className="text-center text-sm text-orange-500 pt-6 border-t border-orange-600">
-          <p>
-            Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit, Sed Do Eiusmod Temp &copy; {currentYear}
-          </p>
+          {/* Further Links Section */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Further links</h3>
+            <ul className="space-y-3">
+              {["Blog", "Glossary", "Contact", "Achievers", "Job Ads Indeed", "About us"].map((link) => (
+                <li key={link}>
+                  <a href="#" className="hover:text-orange-400 transition-colors">{link}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
+
+      {/* Bottom Bar */}
+      <div className="bg-orange-600 text-white py-4">
+        <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
+          <p className="mb-2 md:mb-0">&copy; Powered by Potes Media 2025</p>
+          <div className="flex flex-wrap justify-center space-x-4">
+            <a href="#" className="hover:underline">Imprint</a>
+            <a href="#" className="hover:underline">Privacy policy</a>
+            <a href="#" className="hover:underline">Cookie Policy (EU)</a>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll to Top Button */}
+      {isVisible && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-5 right-5 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 z-50"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp className="h-6 w-6" />
+        </button>
+      )}
     </footer>
   );
 };
