@@ -3,23 +3,23 @@ import Image from "next/image"
 
 export default function JobRecruitment() {
   return (
-    <div className="bg-[#FDF8F3] py-36 px-12">
-      <div className="container mx-auto px-4">
+    <div className="bg-[#FDF8F3] py-16 md:py-24 lg:py-32">
+      <div className="mx-8 md:mx-36 ">
         <div className="flex flex-col lg:flex-row gap-10">
           {/* Left content */}
           <div className="w-full lg:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6">
               Bewirb Dich jetzt als Assistent*in (w/m/d) bei Seiler Assistenz
             </h2>
 
-            <p className="text-gray-700 mb-8">
+            <p className="text-gray-700 mb-8 text-sm">
               Werde Teil unseres Teams und unterstütze Menschen dabei, ein selbstbestimmtes Leben zu führen. Bei Seiler
               Assistenz erwartet dich ein Job mit großer Wirkung, in dem Deine Arbeit wertgeschätzt wird. Bewirb Dich
               jetzt und profitiere von fairen Arbeitsbedingungen, attraktiver Bezahlung und einem Team, das immer für
               Dich da ist.
             </p>
 
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-6">
               Das macht die Arbeit bei Seiler Assistenz besonders:
             </h3>
 
@@ -32,7 +32,7 @@ export default function JobRecruitment() {
               ].map((benefit, index) => (
                 <li key={index} className="flex items-start">
                   <span className="flex-shrink-0 w-5 h-5 bg-orange-500 rounded-full mt-1 mr-3"></span>
-                  <span className="text-gray-800">{benefit}</span>
+                  <span className="text-gray-800 text-sm">{benefit}</span>
                 </li>
               ))}
             </ul>

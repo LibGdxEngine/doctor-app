@@ -54,31 +54,31 @@ const HeroImageSection = () => {
     //   }, []);
 
     return (
-        <section ref={sectionRef} className="w-full bg-orange-50/50 py-16 md:py-24 lg:py-32 overflow-hidden">
-            <div className="container mx-auto px-6">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <section ref={sectionRef} className="w-full py-16 md:py-24 lg:py-32 overflow-hidden">
+            <div className=" mx-8 md:mx-36 ">
+                <div className="grid lg:grid-cols-2  gap-12 lg:gap-16 items-center">
                     {/* Left Column: Text Content */}
                     <div ref={leftColumnRef}>
                         <h1
                             ref={titleRef}
-                            className="text-4xl sm:text-5xl lg:text-5xl font-bold mb-6 leading-tight text-gray-800"
+                            className="text-2xl sm:text-2xl lg:text-5xl font-bold mb-6 leading-tight text-gray-800"
                             style={{ textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}
                         >
                             Assistenzleistungen für ein <span className="text-orange-600">Selbstbestimmtes Leben</span>
                         </h1>
-                        <p ref={paragraphRef} className="text-lg text-gray-700 mb-8 leading-relaxed">
+                        <p ref={paragraphRef} className="text-sm text-gray-700 mb-8 leading-relaxed">
                             Willkommen bei Seiler Assistenz, Ihrem zuverlässigen Partner in Köln und Umgebung. Unser Assistenzdienst unterstützt Menschen mit Behinderung dabei, ein selbstbestimmtes Leben zu führen. Entdecken Sie unsere umfassenden Leistungen, die individuell auf Ihre Bedürfnisse zugeschnitten sind.
                         </p>
                         <div ref={buttonRef} className="mb-8">
                             <a
                                 href="#contact-form" // Replace with your target link
-                                className="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-orange-50/50 transition-all duration-300 transform hover:scale-105 group"
+                                className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-orange-50/50 transition-all duration-300 transform hover:scale-105 group"
                             >
                                 Jetzt Assistenz anfragen
                                 <ArrowRight className="h-5 w-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                             </a>
                         </div>
-                        <div ref={contactLinksRef} className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-6 text-gray-600">
+                        <div ref={contactLinksRef} className="flex flex-col items-center  md:items-start sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-6 text-gray-600">
                             <a href="https://wa.me/yourphonenumber" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-orange-600 transition-colors group">
                                 <MessageSquare className="h-5 w-5 mr-2 text-orange-500 group-hover:text-orange-600 transition-colors" />
                                 WhatsApp Service
@@ -95,7 +95,7 @@ const HeroImageSection = () => {
                         <div className="rounded-xl shadow-2xl overflow-hidden group transform hover:scale-105 transition-transform duration-500 ease-out">
 
                             <div id="home-video"
-                                className="w-full flex flex-col sm:w-screen  h-screen sm:h-80 items-center justify-center">
+                                className="w-full h-[50vh] md:h-[50vh] flex flex-col  items-center justify-center">
 
                                 <iframe
                                     className="w-full h-full"

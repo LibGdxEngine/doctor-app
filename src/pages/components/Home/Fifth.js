@@ -9,7 +9,7 @@ export default function Fifth() {
         {/* Left side - Illustration */}
         <div className="w-full md:w-1/2">
           <Image
-            src="/assistance-illustration.png"
+            src="/demo2.png"
             alt="Illustration of a person assisting someone in a wheelchair"
             width={600}
             height={600}

@@ -14,6 +14,7 @@ import Ningth from "./components/Home/Ningth";
 import Tenth from "./components/Home/Tenth";
 import FAQItem from "./components/comps/FAQItem";
 import HeroImageSection from "./components/Home/video";
+import Solid from "./components/Home/Solid";
 
 
 
@@ -29,14 +30,22 @@ const Home = () => {
           <HomePage />
           <HeroImageSection />
           <Second/>
-          <Third />
           <Fourth />
-          <Fifth />
-          <FAQItem />
+          <Third />
+
+
+          <Solid />
+
+
+
+          
+          {/* <Fifth /> */}
+  
           {/* <Sixth /> */}
           <JobRecruitment />
-          <Eighth />
+          {/* <Eighth /> */}
           <Ningth />
+                  <FAQItem />
           <br />
           <br />
           <br />

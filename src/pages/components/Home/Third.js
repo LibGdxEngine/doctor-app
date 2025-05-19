@@ -51,19 +51,19 @@ const services = [
 
 export default function ServiceCards() {
   return (
-    <div className="grid grid-cols-1 mx-12 md:grid-cols-2 lg:grid-cols-3 gap-6 py-36">
+    <div className="grid grid-cols-1 mx-8 md:grid-cols-2 lg:grid-cols-3 gap-6 py-16 mx-8 md:mx-36">
       {services.map((service) => (
-        <div key={service.id} className="bg-[#FDF8F3] rounded-2xl overflow-hidden flex flex-col h-full">
+        <div key={service.id} className="bg-orange-400/10 rounded-2xl overflow-hidden flex flex-col h-full">
           <div className="relative h-48 w-full">
             {/* The Image component and its props remain the same */}
             <Image src={service.imageUrl || "/placeholder.svg"} alt={service.imageAlt} fill className="object-cover" />
           </div>
           <div className="p-6 flex flex-col flex-grow">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.title}</h3>
-            <p className="text-gray-700 mb-6">{service.description}</p>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+            <p className="text-gray-700 mb-6 text-sm">{service.description}</p>
             <div className="mt-auto">
               {/* The Link component remains the same */}
-              <Link href={`/services/${service.id}`} className="text-orange-500 hover:text-orange-600 font-medium">
+              <Link href={`/services/${service.id}`} className="text-orange-500 hover:text-orange-600 text-sm font-medium">
                   Jetzt Assistent*in Anfragen
               </Link>
             </div>

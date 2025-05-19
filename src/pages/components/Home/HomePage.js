@@ -45,7 +45,6 @@ export default function HomePage() {
   return (
     <div className="w-full h-full relative mt-20">
       {/* Hero background image */}
-      
       <div className="absolute inset-0 z-0">
         <Image
           src="/girl-helping-disabled-man-traveling-city.jpg" // Ensure this image is in your /public folder
@@ -226,21 +225,21 @@ export default function HomePage() {
 
 
         {/* Hero Content */}
-        <main className="bg--500 h-fit px-6 sm:px-8 py-16 md:px-16 md:py-16 flex flex-col items-center md:items-start justify-center  pt-32 sm:pt-36 md:pt-40"> {/* Increased padding top */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-20 text-center md:text-left">
+        <main className="bg--500 h-fit px-6 sm:px-8 py-16 md:px-16 md:py-16 flex flex-col items-center md:items-center justify-center  pt-32 sm:pt-36 md:pt-40"> {/* Increased padding top */}
+          <h1 className="text-2xl  lg:text-5xl font-bold text-white leading-tight mb-20 text-center md:text-left">
             Assistenznehmer*in
           </h1>
 
 
-          <Link
+          {/* <Link
             href="#request-hero"
             className="inline-block hidden md:block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-md text-lg font-semibold transition-colors shadow-md hover:shadow-lg"
           >
             Jetzt Assistent*in Anfragen
-          </Link>
+          </Link> */}
 
           {/* Contact options */}
-          <div className="mt-12 hidden md:flex sm:mt-16  flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-10">
+          {/* <div className="mt-12 hidden md:flex sm:mt-16  flex-col sm:flex-row items-center space-y-6 sm:space-y-0 sm:space-x-10">
             <Link
               href="#" // Replace with your actual WhatsApp link e.g., https://wa.me/yourphonenumber
               target="_blank"
@@ -257,7 +256,7 @@ export default function HomePage() {
               <Phone className="mr-2.5 h-6 w-6" />
               <span>02273 9515274</span>
             </Link>
-          </div>
+          </div> */}
         </main>
       </div>
     </div>

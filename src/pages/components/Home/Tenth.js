@@ -3,10 +3,10 @@ import { Phone } from "lucide-react"
 
 export default function Tenth() {
   return (
-    <div className="w-full bg-gray-900 py-42 flex flex-col items-between justify-center text-white">
-      <div className="h-full container mx-auto px-4">
-        <div className="absolute w-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-500 rounded-3xl py-32 px-8 text-center">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl mx-auto mb-10 leading-tight">
+    <div className="w-full bg-gray-900 py-8 flex flex-col items-between justify-center text-white">
+      <div className="h-full  mx-8 md:mx-36 relative">
+        <div className="absolute w-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-500 rounded-3xl py-16 md:py-36 px-8 text-center">
+          <h2 className="text-xl md:text-4xl lg:text-5xl font-bold text-white max-w-4xl mx-auto mb-10 leading-tight">
             You deserve a life full of freedom and self-determination – and we are here to support you
           </h2>
 

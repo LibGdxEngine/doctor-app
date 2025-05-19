@@ -40,18 +40,18 @@ const Footer = () => {
 
   const GoogleIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-400 hover:text-white transition-colors">
-      <path d="M15.545 6.558C15.545 6.558 14.207 3.552 12 3.552c-4.011 0-6.809 2.785-6.809 6.448s2.798 6.448 6.809 6.448c2.205 0 3.545-3 3.545-3"/>
-      <path d="M12 10.001h6.809"/>
+      <path d="M15.545 6.558C15.545 6.558 14.207 3.552 12 3.552c-4.011 0-6.809 2.785-6.809 6.448s2.798 6.448 6.809 6.448c2.205 0 3.545-3 3.545-3" />
+      <path d="M12 10.001h6.809" />
     </svg>
   );
 
 
   return (
-    <footer className="w-full bg-gray-900 text-gray-300 font-sans pt-96">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="w-full bg-gray-900 text-gray-300 font-sans pt-80">
+      <div className=" mx- px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-start">
           {/* Contact Section */}
-          <div>
+          <div className="text-center md:text-start flex flex-col items-center justify-center md:flex md:items-start md:justify-start">
             <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-center">
@@ -90,25 +90,27 @@ const Footer = () => {
 
           {/* Assistance Service Section (2 columns) */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg font-semibold text-white mb-4">Assistance service</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-              {[
-                "Assistance Service Aachen", "Assistance Service Essen",
-                "Assistance Service Bergheim", "Euskirchen Assistance Service",
-                "Assistance Service Bonn", "Assistance Service Cologne",
-                "Assistance Service Bochum", "Assistance Service Leverkusen",
-                "Assistance Service Dortmund", "Assistance Service Rheine",
-                "Assistance Service Duisburg", "Assistance Service Siegen",
-                "Assistance Service Düren", "Wuppertal Assistance Service",
-                "Assistance Service Düsseldorf"
-              ].map((service) => (
-                <a key={service} href="#" className="hover:text-orange-400 transition-colors block">{service}</a>
-              ))}
+            <div className="text-center md:text-start flex flex-col items-center justify-center md:flex md:items-start md:justify-start">
+              <h3 className=" text-lg font-semibold text-white mb-4">Assistance service</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-28 gap-y-3">
+                {[
+                  "Assistance Service Aachen", "Assistance Service Essen",
+                  "Assistance Service Bergheim", "Euskirchen Assistance Service",
+                  "Assistance Service Bonn", "Assistance Service Cologne",
+                  "Assistance Service Bochum", "Assistance Service Leverkusen",
+                  "Assistance Service Dortmund", "Assistance Service Rheine",
+                  "Assistance Service Duisburg", "Assistance Service Siegen",
+                  "Assistance Service Düren", "Wuppertal Assistance Service",
+                  "Assistance Service Düsseldorf"
+                ].map((service) => (
+                  <a key={service} href="#" className="hover:text-orange-400 transition-colors block">{service}</a>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Further Links Section */}
-          <div>
+          <div className=' text-center md:text-start flex flex-col items-center justify-center md:flex md:items-start md:justify-start'>
             <h3 className="text-lg font-semibold text-white mb-4">Further links</h3>
             <ul className="space-y-3">
               {["Blog", "Glossary", "Contact", "Achievers", "Job Ads Indeed", "About us"].map((link) => (

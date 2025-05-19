@@ -18,7 +18,7 @@ module.exports = {
     extend: {
       fontFamily: {
         // Set 'Open Sans' as the default sans-serif font
-        sans: ['Open Sans',  ...defaultTheme.fontFamily.sans],
+        sans: [`var(--font-open-sans)`, ...defaultTheme.fontFamily.sans],
       },
       colors: {
         border: "hsl(var(--border))",
