@@ -72,7 +72,7 @@ export default function Eighth() {
             href="/kontakt"
             className="inline-flex items-center text-orange-500 hover:text-orange-600 font-medium group"
           >
-            Starten Sie jetzt Ihr selbstbestimmtes Leben mit Seiler Assistenz.
+            Starten Sie jetzt Ihr selbstbestimmtes Leben mit Infinity Plus.
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Link>
             {/* This Button component would need to be a JS/JSX component itself */}

@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: [
@@ -18,7 +17,7 @@ module.exports = {
     extend: {
       fontFamily: {
         // Set 'Open Sans' as the default sans-serif font
-        sans: [`var(--font-open-sans)`, ...defaultTheme.fontFamily.sans],
+         manrope: ['var(--font-manrope)', 'sans-serif'], // Add a generic fallback
       },
       colors: {
         border: "hsl(var(--border))",

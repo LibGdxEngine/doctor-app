@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "@/context/AuthContext";
-import { Open_Sans } from 'next/font/google'; // Note the underscore
+import { Open_Sans, Manrope } from 'next/font/google'; // Note the underscore
 import i18n from '../../i18n';
 import Head from 'next/head'; // Import Head for font links if not using CSS @import
 
@@ -15,11 +15,17 @@ const openSans = Open_Sans({
   variable: '--font-open-sans', // This creates a CSS variable
 });
 
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-manrope',
+});
 
 
 
 function App({ Component, pageProps }) {
-    return <div className={`bg-light ${openSans.variable} font-sans`}>
+    return <div className={`bg-light ${manrope.variable} font-sans`}>
         <Head>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />

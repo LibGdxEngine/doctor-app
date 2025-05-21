@@ -30,7 +30,7 @@ export default function Fifth() {
 
           <div className="text-gray-700 text-lg">
             <p>
-              Bei Seiler Assistenz in Köln steht der Mensch im Mittelpunkt. Wir sind mehr als nur ein Assistenzdienst -
+              Bei Infinity Plus in Köln steht der Mensch im Mittelpunkt. Wir sind mehr als nur ein Assistenzdienst -
               wir sind Ihr zuverlässiger Partner für ein selbstbestimmtes Leben. Unsere Mission ist es, Menschen mit
               Behinderungen im Alltag zu unterstützen und ihre Unabhängigkeit zu fördern.
             </p>
@@ -40,7 +40,7 @@ export default function Fifth() {
             href="/kontakt"
             className="inline-flex items-center text-orange-500 hover:text-orange-600 font-medium group"
           >
-            Starten Sie jetzt Ihr selbstbestimmtes Leben mit Seiler Assistenz.
+            Starten Sie jetzt Ihr selbstbestimmtes Leben mit Infinity Plus.
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>

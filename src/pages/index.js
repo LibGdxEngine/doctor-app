@@ -1,72 +1,76 @@
-import HomePage from "@/pages/components/Home/HomePage";
+import HomePageWithNavBar from "@/pages/components/Home/HomePage";
 import HomeFAQs from "@/pages/components/Home/HomeFAQs";
 import Footer from "@/pages/components/Footer";
 import VideoPlayer from "@/pages/components/utils/VideoPlayer";
 import { useTranslation } from 'react-i18next';
-import Second from "./components/Home/Second";
+import LeftImageWithTextAndButton from "./components/Home/LeftImageWithTextAndButton";
 import Third from "./components/Home/Third";
 import JobRecruitment from "./components/Home/JobRecruitment";
-import Fourth from "./components/Home/Fourth";
+import RightmageWithTextAndButton from "./components/Home/RightImageWithTextAndButton";
 import Fifth from "./components/Home/Fifth";
 import Sixth from "./components/Home/Sixth";
 import Eighth from "./components/Home/Eighth";
 import Ningth from "./components/Home/Ningth";
 import Tenth from "./components/Home/Tenth";
 import FAQItem from "./components/comps/FAQItem";
-import HeroImageSection from "./components/Home/video";
+import RightVideoWithButton from "./components/Home/RightVideoWithButton";
 import Solid from "./components/Home/Solid";
-
-
+import ServicesSection from "./components/Home/ServicesSection";
+import RightImageWithText from "./components/Home/RightImageWithText";
 
 const Home = () => {
 
 
-    return (
-      <>
-        <div
-          id={``}
-          className={`w-screen bg-white h-full flex flex-col items-center justify-start`}
-        >
-          <HomePage />
-          <HeroImageSection />
-          <Second/>
-          <Fourth />
-          <Third />
+  return (
+    <>
+      <div
+        id={``}
+        className={`w-screen bg-white h-full flex flex-col items-center justify-start`}
+      >
+        <HomePageWithNavBar  isBigNav={true} 
+        
+        headerText={`Mit Infinity Plus an Ihrer Seite genießen Sie ein Leben voller Freiheit und Unabhängigkeit.`} />
+        <RightVideoWithButton />
+        <LeftImageWithTextAndButton />
+        <RightmageWithTextAndButton />
+        <Third />
 
 
-          <Solid />
+        <Solid />
 
 
 
-          
-          {/* <Fifth /> */}
-  
-          {/* <Sixth /> */}
-          <JobRecruitment />
-          {/* <Eighth /> */}
-          <Ningth />
-                  <FAQItem />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />  
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />  
-          <Tenth /> 
-          <Footer />
 
-        </div>
-      </>
-    );
+        {/* <Fifth /> */}
+
+        {/* <Sixth /> */}
+        <JobRecruitment />
+        <RightImageWithText />
+        <ServicesSection />
+        {/* <Eighth /> */}
+        {/* <Ningth /> */}
+        <FAQItem />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Tenth />
+        <Footer />
+
+      </div>
+    </>
+  );
 }
 
 export default Home;
