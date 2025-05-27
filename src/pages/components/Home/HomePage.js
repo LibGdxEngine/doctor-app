@@ -7,10 +7,6 @@ import useScrollPosition from "../utils/useScrollPosition"; // Assuming this pat
 import { useState, useEffect } from "react";
 import LanguageDropdown from "../utils/LanguageDropdown"; // Assuming you have a LanguageDropdown component
 
-
-
-
-
 export default function HomePageWithNavBar({ isBigNav = false, headerText = "Assistenznehmer*in", image_url="/seila_assistenz13.jpg" }) {
   const isScrolled = useScrollPosition({ threshold: 10 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

@@ -60,7 +60,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-orange-500" />
-                <a href="mailto:info@seilerassistenz.de" className="hover:text-orange-400 transition-colors">info@seilerassistenz.de</a>
+                <a href="mailto:info@plus-infinity.de" className="hover:text-orange-400 transition-colors">info@plus-infinity.de</a>
               </li>
               <li className="flex items-center">
                 <MessageSquare className="h-5 w-5 mr-3 text-orange-500" />

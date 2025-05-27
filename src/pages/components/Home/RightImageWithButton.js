@@ -84,9 +84,9 @@ const RightImageWithButton = ({title , desc, IMAGE_URL }) => {
                                 <MessageSquare className="h-5 w-5 mr-2 text-orange-500 group-hover:text-orange-600 transition-colors" />
                                 WhatsApp Service
                             </a>
-                            <a href="mailto:info@seilerassistenz.de" className="flex items-center hover:text-orange-600 transition-colors group">
+                            <a href="mailto:info@plus-infinity.de" className="flex items-center hover:text-orange-600 transition-colors group">
                                 <Mail className="h-5 w-5 mr-2 text-orange-500 group-hover:text-orange-600 transition-colors" />
-                                info@seilerassistenz.de
+                                info@plus-infinity.de
                             </a>
                         </div>
                     </div>
