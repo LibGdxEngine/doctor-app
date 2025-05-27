@@ -12,7 +12,7 @@ export default function RightImageWithText() {
                     {/* Left side - Illustration */}
                     <div className="w-full md:w-1/2 space-y-6">
                         {/* <h2 className="text-orange-500 font-medium">
-            Assistenzdienst Köln - Ihr 24/7 Experte für qualifizierte Hilfe
+            Assistenzdienst Bochum - Ihr 24/7 Experte für qualifizierte Hilfe
           </h2> */}
 
                         <h1 className="text-2xl md:text-4xl font-semibold  text-gray-900 leading-tight">

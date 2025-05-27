@@ -16,7 +16,7 @@ function Solid() {
                 Erleben Sie <span className='text-orange-500/80'>individuelle Unterstützung</span> und ein selbstbestimmtes Leben</div>
 
             <div className='md:w-1/2 text-white text-sm md:text-lg font-bold text-center leading-tight mt-8'>
-                Bei Infinity Plus in Köln stehen Sie im Mittelpunkt. Wir sind mehr als nur ein Assistenzdienst - wir sind Ihr zuverlässiger Partner
+                Bei Infinity Plus in Bochum stehen Sie im Mittelpunkt. Wir sind mehr als nur ein Assistenzdienst - wir sind Ihr zuverlässiger Partner
                 für ein selbstbestimmtes Leben. Unsere Mission ist es, Menschen mit Behinderungen im Alltag zu unterstützen und ihre Unabhängigkeit zu fördern.
             </div>
 

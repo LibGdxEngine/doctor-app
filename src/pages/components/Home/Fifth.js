@@ -21,7 +21,7 @@ export default function Fifth() {
        
         <div className="w-full md:w-1/2 space-y-6">
           <h2 className="text-orange-500 font-medium">
-            Assistenzdienst Köln - Ihr 24/7 Experte für qualifizierte Hilfe
+            Assistenzdienst Bochum - Ihr 24/7 Experte für qualifizierte Hilfe
           </h2>
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
@@ -30,7 +30,7 @@ export default function Fifth() {
 
           <div className="text-gray-700 text-lg">
             <p>
-              Bei Infinity Plus in Köln steht der Mensch im Mittelpunkt. Wir sind mehr als nur ein Assistenzdienst -
+              Bei Infinity Plus in Bochum steht der Mensch im Mittelpunkt. Wir sind mehr als nur ein Assistenzdienst -
               wir sind Ihr zuverlässiger Partner für ein selbstbestimmtes Leben. Unsere Mission ist es, Menschen mit
               Behinderungen im Alltag zu unterstützen und ihre Unabhängigkeit zu fördern.
             </p>

@@ -67,7 +67,7 @@ const RightVideoWithButton = () => {
                             Assistenzleistungen für ein <span className="text-orange-600">Selbstbestimmtes Leben</span>
                         </h1>
                         <p ref={paragraphRef} className="text-sm text-gray-700 mb-8 leading-relaxed">
-                            Willkommen bei Infinity Plus, Ihrem zuverlässigen Partner in Köln und Umgebung. Unser Assistenzdienst unterstützt Menschen mit Behinderung dabei, ein selbstbestimmtes Leben zu führen. Entdecken Sie unsere umfassenden Leistungen, die individuell auf Ihre Bedürfnisse zugeschnitten sind.
+                            Willkommen bei Infinity Plus, Ihrem zuverlässigen Partner in Bochum und Umgebung. Unser Assistenzdienst unterstützt Menschen mit Behinderung dabei, ein selbstbestimmtes Leben zu führen. Entdecken Sie unsere umfassenden Leistungen, die individuell auf Ihre Bedürfnisse zugeschnitten sind.
                         </p>
                         <div ref={buttonRef} className="mb-8">
                             <a

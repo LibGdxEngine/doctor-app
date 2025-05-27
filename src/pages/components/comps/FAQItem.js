@@ -6,7 +6,7 @@ import { Plus, Minus } from 'lucide-react';
 const faqData = [
   {
     question: "Was ist ein Assistenzdienst?",
-    answer: "Ein Assistenzdienst wie Infinity Plus in Köln bietet Menschen mit Behinderung umfassende Unterstützung im Alltag. Unsere Dienstleistungen umfassen persönliche Assistenz, Mobilitätshilfen, Unterstützung bei Arbeit und Bildung sowie hauswirtschaftliche Unterstützung, um ein selbstbestimmtes Leben zu ermöglichen."
+    answer: "Ein Assistenzdienst wie Infinity Plus in Bochum bietet Menschen mit Behinderung umfassende Unterstützung im Alltag. Unsere Dienstleistungen umfassen persönliche Assistenz, Mobilitätshilfen, Unterstützung bei Arbeit und Bildung sowie hauswirtschaftliche Unterstützung, um ein selbstbestimmtes Leben zu ermöglichen."
   },
   {
     question: "Wie hilft Infinity Plus bei der persönlichen Assistenz?",

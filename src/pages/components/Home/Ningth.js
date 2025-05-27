@@ -19,7 +19,7 @@ export default function Ningth() {
 
           <div className="text-gray-700 text-sm">
             <p>
-              Bei Infinity Plus in Köln steht der Mensch im Mittelpunkt. Wir sind mehr als nur ein Assistenzdienst -
+              Bei Infinity Plus in Bochum steht der Mensch im Mittelpunkt. Wir sind mehr als nur ein Assistenzdienst -
               wir sind Ihr zuverlässiger Partner für ein selbstbestimmtes Leben. Unsere Mission ist es, Menschen mit
               Behinderungen im Alltag zu unterstützen und ihre Unabhängigkeit zu fördern.
             </p>
