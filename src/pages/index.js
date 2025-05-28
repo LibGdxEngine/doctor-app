@@ -52,6 +52,20 @@ export async function getServerSideProps() {
   };
 }
 
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Infinity-Plus ",
+      "url": "https://plus-infinity.de/",
+      "description": "Ein Beruf mit Sinn, Anerkennung, fairer Bezahlung und flexiblen Arbeitszeiten.",
+      "sameAs": ["https://www.facebook.com/plus-infinity.de", "..."]
+    }),
+  }}
+/>
+
 const Home = ({ initialContent }) => {
   const headerText = initialContent?.headerText || "Welcome!";
   const headerTopText = initialContent?.headerTopText || "Please configure content in the admin panel.";
@@ -62,6 +76,19 @@ const Home = ({ initialContent }) => {
 
   return (
     <>
+      <Head>
+        <title>Assistenzberuf mit Bedeutung und Wertschätzung | Infinity-Plus </title>
+        <meta name="description" content="Finde bei Infinity-Plus  einen erfüllenden Beruf mit Sinn, Anerkennung, fairer Bezahlung und flexiblen Arbeitszeiten." />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://plus-infinity.de/" />
+
+        {/* Open Graph tags */}
+        <meta property="og:title" content="Assistenzberuf mit Bedeutung – Infinity-Plus " />
+        <meta property="og:description" content="Bei uns findest du Anerkennung, faire Bedingungen und eine erfüllende Tätigkeit im Assistenzbereich." />
+        <meta property="og:url" content="https://plus-infinity.de/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://plus-infinity.de/_next/image?url=%2Fnewdesign.png" />
+      </Head>
       <div
         id={``}
         className={`w-full bg-white h-full flex flex-col items-center justify-start`}
@@ -72,7 +99,7 @@ const Home = ({ initialContent }) => {
           headerBottomText={headerBottomText}
           ctaButtonText={ctaButtonText}
           whatsapp={whatsapp}
-          />
+        />
         <RightVideoWithButton />
         <LeftImageWithTextAndButton />
         <RightmageWithTextAndButton />
