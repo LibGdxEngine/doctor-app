@@ -48,7 +48,7 @@ const Footer = () => {
 
   return (
     <footer className="w-full bg-gray-900 text-gray-300 font-sans pt-80">
-      <div className=" mx- px-6 py-12">
+      <div className=" px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-start">
           {/* Contact Section */}
           <div className="text-center md:text-start flex flex-col items-center justify-center md:flex md:items-start md:justify-start">

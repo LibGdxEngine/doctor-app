@@ -6,8 +6,38 @@ import { Phone, MessageCircle, Menu as MenuIcon, X as XIcon } from "lucide-react
 import useScrollPosition from "../utils/useScrollPosition"; // Assuming this path is correct
 import { useState, useEffect } from "react";
 import LanguageDropdown from "../utils/LanguageDropdown"; // Assuming you have a LanguageDropdown component
+import fs from 'fs'; // For getStaticProps/getServerSideProps
+import path from 'path'; // For getStaticProps/getServerSideProps
+import Head from 'next/head';
 
-export default function HomePageWithNavBar({ isBigNav = false, headerText = "Assistenznehmer*in", image_url="/seila_assistenz13.jpg" }) {
+export async function getServerSideProps() {
+  let content = { // Default content
+    homepage: {
+      title: "Default Title",
+      description: "Default description.",
+      ctaButtonText: "Default CTA"
+    }
+  };
+  try {
+    const dataFilePath = path.resolve(process.cwd(), 'data', 'content.json');
+    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
+    const jsonData = JSON.parse(fileContents);
+    if (jsonData && jsonData.homepage) { // Check if homepage data exists
+      content = jsonData;
+    }
+  } catch (error) {
+    console.error('Error reading content file for homepage:', error);
+    // Log the error but use default content, so the page still renders.
+  }
+
+  return {
+    props: {
+      initialContent: content.homepage // Pass only homepage content
+    },
+  };
+}
+
+export default function HomePageWithNavBar({ isBigNav = false,ctaButtonText="", whatsapp="", headerTopText="", headerBottomText="", headerText = "Assistenznehmer*in", image_url="/seila_assistenz13.jpg", initialContent }) {
   const isScrolled = useScrollPosition({ threshold: 10 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -31,22 +61,23 @@ export default function HomePageWithNavBar({ isBigNav = false, headerText = "Ass
   // Close mobile menu if a link is clicked
   const handleMobileLinkClick = () => {
     // open the link in a new tab
-    window.open("https://wa.me/4915773733381", "_blank");
+    window.open(`https://wa.me/${whatsapp}`, "_blank");
     setIsMobileMenuOpen(false);
   };
 
   const navLinks = [
     { href: "/assistenznehmer", text: "Assistenznehmer*in" },
     { href: "/assistent-werden", text: "Assistent*in werden" },
-    { href: "#budget", text: "Personal Budget" },
-    { href: "#provider", text: "Benefits Provider" },
-    { href: "#about", text: "About Us" },
+    { href: "/persoenliches-budget", text: "Personal Budget" },
+    { href: "/leistungstrager", text: "Achievers" },
+    { href: "/ueber-uns", text: "About Us" },
   ];
 
 
   return (
     <div className={`w-full ${isBigNav ? "h-[85vh] md:h-screen" : "h-[57vh]"} relative`}>
       {/* Hero background image */}
+ 
       <div className="absolute inset-0 z-0">
         {isBigNav ? <video
           autoPlay
@@ -154,7 +185,8 @@ export default function HomePageWithNavBar({ isBigNav = false, headerText = "Ass
 
               {/* Your existing "Request Assistance" button */}
               <Link
-                href="#request-assistance"
+                href="https://wa.me/4915773733381"
+                target="_blank"
                 className={`px-4 py-2 rounded-xl transition-all duration-300 font-medium text-sm lg:text-base whitespace-nowrap ${isScrolled || isMobileMenuOpen
                   ? "bg-orange-500 hover:bg-orange-600 text-white"
                   : "bg-orange-500 hover:bg-orange-400 text-white" // Contrasting style for transparent header
@@ -233,7 +265,7 @@ export default function HomePageWithNavBar({ isBigNav = false, headerText = "Ass
                 </Link>
               ))}
               <Link
-                href="#request-assistance"
+                href="https://wa.me/4915773733381"
                 onClick={handleMobileLinkClick}
                 className="block w-full text-center mt-8 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3.5 rounded-xl font-semibold transition-colors duration-200
                            opacity-0 animate-fadeInUp"
@@ -249,7 +281,7 @@ export default function HomePageWithNavBar({ isBigNav = false, headerText = "Ass
 
               <div className="flex items-center justify-center space-x-6">
                 <Link
-                  href="#" // Replace with your WhatsApp link
+                  href="https://wa.me/4915773733381" // Replace with your WhatsApp link
                   onClick={handleMobileLinkClick}
                   className="text-gray-500 hover:text-orange-500 transition-colors"
                   aria-label="WhatsApp"
@@ -277,7 +309,7 @@ export default function HomePageWithNavBar({ isBigNav = false, headerText = "Ass
           style={{fontSize: "0.8rem"}}
             className="inline-block text-[#289697] text-center md:text-left md:text-base text-white mb-4 mt-8"
           >
-            Egal ob im Privat- oder Berufsalltag – mit uns an Ihrer Seite meistern Sie jede Herausforderung.
+            {headerTopText}
           </div>}
 
           <h1 style={{ }} className={`w-full leading-[1] md:leading-[8] text-3xl md:w-3/4 lg:text-5xl leading-relaxed font-semibold text-white text-left mb-4 ${isBigNav ? "text-center md:text-left" : "text-center"} `}>
@@ -285,14 +317,13 @@ export default function HomePageWithNavBar({ isBigNav = false, headerText = "Ass
           </h1>
 
           {isBigNav && <div className="w-full md:w-5/12 text-center md:text-left mb-4 ">
-            Mit Infinity Plus an Ihrer Seite, ein Leben voller Freiheit
-            und Unabhängigkeit genießen. Egal ob im Privat- oder Berufsalltagmit - uns an Ihrer Seite meistern Sie jede Herausforderung.
+            {headerBottomText}
           </div>}
           {isBigNav && <Link
             href="#request-hero"
             className="inline-block   bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-xl text-lg font-semibold transition-colors shadow-md hover:shadow-lg"
           >
-            Jetzt Assistent*in Anfragen
+            {ctaButtonText}
           </Link>}
 
           {/* WHITE LINE */}
@@ -301,7 +332,7 @@ export default function HomePageWithNavBar({ isBigNav = false, headerText = "Ass
           {/* Contact options */}
           {isBigNav && <div className="w-11/12  md:w-5/12 mt-6  flex flex-row items-center justify-between md:justify-center sm:space-y-0 sm:space-x-10">
             <Link
-              href="https://wa.me/4915773733381" // Replace with your actual WhatsApp link e.g., https://wa.me/yourphonenumber
+              href={`https://wa.me/${whatsapp}`} // Replace with your actual WhatsApp link e.g., https://wa.me/yourphonenumber
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center text-white hover:text-orange-300 transition-colors text-lg"
@@ -317,7 +348,7 @@ export default function HomePageWithNavBar({ isBigNav = false, headerText = "Ass
               className="flex items-center text-white hover:text-orange-300 transition-colors text-lg"
             >
               <Phone className="mr-2.5 h-6 w-6" />
-              <span>491577 3733381</span>
+              <span>{whatsapp}</span>
             </Link>
           </div>}
         </main>

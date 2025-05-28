@@ -17,47 +17,8 @@ import RightVideoWithButton from "./components/Home/RightVideoWithButton";
 import Solid from "./components/Home/Solid";
 import ServicesSection from "./components/Home/ServicesSection";
 import RightImageWithText from "./components/Home/RightImageWithText";
-import React from 'react';
-import fs from 'fs'; // For getStaticProps/getServerSideProps
-import path from 'path'; // For getStaticProps/getServerSideProps
-import Head from 'next/head';
 
-export async function getServerSideProps() {
-  let content = { // Default content
-    page1: {
-      headerText: "Default Title",
-      headerTopText: "Default description.",
-      headerBottomText: "Default CTA",
-      ctaButtonText: "Default Button",
-      whatsapp: "Default WhatsApp Number"
-    }
-  };
-  try {
-    const dataFilePath = path.resolve(process.cwd(), 'data', 'content.json');
-    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
-    const jsonData = JSON.parse(fileContents);
-    console.log("jsonData: %j", jsonData);
-    if (jsonData && jsonData.page1) { // Check if homepage data exists
-      content = jsonData;
-    }
-  } catch (error) {
-    console.error('Error reading content file for homepage:', error);
-    // Log the error but use default content, so the page still renders.
-  }
-
-  return {
-    props: {
-      initialContent: content.page1 // Pass only homepage content
-    },
-  };
-}
-
-const Home = ({ initialContent }) => {
-  const headerText = initialContent?.headerText || "Welcome!";
-  const headerTopText = initialContent?.headerTopText || "Please configure content in the admin panel.";
-  const headerBottomText = initialContent?.headerBottomText || "Contact us for more info";
-  const ctaButtonText = initialContent?.ctaButtonText || "Explore";
-  const whatsapp = initialContent?.whatsapp || "1234567890";
+const Home = () => {
 
 
   return (
@@ -66,13 +27,7 @@ const Home = ({ initialContent }) => {
         id={``}
         className={`w-full bg-white h-full flex flex-col items-center justify-start`}
       >
-        <HomePageWithNavBar isBigNav={true}
-          headerTopText={headerTopText}
-          headerText={`${headerText}`}
-          headerBottomText={headerBottomText}
-          ctaButtonText={ctaButtonText}
-          whatsapp={whatsapp}
-          />
+        <HomePageWithNavBar image_url="/image1.jpg" headerText="Personal budget" />
         <RightVideoWithButton />
         <LeftImageWithTextAndButton />
         <RightmageWithTextAndButton />

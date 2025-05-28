@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, MessageSquare, Mail } from 'lucide-react'; // Using lucide-react for icons
 
+
+
 const RightVideoWithButton = () => {
     // Refs for animation
     const sectionRef = useRef(null);

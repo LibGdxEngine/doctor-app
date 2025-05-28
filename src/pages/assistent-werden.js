@@ -26,9 +26,9 @@ const Home = () => {
         <>
             <div
                 id={``}
-                className={`w-screen bg-white h-full flex flex-col items-center justify-start`}
+                className={`w-full bg-white h-full flex flex-col items-center justify-start`}
             >
-                <HomePageWithNavBar image_url="/seila_assistenz13.jpg" />
+                <HomePageWithNavBar image_url="/mono.jpg" headerText="Assistent werden" />
                 <RightImageWithButton title={`Ein Beruf mit Bedeutung und Wertschätzung`} desc={`Wertschätzung, Bedeutung und Anerkennung gehören zu unseren wichtigsten Werten. Diese spiegeln sich in der Zusammenarbeit mit unseren Assistent*innen wider. Wir bieten umfassende Schulungen, faire und flexible Arbeitszeiten sowie eine attraktive Bezahlung inklusive Zeitzuschlägen. Bei Seiler Assistenz machen wir die Assistenz zu einem Beruf, der dich finanziell absichert und dir gleichzeitig Sinn und Erfüllung bietet.`} IMAGE_URL={`/Seila-Assistenz25.jpg`} />
                 <LeftImageWithText
                     title={`Einsatz für das selbstbestimmte Leben unserer Assistenznehmer*innen`}

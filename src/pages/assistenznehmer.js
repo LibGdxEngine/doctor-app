@@ -25,7 +25,7 @@ const Home = () => {
     <>
       <div
         id={``}
-        className={`w-screen bg-white h-full flex flex-col items-center justify-start`}
+        className={`w-full bg-white h-full flex flex-col items-center justify-start`}
       >
         <HomePageWithNavBar image_url="/seila_assistenz13.jpg" />
         <RightVideoWithButton />

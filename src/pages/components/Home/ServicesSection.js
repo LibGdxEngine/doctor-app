@@ -7,7 +7,7 @@ const servicesData = [
         iconSrc: <svg className='w-10 h-10 fill-current' xmlns="http://www.w3.org/2000/svg" id="Layer_1" height="512" viewBox="0 0 512 512" width="512"><path clip-rule="evenodd" d="m80.813 7.584c21.28 0 38.382 17.223 38.382 38.383 0 21.163-17.102 38.388-38.382 38.388-21.164 0-38.389-17.225-38.389-38.388 0-21.16 17.224-38.383 38.389-38.383zm152.923 229.202h35.189c3.443 0 6.146 2.831 6.146 6.276v33.341c0 2.46-1.473 4.675-3.689 5.66-23.252 12.426-40.601 32.232-50.198 55.238-9.718 23.131-11.685 49.584-4.06 75.049 7.629 25.467 23.749 46.504 44.539 60.531 20.793 14.024 46.381 21.038 72.832 18.577 26.453-2.461 50.197-14.149 68.037-31.866 14.884-14.763 25.712-33.831 30.387-55.24l7.996 17.226c-6.27 17.839-16.484 33.834-29.645 46.873-19.813 19.687-46.137 32.602-75.666 35.434-29.404 2.708-57.823-5.046-80.953-20.669-23.13-15.624-40.968-38.877-49.459-67.299-8.49-28.296-6.276-57.7 4.428-83.413 10.336-24.605 28.545-45.891 53.025-59.793v-23.375h-40.722c-2.827.615-5.782.37-8.609-.736l-103.963-47.86c-1.599 13.78-7.75 37.647-5.659 85.752 23.746 52.288 35.681 78.494 35.681 78.494 21.649 75.17 32.604 112.693 32.604 112.693 1.599 7.998-2.708 16.117-10.337 19.193-7.627 3.076-16.484.37-20.791-6.643-32.602-69.636-48.968-104.453-48.968-104.453-49.95-59.793-74.801-89.688-74.801-89.688-6.892-39.861-1.597-157.109 15.622-176.055 19.689-21.531 51.555-5.66 61.027 18.454l136.314 85.751c3.201 3.567 4.43 8.12 3.693 12.548zm147.758-156.37c21.162 0 38.383 17.103 38.383 38.387 0 21.16-17.221 38.262-38.383 38.262-21.158 0-38.385-17.102-38.385-38.262 0-21.284 17.227-38.387 38.385-38.387zm90.184 253.443 33.953 117.245c1.602 7.998-2.704 16.12-10.334 19.192-7.628 3.075-16.365.369-20.794-6.643-32.604-69.636-48.964-104.453-48.964-104.453h-94.363c-19.193 0-34.694-15.623-34.694-34.693v-122.537c3.692-19.807 22.517-33.095 42.321-29.774 16.242 2.709 28.296 15.626 30.512 31.129 1.969 12.793 2.337 30.756 2.46 49.088h73.694c8.983 0 16.367 7.259 16.367 16.362 0 8.98-7.384 16.24-16.367 16.24h-73.569c0 6.397.119 12.427.244 17.84l75.911 10.581c11.438 1.598 20.297 9.35 23.623 20.423zm-392.838 55.731-40.473 99.161c-3.692 7.382-12.181 11.075-20.057 8.736-8-2.337-13.041-9.966-12.178-18.21 0 0 8.855-37.399 26.449-112.202l-.861-33.833z" fill-rule="evenodd"></path></svg>, // Replace with actual path if using next/image
         title: 'Persönliche Assistenz',
         description:
-        "Unsere persönlichen Assistenten und Assistentinnen stehen Ihnen zur Seite, um alltägliche Aufgaben wie Ankleiden, Waschen, Essen, Toilettengang und Mobilität zu erleichtern. Darüber hinaus unterstützen wir bei der Medikamenteneinnahme und therapeutischen Übungen. Durch die individuelle Betreuung ermöglichen wir Ihnen ein selbstbestimmtes Leben. Wir stellen sicher, dass die Zusammenstellung des Teams Ihren Bedürfnissen entspricht und legen Wert auf die Sympathie zwischen Assistenznehmer und Assistent."
+            "Unsere persönlichen Assistenten und Assistentinnen stehen Ihnen zur Seite, um alltägliche Aufgaben wie Ankleiden, Waschen, Essen, Toilettengang und Mobilität zu erleichtern. Darüber hinaus unterstützen wir bei der Medikamenteneinnahme und therapeutischen Übungen. Durch die individuelle Betreuung ermöglichen wir Ihnen ein selbstbestimmtes Leben. Wir stellen sicher, dass die Zusammenstellung des Teams Ihren Bedürfnissen entspricht und legen Wert auf die Sympathie zwischen Assistenznehmer und Assistent."
     },
     {
         iconSrc:
@@ -33,10 +33,53 @@ const servicesData = [
             'Unsere Assistenzdienstleistungen umfassen auch die Hilfe bei Hausarbeiten, Einkäufen und der Zubereitung von Mahlzeiten. Aufgrund körperlicher Einschränkungen können viele unserer Kunden ihren Haushalt nicht selbstständig führen. Unsere Assistenten sorgen dafür, dass Ihre Wohnung sauber bleibt und Sie regelmäßig gesunde Mahlzeiten erhalten. So können Sie sich in ihren eigenen vier Wänden wohlfühlen und Ihr Leben genießen.',
     },
     {
-
+        iconSrc:
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                id="Capa_1"
+                x="0px"
+                y="0px"
+                viewBox="0 0 490 490"
+                xmlSpace="preserve"
+                className='w-10 h-10 fill-current'
+            >
+                <g id="line_32_">
+                    {/* Set fill to "currentColor" for the paths and rect that should be colored */}
+                    <path
+                        fill="currentColor"
+                        d="M104.258,442.855c0,0,57.909-30.302,86.879-15.802c28.97,14.5,108.591,35.569,156.38,31.619 c47.788-3.95,124.516-67.173,139.001-88.242c14.485-21.069-18.818-23.703-52.121-6.584c-33.303,17.119-140.44,51.371-191.122,0 c0,0,117.273,10.534,121.622,0c4.349-10.535-13.03-27.653-104.243-47.421c-91.213-19.752-156.38,0-156.38,0v126.43H104.258z"
+                    />
+                    <rect
+                        fill="f"
+                        y="316.409"
+                        width="69.5"
+                        height="135.693"
+                    />
+                    <path
+                        fill="currentColor"
+                        d="M280.161,67.071c15.572,0,27.408,4.073,35.508,12.173l8.452-39.673c-11.821-5.819-25.785-8.728-41.801-8.728 c-29.414,0-53.147,9.646-71.185,28.939c-11.928,12.801-19.905,28.694-23.917,47.681h-17.042l-4.578,22.202h18.757 c-0.199,3.353-0.291,7.212-0.291,11.606c0,2.572,0.046,5.007,0.153,7.304h-14.041l-4.578,22.202h21.191 c3.92,19.385,11.974,35.569,24.208,48.554c17.945,19.094,40.867,28.633,68.735,28.633c16.521,0,30.976-3.093,43.394-9.294v-43.822 c-10.887,11.27-25.494,16.904-43.823,16.904c-15.266,0-27.684-5.619-37.238-16.904c-4.961-5.818-8.636-13.842-11.025-24.055h65.305 l4.594-22.202h-72.9c-0.199-3.614-0.306-7.105-0.306-10.458c0-3.445,0.061-6.247,0.153-8.452h77.049l4.578-22.202h-78.764 c2.281-9.447,6.14-17.333,11.591-23.626C251.987,72.66,264.604,67.071,280.161,67.071z"
+                    />
+                </g>
+                {/* Empty <g> tags are kept as in the original SVG. Remove if not needed. */}
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+                <g />
+            </svg>,
         title: 'Persönliches Budget und Eingliederungshilfe',
         description:
-        "Wir unterstützen Sie bei allen Fragen rund um das persönliche Budget und die Eingliederungshilfe. Unser Team berät Sie umfassend zu Ihren Möglichkeiten und hilft Ihnen bei der Antragstellung, damit Sie die notwendige finanzielle Unterstützung erhalten. Unser Ziel ist es, Ihnen die maximale Selbstbestimmung und Unabhängigkeit zu ermöglichen. Wir begleiten Sie durch den gesamten Prozess und stehen Ihnen bei jeder Herausforderung zur Seite. So stellen wir sicher, dass Sie alle verfügbaren Ressourcen optimal nutzen können.",       
+            "Wir unterstützen Sie bei allen Fragen rund um das persönliche Budget und die Eingliederungshilfe. Unser Team berät Sie umfassend zu Ihren Möglichkeiten und hilft Ihnen bei der Antragstellung, damit Sie die notwendige finanzielle Unterstützung erhalten. Unser Ziel ist es, Ihnen die maximale Selbstbestimmung und Unabhängigkeit zu ermöglichen. Wir begleiten Sie durch den gesamten Prozess und stehen Ihnen bei jeder Herausforderung zur Seite. So stellen wir sicher, dass Sie alle verfügbaren Ressourcen optimal nutzen können.",
     },
     {
         iconSrc: <svg
@@ -51,7 +94,7 @@ const servicesData = [
         </svg>, // Replace with actual path if using next/image
         title: 'Unsere Vorteile',
         description:
-        "Individuelle Betreuung: Wir passen unsere Dienstleistungen Ihren persönlichen Bedürfnissen an. Erfahrenes Team: Unsere qualifizierten Assistenzkräfte sind professionell und empathisch. Umfassende Unterstützung: Von der Alltagsassistenz bis zur Freizeitbegleitung bieten wir ein breites Spektrum an Dienstleistungen. Flexibilität: Wir reagieren flexibel auf Ihre Wünsche und Anforderungen. Bürokratische Entlastung: Wir übernehmen die Koordination und Verwaltung Ihrer Assistenzleistungen."         
+            "Individuelle Betreuung: Wir passen unsere Dienstleistungen Ihren persönlichen Bedürfnissen an. Erfahrenes Team: Unsere qualifizierten Assistenzkräfte sind professionell und empathisch. Umfassende Unterstützung: Von der Alltagsassistenz bis zur Freizeitbegleitung bieten wir ein breites Spektrum an Dienstleistungen. Flexibilität: Wir reagieren flexibel auf Ihre Wünsche und Anforderungen. Bürokratische Entlastung: Wir übernehmen die Koordination und Verwaltung Ihrer Assistenzleistungen."
     },
 ];
 

@@ -22,7 +22,7 @@ export default function JobRecruitment() {
               <div className="w-full h-full  flex flex-col justify-between items-center">
                 <div className="w-full mt-8">
                 <Image
-                  src="/Seila-Assistenz25.jpg"
+                  src="/backend.png"
                   alt="Assistant shaking hands with person in wheelchair"
                   width={280}
                   height={200}
@@ -31,7 +31,7 @@ export default function JobRecruitment() {
               </div>
               <div className="w-full mb-8">
                 <Image
-                  src="/Seila-Assistenz25.jpg"
+                  src="/mono.jpg"
                   alt="Assistant helping person in wheelchair cross the street"
                   width={280}
                   height={200}

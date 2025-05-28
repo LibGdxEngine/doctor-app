@@ -9,7 +9,7 @@ const services = [
     id: "personal-assistance",
     title: "Persönliche Assistenz",
     description: "Individuelle Unterstützung bei alltäglichen Aufgaben.",
-    imageUrl: "/1.jpg",
+    imageUrl: "/image1.jpg",
     imageAlt: "Person shaking hands with someone in a wheelchair",
   },
   {
@@ -30,21 +30,21 @@ const services = [
     id: "household-help",
     title: "Haushaltshilfe",
     description: "Unterstützung bei der Haushaltsführung und täglichen Aufgaben.",
-    imageUrl: "/2.jpg",
+    imageUrl: "/happy.png",
     imageAlt: "Person helping with household tasks",
   },
   {
     id: "care-services",
     title: "Pflegedienste",
     description: "Professionelle Pflegeleistungen für verschiedene Bedürfnisse.",
-    imageUrl: "/1.jpg",
+    imageUrl: "/mono.jpg",
     imageAlt: "Caregiver assisting someone at home",
   },
   {
     id: "social-participation",
     title: "Soziale Teilhabe",
     description: "Begleitung bei sozialen Aktivitäten und Veranstaltungen.",
-    imageUrl: "/2.jpg",
+    imageUrl: "/backend.png",
     imageAlt: "Group of people participating in a social activity",
   },
 ];
