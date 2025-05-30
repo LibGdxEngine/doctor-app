@@ -16,14 +16,14 @@ const services = [
     id: "mobility-help",
     title: "Mobilitätshilfe",
     description: "Bereitstellung von Rollstühlen und Gehhilfen.",
-    imageUrl: "/2.jpg",
+    imageUrl: "/img1.jpg",
     imageAlt: "People assisting someone in a wheelchair outdoors",
   },
   {
     id: "application-help",
     title: "Antragshilfe",
     description: "Wir unterstützen bei der Beantragung verschiedener Anträge.",
-    imageUrl: "/1.jpg",
+    imageUrl: "/img2.jpg",
     imageAlt: "People working on paperwork at a desk",
   },
   {
