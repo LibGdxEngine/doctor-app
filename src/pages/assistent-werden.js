@@ -35,7 +35,7 @@ const Home = () => {
                     desc={`Das selbstbestimmte Leben unserer Assistenznehmer*innen ist unser Ziel – als Assistenzkraft machst du es möglich. Du vervollständigst unser Team, indem du den Assistenznehmer*innen vor Ort hilfst und sie nach ihren individuellen Wünschen und Bedürfnissen unterstützt. Unsere Assistenznehmer*innen, das Innendienst-Team und unsere Assistenzkräfte arbeiten Hand in Hand. In diesem Assistenzdreieck spielt jede Rolle eine wichtige und wertvolle Funktion.`}
                     title2={`Wir hören genau zu`}
                     desc2={`Feedback- und Mitarbeiter*innengespräche sind bei uns regelmäßig auf der Tagesordnung. Jede*r Assistent*in hat eine feste Ansprechperson in der Teamkoordination, die flexibel auf ihre Wünsche eingeht und bei Fragen und Problemen stets erreichbar ist. Die regelmäßigen Dienstbesprechungen und Teamevents stärken den Zusammenhalt und sorgen dafür, dass sich alle wohlfühlen und geschätzt fühlen.`}
-                    IMAGE_URL={`/Seila-Assistenz25.jpg`}
+                    IMAGE_URL={`/img1.jpg`}
                 />
                 <RightmageWithTextAndButton />
                 <Third />

@@ -120,21 +120,7 @@ const Home = ({ initialContent }) => {
         {/* <Eighth /> */}
         {/* <Ningth /> */}
         <FAQItem />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+
         <Tenth />
         <Footer />
 

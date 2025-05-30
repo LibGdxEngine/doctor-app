@@ -32,7 +32,7 @@ export default function RightImageWithText() {
                     {/* Right side - Content */}
                     <div className="w-full md:w-1/2">
                         <Image
-                            src="/Seiler-Assistenzdienst2.png"
+                            src="/img4.jpg"
                             alt="Illustration of a person assisting someone in a wheelchair"
                             width={600}
                             height={600}
