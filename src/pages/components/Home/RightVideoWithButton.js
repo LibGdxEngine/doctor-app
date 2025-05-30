@@ -73,7 +73,7 @@ const RightVideoWithButton = () => {
                         </p>
                         <div ref={buttonRef} className="mb-8">
                             <a
-                                href="#contact-form" // Replace with your target link
+                                href="https://wa.me/4915773733381" // Replace with your target link
                                 className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-orange-50/50 transition-all duration-300 transform hover:scale-105 group"
                             >
                                 Jetzt Assistenz anfragen

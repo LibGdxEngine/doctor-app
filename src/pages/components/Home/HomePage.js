@@ -9,6 +9,7 @@ import LanguageDropdown from "../utils/LanguageDropdown"; // Assuming you have a
 import fs from 'fs'; // For getStaticProps/getServerSideProps
 import path from 'path'; // For getStaticProps/getServerSideProps
 import Head from 'next/head';
+import { useRouter } from 'next/router'; // For navigation in mobile menu
 
 export async function getServerSideProps() {
   let content = { // Default content
@@ -40,7 +41,7 @@ export async function getServerSideProps() {
 export default function HomePageWithNavBar({ isBigNav = false,ctaButtonText="", whatsapp="", headerTopText="", headerBottomText="", headerText = "Assistenznehmer*in", image_url="/seila_assistenz13.jpg", initialContent }) {
   const isScrolled = useScrollPosition({ threshold: 10 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  const router = useRouter();
   // Effect to handle body scroll lock when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -59,9 +60,10 @@ export default function HomePageWithNavBar({ isBigNav = false,ctaButtonText="", 
   };
 
   // Close mobile menu if a link is clicked
-  const handleMobileLinkClick = () => {
+  const handleMobileLinkClick = (href) => {
     // open the link in a new tab
-    window.open(`https://wa.me/${whatsapp}`, "_blank");
+    router.push(href);
+    // window.open(`https://wa.me/${whatsapp}`, "_blank");
     setIsMobileMenuOpen(false);
   };
 
@@ -256,7 +258,7 @@ export default function HomePageWithNavBar({ isBigNav = false,ctaButtonText="", 
                 <Link
                   key={link.text}
                   href={link.href}
-                  onClick={handleMobileLinkClick} // Close menu on link click
+                  onClick={() => handleMobileLinkClick(link.href)} // Close menu on link click
                   className="block py-3 px-4 text-gray-700 font-medium rounded-xl hover:bg-orange-50 hover:text-orange-500 transition-all duration-200 ease-in-out
                              opacity-1 animate-fadeInUp" // Animation classes
                   style={{ animationDelay: `${index * 0.07 + 0.1}s` }} // Staggered animation delay
