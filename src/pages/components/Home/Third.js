@@ -63,7 +63,7 @@ export default function ServiceCards() {
             <p className="text-gray-700 mb-6 text-sm">{service.description}</p>
             <div className="mt-auto">
               {/* The Link component remains the same */}
-              <Link href={`/services/${service.id}`} className="text-orange-500 hover:text-orange-600 text-sm font-medium">
+              <Link href={`https://wa.me/4915773733381`} className="text-orange-500 hover:text-orange-600 text-sm font-medium">
                   Jetzt Assistent*in Anfragen
               </Link>
             </div>

@@ -26,7 +26,7 @@ export default function Fourth() {
             </div>
 
             <Link
-              href="/kontakt"
+              href={"https://wa.me/4915773733381"}
               className="inline-flex text-base items-center text-orange-500 hover:text-orange-600 font-medium group"
             >
               Starten Sie jetzt Ihr selbstbestimmtes Leben mit Infinity Plus.

@@ -78,7 +78,8 @@ export default function JobRecruitment() {
 
             {/* This Button component would need to be a JS/JSX component itself */}
             <Link
-              href="/kontakt"
+              href="https://wa.me/4915773733381"
+              target="_blank"
               className="inline-flex items-center text-orange-500 hover:text-orange-600 font-medium group text-base"
             >
               Starten Sie jetzt Ihr selbstbestimmtes Leben mit Infinity Plus.
