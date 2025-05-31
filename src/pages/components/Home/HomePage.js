@@ -38,7 +38,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function HomePageWithNavBar({ isBigNav = false,ctaButtonText="", whatsapp="", headerTopText="", headerBottomText="", headerText = "Assistenznehmer*in", image_url="/seila_assistenz13.jpg", initialContent }) {
+export default function HomePageWithNavBar({ isBigNav = false, ctaButtonText = "", whatsapp = "", headerTopText = "", headerBottomText = "", headerText = "Assistenznehmer*in", image_url = "/seila_assistenz13.jpg", initialContent }) {
   const isScrolled = useScrollPosition({ threshold: 10 });
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
@@ -79,7 +79,7 @@ export default function HomePageWithNavBar({ isBigNav = false,ctaButtonText="", 
   return (
     <div className={`w-full ${isBigNav ? "h-[85vh] md:h-screen" : "h-[57vh]"} relative`}>
       {/* Hero background image */}
- 
+
       <div className="absolute inset-0 z-0">
         {isBigNav ? <video
           autoPlay
@@ -134,7 +134,7 @@ export default function HomePageWithNavBar({ isBigNav = false,ctaButtonText="", 
                 </div>
                 <div className="ml-2 flex flex-col">
                   <span
-                    className={`font-bold uppercase text-base sm:text-lg tracking-wider transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? "text-gray-900" : "text-white"
+                    className={`font-bold uppercase text-orange-500 text-base sm:text-lg tracking-wider transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? "text-gray-900" : "text-white"
                       }`}
                   >
                     Infinity Plus
@@ -308,21 +308,21 @@ export default function HomePageWithNavBar({ isBigNav = false,ctaButtonText="", 
         <main className={`h-full pt-36  flex flex-col ${isBigNav ? "items-center md:items-start justify-star px-4 md:px-36" : "items-center justify-center"}  t`}> {/* Increased padding top */}
 
           {isBigNav && <div
-          style={{fontSize: "0.8rem"}}
+            style={{ fontSize: "0.8rem" }}
             className="inline-block text-[#289697] text-center md:text-left md:text-base text-white mb-4 mt-8"
           >
             {headerTopText}
           </div>}
 
-          <h1 style={{ }} className={`w-full leading-[1] md:leading-[8] text-3xl md:w-3/4 lg:text-5xl leading-relaxed font-semibold text-white text-left mb-4 ${isBigNav ? "text-center md:text-left" : "text-center"} `}>
+          <h1 style={{}} className={`w-full leading-[1] md:leading-[8] text-3xl md:w-3/4 lg:text-5xl leading-relaxed font-semibold text-white text-left mb-4 ${isBigNav ? "text-center md:text-left" : "text-center"} `}>
             {headerText}
           </h1>
 
-          {isBigNav && <div className="w-full md:w-5/12 text-center md:text-left mb-4 ">
+          {isBigNav && <div className="w-full md:w-5/12 text-white text-center md:text-left mb-4 ">
             {headerBottomText}
           </div>}
           {isBigNav && <Link
-            href="#request-hero"
+            href="tel:4915773733381"
             className="inline-block   bg-orange-500 hover:bg-orange-600 text-white px-8 py-3.5 rounded-xl text-lg font-semibold transition-colors shadow-md hover:shadow-lg"
           >
             {ctaButtonText}

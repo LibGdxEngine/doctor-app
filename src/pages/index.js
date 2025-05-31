@@ -36,7 +36,6 @@ export async function getServerSideProps() {
     const dataFilePath = path.resolve(process.cwd(), 'data', 'content.json');
     const fileContents = fs.readFileSync(dataFilePath, 'utf8');
     const jsonData = JSON.parse(fileContents);
-    console.log("jsonData: %j", jsonData);
     if (jsonData && jsonData.page1) { // Check if homepage data exists
       content = jsonData;
     }

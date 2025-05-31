@@ -52,7 +52,7 @@ const LeftImageWithTextAndButton = () => {
             <p ref={paragraphRef} className="text-sm text-gray-700 mb-8 leading-relaxed">
               Wir begleiten dich bereits bei der Bedarfsermittlung, um gemeinsam herauszufinden, was du genau brauchst. Von der Antragstellung bis zur Kommunikation mit den Kostenträgern stehen wir dir zur Seite. Wir unterstützen dich bei der Suche nach passenden Assistenzkräften und bei der Zusammenstellung eines kompetenten Teams. Gerne sind wir bei Vorstellungsgesprächen dabei und beraten dich bei der Auswahl deiner Assistenz.
             </p>
-            <Link href={"https://wa.me/4915773733381"}>
+            <Link href={`tel:4915773733381`}>
               <div
                 ref={buttonRef}
                 className="w-full md:w-1/2 flex items-center justify-center bg-orange-500 text-white font-bold py-4 px-4 rounded-lg mt-8 hover:bg-orange-600 transition duration-300"

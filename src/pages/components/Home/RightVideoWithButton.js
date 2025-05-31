@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, MessageSquare, Mail } from 'lucide-react'; // Using lucide-react for icons
-
+import Image from 'next/image'; // Using Next.js Image component for optimized images
 
 
 const RightVideoWithButton = () => {
@@ -73,7 +73,7 @@ const RightVideoWithButton = () => {
                         </p>
                         <div ref={buttonRef} className="mb-8">
                             <a
-                                href="https://wa.me/4915773733381" // Replace with your target link
+                                href="tel:4915773733381" // Replace with your target link
                                 className="inline-flex items-center justify-center px-10 py-4 text-base font-semibold text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-orange-50/50 transition-all duration-300 transform hover:scale-105 group"
                             >
                                 Jetzt Assistenz anfragen
@@ -82,7 +82,7 @@ const RightVideoWithButton = () => {
                         </div>
                         <div ref={contactLinksRef} className="flex flex-col items-center  md:items-start sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-6 text-gray-600">
                             <a href="https://wa.me/4915773733381" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-orange-600 transition-colors group">
-                                <MessageSquare className="h-5 w-5 mr-2 text-orange-500 group-hover:text-orange-600 transition-colors" />
+                                <Image src={`/icons8-whatsapp (1).svg`} width={50} height={50} className="h-5 w-5 mr-2 text-orange-500 group-hover:text-orange-600 transition-colors"/>
                                 WhatsApp Service
                             </a>
                             <a href="mailto:info@plus-infinity.de" className="flex items-center hover:text-orange-600 transition-colors group">

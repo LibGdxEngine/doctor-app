@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronUp, Phone, Mail, MessageSquare, MapPin, Instagram, Youtube, Linkedin } from 'lucide-react'; // Using lucide-react for icons
 import { Facebook, X, ChartAreaIcon } from 'lucide-react';
+import Image from 'next/image'; // For images
+import Link from 'next/link'; // For links
 const Footer = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -63,7 +65,7 @@ const Footer = () => {
                 <a href="mailto:info@plus-infinity.de" className="hover:text-orange-400 transition-colors">info@plus-infinity.de</a>
               </li>
               <li className="flex items-center">
-                <MessageSquare className="h-5 w-5 mr-3 text-orange-500" />
+                <Image src={`/icons8-whatsapp (1).svg`} width={20} height={20} className="h-5 w-5 mr-3" />
                 <a href="https://wa.me/4915773733381" className="hover:text-orange-400 transition-colors">WhatsApp Service</a>
               </li>
               <li className="flex items-start mt-2">
@@ -81,9 +83,9 @@ const Footer = () => {
                 <X onClick={()=>{
                   window.open('https://x.com/Infinitypl9541?t=bq5M60u8khyiuZOjULS96w&s=09', '_blank');
                 }} className="h-6 w-6 text-gray-400 hover:text-white transition-colors" />
-                <a href="#" aria-label="Instagram" className="text-gray-400 hover:text-white transition-colors">
+                {/* <a href="#" aria-label="Instagram" className="text-gray-400 hover:text-white transition-colors">
                   <Instagram className="h-6 w-6" />
-                </a>
+                </a> */}
                 {/* <a href="#" aria-label="TikTok" className="text-gray-400 hover:text-white transition-colors">
                   <TikTokIcon />
                 </a>

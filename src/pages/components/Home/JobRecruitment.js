@@ -51,8 +51,7 @@ export default function JobRecruitment() {
             </h2>
 
             <p className="text-gray-700 mb-8 text-sm">
-              Werde Teil unseres Teams und unterstütze Menschen dabei, ein selbstbestimmtes Leben zu führen. Bei Seiler
-              Assistenz erwartet dich ein Job mit großer Wirkung, in dem Deine Arbeit wertgeschätzt wird. Bewirb Dich
+              Werde Teil unseres Teams und unterstütze Menschen dabei, ein selbstbestimmtes Leben zu führen. infinity-plus erwartet dich ein Job mit großer Wirkung, in dem Deine Arbeit wertgeschätzt wird. Bewirb Dich
               jetzt und profitiere von fairen Arbeitsbedingungen, attraktiver Bezahlung und einem Team, das immer für
               Dich da ist.
             </p>

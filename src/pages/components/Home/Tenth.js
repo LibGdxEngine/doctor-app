@@ -11,7 +11,7 @@ export default function Tenth() {
           </h2>
 
           <Link
-            href="tel:02273-9515274"
+            href="tel:4915773733381"
             className="inline-flex items-center bg-white text-orange-500 hover:bg-gray-100 transition-colors px-8 py-4 rounded-md font-medium"
           >
             <Phone className="mr-2 h-5 w-5" />

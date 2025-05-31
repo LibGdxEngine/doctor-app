@@ -20,7 +20,7 @@ function Solid() {
                 für ein selbstbestimmtes Leben. Unsere Mission ist es, Menschen mit Behinderungen im Alltag zu unterstützen und ihre Unabhängigkeit zu fördern.
             </div>
 
-            <Link href={"https://wa.me/4915773733381"} style={{"cursor": "pointer"}} className='w-full md:w-1/2 flex items-center justify-center bg-white  text-black font-bold py-4 px-4 rounded-lg mt-8 hover:bg-gray-200 transition duration-300'>
+            <Link href={`tel:4915773733381`} style={{"cursor": "pointer"}} className='w-full md:w-1/2 flex items-center justify-center bg-white  text-black font-bold py-4 px-4 rounded-lg mt-8 hover:bg-gray-200 transition duration-300'>
                 <PhoneCall className="h-5 w-5  text-orange-500 group-hover:text-orange-600 transition-colors mr-4" />
                 
                 Jetzt Asisstenz anfragen
