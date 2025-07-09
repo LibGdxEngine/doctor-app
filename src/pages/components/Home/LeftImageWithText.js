@@ -27,7 +27,7 @@ const LeftImageWithText = ({title , desc, title2, desc2, IMAGE_URL}) => {
               alt="Infinity Plus Logo"
               width={700}
               height={700}
-              className="h-full w-full transition-all duration-300"
+              className="h-full w-full transition-all duration-300 rounded-2xl"
             />
           </div>
 
