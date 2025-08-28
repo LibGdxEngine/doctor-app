@@ -1,6 +1,7 @@
 // src/app/page.js (or your HomePage file path)
 "use client"; // Add this if you're using Next.js App Router and need client-side interactivity
 import Image from "next/image";
+import logo from "../../../../public/logo2.svg";
 import Link from "next/link";
 import { Phone, MessageCircle, Menu as MenuIcon, X as XIcon } from "lucide-react";
 import useScrollPosition from "../utils/useScrollPosition"; // Assuming this path is correct
@@ -121,15 +122,15 @@ export default function HomePageWithNavBar({ isBigNav = false, ctaButtonText = "
               }`}
           >
             {/* Logo */}
-            <div className=" md:w-1/4 flex items-center ml-8 md:ml-36">
+            <div className=" md:w-1/3 flex items-center ml-8 md:ml-36">
               <Link href="/" className="flex items-center" onClick={() => isMobileMenuOpen && handleMobileLinkClick()}>
                 <div className="text-orange-500 font-bold text-2xl">
                   <Image
-                    src="/newdesign.png" // Ensure this image is in your /public folder
+                    src={logo} // Ensure this image is in your /public folder
                     alt="Infinity Plus Logo"
-                    width={isScrolled || isMobileMenuOpen ? 60 : 60}
-                    height={isScrolled || isMobileMenuOpen ? 60 : 60}
-                    className="h-10 w-auto sm:h-12 mr-2 transition-all duration-300"
+                    width={isScrolled || isMobileMenuOpen ? 40 : 40}
+                    height={isScrolled || isMobileMenuOpen ? 40 : 40}
+                    className="h-2 w-auto sm:h-12 mr-2 transition-all duration-300"
                   />
                 </div>
                 <div className="ml-2 flex flex-col">

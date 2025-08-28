@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "../../../public/logo.svg";
+import logo from "../../../public/logo_white.png";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import userIcon from "../../../public/profile.svg";
